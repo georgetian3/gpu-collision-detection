@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Dynamic-Cubemaps-master\build\CMakeFiles\f504c599a95db432fd7157fa09c12e1d\update_mappings.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\opengl-realistic\libs\glfw\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\opengl-realistic\libs\glfw\src\mappings.h.in">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="D:\opengl-realistic\libs\glfw\CMake\GenerateMappings.cmake" />
+    <None Include="D:\opengl-realistic\libs\glfw\debug\src\CMakeFiles\update_mappings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4CC1A818-643A-3DB3-ADE9-8FAC890DC387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B31CC8A2-5B18-33E2-9ADD-295BF452DA01}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

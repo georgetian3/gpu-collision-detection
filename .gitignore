@@ -1,5 +1,9 @@
-__pycache__/
-.venv/
-.mypy_cache/
-imgui.ini
-test_window.py
+build/
+bin/
+docs/
+.vscode
+_minted-main
+main.*
+!main.cpp
+!main.pdf
+.DS_STORE
