@@ -1,5 +1,5 @@
 # OpenGL Scene
 
-Computer graphics HW 3
+Computer Animation Project
 
-Project template from [Glitter](http://polytonic.github.io/Glitter/)
+`CMakeLists.txt` from [Glitter](http://polytonic.github.io/Glitter/)
