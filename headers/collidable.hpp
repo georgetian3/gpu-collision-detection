@@ -6,9 +6,9 @@
 
 class Collidable {
 
-    static unsigned int idCount = 0;
+    static unsigned int idCount;
     unsigned int id;
-    void setId() const;
+    void setId();
     glm::dvec3 velocity;
     glm::dvec3 position;
 

@@ -1,6 +1,8 @@
 #include <collidable.hpp>
 
-void Collidable::setId() const {
+unsigned int Collidable::idCount = 0;
+
+void Collidable::setId() {
     id = idCount++;
 }
 
@@ -14,6 +16,6 @@ unsigned int Collidable::getId() const {
 }
 
 
-void Collidable::addCollidable(const Collidable& collidable) {
+void Collidables::addCollidable(const Collidable& collidable) {
     collidableList.emplace_back(collidable);
 }
