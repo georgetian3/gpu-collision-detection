@@ -17,4 +17,4 @@ Computer Animation Project
 
 ## 树的构建
 
-目前存在[https://web.archive.org/web/20140113213158/http://visual-computing.intel-research.net/publications/papers/2008/async/AsyncBVHJournal2008.pdf](高效的算法)，可以
+此项目的碰撞检测对象是动态的物体，即需要每次物体的位置更新后做一次碰撞检测，因此需要更新层级包围体树。目前存在[高效的算法](https://web.archive.org/web/20140113213158/http://visual-computing.intel-research.net/publications/papers/2008/async/AsyncBVHJournal2008.pdf)，可以更新重复使用同一个树，但是考虑到此在此场景中，物体的位置可能会有巨大的变化，因此选择每次进行碰撞检测时重新构建全新的树。
