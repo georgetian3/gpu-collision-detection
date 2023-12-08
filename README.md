@@ -17,3 +17,4 @@ Computer Animation Project
 
 ## 树的构建
 
+目前存在[https://web.archive.org/web/20140113213158/http://visual-computing.intel-research.net/publications/papers/2008/async/AsyncBVHJournal2008.pdf](高效的算法)，可以
