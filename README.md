@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # GPU Collision Detection
 
 Computer Animation Project
@@ -26,3 +27,10 @@ z = 0.10101010 -> 0. ↓1 ↓0 ↓1 ↓0 ↓1 ↓0 ↓1 ↓0
                       ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓
                 = 0.011000111000101010101010
 ```
+=======
+# OpenGL Scene
+
+Computer Animation Project
+
+`CMakeLists.txt` from [Glitter](http://polytonic.github.io/Glitter/)
+>>>>>>> Stashed changes
