@@ -1,24 +1,12 @@
-<<<<<<< Updated upstream
-build/
-bin/
-docs/
-.vscode
-_minted-main
-main.*
-!main.cpp
-!main.pdf
-.DS_STORE
-Debug
-=======
 build/
 bin/
 .vscode
 _minted-main
 main.*
+!main.tex
 !main.cpp
 !main.pdf
 .DS_STORE
 Debug
 libs/OpenCL-CLHPP/docs/*
 libs/OpenCL-CLHPP/examples/*
->>>>>>> Stashed changes
