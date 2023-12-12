@@ -1,4 +1,5 @@
 #include <collidable.hpp>
+#include <iostream>
 
 unsigned int Collidable::idCount = 0;
 
