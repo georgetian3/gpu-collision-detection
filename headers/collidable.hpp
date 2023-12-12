@@ -26,7 +26,7 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    
+
 
 };
 
@@ -39,7 +39,7 @@ public:
         maxAABB = glm::dvec3(+radius / 2);
     }
 
-}
+};
 
 
 class RectangularCuboid: public Collidable {
