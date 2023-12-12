@@ -31,7 +31,7 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     double r, l, xl, yl, zl;
     while (!f.eof()) {
         Collidable collidable;
-        f >> type >> pos;
+        f >> type >> pos.x >> pos.y >> pos.z;
         if (type == 's') {
             f >> r;
             collidable = Sphere(pos, r);
