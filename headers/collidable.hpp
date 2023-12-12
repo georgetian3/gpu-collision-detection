@@ -50,7 +50,7 @@ public:
         maxAABB = glm::dvec3(+radius / 2);
     }
     virtual Collision collides(const Sphere& sphere) {
-        return {false, 0, 0, glm::dvec(0.0)};
+        return {false, 0, 0, glm::dvec3(0.0)};
     }
 
 };
