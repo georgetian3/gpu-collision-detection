@@ -41,6 +41,8 @@ class GpuCollisionDetector: public CollisionDetector {
 
 public:
 
+    GpuCollisionDetector();
+
     std::vector<Collision> detectCollisions() final {
         std::vector<Collision> collisions;
         return collisions;
