@@ -37,8 +37,9 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    virtual Collision collides(const Collidable&) = 0;
-
+    virtual Collision collides(const Collidable&) {
+        return {false, 0, 0, glm::dvec3(0.0)};
+    }
 };
 
 class Sphere: public Collidable {
@@ -49,7 +50,7 @@ public:
         minAABB = glm::dvec3(-radius / 2);
         maxAABB = glm::dvec3(+radius / 2);
     }
-    virtual Collision collides(const Sphere& sphere) {
+    virtual Collision collides(const Sphere& sphere) final {
         return {false, 0, 0, glm::dvec3(0.0)};
     }
 
