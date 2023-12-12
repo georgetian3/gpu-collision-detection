@@ -119,18 +119,6 @@ install(
 set(UNITY_DIR ${PROJECT_SOURCE_DIR}/external/CMock/vendor/unity CACHE PATH "Unity dir")
 set(CMOCK_DIR ${PROJECT_SOURCE_DIR}/external/CMock CACHE PATH "CMock dir")
 
-if(BUILD_DOCS)
-  add_subdirectory(docs)
-endif(BUILD_DOCS)
-
-if(BUILD_EXAMPLES)
-  add_subdirectory(examples)
-endif(BUILD_EXAMPLES)
-
-if(CLHPP_BUILD_TESTS)
-  add_subdirectory(tests)
-endif(CLHPP_BUILD_TESTS)
-
 join_paths(OPENCLHPP_INCLUDEDIR_PC "\${prefix}" "${CMAKE_INSTALL_INCLUDEDIR}")
 
 configure_file(OpenCL-CLHPP.pc.in OpenCL-CLHPP.pc @ONLY)
