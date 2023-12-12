@@ -39,7 +39,7 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    // static std::vector<Collidable> readConfig(const std::filesystem::path& path);
+    static std::vector<Collidable> readConfig(const std::filesystem::path& path);
     // static Collision collide(const Sphere&, const Sphere&);
     // static Collision collide(const Sphere&, const RectangularCuboid&);
     // static Collision collide(const Sphere&, const Cube&);
