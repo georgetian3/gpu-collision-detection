@@ -12,6 +12,8 @@ int main(int argc, char* argv[]) {
         std::cout << collidables[i]->toString() << '\n';
     }
     NaiveCollisionDetector naiveCD;
+    naiveCD.collidables = collidables;
+    naiveCD.detectCollisions();
     // Scene scene(
     //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
     //     1600, 900
