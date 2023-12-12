@@ -1,5 +1,6 @@
 #include <collidable.hpp>
 #include <iostream>
+#include <glm/gtx/string_cast.hpp>
 
 unsigned int Collidable::idCount = 0;
 
@@ -53,6 +54,12 @@ Sphere::Sphere(const glm::dvec3 center, const double radius) {
     position = center;
     minAABB = glm::dvec3(-radius / 2);
     maxAABB = glm::dvec3(+radius / 2);
+}
+
+Sphere::toString() const {
+    char buf[100];
+    sprintf(buf, "Sphere (center: %s, radius: %d)", glm::to_string(position), radius);
+    return std::string(buf);
 }
 
 RectangularCuboid::RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl):
