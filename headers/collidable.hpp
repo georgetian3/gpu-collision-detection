@@ -66,7 +66,6 @@ public:
 
 };
 
-
 class RectangularCuboid: public Collidable {
 
     double xl;
@@ -78,7 +77,6 @@ public:
     RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl);
 
 };
-
 
 class Cube: public Collidable {
 
