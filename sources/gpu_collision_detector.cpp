@@ -70,7 +70,7 @@ void openclInfo() {
             std::cout << "        CL_DEVICE_AVAILABLE: " << devices[i].getInfo<CL_DEVICE_AVAILABLE>() << '\n';
             std::cout << "        CL_DEVICE_COMPILER_AVAILABLE: " << devices[i].getInfo<CL_DEVICE_COMPILER_AVAILABLE>() << '\n';
             std::cout << "        CL_DEVICE_EXECUTION_CAPABILITIES: " << devices[i].getInfo<CL_DEVICE_EXECUTION_CAPABILITIES>() << '\n';
-            std::cout << "        CL_DEVICE_PLATFORM: " << devices[i].getInfo<CL_DEVICE_PLATFORM>() << '\n';
+            // std::cout << "        CL_DEVICE_PLATFORM: " << devices[i].getInfo<CL_DEVICE_PLATFORM>() << '\n';
             std::cout << "        CL_DEVICE_NAME: " << devices[i].getInfo<CL_DEVICE_NAME>() << '\n';
             std::cout << "        CL_DEVICE_VENDOR: " << devices[i].getInfo<CL_DEVICE_VENDOR>() << '\n';
             std::cout << "        CL_DRIVER_VERSION: " << devices[i].getInfo<CL_DRIVER_VERSION>() << '\n';
