@@ -56,7 +56,7 @@ Sphere::Sphere(const glm::dvec3 center, const double radius) {
     maxAABB = glm::dvec3(+radius / 2);
 }
 
-Sphere::toString() const {
+std::string Sphere::toString() const {
     char buf[100];
     sprintf(buf, "Sphere (center: %s, radius: %d)", glm::to_string(position), radius);
     return std::string(buf);
