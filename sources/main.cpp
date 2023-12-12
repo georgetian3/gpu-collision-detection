@@ -8,8 +8,8 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
     auto collidables = Collidable::readConfig("resources/collidables.txt");
-    for (const auto& collidable: collidables) {
-        std::cout << collidable.toString() << '\n';
+    for (int i = 0; i < collidables.size(); i++) {
+        std::cout << collidables[i].toString() << '\n';
     }
     NaiveCollisionDetector naiveCD;
     // Scene scene(
