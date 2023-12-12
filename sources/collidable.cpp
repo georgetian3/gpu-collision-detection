@@ -28,12 +28,12 @@ std::string Collidable::toString() const {
     return std::string("Collidable");
 }
 
-std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path) {
+std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::filesystem::path& path) {
     // # all numeric values below are doubles
     // # s x y z r = sphere with center at (x, y, z) with radius r
     // # c x y z l = cube with smallest corner at (x, y, z) with side length l
     // # r x y z xl yl zl = rectangular cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
-    std::vector<Collidable> collidables;
+    std::vector<std::shared_ptr<Collidable>> collidables;
     std::ifstream f(path);
     if (!f.is_open()) {
         std::cout << "Cannot open file: " << path << '\n';
@@ -43,21 +43,21 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     glm::dvec3 pos;
     double r, l, xl, yl, zl;
     while (!f.eof()) {
-        Collidable collidable;
+        Collidable* collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
         if (type == "s") {
             f >> r;
-            collidable = Sphere(pos, r);
+            collidable = new Sphere(pos, r);
         } else if (type == "c") {
             f >> l;
-            collidable = Cube(pos, l);
+            collidable = new Cube(pos, l);
         } else if (type == "r") {
             f >> xl >> yl >> zl;
-            collidable = RectangularCuboid(pos, xl, yl, zl);
+            collidable = new RectangularCuboid(pos, xl, yl, zl);
         } else {
             std::cout << "Invalid shape type\n";
         }
-        collidables.emplace_back(collidable);
+        collidables.emplace_back(std::shared_ptr(collidable));
     }
     return collidables;
 }

@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
     }
     auto collidables = Collidable::readConfig("resources/collidables.txt");
     for (int i = 0; i < collidables.size(); i++) {
-        std::cout << collidables[i].toString() << '\n';
+        std::cout << collidables[i]->toString() << '\n';
     }
     NaiveCollisionDetector naiveCD;
     // Scene scene(
