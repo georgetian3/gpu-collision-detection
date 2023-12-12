@@ -68,7 +68,7 @@ Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
     maxAABB = glm::dvec3(+radius / 2);
 }
 
-std::string Sphere::toString() const {
+virtual std::string Sphere::toString() const {
     char buf[100];
     sprintf(buf, "Sphere (center: %s, radius: %f)", glm::to_string(position).c_str(), radius);
     return std::string(buf);
@@ -82,7 +82,7 @@ RectangularCuboid::RectangularCuboid(const glm::dvec3 position, const double xl,
 
 }
 
-std::string RectangularCuboid::toString() const {
+virtual std::string RectangularCuboid::toString() const {
     char buf[100];
     sprintf(buf, "Sphere (pos: %s, xl: %f, yl: %f, zl: %f)", glm::to_string(position).c_str(), xl, yl, zl);
     return std::string(buf);
@@ -94,7 +94,7 @@ Cube::Cube(const glm::dvec3 position, const double length): length(length) {
     maxAABB = glm::dvec3(length);
 }
 
-std::string Cube::toString() const {
+virtual std::string Cube::toString() const {
     char buf[100];
     sprintf(buf, "Cube (pos: %s, length: %f)", glm::to_string(position).c_str(), length);
     return std::string(buf);
