@@ -29,6 +29,10 @@ std::string Collidable::toString() const {
 }
 
 std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path) {
+    // # all numeric values below are doubles
+    // # s x y z r = sphere with center at (x, y, z) with radius r
+    // # c x y z l = cube with smallest corner at (x, y, z) with side length l
+    // # r x y z xl yl zl = rectangular cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
     std::vector<Collidable> collidables;
     std::ifstream f(path);
     char type;
