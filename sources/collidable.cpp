@@ -70,7 +70,7 @@ Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
 
 std::string Sphere::toString() const {
     char buf[100];
-    sprintf(buf, "Sphere (center: %s, radius: %d)", glm::to_string(position), radius);
+    sprintf(buf, "Sphere (center: %s, radius: %d)", glm::to_string(position).c_str(), radius);
     return std::string(buf);
 }
 
