@@ -40,7 +40,7 @@ public:
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
     static std::vector<Collidable> readConfig(const std::filesystem::path& path);
-    std::string toString() const;
+    virtual std::string toString() const;
     // static Collision collide(const Sphere&, const Sphere&);
     // static Collision collide(const Sphere&, const RectangularCuboid&);
     // static Collision collide(const Sphere&, const Cube&);
