@@ -41,6 +41,7 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
+        std::cout << type << ' ' << glm::to_string(pos) << '\n';
         if (type == 's') {
             f >> r;
             collidable = Sphere(pos, r);
