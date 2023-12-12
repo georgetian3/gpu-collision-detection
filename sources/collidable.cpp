@@ -1,6 +1,7 @@
 #include <collidable.hpp>
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtx/norm.hpp>
 
 unsigned int Collidable::idCount = 0;
 
