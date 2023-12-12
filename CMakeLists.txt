@@ -12,8 +12,8 @@ find_package(OpenCL)
 
 add_subdirectory(libs/OpenCL-Headers)
 add_subdirectory(libs/opencl-icd-loader)
-set_target_properties(OpenCL PROPERTIES FOLDER "OpenCL-ICD-Loader")
-set_target_properties(cllayerinfo PROPERTIES FOLDER "OpenCL-ICD-Loader")
+set_target_properties(OpenCL PROPERTIES FOLDER "opencl-icd-loader")
+set_target_properties(cllayerinfo PROPERTIES FOLDER "opencl-icd-loader")
 set(OpenCL_LIBRARIES OpenCL)
 include_directories(${OpenCL_INCLUDE_DIR})
 
