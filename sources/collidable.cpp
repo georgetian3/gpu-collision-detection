@@ -36,10 +36,6 @@ Sphere::Sphere(const glm::dvec3 center, const double radius) {
     maxAABB = glm::dvec3(+radius / 2);
 }
 
-Collision Sphere::collides(const Sphere& sphere) {
-    return {false, 0, 0, glm::dvec3(0.0)};
-}
-
 RectangularCuboid::RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl):
     xl(xl), yl(yl), zl(zl) {
     
