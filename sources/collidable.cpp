@@ -23,7 +23,28 @@ glm::dvec3 Collidable::getMaxAABB() const {
 }
 
 std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path) {
-    return std::vector<Collidable>();
+    std::vector<Collidable> collidables;
+    std::ifstream f(path);
+    char type;
+    glm::dvec3 pos;
+    double r, l, xl, yl, zl;
+    while (!f.eof()) {
+        Collidable collidable;
+        f >> type >> pos;
+        if (type == 's') {
+            f >> r;
+            collidable = Sphere(pos, r);
+        } else if (type == 'c') {
+            f >> l;
+            collidable = Cube(pos, l);
+        } else if (type == 'r') {
+            f >> xl >> yl >> zl;
+            collidable = RectangularCuboid(pos, xl, yl, zl);
+        } else {
+            std::cout << "Invalid shape type\n";
+        }
+        collidables.emplace_back(collidable);
+    }
 }
 
 Sphere::Sphere(const glm::dvec3 center, const double radius) {
