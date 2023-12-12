@@ -46,6 +46,7 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
         }
         collidables.emplace_back(collidable);
     }
+    return collidables;
 }
 
 Sphere::Sphere(const glm::dvec3 center, const double radius) {
