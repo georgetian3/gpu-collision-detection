@@ -39,16 +39,16 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    static std::vector<Collidable> readConfig(const std::filesystem::path& path);
-    static Collision collide(const Sphere&, const Sphere&);
-    static Collision collide(const Sphere&, const RectangularCuboid&);
-    static Collision collide(const Sphere&, const Cube&);
-    static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const RectangularCuboid&, const Sphere&);
-    static Collision collide(const RectangularCuboid&, const Cube&);
-    static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
+    // static std::vector<Collidable> readConfig(const std::filesystem::path& path);
+    // static Collision collide(const Sphere&, const Sphere&);
+    // static Collision collide(const Sphere&, const RectangularCuboid&);
+    // static Collision collide(const Sphere&, const Cube&);
+    // static Collision collide(const Cube&, const Sphere&);
+    // static Collision collide(const Cube&, const Sphere&);
+    // static Collision collide(const Cube&, const Sphere&);
+    // static Collision collide(const RectangularCuboid&, const Sphere&);
+    // static Collision collide(const RectangularCuboid&, const Cube&);
+    // static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
 
 };
 
