@@ -39,7 +39,7 @@ public:
 
     double stop() {
         if (state != State::started) {
-            return 0;
+            return 0.0;
         }
         elapsed_seconds += elapsed_since_start();
         state = State::stopped;
@@ -47,7 +47,7 @@ public:
     }
 
     void reset() {
-        elapsed_seconds = 0;
+        elapsed_seconds = 0.0;
         state = State::init;
     }
 
@@ -58,7 +58,7 @@ public:
         if (state == State::stopped) {
             return elapsed_seconds;
         }
-        return 0;
+        return 0.0;
     }
 
 };
