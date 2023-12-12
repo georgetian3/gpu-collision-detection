@@ -15,7 +15,9 @@ public:
     void addCollidable(const Collidable& collidable) {
         collidables.emplace_back(collidable);
     }
-    virtual std::vector<Collision> detectCollisions() = 0;
+    virtual std::vector<Collision> detectCollisions() {
+        return std::vector<Collision>();
+    }
 
 };
 
@@ -23,7 +25,7 @@ class NaiveCollisionDetector: public CollisionDetector {
 
 public:
 
-    virtual std::vector<Collision> detectCollisions() {
+    std::vector<Collision> detectCollisions() final {
         std::vector<Collision> collisions;
         for (size_t i = 0; i < collidables.size(); i++) {
             for (size_t j = i + 1; j < collidables.size(); j++) {
