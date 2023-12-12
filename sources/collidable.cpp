@@ -57,7 +57,7 @@ std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::files
         } else {
             std::cout << "Invalid shape type\n";
         }
-        collidables.emplace_back(std::shared_ptr(collidable));
+        collidables.emplace_back(std::shared_ptr<Collidable>(collidable));
     }
     return collidables;
 }
