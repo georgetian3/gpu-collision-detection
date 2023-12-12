@@ -22,10 +22,6 @@ glm::dvec3 Collidable::getMaxAABB() const {
     return position + maxAABB;
 }
 
-Collision Collidable::collides(const Collidable&) {
-    return {false, 0, 0, glm::dvec3(0.0)};
-}
-
 std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path) {
     return std::vector<Collidable>();
 }
