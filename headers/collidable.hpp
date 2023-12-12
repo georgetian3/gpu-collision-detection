@@ -39,17 +39,26 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    virtual Collision collides(const Sphere& collidable) = 0;
-    virtual Collision collides(const Cube& cube) = 0;
-    virtual Collision collides(const RectangularCuboid& cuboid) = 0;
     static std::vector<Collidable> readConfig(const std::filesystem::path& path);
+    static Collision collide(const Sphere&, const Sphere&);
+    static Collision collide(const Sphere&, const RectangularCuboid&);
+    static Collision collide(const Sphere&, const Cube&);
+    static Collision collide(const Cube&, const Sphere&);
+    static Collision collide(const Cube&, const Sphere&);
+    static Collision collide(const Cube&, const Sphere&);
+    static Collision collide(const RectangularCuboid&, const Sphere&);
+    static Collision collide(const RectangularCuboid&, const Cube&);
+    static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
 
 };
 
 class Sphere: public Collidable {
 
 public:
+
     Sphere(const glm::dvec3 center, const double radius);
+    glm::dvec3 getCenter() const;
+    double getRadius() const;
 
 };
 
@@ -61,6 +70,7 @@ class RectangularCuboid: public Collidable {
     double zl;
 
 public:
+
     RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl);
 
 };
