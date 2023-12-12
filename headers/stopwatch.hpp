@@ -39,7 +39,7 @@ public:
 
     double stop() {
         if (state != State::started) {
-            return nan;
+            return 0;
         }
         elapsed_seconds += elapsed_since_start();
         state = State::stopped;
@@ -58,7 +58,7 @@ public:
         if (state == State::stopped) {
             return elapsed_seconds;
         }
-        return nan;
+        return 0;
     }
 
 };
