@@ -35,7 +35,7 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     // # r x y z xl yl zl = rectangular cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
     std::vector<Collidable> collidables;
     std::ifstream f(path);
-    string type;
+    std::string type;
     glm::dvec3 pos;
     double r, l, xl, yl, zl;
     while (!f.eof()) {
