@@ -10,6 +10,10 @@ add_subdirectory(libs/glfw)
 set(OpenCL_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/OpenCL-Headers)
 find_package(OpenCL)
 
+option(BUILD_DOCS "Build Documentation" OFF)
+option(BUILD_EXAMPLES "Build Examples" OFF)
+option(OPENCL_CLHPP_BUILD_TESTING "Enable support for OpenCL C++ headers testing." OFF)
+
 add_subdirectory(libs/OpenCL-Headers)
 add_subdirectory(libs/OpenCL-CLHPP)
 add_subdirectory(libs/opencl-icd-loader)
