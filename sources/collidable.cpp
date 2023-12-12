@@ -58,7 +58,6 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
             std::cout << "Invalid shape type\n";
         }
         collidables.emplace_back(collidable);
-        break;
     }
     return collidables;
 }
