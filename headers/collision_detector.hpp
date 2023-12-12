@@ -3,14 +3,31 @@
 
 #include <collidable.hpp>
 
-class CollisionDetector {
+struct Collision {
+    unsigned int id1;
+    unsigned int id2;
+    glm::dvec3 point;
 
+}
+
+class CollisionDetector {
 
 public:
 
     void addCollidable(const Collidable& collidable);
-
+    std::vector<Collision> detectCollisions();
 
 };
+
+class NaiveCollisionDetector: public CollisionDetector {
+
+
+}
+
+class GpuCollisionDetector: public CollisionDetector {
+
+
+
+}
 
 #endif
