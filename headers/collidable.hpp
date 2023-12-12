@@ -56,6 +56,9 @@ public:
     static Collision collide(const RectangularCuboid&, const Sphere&);
     static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
     static Collision collide(const RectangularCuboid&, const Cube&);
+    static Collision collide(const Collidable& a, const Collidable& b) {
+        std::cout << "Collision collide(const Collidable& a, const Collidable& b)\n";
+    }
 
 };
 
