@@ -35,20 +35,20 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     // # r x y z xl yl zl = rectangular cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
     std::vector<Collidable> collidables;
     std::ifstream f(path);
-    char type;
+    string type;
     glm::dvec3 pos;
     double r, l, xl, yl, zl;
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
-        std::cout << (int)type << ' ' << glm::to_string(pos) << '\n';
-        if (type == 's') {
+        std::cout << type << ' ' << glm::to_string(pos) << '\n';
+        if (type == "s") {
             f >> r;
             collidable = Sphere(pos, r);
-        } else if (type == 'c') {
+        } else if (type == "c") {
             f >> l;
             collidable = Cube(pos, l);
-        } else if (type == 'r') {
+        } else if (type == "r") {
             f >> xl >> yl >> zl;
             collidable = RectangularCuboid(pos, xl, yl, zl);
         } else {
