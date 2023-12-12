@@ -60,7 +60,7 @@ public:
     }
 
 
-}
+};
 
 
 class Cube: public Collidable {
@@ -73,6 +73,6 @@ public:
         minAABB = glm::dvec3(0.0);
         maxAABB = glm::dvec3(length);
     }
-}
+};
 
 #endif
