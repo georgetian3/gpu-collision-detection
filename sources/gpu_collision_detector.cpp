@@ -20,7 +20,8 @@ void openclInfo() {
         std::cout << "    Extensions: " << platforms[i].getInfo<CL_PLATFORM_EXTENSIONS>() << '\n';
 
         std::vector<cl::Device> devices;
-        cl::Device::get(&devices);
+        platforms[i].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+        
         if (devices.empty()) {
             std::cout << "No devices";
         }
