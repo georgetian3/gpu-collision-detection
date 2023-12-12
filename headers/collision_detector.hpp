@@ -6,18 +6,9 @@
 
 class CollisionDetector {
 
-protected:
-
-    std::vector<Collidable> collidables;
-
 public:
 
-    void addCollidable(const Collidable& collidable) {
-        collidables.emplace_back(collidable);
-    }
-    virtual std::vector<Collision> detectCollisions() {
-        return std::vector<Collision>();
-    }
+    virtual std::vector<Collision> detectCollisions() = 0;
 
 };
 
@@ -42,6 +33,12 @@ public:
 
 class GpuCollisionDetector: public CollisionDetector {
 
+public:
+
+    std::vector<Collision> detectCollisions() final {
+        std::vector<Collision> collisions;
+        return collisions;
+    }
 
 
 };
