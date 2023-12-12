@@ -77,10 +77,10 @@ static Collision collide(const Sphere&, const Cube&) {
 static Collision collide(const Cube&, const Sphere&) {
     return NO_COLLISION;
 }
-static Collision collide(const Cube&, const Sphere&) {
+static Collision collide(const Cube&, const Cube&) {
     return NO_COLLISION;
 }
-static Collision collide(const Cube&, const Sphere&) {
+static Collision collide(const Cube&, const RectangularCuboid&) {
     return NO_COLLISION;
 }
 static Collision collide(const RectangularCuboid&, const Sphere&) {
