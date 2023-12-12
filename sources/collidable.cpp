@@ -63,6 +63,7 @@ std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::files
 }
 
 Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
+    std::cout << "r " << radius << '\n';
     position = center;
     minAABB = glm::dvec3(-radius / 2);
     maxAABB = glm::dvec3(+radius / 2);
