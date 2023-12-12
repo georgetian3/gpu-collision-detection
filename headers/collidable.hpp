@@ -11,6 +11,8 @@ class RegularTetrahedron;
 
 class Collidable {
 
+protected:
+
     static unsigned int idCount;
     unsigned int id;
     void setId();
