@@ -2,11 +2,9 @@
 #define STOPWATCH_HPP
 
 #include <chrono>
-#include <limits>
 
 class Stopwatch {
 
-    double nan = std::numeric_limits<double>::quiet_NaN();
     std::chrono::high_resolution_clock clock;
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
     double elapsed_seconds = 0;

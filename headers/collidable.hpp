@@ -4,6 +4,15 @@
 #include <vector>
 #include <glm/vec3.hpp>
 
+
+struct Collision {
+    bool collided;
+    unsigned int id1;
+    unsigned int id2;
+    glm::dvec3 point;
+};
+
+
 class Sphere;
 class RectangularCuboid;
 class Cube;
@@ -28,7 +37,7 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-
+    virtual Collision collides(const Collidable&) = 0;
 
 };
 
@@ -39,6 +48,9 @@ public:
         position = center;
         minAABB = glm::dvec3(-radius / 2);
         maxAABB = glm::dvec3(+radius / 2);
+    }
+    virtual Collision collides(const Sphere& sphere) {
+        return {false, 0, 0, glm::dvec(0.0)};
     }
 
 };

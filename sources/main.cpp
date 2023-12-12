@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
     Stopwatch sw;
     std::cout << sw.stop();
 
-    CollisionDetector cd;
+    NaiveCollisionDetector naiveCD;
     // Scene scene(
     //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
     //     1600, 900
