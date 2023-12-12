@@ -25,14 +25,4 @@ struct Collision {
 
 };
 
-class Collidables {
-
-    std::vector<Collidable> collidableList;
-
-public:
-
-    void addCollidable(const Collidable& collidable);
-
-};
-
 #endif
