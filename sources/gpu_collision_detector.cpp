@@ -31,7 +31,7 @@ void openclInfo() {
             std::cout << "        CL_DEVICE_MAX_COMPUTE_UNITS: " << devices[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << '\n';
             std::cout << "        CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS>() << '\n';
             std::cout << "        CL_DEVICE_MAX_WORK_GROUP_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << '\n';
-            std::cout << "        CL_DEVICE_MAX_WORK_ITEM_SIZES: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>() << '\n';
+            // std::cout << "        CL_DEVICE_MAX_WORK_ITEM_SIZES: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>() << '\n';
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR>() << '\n';
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT>() << '\n';
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT>() << '\n';
