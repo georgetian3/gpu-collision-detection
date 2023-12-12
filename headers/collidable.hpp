@@ -15,8 +15,8 @@ struct Collision {
     const unsigned int id2;
     const glm::dvec3 point;
     Collision(const unsigned int id1, const unsigned int id2, const glm::dvec3 point): id1(id1), id2(id2), point(point) {}
-    static Collision isNoCollision() const {
-        return id1 == 0 && id2 == 0;
+    static Collision isNoCollision(const Collision& collision) {
+        return collision.id1 == 0 && collision.id2 == 0;
     }
 };
 
