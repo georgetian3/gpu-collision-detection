@@ -19,7 +19,6 @@ struct Collision {
 class Sphere;
 class RectangularCuboid;
 class Cube;
-class RegularTetrahedron;
 
 class Collidable {
 
@@ -76,6 +75,7 @@ class RectangularCuboid: public Collidable {
 public:
 
     RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl);
+    virtual std::string toString() const;
 
 };
 
@@ -85,6 +85,7 @@ class Cube: public Collidable {
 
 public:
     Cube(const glm::dvec3 position, const double length);
+    virtual std::string toString() const;
 };
 
 #endif

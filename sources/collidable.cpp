@@ -82,8 +82,20 @@ RectangularCuboid::RectangularCuboid(const glm::dvec3 position, const double xl,
 
 }
 
+std::string RectangularCuboid::toString() const {
+    char buf[100];
+    sprintf(buf, "Sphere (pos: %s, xl: %f, yl: %f, zl: %f)", glm::to_string(position).c_str(), xl, yl, zl);
+    return std::string(buf);
+}
+
 Cube::Cube(const glm::dvec3 position, const double length): length(length) {
     this->position = position;
     minAABB = glm::dvec3(0.0);
     maxAABB = glm::dvec3(length);
+}
+
+std::string Cube::toString() const {
+    char buf[100];
+    sprintf(buf, "Cube (pos: %s, length: %f)", glm::to_string(position).c_str(), length);
+    return std::string(buf);
 }
