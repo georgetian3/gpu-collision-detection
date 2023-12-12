@@ -3,21 +3,41 @@
 #define CL_HPP_TARGET_OPENCL_VERSION 300
 #include <CL/opencl.hpp>
 
-GpuCollisionDetector::GpuCollisionDetector() {
-    //get all platforms (drivers)
+
+void openclInfo() {
+
     std::vector<cl::Platform> platforms;
     cl::Platform::get(&platforms);
     if (platforms.empty()) {
         std::cout << "No platforms found. Check OpenCL installation!\n";
         exit(1);
     }
-    for (const auto& platform: platforms) {
-        std::vector<cl:Device> devices;
-        platform.getDevices(CL_DEVICE_TYPE_ALL, devices);
-        for (const auto& device: devices) {
+    for (size_t i = 0; i < platforms.size(); i++) {
+        std::cout << "Platform 1:\n";
+        std::cout << "    Profile: " << platforms[i].getInfo<CL_PLATFORM_PROFILE>() << '\n';
+        std::cout << "    Version: " << platforms[i].getInfo<CL_PLATFORM_VERSION>() << '\n';
+        std::cout << "    Name: " << platforms[i].getInfo<CL_PLATFORM_NAME>() << '\n';
+        std::cout << "    Vendor: " << platforms[i].getInfo<CL_PLATFORM_VENDOR>() << '\n';
+        std::cout << "    Extensions: " << platforms[i].getInfo<CL_PLATFORM_EXTENSIONS>() << '\n';
 
-        }
+
     }
+    // for (const auto& platform: platforms) {
+    //     platform.getInfo()
+    //     std::vector<cl::Device> devices;
+    //     platform.getDevices(CL_DEVICE_TYPE_ALL, devices);
+    //     for (const auto& device: devices) {
+    //     }
+    // }
+
+
+}
+
+GpuCollisionDetector::GpuCollisionDetector() {
+    openclInfo();
+    return;
+    //get all platforms (drivers)
+    
     return;
     cl::Platform default_platform=platforms[0];
     std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
