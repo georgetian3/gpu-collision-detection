@@ -42,7 +42,6 @@ public:
     virtual Collision collides(const Sphere& collidable) = 0;
     virtual Collision collides(const Cube& cube) = 0;
     virtual Collision collides(const RectangularCuboid& cuboid) = 0;
-    virtual Collision collides(const RegularTetrahedron& tetrahedron) = 0;
     static std::vector<Collidable> readConfig(const std::filesystem::path& path);
 
 };
