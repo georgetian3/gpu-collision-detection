@@ -55,6 +55,8 @@ public:
 
 class Sphere: public Collidable {
 
+    double radius;
+
 public:
 
     Sphere(const glm::dvec3 center, const double radius);
