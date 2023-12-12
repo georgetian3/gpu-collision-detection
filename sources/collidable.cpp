@@ -35,6 +35,7 @@ Sphere::Sphere(const glm::dvec3 center, const double radius) {
     minAABB = glm::dvec3(-radius / 2);
     maxAABB = glm::dvec3(+radius / 2);
 }
+
 Collision Sphere::collides(const Sphere& sphere) {
     return {false, 0, 0, glm::dvec3(0.0)};
 }
