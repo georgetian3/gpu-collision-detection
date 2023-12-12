@@ -62,6 +62,39 @@ std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::files
     return collidables;
 }
 
+static Collision collide(const Sphere& a, const Sphere& b) {
+    if (a.getRadius() * a.getRadius() + b.getRadius() * b.getRadius() > glm::length2(a.getCenter() - b.getCenter())) {
+        return NO_COLLISION;
+    }
+    return Collision(a.getId(), b.getId(), glm::dvec3(0.0));
+}
+static Collision collide(const Sphere&, const RectangularCuboid&) {
+    return NO_COLLISION;
+}
+static Collision collide(const Sphere&, const Cube&) {
+    return NO_COLLISION;
+}
+static Collision collide(const Cube&, const Sphere&) {
+    return NO_COLLISION;
+}
+static Collision collide(const Cube&, const Sphere&) {
+    return NO_COLLISION;
+}
+static Collision collide(const Cube&, const Sphere&) {
+    return NO_COLLISION;
+}
+static Collision collide(const RectangularCuboid&, const Sphere&) {
+    return NO_COLLISION;
+}
+static Collision collide(const RectangularCuboid&, const Cube&) {
+    return NO_COLLISION;
+}
+static Collision collide(const RectangularCuboid&, const RectangularCuboid&) {
+    return NO_COLLISION;
+}
+
+
+
 Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
     position = center;
     minAABB = glm::dvec3(-radius / 2);
