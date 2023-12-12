@@ -10,12 +10,6 @@ Collidable::Collidable() {
     setId();
 }
 
-
 unsigned int Collidable::getId() const {
     return id;
-}
-
-
-void Collidables::addCollidable(const Collidable& collidable) {
-    collidableList.emplace_back(collidable);
 }
