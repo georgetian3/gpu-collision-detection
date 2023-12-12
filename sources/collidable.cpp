@@ -54,7 +54,8 @@ std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path
     return collidables;
 }
 
-Sphere::Sphere(const glm::dvec3 center, const double radius): position(center), radius(radius) {
+Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
+    position = center;
     minAABB = glm::dvec3(-radius / 2);
     maxAABB = glm::dvec3(+radius / 2);
 }
