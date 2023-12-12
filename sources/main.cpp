@@ -7,8 +7,6 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         std::cout << "Command line arguments ignored\n";
     }
-    Stopwatch sw;
-    std::cout << sw.stop();
 
     NaiveCollisionDetector naiveCD;
     // Scene scene(

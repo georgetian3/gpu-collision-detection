@@ -1,6 +1,8 @@
 #ifndef COLLIDABLE_HPP
 #define COLLIDABLE_HPP
 
+#include <filesystem>
+#include <fstream>
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -37,22 +39,16 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    virtual Collision collides(const Collidable&) {
-        return {false, 0, 0, glm::dvec3(0.0)};
-    }
+    virtual Collision collides(const Collidable&);
+    static std::vector<Collidable> readConfig(const std::filesystem::path& path);
+
 };
 
 class Sphere: public Collidable {
 
 public:
-    Sphere(const glm::dvec3 center, const double radius) {
-        position = center;
-        minAABB = glm::dvec3(-radius / 2);
-        maxAABB = glm::dvec3(+radius / 2);
-    }
-    virtual Collision collides(const Sphere& sphere) final {
-        return {false, 0, 0, glm::dvec3(0.0)};
-    }
+    Sphere(const glm::dvec3 center, const double radius);
+    Collision collides(const Sphere& sphere) final;
 
 };
 
@@ -64,14 +60,7 @@ class RectangularCuboid: public Collidable {
     double zl;
 
 public:
-    RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl):
-        xl(xl), yl(yl), zl(zl) {
-        
-        minAABB = glm::dvec3(0.0);
-        maxAABB = glm::dvec3(xl, yl, zl);
-
-    }
-
+    RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl);
 
 };
 
@@ -81,11 +70,7 @@ class Cube: public Collidable {
     double length;
 
 public:
-    Cube(const glm::dvec3 position, const double length): length(length) {
-        this->position = position;
-        minAABB = glm::dvec3(0.0);
-        maxAABB = glm::dvec3(length);
-    }
+    Cube(const glm::dvec3 position, const double length);
 };
 
 #endif
