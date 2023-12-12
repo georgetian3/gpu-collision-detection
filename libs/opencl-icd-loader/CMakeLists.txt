@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.5)
 
 # Include guard for including this project multiple times
 if(TARGET OpenCL)
