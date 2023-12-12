@@ -12,22 +12,73 @@ void openclInfo() {
         exit(1);
     }
     for (size_t i = 0; i < platforms.size(); i++) {
-        std::cout << "Platform 1:\n";
+        std::cout << "Platform " << i << ":\n";
         std::cout << "    Profile: " << platforms[i].getInfo<CL_PLATFORM_PROFILE>() << '\n';
         std::cout << "    Version: " << platforms[i].getInfo<CL_PLATFORM_VERSION>() << '\n';
         std::cout << "    Name: " << platforms[i].getInfo<CL_PLATFORM_NAME>() << '\n';
         std::cout << "    Vendor: " << platforms[i].getInfo<CL_PLATFORM_VENDOR>() << '\n';
         std::cout << "    Extensions: " << platforms[i].getInfo<CL_PLATFORM_EXTENSIONS>() << '\n';
 
-
+        std::vector<cl::Device> devices;
+        cl::Device::get(&devices);
+        if (devices.empty()) {
+            std::cout << "No devices";
+        }
+        for (size_t j = 0; j < devices.size(); j++) {
+            std::cout << "    Device " << j << ":\n";
+            std::cout << "        CL_DEVICE_TYPE: " << devices[i].getInfo<CL_DEVICE_TYPE>() << '\n';
+            std::cout << "        CL_DEVICE_VENDOR_ID: " << devices[i].getInfo<CL_DEVICE_VENDOR_ID>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_COMPUTE_UNITS: " << devices[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_WORK_GROUP_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_WORK_ITEM_SIZES: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT>() << '\n';
+            std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_CLOCK_FREQUENCY: " << devices[i].getInfo<CL_DEVICE_MAX_CLOCK_FREQUENCY>() << '\n';
+            std::cout << "        CL_DEVICE_ADDRESS_BITS: " << devices[i].getInfo<CL_DEVICE_ADDRESS_BITS>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_READ_IMAGE_ARGS: " << devices[i].getInfo<CL_DEVICE_MAX_READ_IMAGE_ARGS>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_WRITE_IMAGE_ARGS: " << devices[i].getInfo<CL_DEVICE_MAX_WRITE_IMAGE_ARGS>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_MEM_ALLOC_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_MEM_ALLOC_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE2D_MAX_WIDTH: " << devices[i].getInfo<CL_DEVICE_IMAGE2D_MAX_WIDTH>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE2D_MAX_HEIGHT: " << devices[i].getInfo<CL_DEVICE_IMAGE2D_MAX_HEIGHT>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE3D_MAX_WIDTH: " << devices[i].getInfo<CL_DEVICE_IMAGE3D_MAX_WIDTH>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE3D_MAX_HEIGHT: " << devices[i].getInfo<CL_DEVICE_IMAGE3D_MAX_HEIGHT>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE3D_MAX_DEPTH: " << devices[i].getInfo<CL_DEVICE_IMAGE3D_MAX_DEPTH>() << '\n';
+            std::cout << "        CL_DEVICE_IMAGE_SUPPORT: " << devices[i].getInfo<CL_DEVICE_IMAGE_SUPPORT>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_PARAMETER_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_PARAMETER_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_SAMPLERS: " << devices[i].getInfo<CL_DEVICE_MAX_SAMPLERS>() << '\n';
+            std::cout << "        CL_DEVICE_MEM_BASE_ADDR_ALIGN: " << devices[i].getInfo<CL_DEVICE_MEM_BASE_ADDR_ALIGN>() << '\n';
+            std::cout << "        CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE: " << devices[i].getInfo<CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_SINGLE_FP_CONFIG: " << devices[i].getInfo<CL_DEVICE_SINGLE_FP_CONFIG>() << '\n';
+            std::cout << "        CL_DEVICE_DOUBLE_FP_CONFIG: " << devices[i].getInfo<CL_DEVICE_DOUBLE_FP_CONFIG>() << '\n';
+            std::cout << "        CL_DEVICE_HALF_FP_CONFIG: " << devices[i].getInfo<CL_DEVICE_HALF_FP_CONFIG>() << '\n';
+            std::cout << "        CL_DEVICE_GLOBAL_MEM_CACHE_TYPE: " << devices[i].getInfo<CL_DEVICE_GLOBAL_MEM_CACHE_TYPE>() << '\n';
+            std::cout << "        CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE: " << devices[i].getInfo<CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_GLOBAL_MEM_CACHE_SIZE: " << devices[i].getInfo<CL_DEVICE_GLOBAL_MEM_CACHE_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_GLOBAL_MEM_SIZE: " << devices[i].getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_CONSTANT_ARGS: " << devices[i].getInfo<CL_DEVICE_MAX_CONSTANT_ARGS>() << '\n';
+            std::cout << "        CL_DEVICE_LOCAL_MEM_TYPE: " << devices[i].getInfo<CL_DEVICE_LOCAL_MEM_TYPE>() << '\n';
+            std::cout << "        CL_DEVICE_LOCAL_MEM_SIZE: " << devices[i].getInfo<CL_DEVICE_LOCAL_MEM_SIZE>() << '\n';
+            std::cout << "        CL_DEVICE_ERROR_CORRECTION_SUPPORT: " << devices[i].getInfo<CL_DEVICE_ERROR_CORRECTION_SUPPORT>() << '\n';
+            std::cout << "        CL_DEVICE_PROFILING_TIMER_RESOLUTION: " << devices[i].getInfo<CL_DEVICE_PROFILING_TIMER_RESOLUTION>() << '\n';
+            std::cout << "        CL_DEVICE_ENDIAN_LITTLE: " << devices[i].getInfo<CL_DEVICE_ENDIAN_LITTLE>() << '\n';
+            std::cout << "        CL_DEVICE_AVAILABLE: " << devices[i].getInfo<CL_DEVICE_AVAILABLE>() << '\n';
+            std::cout << "        CL_DEVICE_COMPILER_AVAILABLE: " << devices[i].getInfo<CL_DEVICE_COMPILER_AVAILABLE>() << '\n';
+            std::cout << "        CL_DEVICE_EXECUTION_CAPABILITIES: " << devices[i].getInfo<CL_DEVICE_EXECUTION_CAPABILITIES>() << '\n';
+            std::cout << "        CL_DEVICE_PLATFORM: " << devices[i].getInfo<CL_DEVICE_PLATFORM>() << '\n';
+            std::cout << "        CL_DEVICE_NAME: " << devices[i].getInfo<CL_DEVICE_NAME>() << '\n';
+            std::cout << "        CL_DEVICE_VENDOR: " << devices[i].getInfo<CL_DEVICE_VENDOR>() << '\n';
+            std::cout << "        CL_DRIVER_VERSION: " << devices[i].getInfo<CL_DRIVER_VERSION>() << '\n';
+            std::cout << "        CL_DEVICE_PROFILE: " << devices[i].getInfo<CL_DEVICE_PROFILE>() << '\n';
+            std::cout << "        CL_DEVICE_VERSION: " << devices[i].getInfo<CL_DEVICE_VERSION>() << '\n';
+            std::cout << "        CL_DEVICE_EXTENSIONS: " << devices[i].getInfo<CL_DEVICE_EXTENSIONS>() << '\n';
+        }
     }
-    // for (const auto& platform: platforms) {
-    //     platform.getInfo()
-    //     std::vector<cl::Device> devices;
-    //     platform.getDevices(CL_DEVICE_TYPE_ALL, devices);
-    //     for (const auto& device: devices) {
-    //     }
-    // }
 
 
 }
