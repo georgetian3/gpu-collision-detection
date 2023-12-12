@@ -8,7 +8,7 @@ struct Collision {
     unsigned int id2;
     glm::dvec3 point;
 
-}
+};
 
 class CollisionDetector {
 
