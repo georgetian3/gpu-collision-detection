@@ -19,12 +19,12 @@ public:
 
 };
 
-class NaiveCollisionDetector: CollisionDetector {
+class NaiveCollisionDetector: public CollisionDetector {
 
 
 };
 
-class GpuCollisionDetector: CollisionDetector {
+class GpuCollisionDetector: public CollisionDetector {
 
 
 
