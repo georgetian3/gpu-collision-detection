@@ -24,6 +24,10 @@ glm::dvec3 Collidable::getMaxAABB() const {
     return position + maxAABB;
 }
 
+std::string Collidable::toString() const {
+    return std::string("Collidable");
+}
+
 std::vector<Collidable> Collidable::readConfig(const std::filesystem::path& path) {
     std::vector<Collidable> collidables;
     std::ifstream f(path);

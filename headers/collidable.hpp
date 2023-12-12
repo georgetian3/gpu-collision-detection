@@ -60,6 +60,7 @@ public:
     Sphere(const glm::dvec3 center, const double radius);
     glm::dvec3 getCenter() const;
     double getRadius() const;
+    std::string toString() const;
 
 };
 
