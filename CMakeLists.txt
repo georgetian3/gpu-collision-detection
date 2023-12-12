@@ -11,7 +11,9 @@ set(OpenCL_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/OpenCL-Headers)
 find_package(OpenCL)
 
 add_subdirectory(libs/OpenCL-Headers)
+add_subdirectory(libs/OpenCL-CLHPP)
 add_subdirectory(libs/opencl-icd-loader)
+
 set_target_properties(OpenCL PROPERTIES FOLDER "opencl-icd-loader")
 set_target_properties(cllayerinfo PROPERTIES FOLDER "opencl-icd-loader")
 set(OpenCL_LIBRARIES OpenCL)
