@@ -59,6 +59,7 @@ public:
     static Collision collide(const RectangularCuboid&, const Cube&);
     static Collision collide(const Collidable& a, const Collidable& b) {
         std::cout << "Collision collide(const Collidable& a, const Collidable& b)\n";
+        return NO_COLLISION;
     }
 
 };
