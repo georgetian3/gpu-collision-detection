@@ -14,18 +14,23 @@ public:
 
 class NaiveCollisionDetector: public CollisionDetector {
 
+
 public:
+
+    std::vector<std::shared_ptr<Collidable>> collidables;
+
+
 
     std::vector<Collision> detectCollisions() final {
         std::vector<Collision> collisions;
-        // for (size_t i = 0; i < collidables.size(); i++) {
-        //     for (size_t j = i + 1; j < collidables.size(); j++) {
-        //         // Collision collision = collidables[i].collides(collidables[j]);
-        //         // if (collision.collided) {
-        //         //     collisions.emplace_back(collision);
-        //         // }
-        //     }
-        // }
+        for (size_t i = 0; i < collidables.size(); i++) {
+            for (size_t j = i + 1; j < collidables.size(); j++) {
+                Collision collision = Collidable::collide(collidables[i], collidables[j])
+                if (!Collision::isCollision(collision)) {
+                    collisions.emplace_back(collision);
+                }
+            }
+        }
         return collisions;
     }
 
