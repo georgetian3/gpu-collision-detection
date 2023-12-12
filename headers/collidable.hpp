@@ -51,11 +51,11 @@ public:
     static Collision collide(const Sphere&, const RectangularCuboid&);
     static Collision collide(const Sphere&, const Cube&);
     static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const Cube&, const Sphere&);
+    static Collision collide(const Cube&, const Cube&);
+    static Collision collide(const Cube&, const RectangularCuboid&);
     static Collision collide(const RectangularCuboid&, const Sphere&);
-    static Collision collide(const RectangularCuboid&, const Cube&);
     static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
+    static Collision collide(const RectangularCuboid&, const Cube&);
 
 };
 
