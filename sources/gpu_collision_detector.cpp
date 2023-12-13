@@ -4,6 +4,7 @@
 #include <CL/opencl.hpp>
 #include <fstream>
 #include <sstream>
+#include <json.hpp>
 using json = nlohmann::json;
 
 
