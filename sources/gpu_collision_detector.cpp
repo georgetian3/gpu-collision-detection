@@ -41,7 +41,7 @@ void printDeviceInfo(const cl::Device& device) {
     std::cout << "CL_DEVICE_MAX_COMPUTE_UNITS               : " << device.getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << '\n';
     std::cout << "CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS        : " << device.getInfo<CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS>() << '\n';
     std::cout << "CL_DEVICE_MAX_WORK_GROUP_SIZE             : " << device.getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << '\n';
-    std::cout << "CL_DEVICE_MAX_WORK_ITEM_SIZES             : " << vectorToString(device.getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>()) << '\n';
+    // std::cout << "CL_DEVICE_MAX_WORK_ITEM_SIZES             : " << vectorToString(device.getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>()) << '\n';
     std::cout << "CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR     : " << device.getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR>() << '\n';
     std::cout << "CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT    : " << device.getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT>() << '\n';
     std::cout << "CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT      : " << device.getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT>() << '\n';
