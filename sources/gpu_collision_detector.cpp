@@ -143,7 +143,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
     cl::Platform platform = cl::Platform::getDefault();
     cl::Device device = platform.getDefault();
     std::vector<cl::Device> devices;
-    platform.get
 
     cl::Platform default_platform = platforms[0];
     std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
