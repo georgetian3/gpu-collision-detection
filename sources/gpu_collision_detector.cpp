@@ -39,7 +39,6 @@ void printPlatformInfo(const cl::Platform& platform) {
     std::cout << "CL_PLATFORM_VENDOR    : " << platform.getInfo<CL_PLATFORM_VENDOR>() << '\n';
     std::cout << "CL_PLATFORM_EXTENSIONS: " << platform.getInfo<CL_PLATFORM_EXTENSIONS>() << '\n';
 }
-
 void printDeviceInfo(const cl::Device& device) {
     std::cout << "CL_DEVICE_TYPE                            : " << device.getInfo<CL_DEVICE_TYPE>() << '\n';
     std::cout << "CL_DEVICE_VENDOR_ID                       : " << device.getInfo<CL_DEVICE_VENDOR_ID>() << '\n';
@@ -126,7 +125,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
     if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
-        std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0";
+        std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0\n";
         selected_platform_index = 0;
     }
     cl::Platform platform = platforms[selected_platform_index];
@@ -141,7 +140,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
     if (selected_device_index >= devices.size() || selected_device_index < 0) {
-        std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0";
+        std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0\n";
         selected_device_index = 0;
     }
     cl::Device device = devices[selected_device_index];
@@ -149,26 +148,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
     printDeviceInfo(device);
 
 
-
-    // cl::Platform platform = cl::Platform::getDefault();
-    // cl::Device device = platform.getDefault();
-    // std::vector<cl::Device> devices;
-
-    // cl::Platform default_platform = platforms[0];
-    // std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
  
-    // //get default device of the default platform
-    // std::vector<cl::Device> all_devices;
-    // default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
-    // if(all_devices.size()==0){
-    //     std::cout<<" No devices found. Check OpenCL installation!\n";
-    //     exit(1);
-    // }
-    // cl::Device default_device=all_devices[0];
-    // std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
- 
- 
-    // cl::Context context({default_device});
+    cl::Context context(device);
  
     // cl::Program::Sources sources;
  
