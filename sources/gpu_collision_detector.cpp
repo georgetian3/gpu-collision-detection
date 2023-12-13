@@ -160,27 +160,27 @@ GpuCollisionDetector::GpuCollisionDetector() {
             "   }                                                                               ";
     sources.push_back({kernel_code.c_str(),kernel_code.length()});
  
-    // cl::Program program(context,sources);
-    // if(program.build({default_device})!=CL_SUCCESS){
-    //     std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
-    //     exit(1);
-    // }
+    cl::Program program(context,sources);
+    if(program.build({default_device})!=CL_SUCCESS){
+        std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
+        exit(1);
+    }
  
  
     // // create buffers on the device
-    // cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    // cl::Buffer buffer_B(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    // cl::Buffer buffer_C(context,CL_MEM_READ_WRITE,sizeof(int)*10);
+    cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*10);
+    cl::Buffer buffer_B(context,CL_MEM_READ_WRITE,sizeof(int)*10);
+    cl::Buffer buffer_C(context,CL_MEM_READ_WRITE,sizeof(int)*10);
  
-    // int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    // int B[] = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0};
+    int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int B[] = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0};
  
     // //create queue to which we will push commands for the device.
-    // cl::CommandQueue queue(context,default_device);
+    cl::CommandQueue queue(context,default_device);
  
     // //write arrays A and B to the device
-    // queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*10,A);
-    // queue.enqueueWriteBuffer(buffer_B,CL_TRUE,0,sizeof(int)*10,B);
+    queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*10,A);
+    queue.enqueueWriteBuffer(buffer_B,CL_TRUE,0,sizeof(int)*10,B);
  
  
     // // //run the kernel
