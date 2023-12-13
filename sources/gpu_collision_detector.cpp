@@ -24,7 +24,7 @@ std::string vectorToString(std::vector<T> v) {
         s << v[i] << ", ";
     }
     s << v.back() << ']';
-    return s.str()
+    return s.str();
 }
 
 std::map<std::string, std::string> getPlatformInfo(const cl::Platform& platform) {
