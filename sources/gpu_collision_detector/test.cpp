@@ -52,11 +52,23 @@ void GpuCollisionDetector::test() {
 
 
     std::vector<double> ds;
+    std::vector<unsigned int> mc(nCollidables);
 
     for (int i = 0; i < nCollidables * 3; i++) {
         ds.push_back(random<double>(0.0, 1.0));
     }
     Stopwatch sw;
+
+    sw.start();
+    for (int i = 0; i < nCollidables; i++) {
+        double x = ds[i * 3 + 0];
+        double y = ds[i * 3 + 1];
+        double z = ds[i * 3 + 2];
+        mc[i] = morton3D(x, y, z);
+    }
+    std::cout << sw.stop() << '\n';
+    sw.reset();
+
     sw.start();
     // // create buffers on the device
     cl::Buffer bufferCollidables(context, CL_MEM_READ_ONLY, sizeof(double) * nCollidables * 3);
