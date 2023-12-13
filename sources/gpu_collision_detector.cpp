@@ -154,10 +154,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     cl::Program::Sources sources;
  
     // // kernel calculates for each element C=A+B
-    std::string kernel_code=
-            "   void kernel simple_add(global const int* A, global const int* B, global int* C){       "
-            "       C[get_global_id(0)]=A[get_global_id(0)]+B[get_global_id(0)];                 "
-            "   }                                                                               ";
+    std::string kernel_code(
+        #include <simple_add.cl>
+    );
     sources.push_back({kernel_code.c_str(),kernel_code.length()});
  
     cl::Program program(context,sources);
