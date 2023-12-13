@@ -160,7 +160,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     sources.push_back({kernel_code.c_str(),kernel_code.length()});
 
-    return;
 
  
     cl::Program program(context,sources);
@@ -169,6 +168,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
  
+    return;
+
  
     // // create buffers on the device
     cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*10);
