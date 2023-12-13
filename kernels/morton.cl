@@ -14,7 +14,7 @@ unsigned int morton3D(double x, double y, double z) {
     unsigned int xx = expandBits((unsigned int)x);
     unsigned int yy = expandBits((unsigned int)y);
     unsigned int zz = expandBits((unsigned int)z);
-    printf("xx %u yy %u zz %u", xx, yy, zz);
+    printf("x %d y %d z %d xx %u yy %u zz %u", x, y, z, xx, yy, zz);
     return xx * 4 + yy * 2 + zz;
 }
 
