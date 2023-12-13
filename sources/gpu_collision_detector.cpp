@@ -193,11 +193,12 @@ GpuCollisionDetector::GpuCollisionDetector() {
     // simple_add(buffer_A,buffer_B,buffer_C);
  
     //alternative way to run the kernel
+    return;
+
     cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
     kernel_add.setArg(0,buffer_A);
     kernel_add.setArg(1,buffer_B);
     kernel_add.setArg(2,buffer_C);
-    return;
 
     queue.enqueueNDRangeKernel(kernel_add,cl::NullRange,cl::NDRange(10),cl::NullRange);
     queue.finish();
