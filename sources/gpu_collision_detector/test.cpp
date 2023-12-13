@@ -76,7 +76,7 @@ void GpuCollisionDetector::test() {
     queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
  
     for (int i = 0; i < nCollidables; i++) {
-        std::cout << std::bitset<sizeof(unsigned int)>(mortonCodes[i]) << '\n';
+        std::cout << std::bitset<sizeof(unsigned int * 8)>(mortonCodes[i]) << '\n';
     }
 
 }
