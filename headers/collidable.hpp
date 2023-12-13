@@ -8,9 +8,6 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-
-
-
 struct Collision {
     const unsigned int id1;
     const unsigned int id2;
