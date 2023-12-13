@@ -184,8 +184,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
  
  
     // // //run the kernel
-    // // cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
-    // // simple_add(buffer_A,buffer_B,buffer_C);
+    cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
+    simple_add(buffer_A,buffer_B,buffer_C);
  
     // // //alternative way to run the kernel
     // // /*cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
