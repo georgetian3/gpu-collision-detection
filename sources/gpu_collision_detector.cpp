@@ -197,13 +197,14 @@ GpuCollisionDetector::GpuCollisionDetector() {
     kernel_add.setArg(0,buffer_A);
     kernel_add.setArg(1,buffer_B);
     kernel_add.setArg(2,buffer_C);
+    return;
+
     queue.enqueueNDRangeKernel(kernel_add,cl::NullRange,cl::NDRange(10),cl::NullRange);
     queue.finish();
  
     int C[10];
     //read result C from the device to array C
     queue.enqueueReadBuffer(buffer_C,CL_TRUE,0,sizeof(int)*10,C);
-    return;
  
     std::cout<<" result: \n";
     for(int i=0;i<10;i++){
