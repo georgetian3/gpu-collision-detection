@@ -3,6 +3,7 @@
 
 #include <filesystem>
 #include <iostream>
+#include <random>
 #include <sstream>
 #include <glm/glm.hpp>
 
@@ -21,6 +22,26 @@ inline std::string vec3ToString(glm::dvec3 vec) {
 
 inline glm::dvec3 applyModelMat(glm::dmat4 modelMat, glm::dvec3 point) {
     return glm::dvec3(modelMat * glm::dvec4(point, 1.0));
+}
+
+#include <random>
+#include <iostream>
+
+template<typename Numeric, typename Generator = std::mt19937>
+Numeric random(Numeric from, Numeric to)
+{
+    thread_local static Generator gen(std::random_device{}());
+
+    using dist_type = typename std::conditional
+    <
+        std::is_integral<Numeric>::value
+        , std::uniform_int_distribution<Numeric>
+        , std::uniform_real_distribution<Numeric>
+    >::type;
+
+    thread_local static dist_type dist;
+
+    return dist(gen, typename dist_type::param_type{from, to});
 }
 
 
