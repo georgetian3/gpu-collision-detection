@@ -21,7 +21,7 @@ std::string vectorToString(std::vector<T> v) {
     s << "[";
     std::cout << "[";
     for (size_t i = 0; i < v.size() - 1; i++) {
-        s << e << ", ";
+        s << v[i] << ", ";
     }
     s << v.back() << ']';
     return s.str()
