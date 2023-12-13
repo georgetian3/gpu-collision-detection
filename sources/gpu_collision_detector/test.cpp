@@ -34,7 +34,7 @@ void GpuCollisionDetector::test() {
 
     std::vector<double> ds;
 
-    for (int i = 0; i < nCollidables; i++) {
+    for (int i = 0; i < nCollidables * 3; i++) {
         ds.push_back(random<double>(0.0, 1.0));
     }
     // // create buffers on the device
