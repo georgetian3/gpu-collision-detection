@@ -7,9 +7,7 @@
 #include <json.hpp>
 using json = nlohmann::json;
 
-
-
-void GpuCollisionDetection::loadConfig(const std::filesystem::path& path) {
+void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
     std::ifstream f(path);
     json config = json::parse(f);
     platform = config.value("platform", -1);
