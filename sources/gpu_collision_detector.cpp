@@ -107,43 +107,39 @@ void printOpenclInfo() {
         exit(1);
     }
     for (size_t i = 0; i < platforms.size(); i++) {
-        std::cout << "#############################################################\n";
+        std::cout << std::string(80, '#') << '\n';
         std::cout << "Platform " << i << ":\n";
-        auto info = getPlatformInfo(platforms[i]);
-        
-
+        printPlatformInfo(platforms[i]);    
         std::vector<cl::Device> devices;
         platforms[i].getDevices(CL_DEVICE_TYPE_ALL, &devices);
-
         if (devices.empty()) {
             std::cout << "No devices";
         }
         for (size_t j = 0; j < devices.size(); j++) {
-            std::cout << "--------------------------------------------------------------\n";
+            std::cout << std::string(80, '-') << '\n';
             std::cout << "Device " << j << ":\n";
             printDeviceInfo(devices[i]);
-            std::cout << "--------------------------------------------------------------\n";
+            std::cout << std::string(80, '-') << '\n';
         }
-        std::cout << "#############################################################\n";
+        std::cout << std::string(80, '#') << '\n';
     }
 }
 
 GpuCollisionDetector::GpuCollisionDetector() {
 
-
     printOpenclInfo();
-    loadConfig();
+    // loadConfig();
 
-    std::vector<cl::Platform> platforms;
-    cl::Platform::get(&platforms);
+    // std::vector<cl::Platform> platforms;
+    // cl::Platform::get(&platforms);
 
 
-    cl::Platform platform = cl::Platform::getDefault();
-    cl::Device device = platform.getDefault();
-    std::vector<cl::Device> devices;
+    // cl::Platform platform = cl::Platform::getDefault();
+    // cl::Device device = platform.getDefault();
+    // std::vector<cl::Device> devices;
 
-    cl::Platform default_platform = platforms[0];
-    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
+    // cl::Platform default_platform = platforms[0];
+    // std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
  
     // //get default device of the default platform
     // std::vector<cl::Device> all_devices;
