@@ -24,9 +24,7 @@ inline glm::dvec3 applyModelMat(glm::dmat4 modelMat, glm::dvec3 point) {
     return glm::dvec3(modelMat * glm::dvec4(point, 1.0));
 }
 
-#include <random>
-#include <iostream>
-
+// https://stackoverflow.com/a/35687575
 template<typename Numeric, typename Generator = std::mt19937>
 Numeric random(Numeric from, Numeric to)
 {
