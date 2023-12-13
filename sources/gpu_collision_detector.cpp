@@ -194,7 +194,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
  
     //alternative way to run the kernel
 
-    cl::Kernel kernel_add
+    cl::Kernel kernel_add;
     
     try {
         kernel_add = cl::Kernel(program,"simple_add");
