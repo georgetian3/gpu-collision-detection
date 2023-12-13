@@ -46,7 +46,7 @@ void GpuCollisionDetector::test() {
     }
  
 
-    int nCollidables = 100000000;
+    int nCollidables = 10000000;
 
 
     std::vector<double> ds;
@@ -67,16 +67,24 @@ void GpuCollisionDetector::test() {
     std::cout << sw.stop() << '\n';
     sw.reset();
 
-    sw.start();
     // // create buffers on the device
     cl::Buffer bufferCollidables(context, CL_MEM_READ_ONLY, sizeof(double) * nCollidables * 3);
     cl::Buffer bufferMortonCodes(context, CL_MEM_WRITE_ONLY, sizeof(unsigned int) * nCollidables);
  
     // create queue to which we will push commands for the device.
     cl::CommandQueue queue(context, device);
+    try {
+        kernelMortonCodes = cl::Kernel(program, "mortonCodes");
+    } catch (std::exception e) {
+        std::cerr << "Kernel exception: " << e.what();
+        exit(1);
+    }
 
+    kernelMortonCodes.setArg(0, bufferCollidables);
+    kernelMortonCodes.setArg(1, bufferMortonCodes);
 
- 
+    sw.start();
+    
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(double) * nCollidables * 3, ds.data());
 
  
@@ -88,16 +96,6 @@ void GpuCollisionDetector::test() {
     // //alternative way to run the kernel
 
     cl::Kernel kernelMortonCodes;
-    
-    try {
-        kernelMortonCodes = cl::Kernel(program, "mortonCodes");
-    } catch (std::exception e) {
-        std::cerr << "Kernel exception: " << e.what();
-        exit(1);
-    }
-
-    kernelMortonCodes.setArg(0, bufferCollidables);
-    kernelMortonCodes.setArg(1, bufferMortonCodes);
 
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
