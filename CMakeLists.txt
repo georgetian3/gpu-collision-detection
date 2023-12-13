@@ -35,6 +35,7 @@ include_directories(${OpenCL_INCLUDE_DIR})
 
 include_directories(
     headers/
+    kernels/
     shaders/
     libs/glad/include/
     libs/glfw/include/
