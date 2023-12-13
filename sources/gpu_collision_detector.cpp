@@ -191,7 +191,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
     // // //run the kernel
     // cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
     // simple_add(buffer_A,buffer_B,buffer_C);
-    return;
  
     //alternative way to run the kernel
     cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
@@ -204,6 +203,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     int C[10];
     //read result C from the device to array C
     queue.enqueueReadBuffer(buffer_C,CL_TRUE,0,sizeof(int)*10,C);
+    return;
  
     std::cout<<" result: \n";
     for(int i=0;i<10;i++){
