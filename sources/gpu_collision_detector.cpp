@@ -181,7 +181,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
     // //create queue to which we will push commands for the device.
     cl::CommandQueue queue(context,device);
 
-    return;
 
  
     // //write arrays A and B to the device
@@ -192,6 +191,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     // // //run the kernel
     // cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
     // simple_add(buffer_A,buffer_B,buffer_C);
+    return;
  
     //alternative way to run the kernel
     cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
