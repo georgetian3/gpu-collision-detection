@@ -10,7 +10,7 @@ unsigned int expandBits(unsigned int v) {
     return v;
 }
 
-unsigned int morton3D(float x, float y, float z) {
+unsigned int morton3D(double x, double y, double z) {
     unsigned int xx = expandBits((unsigned int)x);
     unsigned int yy = expandBits((unsigned int)y);
     unsigned int zz = expandBits((unsigned int)z);
