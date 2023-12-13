@@ -168,7 +168,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
  
-    return;
 
  
     // // create buffers on the device
@@ -181,6 +180,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
  
     // //create queue to which we will push commands for the device.
     cl::CommandQueue queue(context,device);
+
+    return;
+
  
     // //write arrays A and B to the device
     queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*10,A);
