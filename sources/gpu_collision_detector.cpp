@@ -111,11 +111,11 @@ void printOpenclInfo() {
 }
 
 
-struct Collidable {
-    double x;
-    double y;
-    double z;
-};
+// struct Collidable {
+//     double x;
+//     double y;
+//     double z;
+// };
 
 GpuCollisionDetector::GpuCollisionDetector() {
 
