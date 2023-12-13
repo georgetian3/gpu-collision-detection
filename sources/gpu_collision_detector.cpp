@@ -120,7 +120,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
     if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
-        std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0"
+        std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0";
         selected_platform_index = 0;
     }
     cl::Platform platform = platforms[selected_platform_index];
@@ -135,7 +135,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         exit(1);
     }
     if (selected_device_index >= devices.size() || selected_device_index < 0) {
-        std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0"
+        std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0";
         selected_device_index = 0;
     }
     cl::Device device = devices[selected_device_index];
