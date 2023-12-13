@@ -1,7 +1,4 @@
-#include <collision_detector.hpp>
-#define CL_HPP_ENABLE_EXCEPTIONS
-#define CL_HPP_TARGET_OPENCL_VERSION 300
-#include <CL/opencl.hpp>
+#include <gpu_collision_detector.hpp>
 #include <exception>
 #include <fstream>
 #include <sstream>
@@ -113,6 +110,13 @@ void printOpenclInfo() {
     }
 }
 
+
+struct Collidable {
+    double x;
+    double y;
+    double z;
+};
+
 GpuCollisionDetector::GpuCollisionDetector() {
 
     printOpenclInfo();
@@ -144,11 +148,14 @@ GpuCollisionDetector::GpuCollisionDetector() {
         std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0\n";
         selected_device_index = 0;
     }
-    cl::Device device = devices[selected_device_index];
+    device = devices[selected_device_index];
     std::cout << "Selected device:\n";
     printDeviceInfo(device);
 
+}
 
+void GpuCollisionDetector::test() {
+    
  
     cl::Context context(device);
  
@@ -170,11 +177,12 @@ GpuCollisionDetector::GpuCollisionDetector() {
     }
  
 
+    
+
  
-    // // create buffers on the device
-    cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    cl::Buffer buffer_B(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    cl::Buffer buffer_C(context,CL_MEM_READ_WRITE,sizeof(int)*10);
+    // create buffers on the device
+    cl::Buffer bufferCollidables(context, CL_MEM_READ_ONLY, sizeof(int)*10);
+    cl::Buffer bufferMortonCodes(context, CL_MEM_WRITE_ONLY, sizeof(int)*10);
  
     int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int B[] = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0};

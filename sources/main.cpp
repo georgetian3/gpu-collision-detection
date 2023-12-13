@@ -1,7 +1,7 @@
 #include <scene.hpp>
 #include <iostream>
 #include <stopwatch.hpp>
-#include <collision_detector.hpp>
+#include <gpu_collision_detector.hpp>
 
 int main(int argc, char* argv[]) {
     if (argc > 1) {
@@ -19,5 +19,6 @@ int main(int argc, char* argv[]) {
     //     1600, 900
     // );
     GpuCollisionDetector gpuCD;
+    gpuCD.test();
     std::cout << "Done!";
 }
