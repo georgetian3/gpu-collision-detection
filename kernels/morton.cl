@@ -26,8 +26,8 @@ struct Collidable {
 
 __kernel void mortonCodes(__global const struct Collidable* collidables, __global unsigned int* mortonCodes) {
     const int i = get_global_id(0);
-    printf("%d\n", i);
     const struct Collidable collidable = collidables[i];
+    printf("%d %f %f %f\n", i, collidable.x, collidable.y, collidable.z);
     mortonCodes[i] = morton3D(collidable.x, collidable.y, collidable.z);
 }
 
