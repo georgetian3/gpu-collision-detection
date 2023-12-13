@@ -73,6 +73,8 @@ void GpuCollisionDetector::test() {
  
     // create queue to which we will push commands for the device.
     cl::CommandQueue queue(context, device);
+    cl::Kernel kernelMortonCodes;
+
     try {
         kernelMortonCodes = cl::Kernel(program, "mortonCodes");
     } catch (std::exception e) {
@@ -95,7 +97,6 @@ void GpuCollisionDetector::test() {
  
     // //alternative way to run the kernel
 
-    cl::Kernel kernelMortonCodes;
 
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
