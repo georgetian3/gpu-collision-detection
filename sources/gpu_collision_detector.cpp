@@ -9,7 +9,13 @@ using json = nlohmann::json;
 
 void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
     std::ifstream f(path);
-    json config = json::parse(f);
+    json config;
+    try {
+        config = json::parse(f);
+    } catch (...) {
+        std::cerr << "Cannot parse JSON config: " << path;
+        exit(1);
+    }
     selected_platform_index = config.value("platform", -1);
     selected_device_index = config.value("device", -1);
 }
