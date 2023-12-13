@@ -56,19 +56,19 @@ void GpuCollisionDetector::test() {
  
     // //alternative way to run the kernel
 
-    cl::Kernel mortonCodes;
+    cl::Kernel kernelMortonCodes;
     
     try {
-        mortonCodes = cl::Kernel(program, "mortonCodes");
+        kernelMortonCodes = cl::Kernel(program, "mortonCodes");
     } catch (std::exception e) {
         std::cerr << "Kernel exception: " << e.what();
         exit(1);
     }
 
-    mortonCodes.setArg(0, bufferCollidables);
-    mortonCodes.setArg(1, bufferMortonCodes);
+    kernelMortonCodes.setArg(0, bufferCollidables);
+    kernelMortonCodes.setArg(1, bufferMortonCodes);
 
-    queue.enqueueNDRangeKernel(mortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
+    queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
     //read result C from the device to array C
