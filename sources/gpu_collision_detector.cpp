@@ -157,6 +157,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
     std::string kernel_code(
         #include <simple_add.cl>
     );
+
+    return;
     sources.push_back({kernel_code.c_str(),kernel_code.length()});
  
     cl::Program program(context,sources);
