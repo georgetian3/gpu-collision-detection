@@ -39,6 +39,11 @@ public:
 
 class GpuCollisionDetector: public CollisionDetector {
 
+    int platform = -1;
+    int device = -1;
+
+    void loadConfig(const std::filesystem::path& path = "config.json");
+
 public:
 
     GpuCollisionDetector();
