@@ -3,6 +3,14 @@
 #define CL_HPP_TARGET_OPENCL_VERSION 300
 #include <CL/opencl.hpp>
 
+template <class T>
+void printVector(std::vector<T> v) {
+    std::cout << "(Len " << v.size() << ") ";
+    for (const auto& e : v) {
+        std::cout << e << ' ';
+    }
+    std::cout << '\n';
+}
 
 void openclInfo() {
     std::vector<cl::Platform> platforms;
@@ -21,7 +29,7 @@ void openclInfo() {
 
         std::vector<cl::Device> devices;
         platforms[i].getDevices(CL_DEVICE_TYPE_ALL, &devices);
-        
+
         if (devices.empty()) {
             std::cout << "No devices";
         }
@@ -32,7 +40,8 @@ void openclInfo() {
             std::cout << "        CL_DEVICE_MAX_COMPUTE_UNITS: " << devices[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << '\n';
             std::cout << "        CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS>() << '\n';
             std::cout << "        CL_DEVICE_MAX_WORK_GROUP_SIZE: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << '\n';
-            // std::cout << "        CL_DEVICE_MAX_WORK_ITEM_SIZES: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>() << '\n';
+            std::cout << "        CL_DEVICE_MAX_WORK_ITEM_SIZES: ";
+            printVector(devices[i].getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>());
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR>() << '\n';
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT>() << '\n';
             std::cout << "        CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT: " << devices[i].getInfo<CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT>() << '\n';
