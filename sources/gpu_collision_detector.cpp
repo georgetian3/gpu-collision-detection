@@ -198,7 +198,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     
     try {
         kernel_add = cl::Kernel(program,"simple_add");
-    } catch (Exception e) {
+    } catch (std::exception e) {
         std::cerr << "Kernel exception: " << e;
         exit(1);
     }
