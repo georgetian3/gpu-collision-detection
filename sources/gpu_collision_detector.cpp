@@ -10,8 +10,8 @@ using json = nlohmann::json;
 void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
     std::ifstream f(path);
     json config = json::parse(f);
-    platform = config.value("platform", -1);
-    device = config.value("device", -1);
+    selected_platform_index = config.value("platform", -1);
+    selected_device_index = config.value("device", -1);
 }
 
 
@@ -91,19 +91,12 @@ void printDeviceInfo(const cl::Device& device) {
 void printOpenclInfo() {
     std::vector<cl::Platform> platforms;
     cl::Platform::get(&platforms);
-    if (platforms.empty()) {
-        std::cout << "No platforms found. Check OpenCL installation!\n";
-        exit(1);
-    }
     for (size_t i = 0; i < platforms.size(); i++) {
         std::cout << std::string(80, '#') << '\n';
         std::cout << "Platform " << i << ":\n";
         printPlatformInfo(platforms[i]);    
         std::vector<cl::Device> devices;
         platforms[i].getDevices(CL_DEVICE_TYPE_ALL, &devices);
-        if (devices.empty()) {
-            std::cout << "No devices";
-        }
         for (size_t j = 0; j < devices.size(); j++) {
             std::cout << std::string(80, '-') << '\n';
             std::cout << "Device " << j << ":\n";
@@ -117,10 +110,38 @@ void printOpenclInfo() {
 GpuCollisionDetector::GpuCollisionDetector() {
 
     printOpenclInfo();
-    // loadConfig();
+    loadConfig();
 
-    // std::vector<cl::Platform> platforms;
-    // cl::Platform::get(&platforms);
+    // select platform
+    std::vector<cl::Platform> platforms;
+    cl::Platform::get(&platforms);
+    if (platforms.empty()) {
+        std::cerr << "No platforms found";
+        exit(1);
+    }
+    if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
+        std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0"
+        selected_platform_index = 0;
+    }
+    cl::Platform platform = platforms[selected_platform_index];
+    std::cout << "Selected platform:\n";
+    printPlatformInfo(platform);
+
+    // select device
+    std::vector<cl::Device> devices;
+    platform.getDevices(devices);
+    if (devices.empty()) {
+        std::cerr << "No devices found";
+        exit(1);
+    }
+    if (selected_device_index >= devices.size() || selected_device_index < 0) {
+        std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0"
+        selected_device_index = 0;
+    }
+    cl::Device device = devices[selected_device_index];
+    std::cout << "Selected device:\n";
+    printDeviceInfo(device);
+
 
 
     // cl::Platform platform = cl::Platform::getDefault();
