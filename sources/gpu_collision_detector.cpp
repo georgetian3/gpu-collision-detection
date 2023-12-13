@@ -153,13 +153,15 @@ GpuCollisionDetector::GpuCollisionDetector() {
  
     cl::Program::Sources sources;
  
-    // // kernel calculates for each element C=A+B
+    // kernel calculates for each element C=A+B
     std::string kernel_code(
         #include <simple_add.cl>
     );
 
-    return;
     sources.push_back({kernel_code.c_str(),kernel_code.length()});
+
+    return;
+
  
     cl::Program program(context,sources);
     if(program.build(device)!=CL_SUCCESS){
