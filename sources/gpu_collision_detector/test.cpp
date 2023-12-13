@@ -46,7 +46,7 @@ void GpuCollisionDetector::test() {
     }
  
 
-    int nCollidables = 10000000;
+    int nCollidables = 100000000;
 
 
     std::vector<double> ds;
@@ -88,20 +88,9 @@ void GpuCollisionDetector::test() {
     sw.start();
     
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(double) * nCollidables * 3, ds.data());
-
- 
- 
-    // // // //run the kernel
-    // // cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
-    // // simple_add(buffer_A,buffer_B,buffer_C);
- 
-    // //alternative way to run the kernel
-
-
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
-    //read result C from the device to array C
     std::vector<unsigned int> mortonCodes(nCollidables);
     queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
 
