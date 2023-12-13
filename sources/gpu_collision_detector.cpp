@@ -194,8 +194,14 @@ GpuCollisionDetector::GpuCollisionDetector() {
  
     //alternative way to run the kernel
 
-    cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
-    return;
+    cl::Kernel kernel_add
+    
+    try {
+        kernel_add = cl::Kernel(program,"simple_add");
+    } catch (Exception e) {
+        std::cerr << "Kernel exception: " << e;
+        exit(1);
+    }
 
     kernel_add.setArg(0,buffer_A);
     kernel_add.setArg(1,buffer_B);
