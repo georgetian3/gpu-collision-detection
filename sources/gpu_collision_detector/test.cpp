@@ -48,7 +48,7 @@ void GpuCollisionDetector::test() {
     }
  
 
-    int nCollidables = 1000000;
+    int nCollidables = 10000000;
 
 
     std::vector<double> ds;
