@@ -129,7 +129,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     // select device
     std::vector<cl::Device> devices;
-    platform.getDevices(devices);
+    platform.getDevices(CL_DEVICE_TYPE_ALL, devices);
     if (devices.empty()) {
         std::cerr << "No devices found";
         exit(1);
