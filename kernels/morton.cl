@@ -3,6 +3,7 @@ R"(
 // Expands a 10-bit integer into 30 bits
 // by inserting 2 zeros after each bit.
 unsigned int expandBits(unsigned int v) {
+    printf("v %u", v);
     v = (v * 0x00010001u) & 0xFF0000FFu;
     v = (v * 0x00000101u) & 0x0F00F00Fu;
     v = (v * 0x00000011u) & 0xC30C30C3u;
