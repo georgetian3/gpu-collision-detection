@@ -5,6 +5,7 @@
 #include <iostream>
 #include <random>
 #include <sstream>
+#include <string>
 #include <glm/glm.hpp>
 
 #define printLocation() std::cout << "########### printLocation: " << __FILE__ << ' ' << __LINE__ << " ###########\n";
