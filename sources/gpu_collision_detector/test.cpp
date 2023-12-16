@@ -12,7 +12,7 @@ unsigned int expandBits(unsigned int v) {
     return v;
 }
 
-__kernel unsigned int morton3D(double x, double y, double z) {
+unsigned int morton3D(double x, double y, double z) {
     unsigned int xx = expandBits((unsigned int)(x * 1024));
     unsigned int yy = expandBits((unsigned int)(y * 1024));
     unsigned int zz = expandBits((unsigned int)(z * 1024));
