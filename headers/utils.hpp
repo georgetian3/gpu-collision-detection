@@ -1,8 +1,8 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <filesystem>
 #include <iostream>
+#include <filesystem>
 #include <random>
 #include <string>
 
