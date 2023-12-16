@@ -15,6 +15,6 @@ inline T clamp(T value, T min, T max);
 template<typename Numeric, typename Generator = std::mt19937>
 Numeric random(Numeric from, Numeric to);
 
-std::string readFile(const std::filesystem::path& path);
+// std::string readFile(const std::filesystem::path& path);
 
 #endif
