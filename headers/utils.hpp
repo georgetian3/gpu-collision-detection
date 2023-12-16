@@ -27,6 +27,7 @@ Numeric random(Numeric from, Numeric to)
     thread_local static dist_type dist;
     return dist(gen, typename dist_type::param_type{from, to});
 }
-// std::string readFile(const std::filesystem::path& path);
+
+std::string readFile(const std::filesystem::path& path);
 
 #endif
