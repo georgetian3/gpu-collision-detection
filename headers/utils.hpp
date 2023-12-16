@@ -45,11 +45,9 @@ Numeric random(Numeric from, Numeric to)
 
 std::string readFile(const std::filesystem::path& path) {
     std::ifstream f(path);
-    std::string content(
-        ((std::istreambuf_iterator<char>(f))),
-        ((std::istreambuf_iterator<char>()))
-    );
-    return content;
+    std::stringstream buffer;
+    buffer << t.rdbuf();
+    return buffer.str();
 }
 
 #endif
