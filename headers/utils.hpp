@@ -9,7 +9,9 @@
 #define printLocation() std::cout << "########### printLocation: " << __FILE__ << ' ' << __LINE__ << " ###########\n";
 
 template <class T>
-T clamp(T value, T min, T max);
+T clamp(T value, T min, T max) {
+    return value < min ? min : value > max ? max : value;
+}
 
 // https://stackoverflow.com/a/35687575
 template<typename Numeric, typename Generator = std::mt19937>
