@@ -2,6 +2,7 @@
 #define UTILS_HPP
 
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <random>
 #include <sstream>
