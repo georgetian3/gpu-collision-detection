@@ -3,7 +3,6 @@ R"(
 // Expands a 10-bit integer into 30 bits
 // by inserting 2 zeros after each bit.
 unsigned int expandBits(unsigned int v) {
-    // printf("v %u", v);
     v = (v * 0x00010001u) & 0xFF0000FFu;
     v = (v * 0x00000101u) & 0x0F00F00Fu;
     v = (v * 0x00000011u) & 0xC30C30C3u;
@@ -19,19 +18,57 @@ unsigned int morton3D(double x, double y, double z) {
     return xx * 4 + yy * 2 + zz;
 }
 
-struct Collidable {
+struct vec3 {
     double x;
     double y;
     double z;
 };
 
+enum Type {
+    SPHERE,
+    CUBE,
+    RECTANGULAR_CUBOID
+};
 
-__kernel void mortonCodes(__global const struct Collidable* collidables, __global unsigned int* mortonCodes) {
+
+struct AABB {
+    struct vec3 min;
+    struct vec3 max;
+};
+
+__kernel void mortonCodeAABB(
+    __global const struct vec3* positions,
+    __global unsigned int* types,
+    __global double* xls,
+    __global double* yls,
+    __global double* zls,
+    __global unsigned int* mortonCodes,
+    __global struct AABB* aabbs
+) {
     const int i = get_global_id(0);
-    const struct Collidable collidable = collidables[i];
-    unsigned int res = morton3D(collidable.x, collidable.y, collidable.z);
-    // printf("%d %f %f %f %u\n", i, collidable.x, collidable.y, collidable.z, res);
-    mortonCodes[i] = res;
+    const struct vec3 position = positions[i];
+    mortonCodes[i] = morton3D(position.x, position.y, position.z);
+    struct AABB aabb;
+    unsigned int type = types[i];
+    switch (type) {
+        case SPHERE: {
+            const double radius = xls[i];
+            aabb.min.x = position.x - radius;
+            aabb.min.y = position.y - radius;
+            aabb.min.z = position.z - radius;
+            aabb.max.x = position.x + radius;
+            aabb.max.y = position.y + radius;
+            aabb.max.z = position.z + radius;
+            break;
+        }
+        case CUBE: {
+            break;
+        }
+        case RECTANGULAR_CUBOID: {
+            break;
+        }
+    };
+    aabbs[i] = aabb;
 }
 
 )"

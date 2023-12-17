@@ -7,6 +7,11 @@
 
 #include <collision_detector.hpp>
 
+struct AABB {
+    glm::dvec3 min;
+    glm::dvec3 max;
+}
+
 class GpuCollisionDetector: public CollisionDetector {
 
     int selected_platform_index = -1;
@@ -17,12 +22,20 @@ class GpuCollisionDetector: public CollisionDetector {
 
     std::vector<Collidable> collidables;
 
+    std::vector<glm::dvec3> positions;
+    std::vector<AABB> aabbs;
+    std::vector<unsigned int> mortonCodes;
+
+
     cl::Device device;
     cl::Context context;
     cl::Program::Sources sources;
     cl::Program program;
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
+
+    cl::Kernel kernelMortonCodeAAAB;
+
 
 public:
 
