@@ -51,6 +51,7 @@ void GpuCollisionDetector::test() {
     kernelMortonCodes.setArg(0, bufferCollidables);
     kernelMortonCodes.setArg(1, bufferMortonCodes);
 
+    Stopwatch sw;
     sw.start();
     
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(double) * nCollidables * 3, ds.data());
