@@ -22,29 +22,6 @@ unsigned int morton3D(double x, double y, double z) {
 
 void GpuCollisionDetector::test() {
     
- 
-    cl::Context context(device);
-    cl::Program::Sources sources;
- 
-    // kernel calculates for each element C=A+B
-    std::string kernel_code(
-        #include <simple_add.cl>
-    );
-
-    std::string mortonCodesSource(
-        #include <morton.cl>
-    );
-
-    sources.push_back(mortonCodesSource);
-
-
- 
-    cl::Program program(context, sources);
-    if (program.build(device) != CL_SUCCESS){
-        std::cerr << " Error building: " << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
-        exit(1);
-    }
- 
 
     int nCollidables = 1000000;
 
@@ -55,19 +32,8 @@ void GpuCollisionDetector::test() {
     for (int i = 0; i < nCollidables * 3; i++) {
         ds.push_back(random<double>(0.0, 1.0));
     }
-    Stopwatch sw;
 
-    sw.start();
-    for (int i = 0; i < nCollidables; i++) {
-        double x = ds[i * 3 + 0];
-        double y = ds[i * 3 + 1];
-        double z = ds[i * 3 + 2];
-        mc[i] = morton3D(x, y, z);
-    }
-    std::cout << sw.stop() << '\n';
-    sw.reset();
-
-    // // create buffers on the device
+    // create buffers on the device
     cl::Buffer bufferCollidables(context, CL_MEM_READ_ONLY, sizeof(double) * nCollidables * 3);
     cl::Buffer bufferMortonCodes(context, CL_MEM_WRITE_ONLY, sizeof(unsigned int) * nCollidables);
  

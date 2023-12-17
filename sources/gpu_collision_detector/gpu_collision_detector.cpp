@@ -114,7 +114,7 @@ void printOpenclInfo() {
 
 GpuCollisionDetector::GpuCollisionDetector() {
 
-    printOpenclInfo();
+    // printOpenclInfo();
     loadConfig();
 
     // select platform
@@ -146,5 +146,20 @@ GpuCollisionDetector::GpuCollisionDetector() {
     device = devices[selected_device_index];
     std::cout << "Selected device:\n";
     printDeviceInfo(device);
+
+    context = cl::Context(device);
+    sources.push_back(std::string(
+        #include <morton.cl>
+    ));
+
+    program = cl::Program(context, sources);
+
+    if (program.build(device) != CL_SUCCESS){
+        std::cerr << " Error building: " << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
+        exit(1);
+    }
+
+    queue = cl::CommandQueue(context, device);
+
 
 }

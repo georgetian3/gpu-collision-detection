@@ -20,40 +20,44 @@ struct Collision {
 
 const Collision NO_COLLISION = Collision(0, 0, glm::dvec3(0.0));
 
-class Sphere;
-class RectangularCuboid;
-class Cube;
+enum class CollidableType {
+    circle,
+    cube,
+    rectangularCuboid
+};
 
 class Collidable {
 
-protected:
+    CollidableType type;
+    unsigned int id = -1;
 
-    static unsigned int idCount;
-    unsigned int id;
-    void setId();
-    glm::dvec3 velocity;
-    glm::dvec3 position;
+    glm::dvec3 position = glm::dvec3(0.0);
 
-    glm::dvec3 minAABB;
-    glm::dvec3 maxAABB;
+    glm::dvec3 minAABB = glm::dvec3(0.0);
+    glm::dvec3 maxAABB = glm::dvec3(0.0);
+
+    union {
+        double length = 0;
+        double radius = 0;
+        double xl = 0;
+    }
+    double yl = 0;
+    double zl = 0;
 
 public:
 
-    Collidable();
+    static Collidable constructCube(const glm::dvec3& position, const double length) {
+        return Collidable();
+    }
+    static std::vector<Collidable> loadConfig(const std::filesystem::path& path) {
+        return std::vector<Collidable>();
+    }
+
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    static std::vector<std::shared_ptr<Collidable>> readConfig(const std::filesystem::path& path);
     virtual std::string toString() const = 0;
-    static Collision collide(const Sphere&, const Sphere&);
-    static Collision collide(const Sphere&, const RectangularCuboid&);
-    static Collision collide(const Sphere&, const Cube&);
-    static Collision collide(const Cube&, const Sphere&);
-    static Collision collide(const Cube&, const Cube&);
-    static Collision collide(const Cube&, const RectangularCuboid&);
-    static Collision collide(const RectangularCuboid&, const Sphere&);
-    static Collision collide(const RectangularCuboid&, const RectangularCuboid&);
-    static Collision collide(const RectangularCuboid&, const Cube&);
+
     static Collision collide(const Collidable& a, const Collidable& b) {
         std::cout << "Collision collide(const Collidable& a, const Collidable& b)\n";
         return NO_COLLISION;
@@ -61,39 +65,5 @@ public:
 
 };
 
-class Sphere: public Collidable {
-
-    double radius;
-
-public:
-
-    Sphere(const glm::dvec3 center, const double radius);
-    glm::dvec3 getCenter() const;
-    double getRadius() const;
-    virtual std::string toString() const;
-
-};
-
-class RectangularCuboid: public Collidable {
-
-    double xl;
-    double yl;
-    double zl;
-
-public:
-
-    RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl);
-    virtual std::string toString() const;
-
-};
-
-class Cube: public Collidable {
-
-    double length;
-
-public:
-    Cube(const glm::dvec3 position, const double length);
-    virtual std::string toString() const;
-};
 
 #endif

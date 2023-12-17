@@ -14,7 +14,11 @@ class GpuCollisionDetector: public CollisionDetector {
 
     void loadConfig(const std::filesystem::path& path = "D:/gpu-collision-detection/resources/config.json");
     cl::Device device;
-
+    cl::Context context;
+    cl::Program::Sources sources;
+    cl::Program program;
+    cl::CommandQueue queue;
+    cl::Buffer bufferCollidables;
 
 
 public:
