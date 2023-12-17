@@ -58,8 +58,8 @@ void GpuCollisionDetector::test() {
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
-    std::vector<unsigned int> mortonCodes(nCollidables);
-    queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
+    // std::vector<unsigned int> mortonCodes(nCollidables);
+    // queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
 
     std::cout << sw.stop() << '\n';
  
