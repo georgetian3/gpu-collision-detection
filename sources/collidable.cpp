@@ -5,13 +5,6 @@
 
 unsigned int Collidable::idCount = 0;
 
-void Collidable::setId() {
-    id = idCount++;
-}
-
-Collidable::Collidable() {
-    setId();
-}
 
 unsigned int Collidable::getId() const {
     return id;
@@ -29,7 +22,7 @@ std::string Collidable::toString() const {
     return std::string("Collidable");
 }
 
-std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::filesystem::path& path) {
+std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {
     // # all numeric values below are doubles
     // # s x y z r = sphere with center at (x, y, z) with radius r
     // # c x y z l = cube with smallest corner at (x, y, z) with side length l
@@ -61,75 +54,4 @@ std::vector<std::shared_ptr<Collidable>> Collidable::readConfig(const std::files
         collidables.emplace_back(std::shared_ptr<Collidable>(collidable));
     }
     return collidables;
-}
-
-static Collision collide(const Sphere& a, const Sphere& b) {
-    if (a.getRadius() * a.getRadius() + b.getRadius() * b.getRadius() > glm::length2(a.getCenter() - b.getCenter())) {
-        return NO_COLLISION;
-    }
-    return Collision(a.getId(), b.getId(), glm::dvec3(0.0));
-}
-static Collision collide(const Sphere&, const RectangularCuboid&) {
-    return NO_COLLISION;
-}
-static Collision collide(const Sphere&, const Cube&) {
-    return NO_COLLISION;
-}
-static Collision collide(const Cube&, const Sphere&) {
-    return NO_COLLISION;
-}
-static Collision collide(const Cube&, const Cube&) {
-    return NO_COLLISION;
-}
-static Collision collide(const Cube&, const RectangularCuboid&) {
-    return NO_COLLISION;
-}
-static Collision collide(const RectangularCuboid&, const Sphere&) {
-    return NO_COLLISION;
-}
-static Collision collide(const RectangularCuboid&, const Cube&) {
-    return NO_COLLISION;
-}
-static Collision collide(const RectangularCuboid&, const RectangularCuboid&) {
-    return NO_COLLISION;
-}
-
-
-
-Sphere::Sphere(const glm::dvec3 center, const double radius): radius(radius) {
-    position = center;
-    minAABB = glm::dvec3(-radius / 2);
-    maxAABB = glm::dvec3(+radius / 2);
-}
-
-std::string Sphere::toString() const {
-    char buf[100];
-    sprintf(buf, "Sphere (center: %s, radius: %f)", glm::to_string(position).c_str(), radius);
-    return std::string(buf);
-}
-
-RectangularCuboid::RectangularCuboid(const glm::dvec3 position, const double xl, const double yl, const double zl):
-    xl(xl), yl(yl), zl(zl) {
-    
-    minAABB = glm::dvec3(0.0);
-    maxAABB = glm::dvec3(xl, yl, zl);
-
-}
-
-std::string RectangularCuboid::toString() const {
-    char buf[100];
-    sprintf(buf, "Sphere (pos: %s, xl: %f, yl: %f, zl: %f)", glm::to_string(position).c_str(), xl, yl, zl);
-    return std::string(buf);
-}
-
-Cube::Cube(const glm::dvec3 position, const double length): length(length) {
-    this->position = position;
-    minAABB = glm::dvec3(0.0);
-    maxAABB = glm::dvec3(length);
-}
-
-std::string Cube::toString() const {
-    char buf[100];
-    sprintf(buf, "Cube (pos: %s, length: %f)", glm::to_string(position).c_str(), length);
-    return std::string(buf);
 }
