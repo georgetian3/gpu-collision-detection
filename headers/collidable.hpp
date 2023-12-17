@@ -63,7 +63,7 @@ public:
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return constructCollidable(CollidableType::cube, position, length);
     }
-    static Collidable constructCircle(const glm::dvec3& center, const double radius) {
+    static Collidable constructSphere(const glm::dvec3& center, const double radius) {
         return constructCollidable(CollidableType::circle, center, radius);
     }
 

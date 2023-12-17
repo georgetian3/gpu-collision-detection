@@ -50,10 +50,10 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
         f >> type >> pos.x >> pos.y >> pos.z;
         if (type == "s") {
             f >> r;
-            // collidable = new Sphere(pos, r);
+            collidable = Collidable::constructSphere(pos, r);
         } else if (type == "c") {
             f >> l;
-            // collidable = new Cube(pos, l);
+            collidable = Collidable::constructCube(pos, l);
         } else if (type == "r") {
             f >> xl >> yl >> zl;
             // collidable = new RectangularCuboid(pos, xl, yl, zl);
