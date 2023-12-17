@@ -5,7 +5,7 @@
 
 static unsigned int idCount = 0;
 
-std::string collidableTypeStrings = {
+std::string collidableTypeStrings[] = {
     std::string("Circle"),
     std::string("Cube"),
     std::string("Rectangular Cuboid"),
