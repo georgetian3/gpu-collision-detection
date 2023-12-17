@@ -55,6 +55,7 @@ class Collidable {
         collidable.xl = xl;
         collidable.yl = yl;
         collidable.zl = zl;
+        return collidable;
     }
 
 public:
