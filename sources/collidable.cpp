@@ -3,8 +3,17 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/norm.hpp>
 
-unsigned int idCount = 0;
+static unsigned int idCount = 0;
 
+std::string collidableTypeStrings = {
+    std::string("Circle"),
+    std::string("Cube"),
+    std::string("Rectangular Cuboid"),
+};
+
+void Collidable::setId() {
+    id = idCount++;
+}
 
 unsigned int Collidable::getId() const {
     return id;
@@ -19,7 +28,7 @@ glm::dvec3 Collidable::getMaxAABB() const {
 }
 
 std::string Collidable::toString() const {
-    return std::string("Collidable");
+    return collidableTypeStrings[type] + std::string(" ") + glm::to_string(position);
 }
 
 std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {

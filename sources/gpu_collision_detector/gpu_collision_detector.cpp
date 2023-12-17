@@ -174,6 +174,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
         std::cerr << "Kernel exception: " << e.what();
         exit(1);
     }
+    kernelMortonCodes.setArg(0, bufferCollidables);
+
 
 
 }

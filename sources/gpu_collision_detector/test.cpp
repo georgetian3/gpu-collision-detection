@@ -24,7 +24,6 @@ void GpuCollisionDetector::test() {
 
 
 
-    kernelMortonCodes.setArg(0, bufferCollidables);
 
     Stopwatch sw;
     sw.start();

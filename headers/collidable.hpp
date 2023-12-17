@@ -26,6 +26,7 @@ enum class CollidableType {
     rectangularCuboid
 };
 
+
 class Collidable {
 
     CollidableType type;
@@ -45,6 +46,9 @@ class Collidable {
     double yl = 0;
     double zl = 0;
 
+    void setId();
+
+
 public:
 
     static Collidable constructCube(const glm::dvec3& position, const double length) {
@@ -57,10 +61,7 @@ public:
     glm::dvec3 getMaxAABB() const;
     std::string toString() const;
 
-    static Collision collide(const Collidable& a, const Collidable& b) {
-        std::cout << "Collision collide(const Collidable& a, const Collidable& b)\n";
-        return NO_COLLISION;
-    }
+    static Collision collide(const Collidable& a, const Collidable& b);
 
 };
 
