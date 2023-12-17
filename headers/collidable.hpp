@@ -48,10 +48,17 @@ class Collidable {
 
     void setId();
 
-    Collidable(const glm::dvec3& position, const double xl, const double yl = 0.0, const double zl = 0.0):
-        position(position), xl(xl), yl(yl), zl(zl) {}
+    static Collidable constructCollidable(const CollidableType type, const glm::dvec3& position, const double xl, const double yl = 0.0, const double zl = 0.0) {
+        Collidable collidable;
+        collidable.type = type;
+        collidable.position = position;
+        collidable.xl = xl;
+        collidable.yl = yl;
+        collidable.zl = zl;
+    }
 
 public:
+
 
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return Collidable(position, length);
