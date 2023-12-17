@@ -38,8 +38,8 @@ class Collidable {
 
     union {
         double length = 0;
-        double radius = 0;
-        double xl = 0;
+        double radius;
+        double xl;
     }
     double yl = 0;
     double zl = 0;
