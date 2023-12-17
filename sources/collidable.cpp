@@ -37,21 +37,21 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     glm::dvec3 pos;
     double r, l, xl, yl, zl;
     while (!f.eof()) {
-        Collidable* collidable;
+        Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
         if (type == "s") {
             f >> r;
-            collidable = new Sphere(pos, r);
+            // collidable = new Sphere(pos, r);
         } else if (type == "c") {
             f >> l;
-            collidable = new Cube(pos, l);
+            // collidable = new Cube(pos, l);
         } else if (type == "r") {
             f >> xl >> yl >> zl;
-            collidable = new RectangularCuboid(pos, xl, yl, zl);
+            // collidable = new RectangularCuboid(pos, xl, yl, zl);
         } else {
             std::cout << "Invalid shape type\n";
         }
-        collidables.emplace_back(std::shared_ptr<Collidable>(collidable));
+        collidables.emplace_back(collidable);
     }
     return collidables;
 }
