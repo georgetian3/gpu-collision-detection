@@ -25,7 +25,7 @@ void GpuCollisionDetector::test() {
 
     int nCollidables = 1000000;
 
-    std::cout << "sizeof " << sizeof(Collidable) << '\n'
+    std::cout << "sizeof " << sizeof(Collidable) << '\n';
 
 
     std::vector<double> ds;
