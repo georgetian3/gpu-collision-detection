@@ -40,7 +40,8 @@ class Collidable {
         double length = 0;
         double radius;
         double xl;
-    }
+    };
+    
     double yl = 0;
     double zl = 0;
 
