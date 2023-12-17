@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
     //     1600, 900
     // );
-    auto collidables = Collidable::readConfig("resources/collidables.txt");
+    auto collidables = Collidable::loadConfig("resources/collidables.txt");
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
     gpuCD.test();
