@@ -135,8 +135,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
         selected_platform_index = 0;
     }
     cl::Platform platform = platforms[selected_platform_index];
-    std::cout << "Selected platform:\n";
-    printPlatformInfo(platform);
+    std::cout << "Selected platform " << selected_platform_index << ":\n";
+    // printPlatformInfo(platform);
 
     // select device
     std::vector<cl::Device> devices;
@@ -150,8 +150,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
         selected_device_index = 0;
     }
     device = devices[selected_device_index];
-    std::cout << "Selected device:\n";
-    printDeviceInfo(device);
+    std::cout << "Selected device " << selected_device_index << ":\n";
+    // printDeviceInfo(device);
 
     context = cl::Context(device);
     sources.push_back(std::string(
