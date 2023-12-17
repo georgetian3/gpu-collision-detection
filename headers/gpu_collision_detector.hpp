@@ -24,7 +24,6 @@ class GpuCollisionDetector: public CollisionDetector {
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
 
-
 public:
 
     GpuCollisionDetector();

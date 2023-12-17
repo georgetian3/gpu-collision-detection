@@ -23,15 +23,12 @@ unsigned int morton3D(double x, double y, double z) {
 void GpuCollisionDetector::test() {
 
 
-
-
     Stopwatch sw;
     sw.start();
     
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
-
     std::cout << sw.stop() << '\n';
  
 

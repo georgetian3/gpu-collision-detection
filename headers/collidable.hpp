@@ -48,12 +48,18 @@ class Collidable {
 
     void setId();
 
+    Collidable(const glm::dvec3& position, const double xl, const double yl = 0.0, const double zl = 0.0):
+        position(position), xl(xl), yl(yl), zl(zl) {}
 
 public:
 
     static Collidable constructCube(const glm::dvec3& position, const double length) {
-        return Collidable();
+        return Collidable(position, length);
     }
+    static Collidable constructCircle(const glm::dvec3& center, const double radius) {
+        return Collidable(center, radius);
+    }
+
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
 
     unsigned int getId() const;
