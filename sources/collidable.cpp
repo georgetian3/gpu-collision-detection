@@ -27,7 +27,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     // # s x y z r = sphere with center at (x, y, z) with radius r
     // # c x y z l = cube with smallest corner at (x, y, z) with side length l
     // # r x y z xl yl zl = rectangular cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
-    std::vector<std::shared_ptr<Collidable>> collidables;
+    std::vector<Collidable> collidables;
     std::ifstream f(path);
     if (!f.is_open()) {
         std::cout << "Cannot open file: " << path << '\n';
