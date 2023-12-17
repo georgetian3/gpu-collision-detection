@@ -50,9 +50,7 @@ public:
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return Collidable();
     }
-    static std::vector<Collidable> loadConfig(const std::filesystem::path& path) {
-        return std::vector<Collidable>();
-    }
+    static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
 
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
