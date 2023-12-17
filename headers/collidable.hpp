@@ -41,7 +41,7 @@ class Collidable {
         double radius;
         double xl;
     };
-    
+
     double yl = 0;
     double zl = 0;
 
@@ -57,7 +57,7 @@ public:
     unsigned int getId() const;
     glm::dvec3 getMinAABB() const;
     glm::dvec3 getMaxAABB() const;
-    virtual std::string toString() const = 0;
+    std::string toString() const;
 
     static Collision collide(const Collidable& a, const Collidable& b) {
         std::cout << "Collision collide(const Collidable& a, const Collidable& b)\n";
