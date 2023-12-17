@@ -19,14 +19,6 @@ unsigned int Collidable::getId() const {
     return id;
 }
 
-glm::dvec3 Collidable::getMinAABB() const {
-    return position + minAABB;
-}
-
-glm::dvec3 Collidable::getMaxAABB() const {
-    return position + maxAABB;
-}
-
 std::string Collidable::toString() const {
     return collidableTypeStrings[static_cast<int>(type)] + std::string(" ") + glm::to_string(position);
 }

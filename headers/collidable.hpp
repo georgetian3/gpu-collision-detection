@@ -73,8 +73,6 @@ public:
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
 
     unsigned int getId() const;
-    glm::dvec3 getMinAABB() const;
-    glm::dvec3 getMaxAABB() const;
     std::string toString() const;
 
     static Collision collide(const Collidable& a, const Collidable& b);
