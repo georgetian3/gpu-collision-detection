@@ -61,10 +61,10 @@ public:
 
 
     static Collidable constructCube(const glm::dvec3& position, const double length) {
-        return constructCollidable(position, length);
+        return constructCollidable(CollidableType::cube, position, length);
     }
     static Collidable constructCircle(const glm::dvec3& center, const double radius) {
-        return constructCollidable(center, radius);
+        return constructCollidable(CollidableType::circle, center, radius);
     }
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
