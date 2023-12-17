@@ -113,7 +113,7 @@ void printOpenclInfo() {
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
     this->collidables = collidables;
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * collidables.size());
-    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables);
+    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
 }
 
 
