@@ -166,5 +166,14 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     queue = cl::CommandQueue(context, device);
 
+    cl::Kernel kernelMortonCodes;
+
+    try {
+        kernelMortonCodes = cl::Kernel(program, "mortonCodes");
+    } catch (std::exception e) {
+        std::cerr << "Kernel exception: " << e.what();
+        exit(1);
+    }
+
 
 }

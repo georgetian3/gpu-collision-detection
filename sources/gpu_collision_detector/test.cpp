@@ -21,22 +21,10 @@ unsigned int morton3D(double x, double y, double z) {
 
 
 void GpuCollisionDetector::test() {
-    
 
-    // create buffers on the device
- 
-    // create queue to which we will push commands for the device.
-    cl::Kernel kernelMortonCodes;
 
-    try {
-        kernelMortonCodes = cl::Kernel(program, "mortonCodes");
-    } catch (std::exception e) {
-        std::cerr << "Kernel exception: " << e.what();
-        exit(1);
-    }
 
     kernelMortonCodes.setArg(0, bufferCollidables);
-    kernelMortonCodes.setArg(1, bufferMortonCodes);
 
     Stopwatch sw;
     sw.start();
@@ -44,13 +32,9 @@ void GpuCollisionDetector::test() {
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
-    // std::vector<unsigned int> mortonCodes(nCollidables);
-    queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
 
     std::cout << sw.stop() << '\n';
  
-    // for (int i = 0; i < nCollidables; i++) {
-    //     std::cout << std::bitset<sizeof(unsigned int) * 8>(mortonCodes[i]) << '\n';
-    // }
+
 
 }
