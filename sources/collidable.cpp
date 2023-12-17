@@ -3,7 +3,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/norm.hpp>
 
-unsigned int Collidable::idCount = 0;
+unsigned int idCount = 0;
 
 
 unsigned int Collidable::getId() const {
