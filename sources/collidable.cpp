@@ -28,7 +28,7 @@ glm::dvec3 Collidable::getMaxAABB() const {
 }
 
 std::string Collidable::toString() const {
-    return collidableTypeStrings[type] + std::string(" ") + glm::to_string(position);
+    return collidableTypeStrings[static_cast<int>(type)] + std::string(" ") + glm::to_string(position);
 }
 
 std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {
