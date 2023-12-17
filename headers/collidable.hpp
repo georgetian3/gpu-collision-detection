@@ -34,8 +34,10 @@ class Collidable {
 
     glm::dvec3 position = glm::dvec3(0.0);
 
-    glm::dvec3 minAABB = glm::dvec3(0.0);
-    glm::dvec3 maxAABB = glm::dvec3(0.0);
+    glm::dvec3 relativeMinAABB = glm::dvec3(0.0);
+    glm::dvec3 relativeMaxAABB = glm::dvec3(0.0);
+    glm::dvec3 absoluteMinAABB = glm::dvec3(0.0);
+    glm::dvec3 absoluteMaxAABB = glm::dvec3(0.0);
 
     union {
         double length = 0;
