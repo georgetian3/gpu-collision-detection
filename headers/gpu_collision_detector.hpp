@@ -13,6 +13,10 @@ class GpuCollisionDetector: public CollisionDetector {
     int selected_device_index = -1;
 
     void loadConfig(const std::filesystem::path& path = "D:/gpu-collision-detection/resources/config.json");
+
+
+    std::vector<Collidable> collidables;
+
     cl::Device device;
     cl::Context context;
     cl::Program::Sources sources;
@@ -27,6 +31,8 @@ public:
 
 
     void test();
+
+    void setCollidables(const std::vector<Collidable>& collidables);
 
     std::vector<Collision> detectCollisions() final {
         std::vector<Collision> collisions;

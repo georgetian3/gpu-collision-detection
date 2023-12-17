@@ -23,24 +23,9 @@ unsigned int morton3D(double x, double y, double z) {
 void GpuCollisionDetector::test() {
     
 
-    int nCollidables = 1000000;
-
-    std::cout << "sizeof " << sizeof(Collidable) << '\n';
-
-
-    std::vector<double> ds;
-    std::vector<unsigned int> mc(nCollidables);
-
-    for (int i = 0; i < nCollidables * 3; i++) {
-        ds.push_back(random<double>(0.0, 1.0));
-    }
-
     // create buffers on the device
-    cl::Buffer bufferCollidables(context, CL_MEM_READ_ONLY, sizeof(double) * nCollidables * 3);
-    cl::Buffer bufferMortonCodes(context, CL_MEM_WRITE_ONLY, sizeof(unsigned int) * nCollidables);
  
     // create queue to which we will push commands for the device.
-    cl::CommandQueue queue(context, device);
     cl::Kernel kernelMortonCodes;
 
     try {
@@ -56,12 +41,11 @@ void GpuCollisionDetector::test() {
     Stopwatch sw;
     sw.start();
     
-    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(double) * nCollidables * 3, ds.data());
     queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(nCollidables), cl::NullRange);
     queue.finish();
  
     // std::vector<unsigned int> mortonCodes(nCollidables);
-    // queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
+    queue.enqueueReadBuffer(bufferMortonCodes, CL_TRUE, 0, sizeof(unsigned int) * nCollidables, mortonCodes.data());
 
     std::cout << sw.stop() << '\n';
  
