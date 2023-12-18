@@ -45,7 +45,6 @@ __kernel void mortonCodeAABB(
     __global unsigned int* mortonCodes,
     __global struct AABB* aabbs
 ) {
-    const int i = get_global_id(0);
     const struct vec3 position = positions[i];
     mortonCodes[i] = morton3D(position.x, position.y, position.z);
     struct AABB aabb;
