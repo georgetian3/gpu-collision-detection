@@ -39,7 +39,6 @@ void Scene::render() {
 
     while (!glfwWindowShouldClose(window)) {
 
-
         double currentTime = glfwGetTime();
         double dt = currentTime - lastTime;
         lastTime = currentTime;
