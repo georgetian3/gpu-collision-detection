@@ -1,5 +1,6 @@
 #include <gpu_collision_detector.hpp>
 #include <stopwatch.hpp>
+#include <algorithm>
 
 unsigned int expandBits(unsigned int v) {
     v = (v * 0x00010001u) & 0xFF0000FFu;
@@ -21,8 +22,10 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     // Stopwatch sw;
     // sw.start();
     
-    // queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
-    // queue.finish();
+    queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
+    queue.finish();
+
+    std::sort(
     // double elapsed = sw.stop();
     // std::cout << sw.stop() << '\n';
  
