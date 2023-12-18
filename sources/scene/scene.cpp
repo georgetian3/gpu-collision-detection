@@ -20,7 +20,9 @@ Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight
     lastY = windowHeight / 2.0;
     init();
 
+}
 
+void Scene::render() {
 
     ///////////////////////////////////////////////////////////////////////
     // Render loop
@@ -31,7 +33,7 @@ Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight
     double updateInterval = 0.5;
     double lastTime = 0;
     double startTime = glfwGetTime();
-    int targetAnimationFps = 30;
+    int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
 
 
@@ -56,12 +58,14 @@ Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight
 
         renderGui();
 
+        // collisionDetector->detectCollisions();
+
         if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
             glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
-            animationFrameCount++;
-            if (animationFrameCount % targetAnimationFps == 0) {
-                std::cout << animationFrameCount << '\n';
-            }
+            // animationFrameCount++;
+            // if (animationFrameCount % targetAnimationFps == 0) {
+            //     std::cout << animationFrameCount << '\n';
+            // }
         }
 
         glfwSwapBuffers(window);

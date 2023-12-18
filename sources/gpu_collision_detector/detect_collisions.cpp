@@ -1,8 +1,5 @@
 #include <gpu_collision_detector.hpp>
-#include <utils.hpp>
-#include <bitset>
 #include <stopwatch.hpp>
-
 
 unsigned int expandBits(unsigned int v) {
     v = (v * 0x00010001u) & 0xFF0000FFu;
@@ -19,18 +16,16 @@ unsigned int morton3D(double x, double y, double z) {
     return xx * 4 + yy * 2 + zz;
 }
 
+std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
-void GpuCollisionDetector::test() {
-
-
-    Stopwatch sw;
-    sw.start();
+    // Stopwatch sw;
+    // sw.start();
     
-    queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
-    queue.finish();
+    // queue.enqueueNDRangeKernel(kernelMortonCodes, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
+    // queue.finish();
+    // double elapsed = sw.stop();
+    // std::cout << sw.stop() << '\n';
  
-    std::cout << sw.stop() << '\n';
- 
-
+    return std::vector<Collision>();
 
 }

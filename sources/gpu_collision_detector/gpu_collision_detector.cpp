@@ -121,7 +121,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
 GpuCollisionDetector::GpuCollisionDetector() {
 
     // printOpenclInfo();
-    loadConfig();
+    // loadConfig();
 
     // select platform
     std::vector<cl::Platform> platforms;

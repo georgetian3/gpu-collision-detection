@@ -8,7 +8,7 @@
 #include <filesystem>
 #include <glm/glm.hpp>
 #include <utils.hpp>
-
+#include <collision_detector.hpp>
 
 class Scene {
 
@@ -35,6 +35,8 @@ class Scene {
     std::filesystem::path makeAbsolute(std::filesystem::path path) const {
         return (path.is_absolute() ? path : (cwd / path)).make_preferred();
     }
+
+    std::shared_ptr<CollisionDetector> collisionDetector;
 
 
 
@@ -74,7 +76,8 @@ public:
 
     Scene(const std::filesystem::path& cwd, int windowWidth = 1280, int windowHeight = 720);
     ~Scene();
-
+    void setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector);
+    void render();
 
 };
 

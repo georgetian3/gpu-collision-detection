@@ -11,3 +11,4 @@ Debug
 libs/OpenCL-CLHPP/docs/*
 libs/OpenCL-CLHPP/examples/*
 *.log
+imgui.ini

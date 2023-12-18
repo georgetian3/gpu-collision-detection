@@ -65,6 +65,11 @@ void Scene::init() {
     ImGui_ImplOpenGL3_Init("#version 400");
 }
 
+void Scene::setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector) {
+    this->collisionDetector = collisionDetector;
+}
+
+
 
 Scene::~Scene() {
     ImGui_ImplOpenGL3_Shutdown();

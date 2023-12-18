@@ -1,8 +1,8 @@
 #ifndef GPU_COLLISION_DETECTOR_HPP
 #define GPU_COLLISION_DETECTOR_HPP
 
-#define CL_HPP_ENABLE_EXCEPTIONS
-#define CL_HPP_TARGET_OPENCL_VERSION 300
+#define CL_HPP_TARGET_OPENCL_VERSION 120
+#define CL_HPP_MINIMUM_OPENCL_VERSION 120
 #include <CL/opencl.hpp>
 
 #include <collision_detector.hpp>
@@ -10,7 +10,7 @@
 struct AABB {
     glm::dvec3 min;
     glm::dvec3 max;
-}
+};
 
 class GpuCollisionDetector: public CollisionDetector {
 
@@ -26,7 +26,6 @@ class GpuCollisionDetector: public CollisionDetector {
     std::vector<AABB> aabbs;
     std::vector<unsigned int> mortonCodes;
 
-
     cl::Device device;
     cl::Context context;
     cl::Program::Sources sources;
@@ -41,15 +40,9 @@ public:
 
     GpuCollisionDetector();
 
-
-    void test();
-
     void setCollidables(const std::vector<Collidable>& collidables);
 
-    std::vector<Collision> detectCollisions() final {
-        std::vector<Collision> collisions;
-        return collisions;
-    }
+    std::vector<Collision> detectCollisions();
 
 
 };

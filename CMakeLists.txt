@@ -44,6 +44,7 @@ include_directories(
     libs/imgui/backends/
     libs/stb/
     libs/OpenCL-CLHPP/include/
+    libs/OpenCL-Headers/
     libs/nlohmann
 )
 
