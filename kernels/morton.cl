@@ -14,7 +14,6 @@ unsigned int morton3D(double x, double y, double z) {
     unsigned int xx = expandBits((unsigned int)(x * 1024));
     unsigned int yy = expandBits((unsigned int)(y * 1024));
     unsigned int zz = expandBits((unsigned int)(z * 1024));
-    // printf("x %d y %d z %d xx %u yy %u zz %u", x, y, z, xx, yy, zz);
     return xx * 4 + yy * 2 + zz;
 }
 
@@ -59,7 +58,7 @@ struct Collidable {
 };
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
-    printf("sizeof: %d %d %d", sizeof(struct Collidable), sizeof(unsigned long long), sizeof(unsigned long));
+    printf("sizeof: %u %u %u", sizeof(struct Collidable), sizeof(unsigned long long), sizeof(unsigned long));
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
     const struct vec3 position = collidable.position;
