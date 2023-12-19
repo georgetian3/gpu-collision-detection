@@ -2,10 +2,10 @@
 #include <fstream>
 #include <iostream>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 
 #include <vector>
+#include <model.hpp>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_writer.h>
@@ -19,7 +19,6 @@ Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight
     lastX = windowWidth / 2.0;
     lastY = windowHeight / 2.0;
     init();
-
 }
 
 void Scene::render() {
@@ -35,6 +34,8 @@ void Scene::render() {
     double startTime = glfwGetTime();
     int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
+
+    Model circle;
 
 
     while (!glfwWindowShouldClose(window)) {
