@@ -1,7 +1,9 @@
 R"(
 
-long expandBits3(double v) {
-    long u = ((long)(v * (1ull << 63))) >> 43; 
+ulong expandBits3(double v) {
+    printf("double %f", v);
+    ulong u = ((long)(v * (1ul << 63))) >> 43; 
+    printf("double %f", v);
     u = (u | u << 32) & 0x1f00000000ffff;
     u = (u | u << 16) & 0x1f0000ff0000ff;
     u = (u | u << 8) & 0x100f00f00f00f00f;
@@ -10,7 +12,7 @@ long expandBits3(double v) {
     return u;
 }
 
-long morton3D(double x, double y, double z) {
+ulong morton3D(double x, double y, double z) {
     return (expandBits3(x) << 2) | (expandBits3(y) << 1) | expandBits3(z);
 }
 
@@ -38,7 +40,7 @@ struct Collidable {
     unsigned int id;
 
     struct vec3 position;
-    long mortonCode;
+    ulong mortonCode;
 
     struct AABB relativeAABB;
     struct AABB absoluteAABB;
