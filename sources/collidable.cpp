@@ -69,6 +69,7 @@ Collidable::Collidable(
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {}
 
 Collidable Collidable::operator =(const Collidable& other) {
+    std::cout << "operator =\n";
     return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
 }
 
