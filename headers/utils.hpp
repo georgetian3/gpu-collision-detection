@@ -41,8 +41,8 @@ std::string vectorToString(std::vector<T> v) {
 }
 
 template <class T>
-std::bitset<sizeof(T)> toBits(T v) {
-    return std::bitset<sizeof(T)>(v);
+std::bitset<sizeof(T) * 8> toBits(T v) {
+    return std::bitset<sizeof(T) * 8>(v);
 }
 
 std::string readFile(const std::filesystem::path& path);

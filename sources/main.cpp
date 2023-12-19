@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 
     std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
 
-    std::cout << toBits(123) << typeid(123) << '\n';
+    std::cout << toBits(123) << '\n';
 
     return 0;
     
