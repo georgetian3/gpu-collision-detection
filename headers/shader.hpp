@@ -21,6 +21,7 @@ class Shader {
 public:
 
     Shader();
+    ~Shader();
     Shader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource);
     void load(const std::string& vertexShaderSource, const std::string& fragmentShaderSource);
     void use() const;
