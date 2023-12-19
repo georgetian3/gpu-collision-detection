@@ -70,6 +70,10 @@ void Scene::render() {
 
         renderGui();
 
+        shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::vec3(0, 0, 0)), glm::dvec3(scale)));
+        shader.setMat4("view", camera.getView());
+        shader.setMat4("projection", camera.getProjection());
+
         cube.draw();
 
         // collisionDetector->detectCollisions();
