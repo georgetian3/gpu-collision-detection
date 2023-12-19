@@ -61,7 +61,7 @@ void Scene::render() {
         // collisionDetector->detectCollisions();
 
         if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
-            glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
+            // glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
             // animationFrameCount++;
             // if (animationFrameCount % targetAnimationFps == 0) {
             //     std::cout << animationFrameCount << '\n';
