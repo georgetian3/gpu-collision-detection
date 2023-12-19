@@ -110,9 +110,9 @@ void Scene::render() {
 
         renderGui();
 
-        shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 0.0, 10.0)), glm::dvec3(1)));
-        shader.setMat4("view", camera.getView());
-        shader.setMat4("projection", camera.getProjection());
+        // shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 0.0, 10.0)), glm::dvec3(1)));
+        // shader.setMat4("view", camera.getView());
+        // shader.setMat4("projection", camera.getProjection());
 
 
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
