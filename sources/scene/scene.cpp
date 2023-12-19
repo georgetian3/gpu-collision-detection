@@ -51,7 +51,7 @@ void Scene::render() {
     const Model cube = Model(cubeVertices, cubeIndices);
 
 
-
+    glEnable(GL_DEPTH_TEST)
 
 
     while (!glfwWindowShouldClose(window)) {
