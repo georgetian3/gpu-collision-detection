@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
         1600, 900
     );
 
-    scene.render()
+    scene.render();
 
     std::cout << "Done!";
 }
