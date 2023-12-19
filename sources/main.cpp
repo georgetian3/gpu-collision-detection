@@ -21,7 +21,6 @@ int main(int argc, char* argv[]) {
     std::cout << 1.0 << '\n';
     expandBits3(1.0);
     
-    eturn 0;
 
 
     std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
