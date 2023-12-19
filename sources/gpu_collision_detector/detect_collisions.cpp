@@ -6,17 +6,17 @@
 #include <utils.hpp>
 
 uint64_t expandBits(double v) {
-    v = (unsigned int)(v * (1 << 21));
-    std::cout << toBits(v);
-    v = (v * 0x00010001u) & 0xFF0000FFu;
-    std::cout << toBits(v);
-    v = (v * 0x00000101u) & 0x0F00F00Fu;
-    std::cout << toBits(v);
-    v = (v * 0x00000011u) & 0xC30C30C3u;
-    std::cout << toBits(v);
-    v = (v * 0x00000005u) & 0x49249249u;
-    std::cout << toBits(v);
-    return v;
+    uint64_t u = (unsigned int)(v * (1 << 21));
+    std::cout << toBits(u);
+    u = (u * 0x00010001u) & 0xFF0000FFu;
+    std::cout << toBits(u);
+    u = (u * 0x00000101u) & 0x0F00F00Fu;
+    std::cout << toBits(u);
+    u = (u * 0x00000011u) & 0xC30C30C3u;
+    std::cout << toBits(u);
+    u = (u * 0x00000005u) & 0x49249249u;
+    std::cout << toBits(u);
+    return u;
 }
 
 uint64_t morton3D(double x, double y, double z) {
