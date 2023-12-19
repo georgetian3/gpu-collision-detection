@@ -23,9 +23,6 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     std::vector<unsigned int> want;
     for (const auto& collidable: collidables) {
-        std::cout << glm::to_string(collidable.position) << '\n';
-        auto mortonCode = morton3D(collidable.position.x, collidable.position.y, collidable.position.z);
-        std::cout << mortonCode << '\n';
         want.push_back(morton3D(collidable.position.x, collidable.position.y, collidable.position.z));
     }
 
@@ -39,7 +36,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     std::cout << sw.stop() << '\n';
 
     for (int i = 0; i < collidables.size(); i++) {
-        std::cout << std::bitset<sizeof(want[0]) * 8>(want[i]) << ' ' << std::bitset<sizeof(collidables[0].mortonCode) * 8>(collidables[i].mortonCode) << ' ' << (want[i] == collidables[i].mortonCode) << '\n';
+        std::cout << toBits(want[i]) << ' ' << toBits(collidables[i].mortonCode)> << ' ' << (want[i] == collidables[i].mortonCode) << '\n';
     }
  
     return std::vector<Collision>();
