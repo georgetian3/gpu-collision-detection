@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <bitset>
 #include <glm/gtx/string_cast.hpp>
+#include <utils.hpp>
 
 unsigned int expandBits(unsigned int v) {
     v = (v * 0x00010001u) & 0xFF0000FFu;
