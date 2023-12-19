@@ -1,4 +1,4 @@
-R"(
+// R"(
 
 // Expands a 10-bit integer into 30 bits
 // by inserting 2 zeros after each bit.
@@ -36,6 +36,28 @@ struct AABB {
     struct vec3 max;
 };
 
+struct Collidable {
+
+    unsigned int type;
+    unsigned int id;
+
+    struct vec3 position;
+    uint64_t mortonCode;
+
+    struct AABB relativeAABB;
+    struct AABB absoluteAABB;
+
+    union {
+        double length;
+        double radius;
+        double xl;
+    };
+
+    double yl;
+    double zl;
+
+};
+
 __kernel void mortonCodeAABB(
     __global const struct vec3* positions,
     __global unsigned int* types,
@@ -70,4 +92,4 @@ __kernel void mortonCodeAABB(
     aabbs[i] = aabb;
 }
 
-)"
+// )"

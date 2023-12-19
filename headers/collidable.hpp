@@ -26,6 +26,10 @@ enum class CollidableType {
     rectangularCuboid
 };
 
+struct AABB {
+    glm::dvec3 min = glm::dvec3(0.0);
+    glm::dvec3 max = glm::dvec3(0.0);
+};
 
 class Collidable {
 
@@ -33,11 +37,10 @@ class Collidable {
     unsigned int id = -1;
 
     glm::dvec3 position = glm::dvec3(0.0);
+    uint64_t mortonCode = 0;
 
-    glm::dvec3 relativeMinAABB = glm::dvec3(0.0);
-    glm::dvec3 relativeMaxAABB = glm::dvec3(0.0);
-    glm::dvec3 absoluteMinAABB = glm::dvec3(0.0);
-    glm::dvec3 absoluteMaxAABB = glm::dvec3(0.0);
+    AABB relativeAABB;
+    AABB absoluteAABB;
 
     union {
         double length = 0;

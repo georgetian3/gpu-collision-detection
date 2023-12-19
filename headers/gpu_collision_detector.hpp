@@ -32,6 +32,9 @@ class GpuCollisionDetector: public CollisionDetector {
     cl::Program program;
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
+    cl::Buffer bufferPositions;
+    cl::Buffer bufferMortonCodes;
+    cl::Buffer bufferAABBs;
 
     cl::Kernel kernelMortonCodeAAAB;
 
