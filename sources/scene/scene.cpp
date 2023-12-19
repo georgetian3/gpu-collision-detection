@@ -35,6 +35,9 @@ void Scene::render() {
     int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
 
+    const Model cube = Model(cubeVertices, cubeIndices);
+
+
 
 
     while (!glfwWindowShouldClose(window)) {

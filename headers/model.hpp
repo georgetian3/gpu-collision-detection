@@ -80,6 +80,5 @@ public:
 
 };
 
-const Model cube = Model(cubeVertices, cubeIndices);
 
 #endif
