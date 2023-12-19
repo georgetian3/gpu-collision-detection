@@ -46,8 +46,8 @@ private:
 
 public:
 
-    const CollidableType type = CollidableType::sphere;
-    const unsigned int id = -1;
+    CollidableType type = CollidableType::sphere;
+    unsigned int id = -1;
 
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;
@@ -56,13 +56,12 @@ public:
     AABB absoluteAABB;
 
     union {
-        const double length = 0;
-        const double radius;
-        const double xl;
+        double length = 0;
+        double radius;
+        double xl;
     };
-
-    const double yl = 0;
-    const double zl = 0;
+    double yl = 0;
+    double zl = 0;
 
     Collidable() {}
     Collidable(
@@ -72,7 +71,6 @@ public:
         const double yl = 0.0,
         const double zl = 0.0
     );
-    Collidable operator=(const Collidable& other);
     static Collidable constructCube(const glm::dvec3& position, const double length);
     static Collidable constructSphere(const glm::dvec3& center, const double radius);
 
