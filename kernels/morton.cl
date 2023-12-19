@@ -1,4 +1,4 @@
-// R"(
+R"(
 
 // Expands a 10-bit integer into 30 bits
 // by inserting 2 zeros after each bit.
@@ -42,7 +42,7 @@ struct Collidable {
     unsigned int id;
 
     struct vec3 position;
-    uint64_t mortonCode;
+    cl_ulong mortonCode;
 
     struct AABB relativeAABB;
     struct AABB absoluteAABB;
@@ -92,4 +92,4 @@ __kernel void mortonCodeAABB(
     aabbs[i] = aabb;
 }
 
-// )"
+)"
