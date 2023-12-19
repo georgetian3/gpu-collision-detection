@@ -78,6 +78,9 @@ public:
     ~Scene();
     void setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector);
     void render();
+    GLFWwindow* getWindow() const {
+        return window;
+    }
 
 };
 
