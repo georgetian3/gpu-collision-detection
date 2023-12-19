@@ -58,6 +58,8 @@ void Scene::render() {
 
         renderGui();
 
+        circle.draw()
+
         // collisionDetector->detectCollisions();
 
         // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
