@@ -134,7 +134,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         selected_device_index = 0;
     }
     device = devices[selected_device_index];
-    std::cout << "Selected device " << selected_device_index << ":\n";
+    // std::cout << "Selected device " << selected_device_index << ":\n";
     printDeviceInfo(device);
 
     context = cl::Context(device);
