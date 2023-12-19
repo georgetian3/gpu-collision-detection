@@ -35,7 +35,6 @@ void Scene::render() {
     int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
 
-    Model circle;
 
 
     while (!glfwWindowShouldClose(window)) {
@@ -59,7 +58,7 @@ void Scene::render() {
 
         // renderGui();
 
-        // circle.draw();
+        cube.draw();
 
         // collisionDetector->detectCollisions();
 
