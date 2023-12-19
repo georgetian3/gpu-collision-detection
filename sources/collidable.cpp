@@ -51,6 +51,15 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
 }
 
 Collidable::Collidable(
+    const unsigned int id
+    const CollidableType type,
+    const glm::dvec3& position,
+    const double xl,
+    const double yl,
+    const double zl
+): id(id), type(type), position(position), xl(xl), yl(yl), zl(zl) {}
+
+Collidable::Collidable(
     const CollidableType type,
     const glm::dvec3& position,
     const double xl,

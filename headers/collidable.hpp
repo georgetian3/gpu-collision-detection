@@ -52,6 +52,15 @@ struct Collidable {
     const double zl = 0;
 
     Collidable(
+        const unsigned int id,
+        const CollidableType type,
+        const glm::dvec3& position,
+        const double xl,
+        const double yl = 0.0,
+        const double zl = 0.0
+    );
+
+    Collidable(
         const CollidableType type,
         const glm::dvec3& position,
         const double xl,
@@ -61,6 +70,9 @@ struct Collidable {
 
 
     Collidable() {}
+    Collidable &Collidable::operator =(const Collidable& other) {
+        return Collidable(other.id, other.
+    }
 
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return Collidable(CollidableType::cube, position, length);
