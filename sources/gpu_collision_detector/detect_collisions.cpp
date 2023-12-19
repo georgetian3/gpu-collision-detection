@@ -7,15 +7,15 @@
 
 uint64_t expandBits(double v) {
     uint64_t u = (unsigned int)(v * (1 << 21));
-    std::cout << toBits(u);
+    std::cout << toBits(u) << '\n';
     u = (u * 0x00010001u) & 0xFF0000FFu;
-    std::cout << toBits(u);
+    std::cout << toBits(u) << '\n';
     u = (u * 0x00000101u) & 0x0F00F00Fu;
-    std::cout << toBits(u);
+    std::cout << toBits(u) << '\n';
     u = (u * 0x00000011u) & 0xC30C30C3u;
-    std::cout << toBits(u);
+    std::cout << toBits(u) << '\n';
     u = (u * 0x00000005u) & 0x49249249u;
-    std::cout << toBits(u);
+    std::cout << toBits(u) << '\n';
     return u;
 }
 
