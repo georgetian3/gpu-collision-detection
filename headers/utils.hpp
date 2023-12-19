@@ -1,6 +1,7 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
+#include <bitset>
 #include <iostream>
 #include <filesystem>
 #include <random>
@@ -37,6 +38,11 @@ std::string vectorToString(std::vector<T> v) {
     }
     s << v.back() << ']';
     return s.str();
+}
+
+template <class T>
+std::bitset toBits(T v) {
+    return std::bitset<sizeof(T)>(v);
 }
 
 std::string readFile(const std::filesystem::path& path);
