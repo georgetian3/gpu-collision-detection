@@ -31,10 +31,22 @@ struct AABB {
     glm::dvec3 max = glm::dvec3(0.0);
 };
 
-class Collidable {
+struct Collidable {
 
-    CollidableType type;
-    unsigned int id = -1;
+private:
+
+    Collidable(
+        const CollidableType type,
+        const glm::dvec3& position,
+        const double xl,
+        const double yl = 0.0,
+        const double zl = 0.0
+    );
+
+public:
+
+    const CollidableType type;
+    const unsigned int id;
 
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;
@@ -43,17 +55,17 @@ class Collidable {
     AABB absoluteAABB;
 
     union {
-        double length = 0;
-        double radius;
-        double xl;
+        const double length = 0;
+        const double radius;
+        const double xl;
     };
 
-    double yl = 0;
-    double zl = 0;
+    const double yl = 0;
+    const double zl = 0;
 
-    void setId();
+    
 
-    static Collidable constructCollidable(const CollidableType type, const glm::dvec3& position, const double xl, const double yl = 0.0, const double zl = 0.0) {
+    static Collidable constructCollidable() {
         Collidable collidable;
         collidable.type = type;
         collidable.position = position;
@@ -63,9 +75,6 @@ class Collidable {
         return collidable;
     }
 
-public:
-
-
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return constructCollidable(CollidableType::cube, position, length);
     }
@@ -74,13 +83,9 @@ public:
     }
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
-
-    unsigned int getId() const;
     std::string toString() const;
-
     static Collision collide(const Collidable& a, const Collidable& b);
 
 };
-
 
 #endif

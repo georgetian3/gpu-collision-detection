@@ -19,6 +19,11 @@ unsigned int morton3D(double x, double y, double z) {
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
+    std::vector<uint64_t> want;
+    for (const auto& collidable: collidables) {
+        want.push_back(morton3D(collidable.
+    }
+
     Stopwatch sw;
     sw.start();
     

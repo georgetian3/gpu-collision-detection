@@ -15,9 +15,6 @@ void Collidable::setId() {
     id = idCount++;
 }
 
-unsigned int Collidable::getId() const {
-    return id;
-}
 
 std::string Collidable::toString() const {
     return collidableTypeStrings[static_cast<int>(type)] + std::string(" ") + glm::to_string(position);
@@ -55,4 +52,19 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
         collidables.emplace_back(collidable);
     }
     return collidables;
+}
+
+Collidable::Collidable(
+    const CollidableType type,
+    const glm::dvec3& position,
+    const double xl,
+    const double yl = 0.0,
+    const double zl = 0.0
+): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {}
+
+static Collidable constructCube(const glm::dvec3& position, const double length) {
+    return Collidable(CollidableType::cube, position, length);
+}
+static Collidable constructSphere(const glm::dvec3& center, const double radius) {
+    return Collidable(CollidableType::circle, center, radius);
 }
