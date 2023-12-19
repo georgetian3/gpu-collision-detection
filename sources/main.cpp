@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
     auto collidables = Collidable::loadConfig("resources/collidables.txt");
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
-    gpuCD.detectCollisions()
+    gpuCD.detectCollisions();
 
     // Scene scene(
     //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
