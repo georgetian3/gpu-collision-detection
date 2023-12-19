@@ -63,18 +63,6 @@ public:
     const double yl = 0;
     const double zl = 0;
 
-    
-
-    static Collidable constructCollidable() {
-        Collidable collidable;
-        collidable.type = type;
-        collidable.position = position;
-        collidable.xl = xl;
-        collidable.yl = yl;
-        collidable.zl = zl;
-        return collidable;
-    }
-
     static Collidable constructCube(const glm::dvec3& position, const double length) {
         return constructCollidable(CollidableType::cube, position, length);
     }
