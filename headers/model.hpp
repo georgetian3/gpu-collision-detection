@@ -57,6 +57,8 @@ public:
     std::vector<glm::dvec3>     vertices;
     std::vector<unsigned int>   indices;
 
+    unsigned int indicesCount;
+
     Model(std::vector<float> vertices, std::vector<unsigned int> indices) {
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
@@ -72,6 +74,7 @@ public:
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
+        indicesCount = indices.size();
     }
 
     ~Model() {
@@ -82,8 +85,7 @@ public:
 
     void draw() const {
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        //glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indicesCount), GL_UNSIGNED_INT, 0);
     }
 
 };
