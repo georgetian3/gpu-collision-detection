@@ -2,7 +2,7 @@ R"(
 
 ulong expandBits3(double v) {
     printf("double %f", v);
-    ulong u = ((long)(v * (1ul << 63))) >> 43; 
+    ulong u = ((ulong)(v * (1ul << 63))) >> 43; 
     printf("double %f", v);
     u = (u | u << 32) & 0x1f00000000ffff;
     u = (u | u << 16) & 0x1f0000ff0000ff;
@@ -57,7 +57,7 @@ struct Collidable {
 };
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
-    // printf("sizeof: %ld\n", sizeof(struct Collidable));
+    printf("sizeof: %ld\n", sizeof(struct Collidable));
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
     const struct vec3 position = collidable.position;
