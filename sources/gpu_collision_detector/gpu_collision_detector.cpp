@@ -145,12 +145,11 @@ GpuCollisionDetector::GpuCollisionDetector() {
     program = cl::Program(context, sources);
 
     if (program.build(device) != CL_SUCCESS){
-        std::cerr << " Error building: " << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
+        std::cerr << "Error building: " << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
         exit(1);
     }
 
     queue = cl::CommandQueue(context, device);
-
 
     try {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
