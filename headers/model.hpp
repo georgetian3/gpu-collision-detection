@@ -52,6 +52,7 @@ public:
     Model(std::vector<float> vertices, std::vector<unsigned int> indices) {
         printLocation();
         glGenVertexArrays(1, &VAO);
+        printLocation();
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
         // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
