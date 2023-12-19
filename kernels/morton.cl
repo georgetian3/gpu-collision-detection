@@ -3,7 +3,6 @@ R"(
 ulong expandBits3(double v) {
     printf("double %f", v);
     ulong u = ((ulong)(v * (1ul << 63))) >> 43; 
-    printf("double %f %ul", v, sizeof(ulong));
     u = (u | u << 32) & 0x1f00000000ffff;
     u = (u | u << 16) & 0x1f0000ff0000ff;
     u = (u | u << 8) & 0x100f00f00f00f00f;
