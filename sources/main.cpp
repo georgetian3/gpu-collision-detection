@@ -17,13 +17,14 @@ int main(int argc, char* argv[]) {
     auto collidables = Collidable::loadConfig("resources/collidables.txt");
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
-    Scene scene(
-        (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
-        1600, 900
-    );
-    scene.setCollisionDetector(std::shared_ptr<CollisionDetector>(&gpuCD));
-    scene.render();
+    gpuCD.detectCollisions()
+
+    // Scene scene(
+    //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
+    //     1600, 900
+    // );
+    // scene.setCollisionDetector(std::shared_ptr<CollisionDetector>(&gpuCD));
+    // scene.render();
     
-    // gpuCD.test();
     std::cout << "Done!";
 }

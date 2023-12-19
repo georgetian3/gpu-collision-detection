@@ -1,8 +1,8 @@
 #include <gpu_collision_detector.hpp>
 #include <exception>
 #include <fstream>
-#include <sstream>
 #include <json.hpp>
+#include <utils.hpp>
 using json = nlohmann::json;
 
 void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {

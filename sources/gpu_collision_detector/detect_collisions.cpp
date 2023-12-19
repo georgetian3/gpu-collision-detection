@@ -20,14 +20,14 @@ unsigned int morton3D(double x, double y, double z) {
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     // Stopwatch sw;
-    // sw.start();
+    sw.start();
     
     queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
     queue.finish();
 
-    // queue.enqueueReadBuffer(
+    queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
     // double elapsed = sw.stop();
-    // std::cout << sw.stop() << '\n';
+    std::cout << sw.stop() << '\n';
  
     return std::vector<Collision>();
 
