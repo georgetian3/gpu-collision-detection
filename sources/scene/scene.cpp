@@ -151,7 +151,7 @@ void Scene::render() {
     {
         // input
         // -----
-        processInput(window);
+        processInput(window, 0.0);
 
         // render
         // ------
