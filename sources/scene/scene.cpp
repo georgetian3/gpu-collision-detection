@@ -35,7 +35,15 @@ void Scene::render() {
     int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
 
-    // Shader shader = Shader(
+    Shader shader = Shader(
+        std::string(
+            #include <model.vs>
+        ),
+        std::string(
+            #include <model.fs>
+        )
+    );
+    shader.use();
     const Model cube = Model(cubeVertices, cubeIndices);
 
 
