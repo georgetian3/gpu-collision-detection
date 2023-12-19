@@ -6,7 +6,7 @@
 #include <utils.hpp>
 
 uint64_t morton3D(double x, double y, double z) {
-    return (expandBits(x) << 2) | (expandBits(y) << 1) | expandBits(z);
+    return (expandBits3(x) << 2) | (expandBits3(y) << 1) | expandBits3(z);
 }
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
