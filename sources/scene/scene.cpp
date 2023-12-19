@@ -31,7 +31,7 @@ void Scene::render() {
     unsigned int frameCount = 0;
     double prevFpsTime = 0;
     double updateInterval = 0.5;
-    double lastTime = 0;
+    double prevTime = 0;
     double startTime = glfwGetTime();
     int targetAnimationFps = 60;
     unsigned int animationFrameCount = 0;
@@ -55,8 +55,8 @@ void Scene::render() {
     while (!glfwWindowShouldClose(window)) {
 
         double currentTime = glfwGetTime();
-        double dt = currentTime - lastTime;
-        lastTime = currentTime;
+        double dt = currentTime - prevTime;
+        prevTime = currentTime;
         processInput(window, dt);
 
         frameCount++;
