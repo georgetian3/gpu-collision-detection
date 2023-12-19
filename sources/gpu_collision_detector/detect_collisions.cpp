@@ -25,7 +25,7 @@ uint64_t morton3D(double x, double y, double z) {
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
-    std::vector<unsigned int> want;
+    std::vector<uint64_t> want;
     for (const auto& collidable: collidables) {
         std::cout << collidable.toString() << '\n';
         want.push_back(morton3D(collidable.position.x, collidable.position.y, collidable.position.z));
