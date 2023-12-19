@@ -18,11 +18,14 @@ uint64_t expandBits3(double v) { // assume v in range [0, 1]
     //std::cout << toBits(u) << '\n';
     u = (u | (u << 16)) & 0x030000FFull;
     std::cout << toBits(u) << '\n';
-    u = (u * 0x00000101u) & 0x0F00F00Fu;
+    u = (u | (u << 16)) & 0x030000FF;
     std::cout << toBits(u) << '\n';
-    u = (u * 0x00000011u) & 0xC30C30C3u;
+    u = (u | (u <<  8)) & 0x0300F00F;
     std::cout << toBits(u) << '\n';
-    u = (u * 0x00000005u) & 0x49249249u;
+    u = (u | (u <<  4)) & 0x030C30C3;
     std::cout << toBits(u) << '\n';
+    u = (u | (u <<  2)) & 0x09249249;
+    std::cout << toBits(u) << '\n';
+    
     return u;
 }
