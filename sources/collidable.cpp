@@ -18,7 +18,7 @@ std::string Collidable::toString() const {
     char buf[STRING_BUF_SIZE];
     snprintf(
         buf, STRING_BUF_SIZE, "%s P(%f,%f,%f)",
-        collidableTypeStrings[static_cast<int>(type)],
+        collidableTypeStrings[static_cast<int>(type)].c_str(),
         position.x, position.y, position.z
     );
     return std::string(buf);
