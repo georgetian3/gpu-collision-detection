@@ -67,7 +67,7 @@ Collidable::Collidable(
     const double zl
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {}
 
-Collidable::Collidable operator=(const Collidable& other) {
+Collidable::Collidable operator =(const Collidable& other) {
     return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
 }
 
