@@ -71,9 +71,9 @@ Collidable Collidable::operator =(const Collidable& other) {
     return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
 }
 
-static Collidable constructCube(const glm::dvec3& position, const double length) {
+static Collidable Collidable::constructCube(const glm::dvec3& position, const double length) {
     return Collidable(CollidableType::cube, position, length);
 }
-static Collidable constructSphere(const glm::dvec3& center, const double radius) {
+static Collidable Collidable::constructSphere(const glm::dvec3& center, const double radius) {
     return Collidable(CollidableType::sphere, center, radius);
 }

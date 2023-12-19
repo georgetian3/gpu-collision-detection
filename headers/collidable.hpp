@@ -44,7 +44,6 @@ private:
         const double zl = 0.0
     );
 
-
 public:
 
     const CollidableType type = CollidableType::sphere;
