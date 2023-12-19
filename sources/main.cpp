@@ -10,7 +10,12 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    expandBits3(0.23);
+    std::cout << 0.0 << '\n';
+    expandBits3(0.0);
+    std::cout << 1.0 << '\n';
+    expandBits3(1.0);
+    std::cout << 0.5 << '\n';
+    expandBits3(0.5);
     return 0;
 
 
