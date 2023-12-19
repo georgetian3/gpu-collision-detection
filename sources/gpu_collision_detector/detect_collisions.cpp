@@ -1,6 +1,7 @@
 #include <gpu_collision_detector.hpp>
 #include <stopwatch.hpp>
 #include <algorithm>
+#include <bitset>
 
 unsigned int expandBits(unsigned int v) {
     v = (v * 0x00010001u) & 0xFF0000FFu;
@@ -31,11 +32,10 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     queue.finish();
 
     queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-    // double elapsed = sw.stop();
     std::cout << sw.stop() << '\n';
 
     for (int i = 0; i < collidables.size(); i++) {
-        std::cout << want[i] << ' ' << collidables[i].mortonCode << (want[i] == collidables[i].mortonCode) << '\n';
+        std::cout << std::bitset<64>(want[i]) << ' ' << std::bitset<64>(collidables[i].mortonCode) << ' ' << (want[i] == collidables[i].mortonCode) << '\n';
     }
  
     return std::vector<Collision>();
