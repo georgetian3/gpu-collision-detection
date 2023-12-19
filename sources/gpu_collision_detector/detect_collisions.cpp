@@ -21,7 +21,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     std::vector<uint64_t> want;
     for (const auto& collidable: collidables) {
-        want.push_back(morton3D(collidable.
+        want.push_back(morton3D(collidable.position.x, collidable.position.y, collidable.position.z));
     }
 
     Stopwatch sw;
