@@ -71,7 +71,7 @@ void Scene::render() {
 
         renderGui();
 
-        shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0)), glm::dvec3(1)));
+        shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 0.0, 10.0)), glm::dvec3(1)));
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
