@@ -27,7 +27,7 @@ void Scene::render() {
     // Render loop
     ///////////////////////////////////////////////////////////////////////
 
-    int frameCount = 0;
+    unsigned int frameCount = 0;
     double prevFpsTime = 0;
     double updateInterval = 0.5;
     double lastTime = 0;
@@ -48,17 +48,18 @@ void Scene::render() {
         frameCount++;
         if (currentTime - prevFpsTime > updateInterval) {
             fps = frameCount / (currentTime - prevFpsTime);
+            std::cout << fps << '\n';
             prevFpsTime = currentTime;
             frameCount = 0;
         }
 
-        glClearColor(0.0, 0.0, 0.0, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glEnable(GL_DEPTH_TEST);
+        // glClearColor(0.0, 0.0, 0.0, 1.0);
+        // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        // glEnable(GL_DEPTH_TEST);
 
-        renderGui();
+        // renderGui();
 
-        circle.draw()
+        // circle.draw();
 
         // collisionDetector->detectCollisions();
 
