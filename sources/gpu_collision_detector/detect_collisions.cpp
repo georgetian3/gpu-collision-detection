@@ -18,7 +18,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     Stopwatch sw;
     sw.start();
-    
+    std::cout << "running kernel\n";
     queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
     queue.finish();
 
