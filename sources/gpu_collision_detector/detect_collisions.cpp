@@ -22,6 +22,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     std::vector<unsigned int> want;
     for (const auto& collidable: collidables) {
+        std::cout << glm::to_string(collidable.position) << '\n';
         auto mortonCode = morton3D(collidable.position.x, collidable.position.y, collidable.position.z);
         std::cout << mortonCode << '\n';
         want.push_back(morton3D(collidable.position.x, collidable.position.y, collidable.position.z));
