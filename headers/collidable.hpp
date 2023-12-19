@@ -45,6 +45,8 @@ private:
 
 public:
 
+    Collidable() {}
+
     const CollidableType type;
     const unsigned int id;
 
