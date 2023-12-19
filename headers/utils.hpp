@@ -41,7 +41,7 @@ std::string vectorToString(std::vector<T> v) {
 }
 
 template <class T>
-std::bitset toBits(T v) {
+std::bitset<sizeof(T)> toBits(T v) {
     return std::bitset<sizeof(T)>(v);
 }
 
