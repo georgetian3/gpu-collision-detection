@@ -3,6 +3,8 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/norm.hpp>
 
+#define STRING_BUF_SIZE 256
+
 static unsigned int idCount = 0;
 
 std::string collidableTypeStrings[] = {
@@ -13,7 +15,13 @@ std::string collidableTypeStrings[] = {
 
 
 std::string Collidable::toString() const {
-    return collidableTypeStrings[static_cast<int>(type)] + std::string(" ") + glm::to_string(position);
+    char buf[STRING_BUF_SIZE];
+    snprintf(
+        buf, STRING_BUF_SIZE, "%s P(%f,%f,%f)",
+        collidableTypeStrings[static_cast<int>(type)],
+        position.x, position.y, position.z
+    );
+    return std::string(buf);
 }
 
 std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {
