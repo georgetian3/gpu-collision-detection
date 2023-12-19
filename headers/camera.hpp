@@ -42,8 +42,6 @@ class Camera {
 
 public:
 
-
-
     Camera(
         const glm::dvec3 position = glm::dvec3(0.0),
         double yaw = 270, double pitch = 0, 

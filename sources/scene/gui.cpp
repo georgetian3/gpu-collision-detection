@@ -46,7 +46,8 @@ void Scene::renderGui() {
         ImGui::Begin("fps", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
         ImGui::SetWindowPos(ImVec2(0, 0));
         ImGui::SetWindowSize(ImVec2(600, 40));
-        ImGui::Text("FPS: %d", (int)fps);
+        const auto pos = camera.getPosition();
+        ImGui::Text("FPS: %d Pos (%f, %f, %f)", (int)fps, pos.x, pos.y, pos.z);
         ImGui::End();
     }
     ImGui::Render();
