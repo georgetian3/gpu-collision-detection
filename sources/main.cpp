@@ -89,7 +89,7 @@ const char *fragmentShaderSource = "#version 330 core\n"
     }
 
     
-    glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_DEPTH_TEST);
 
     // IMGUI_CHECKVERSION();
     // ImGui::CreateContext();
