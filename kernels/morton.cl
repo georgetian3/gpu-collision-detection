@@ -58,28 +58,20 @@ struct Collidable {
 
 };
 
-__kernel void mortonCodeAABB(
-    __global const struct vec3* positions,
-    __global unsigned int* types,
-    __global double* xls,
-    __global double* yls,
-    __global double* zls,
-    __global unsigned int* mortonCodes,
-    __global struct AABB* aabbs
-) {
-    const struct vec3 position = positions[i];
-    mortonCodes[i] = morton3D(position.x, position.y, position.z);
-    struct AABB aabb;
-    unsigned int type = types[i];
-    switch (type) {
+__kernel void mortonCodeAABB(__global struct Collidable* collidables) {
+    const int i = get_global_id(0);
+    struct Collidable collidable = collidables[i];
+    const struct vec3 position = collidable.position;
+    collidable.mortonCode = morton3D(position.x, position.y, position.z);
+    switch (collidable.type) {
         case SPHERE: {
-            const double radius = xls[i];
-            aabb.min.x = position.x - radius;
-            aabb.min.y = position.y - radius;
-            aabb.min.z = position.z - radius;
-            aabb.max.x = position.x + radius;
-            aabb.max.y = position.y + radius;
-            aabb.max.z = position.z + radius;
+            const double radius = collidable.radius;
+            collidable.relativeAABB.min.x = position.x - radius;
+            collidable.relativeAABB.min.y = position.y - radius;
+            collidable.relativeAABB.min.z = position.z - radius;
+            collidable.relativeAABB.max.x = position.x + radius;
+            collidable.relativeAABB.max.y = position.y + radius;
+            collidable.relativeAABB.max.z = position.z + radius;
             break;
         }
         case CUBE: {
@@ -89,7 +81,7 @@ __kernel void mortonCodeAABB(
             break;
         }
     };
-    aabbs[i] = aabb;
+    collidables[i] = collidable;
 }
 
 )"

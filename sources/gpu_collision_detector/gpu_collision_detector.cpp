@@ -19,16 +19,7 @@ void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
 }
 
 
-template <class T>
-std::string vectorToString(std::vector<T> v) {
-    std::stringstream s;
-    s << "[";
-    for (size_t i = 0; i < v.size() - 1; i++) {
-        s << v[i] << ", ";
-    }
-    s << v.back() << ']';
-    return s.str();
-}
+
 
 void printPlatformInfo(const cl::Platform& platform) {
     std::cout << "CL_PLATFORM_PROFILE   : " << platform.getInfo<CL_PLATFORM_PROFILE>() << '\n';
@@ -110,13 +101,6 @@ void printOpenclInfo() {
     }
 }
 
-void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
-    this->collidables = collidables;
-    std::cout << "setCollidables collidables count: " << collidables.size() << '\n';
-    bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * collidables.size());
-    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-}
-
 
 GpuCollisionDetector::GpuCollisionDetector() {
 
@@ -176,6 +160,12 @@ GpuCollisionDetector::GpuCollisionDetector() {
     }
     kernelMortonCodeAAAB.setArg(0, bufferCollidables);
 
+}
 
 
+void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
+    this->collidables = collidables;
+    std::cout << "setCollidables collidables count: " << collidables.size() << '\n';
+    bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * collidables.size());
+    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
 }

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <filesystem>
 #include <random>
+#include <sstream>
 #include <string>
 
 #define printLocation() std::cout << "########### printLocation: " << __FILE__ << ' ' << __LINE__ << " ###########\n";
@@ -15,8 +16,7 @@ T clamp(T value, T min, T max) {
 
 // https://stackoverflow.com/a/35687575
 template<typename Numeric, typename Generator = std::mt19937>
-Numeric random(Numeric from, Numeric to)
-{
+Numeric random(Numeric from, Numeric to) {
     thread_local static Generator gen(std::random_device{}());
     using dist_type = typename std::conditional
     <
@@ -26,6 +26,17 @@ Numeric random(Numeric from, Numeric to)
     >::type;
     thread_local static dist_type dist;
     return dist(gen, typename dist_type::param_type{from, to});
+}
+
+template <class T>
+std::string vectorToString(std::vector<T> v) {
+    std::stringstream s;
+    s << "[";
+    for (size_t i = 0; i < v.size() - 1; i++) {
+        s << v[i] << ", ";
+    }
+    s << v.back() << ']';
+    return s.str();
 }
 
 std::string readFile(const std::filesystem::path& path);
