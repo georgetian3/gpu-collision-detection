@@ -10,13 +10,19 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
+    // std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
 
-    auto collidables = Collidable::loadConfig("resources/collidables.txt");
-    GpuCollisionDetector gpuCD;
-    gpuCD.setCollidables(collidables);
-    gpuCD.detectCollisions();
+    // auto collidables = Collidable::loadConfig("resources/collidables.txt");
+    // GpuCollisionDetector gpuCD;
+    // gpuCD.setCollidables(collidables);
+    // gpuCD.detectCollisions();
 
+    Scene scene(
+        (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
+        1600, 900
+    );
+
+    scene.render()
 
     std::cout << "Done!";
 }
