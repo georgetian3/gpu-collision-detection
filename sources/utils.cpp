@@ -14,17 +14,15 @@ uint64_t expandBits3(double v) { // assume v in range [0, 1]
     // then take the highest 21 bits (64 - 21 = 43)
     uint64_t u = ((uint64_t)(v * (1ull << 63))) >> 43; 
     std::cout << toBits(u) << '\n';
-    //u = u >> (64 - 21);
-    //std::cout << toBits(u) << '\n';
-    u = (u | (u << 16)) & 0x030000FFull;
+    u = (u | u << 32) & 0x1f00000000ffff
     std::cout << toBits(u) << '\n';
-    u = (u | (u << 16)) & 0x030000FF;
+    u = (u | u << 16) & 0x1f0000ff0000ff
     std::cout << toBits(u) << '\n';
-    u = (u | (u <<  8)) & 0x0300F00F;
+    u = (u | u << 8) & 0x100f00f00f00f00f
     std::cout << toBits(u) << '\n';
-    u = (u | (u <<  4)) & 0x030C30C3;
+    u = (u | u << 4) & 0x10c30c30c30c30c3
     std::cout << toBits(u) << '\n';
-    u = (u | (u <<  2)) & 0x09249249;
+    u = (u | u << 2) & 0x1249249249249249
     std::cout << toBits(u) << '\n';
     
     return u;
