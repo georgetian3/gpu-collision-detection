@@ -10,7 +10,7 @@ std::string readFile(const std::filesystem::path& path) {
 }
 
 uint64_t expandBits3(double v) {
-    std::cout << toBits((unsigned int)v) << '\n';
+    std::cout << toBits((unsigned int)(v * 10)) << '\n';
     uint64_t u = ((uint64_t)(v * (1ll << 63)));
     std::cout << toBits(u) << '\n';
     u = (u * 0x00010001u) & 0xFF0000FFu;
