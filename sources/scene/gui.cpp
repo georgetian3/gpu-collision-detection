@@ -47,7 +47,7 @@ void Scene::renderGui() {
         ImGui::SetWindowPos(ImVec2(0, 0));
         ImGui::SetWindowSize(ImVec2(600, 40));
         const auto pos = camera.getPosition();
-        ImGui::Text("FPS: %d Pos (%f, %f, %f)", (int)fps, pos.x, pos.y, pos.z);
+        ImGui::Text("FPS: %d Pos (%f, %f, %f) Pitch %d Yaw %d", (int)fps, pos.x, pos.y, pos.z, (int)camera.getPitch(), (int)camera.getYaw());
         ImGui::End();
     }
     ImGui::Render();
