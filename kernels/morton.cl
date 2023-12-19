@@ -55,14 +55,15 @@ struct Collidable {
 
 };
 
-void printCollidable(const struct Collidable* collidable) {
-    printf("ID: %d, type: %d, position: (%f, %f, %f)", collidable->id, collidable->type, collidable->position.x, collidable->position.y, collidable->position.z);
+void printCollidable(const struct Collidable collidable) {
+    printf("ID: %d, type: %d, position: [%f, %f, %f]", collidable.id, collidable.type, collidable.position.x, collidable.position.y, collidable.position.z);
 }
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     printf("sizeof: %ld\n", sizeof(struct Collidable));
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
+    printCollidable(collidable)
     const struct vec3 position = collidable.position;
     collidable.mortonCode = morton3D(position.x, position.y, position.z);
     switch (collidable.type) {
@@ -86,4 +87,4 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     collidables[i] = collidable;
 }
 
-// )"
+)"
