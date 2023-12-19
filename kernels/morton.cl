@@ -42,7 +42,7 @@ struct Collidable {
     unsigned int id;
 
     struct vec3 position;
-    cl_ulong mortonCode;
+    long long mortonCode;
 
     struct AABB relativeAABB;
     struct AABB absoluteAABB;
@@ -59,6 +59,7 @@ struct Collidable {
 };
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
+    printf("sizeof(long long): %d", sizeof(long long));
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
     const struct vec3 position = collidable.position;
