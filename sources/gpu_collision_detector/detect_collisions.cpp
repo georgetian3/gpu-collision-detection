@@ -5,8 +5,6 @@
 #include <glm/gtx/string_cast.hpp>
 #include <utils.hpp>
 
-
-
 uint64_t morton3D(double x, double y, double z) {
     return (expandBits(x) << 2) | (expandBits(y) << 1) | expandBits(z);
 }
