@@ -6,14 +6,10 @@
 static unsigned int idCount = 0;
 
 std::string collidableTypeStrings[] = {
-    std::string("Circle"),
+    std::string("Sphere"),
     std::string("Cube"),
     std::string("Rectangular Cuboid"),
 };
-
-void Collidable::setId() {
-    id = idCount++;
-}
 
 
 std::string Collidable::toString() const {
