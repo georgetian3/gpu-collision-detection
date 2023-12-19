@@ -68,50 +68,35 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
+    bool fullscreen = false;
+    auto primaryMonitor = glfwGetPrimaryMonitor();
+    GLFWwindow* window = window = fullscreen
+        ? glfwCreateWindow(
+            glfwGetVideoMode(primaryMonitor)->width,
+            glfwGetVideoMode(primaryMonitor)->height,
+            "", primaryMonitor, nullptr
+        )
+        : glfwCreateWindow(1280, 720, "", nullptr, nullptr);
+    if (window == nullptr) {
+        std::cerr << "Failed to create OpenGL context" << '\n';
+        exit(1);
     }
     glfwMakeContextCurrent(window);
 
-    // glad: load all OpenGL function pointers
-    // ---------------------------------------
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << '\n';
+        exit(1);
     }
 
 
 
-    // bool fullscreen = false;
-    // auto primaryMonitor = glfwGetPrimaryMonitor();
 
-    // window = fullscreen
-    //     ? glfwCreateWindow(
-    //         glfwGetVideoMode(primaryMonitor)->width,
-    //         glfwGetVideoMode(primaryMonitor)->height,
-    //         "OpenGL Scene", primaryMonitor, nullptr
-    //     )
-    //     : glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
-
-    // if (window == nullptr) {
-    //     std::cerr << "Failed to create OpenGL context" << '\n';
-    //     exit(1);
-    // }
     // glfwMakeContextCurrent(window);
     // glfwSetWindowUserPointer(window, this);
     // glfwSetWindowSizeCallback(window, genericCallback(windowSizeCallback));
     // glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
     // glfwSetKeyCallback(window, genericCallback(keyCallback));
 
-    // if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    //     std::cerr << "Failed to initialize GLAD" << '\n';
-    //     exit(1);
-    // }
     
     // glEnable(GL_DEPTH_TEST);
     // glfwSwapInterval(vsync ? 1 : 0);
