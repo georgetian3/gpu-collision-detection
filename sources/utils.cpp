@@ -14,12 +14,10 @@ uint64_t expandBits3(double v) { // assume v in range [0, 1]
     // then take the highest 21 bits (64 - 21 = 43)
     uint64_t u = ((uint64_t)(v * (1ull << 63))) >> 43; 
     // https://stackoverflow.com/a/18528775
-    // std::cout << toBits(u) << '\n';
-    u = (u | u << 32) & 0x1f00000000ffff;
-    u = (u | u << 16) & 0x1f0000ff0000ff;
-    u = (u | u << 8) & 0x100f00f00f00f00f;
-    u = (u | u << 4) & 0x10c30c30c30c30c3;
-    u = (u | u << 2) & 0x1249249249249249;
-    // std::cout << toBits(u) << '\n';
+    u = (u | u << 32) & 0x001f00000000ffff;
+    u = (u | u << 16) & 0x001f0000ff0000ff;
+    u = (u | u <<  8) & 0x100f00f00f00f00f;
+    u = (u | u <<  4) & 0x10c30c30c30c30c3;
+    u = (u | u <<  2) & 0x1249249249249249;
     return u;
 }

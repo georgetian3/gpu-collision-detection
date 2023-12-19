@@ -9,7 +9,15 @@ uint64_t morton3D(double x, double y, double z) {
     return (expandBits3(x) << 2) | (expandBits3(y) << 1) | expandBits3(z);
 }
 
+bool comp(const Collidable& a, const Collidable b) {
+    return a.mortonCode < b.mortonCode;
+}
+
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
+
+    for (const auto& collidable: collidables) {
+        std::cout << collidable.toString() << '\n';
+    }
 
     std::vector<uint64_t> want;
     for (const auto& collidable: collidables) {
@@ -30,6 +38,12 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
             std::cout << i << ' ' << toBits(want[i]) << ' ' << toBits(collidables[i].mortonCode) << '\n';
             break;
         }
+    }
+
+    std::sort(collidables.begin(), collidables.end(), comp);
+
+    for (const auto& collidable: collidables) {
+        std::cout << collidable.toString() << '\n';
     }
  
     return std::vector<Collision>();

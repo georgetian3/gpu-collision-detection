@@ -1,4 +1,4 @@
-R"(
+// R"(
 
 ulong expandBits3(double v) {
     ulong u = ((ulong)(v * (1ul << 63))) >> 43; 
@@ -86,4 +86,4 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     collidables[i] = collidable;
 }
 
-)"
+// )"
