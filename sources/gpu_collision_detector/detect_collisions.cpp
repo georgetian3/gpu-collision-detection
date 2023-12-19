@@ -5,19 +5,22 @@
 #include <glm/gtx/string_cast.hpp>
 #include <utils.hpp>
 
-unsigned int expandBits(unsigned int v) {
+uint64_t expandBits(double v) {
+    v = (unsigned int)(v * (1 << 21));
+    std::cout << toBits(v);
     v = (v * 0x00010001u) & 0xFF0000FFu;
+    std::cout << toBits(v);
     v = (v * 0x00000101u) & 0x0F00F00Fu;
+    std::cout << toBits(v);
     v = (v * 0x00000011u) & 0xC30C30C3u;
+    std::cout << toBits(v);
     v = (v * 0x00000005u) & 0x49249249u;
+    std::cout << toBits(v);
     return v;
 }
 
-unsigned int morton3D(double x, double y, double z) {
-    unsigned int xx = expandBits((unsigned int)(x * 1024));
-    unsigned int yy = expandBits((unsigned int)(y * 1024));
-    unsigned int zz = expandBits((unsigned int)(z * 1024));
-    return xx * 4 + yy * 2 + zz;
+uint64_t morton3D(double x, double y, double z) {
+    return (expandBits(x) << 2) | (expandBits(y) << 1) | expandBits(z);
 }
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
