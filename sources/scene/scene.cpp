@@ -120,8 +120,8 @@ void Scene::render() {
         // shader.setMat4("projection", camera.getProjection());
 
 
-        glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+        //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         cube.draw();
 
         // collisionDetector->detectCollisions();
