@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    expandBits(1.23);
+    expandBits3(1.23);
     return 0;
 
 
