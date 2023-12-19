@@ -12,10 +12,15 @@ int main(int argc, char* argv[]) {
 
     std::cout << 0.0 << '\n';
     expandBits3(0.0);
-    std::cout << 1.0 << '\n';
-    expandBits3(1.0);
+    std::cout << 0.01 << '\n';
+    expandBits3(0.01);
     std::cout << 0.5 << '\n';
     expandBits3(0.5);
+    std::cout << 0.99 << '\n';
+    expandBits3(0.99);
+    std::cout << 1.0 << '\n';
+    expandBits3(1.0);
+    
     return 0;
 
 
