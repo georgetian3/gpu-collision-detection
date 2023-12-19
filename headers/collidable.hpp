@@ -33,23 +33,7 @@ struct AABB {
 
 struct Collidable {
 
-    const CollidableType type = CollidableType::sphere;
-    const unsigned int id = -1;
-
-    glm::dvec3 position = glm::dvec3(0.0);
-    uint64_t mortonCode = 0;
-
-    AABB relativeAABB;
-    AABB absoluteAABB;
-
-    union {
-        const double length = 0;
-        const double radius;
-        const double xl;
-    };
-
-    const double yl = 0;
-    const double zl = 0;
+private:
 
     Collidable(
         const unsigned int id,
@@ -68,18 +52,30 @@ struct Collidable {
         const double zl = 0.0
     );
 
+public:
+
+    const CollidableType type = CollidableType::sphere;
+    const unsigned int id = -1;
+
+    glm::dvec3 position = glm::dvec3(0.0);
+    uint64_t mortonCode = 0;
+
+    AABB relativeAABB;
+    AABB absoluteAABB;
+
+    union {
+        const double length = 0;
+        const double radius;
+        const double xl;
+    };
+
+    const double yl = 0;
+    const double zl = 0;
 
     Collidable() {}
-    Collidable operator =(const Collidable& other) {
-        return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
-    }
-
-    static Collidable constructCube(const glm::dvec3& position, const double length) {
-        return Collidable(CollidableType::cube, position, length);
-    }
-    static Collidable constructSphere(const glm::dvec3& center, const double radius) {
-        return Collidable(CollidableType::sphere, center, radius);
-    }
+    Collidable operator=(const Collidable& other);
+    static Collidable constructCube(const glm::dvec3& position, const double length);
+    static Collidable constructSphere(const glm::dvec3& center, const double radius);
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
     std::string toString() const;

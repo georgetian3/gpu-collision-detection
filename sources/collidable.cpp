@@ -67,6 +67,10 @@ Collidable::Collidable(
     const double zl
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {}
 
+Collidable::Collidable operator=(const Collidable& other) {
+    return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
+}
+
 static Collidable constructCube(const glm::dvec3& position, const double length) {
     return Collidable(CollidableType::cube, position, length);
 }
