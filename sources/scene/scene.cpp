@@ -43,6 +43,7 @@ void Scene::render() {
             #include <model.fs>
         )
     );
+    
     shader.use();
     const Model cube = Model(cubeVertices, cubeIndices);
 
