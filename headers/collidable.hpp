@@ -70,7 +70,7 @@ struct Collidable {
 
 
     Collidable() {}
-    Collidable &Collidable::operator =(const Collidable& other) {
+    Collidable operator =(const Collidable& other) {
         return Collidable(other.id, other.type, other.position, other.xl, other.yl, other.zl);
     }
 
