@@ -204,12 +204,6 @@ const char *fragmentShaderSource = "#version 330 core\n"
 }
 
 
-
-int main()
-{
-
-}
-
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window)
