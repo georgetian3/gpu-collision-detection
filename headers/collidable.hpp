@@ -33,20 +33,7 @@ struct AABB {
 
 struct Collidable {
 
-private:
-
-    Collidable(
-        const unsigned int id,
-        const CollidableType type,
-        const glm::dvec3& position,
-        const double xl,
-        const double yl = 0.0,
-        const double zl = 0.0
-    );
-
-public:
-
-    CollidableType type = CollidableType::sphere;
+    CollidableType type;
     unsigned int id = -1;
 
     glm::dvec3 position = glm::dvec3(0.0);
@@ -63,14 +50,15 @@ public:
     double yl = 0;
     double zl = 0;
 
-    Collidable() {}
     Collidable(
+        const unsigned int id,
         const CollidableType type,
         const glm::dvec3& position,
         const double xl,
         const double yl = 0.0,
         const double zl = 0.0
     );
+
     static Collidable constructCube(const glm::dvec3& position, const double length);
     static Collidable constructSphere(const glm::dvec3& center, const double radius);
 
