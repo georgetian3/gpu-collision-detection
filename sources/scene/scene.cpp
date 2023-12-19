@@ -52,7 +52,6 @@ void Scene::render() {
         frameCount++;
         if (currentTime - prevFpsTime > updateInterval) {
             fps = frameCount / (currentTime - prevFpsTime);
-            std::cout << fps << '\n';
             prevFpsTime = currentTime;
             frameCount = 0;
         }
@@ -60,7 +59,7 @@ void Scene::render() {
         glClearColor(0.5, 0.5, 0.5, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // renderGui();
+        renderGui();
 
         cube.draw();
 
