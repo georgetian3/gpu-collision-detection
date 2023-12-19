@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         1600, 900
     );
 
-    auto window = scene.window;
+    auto window = scene.getWindow();
 
 
     const char *vertexShaderSource = "#version 330 core\n"
