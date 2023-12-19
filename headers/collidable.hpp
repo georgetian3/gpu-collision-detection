@@ -47,8 +47,8 @@ public:
 
     Collidable() {}
 
-    const CollidableType type;
-    const unsigned int id;
+    const CollidableType type = CollidableType::sphere;
+    const unsigned int id = -1;
 
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;
