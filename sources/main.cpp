@@ -90,8 +90,8 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
     
     // glEnable(GL_DEPTH_TEST);
-    // glfwSwapInterval(vsync ? 1 : 0);
-    // handleMenu();
+    glfwSwapInterval(vsync ? 1 : 0);
+    handleMenu();
 
     // IMGUI_CHECKVERSION();
     // ImGui::CreateContext();
