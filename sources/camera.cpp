@@ -40,6 +40,7 @@ void Camera::setPosition(const glm::dvec3 position) {
 }
 
 void Camera::pan(Direction direction, double dt) {
+    std::cout << "panning\n";
     int dInt = static_cast<int>(direction);
     glm::dvec3* directionVectors[] = {&front, &right, &worldUp};
     position += *directionVectors[dInt / 2] * ((dInt % 2 ? -1 : 1) * speed * dt);
