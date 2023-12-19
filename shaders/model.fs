@@ -39,20 +39,19 @@ out vec4 FragColor;
 void main() {
 
     FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
-    return;
 
-    vec3 norm = normalize(Normal);
+    // vec3 norm = normalize(Normal);
 
 
-    vec3 lightDir = normalize(lightPos - FragPos);
+    // vec3 lightDir = normalize(lightPos - FragPos);
 
-    vec3 ambient = light.ambient * color.rgb;
-    vec3 diffuse = light.diffuse * (max(dot(norm, lightDir), 0.0) * color.rgb);
-    vec3 specular = light.specular * (
-        pow(max(dot(normalize(viewPos - FragPos), reflect(-lightDir, norm)), 0.0), material.shininess) * color.rgb
-    );
+    // vec3 ambient = light.ambient * color.rgb;
+    // vec3 diffuse = light.diffuse * (max(dot(norm, lightDir), 0.0) * color.rgb);
+    // vec3 specular = light.specular * (
+    //     pow(max(dot(normalize(viewPos - FragPos), reflect(-lightDir, norm)), 0.0), material.shininess) * color.rgb
+    // );
 
-    FragColor = vec4(ambient + diffuse + specular, 1.0);
+    // FragColor = vec4(ambient + diffuse + specular, 1.0);
 
 } 
 
