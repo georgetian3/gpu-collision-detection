@@ -3,6 +3,7 @@
 #include <stopwatch.hpp>
 #include <gpu_collision_detector.hpp>
 #include <utils.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 int main(int argc, char* argv[]) {
     if (argc > 1) {
