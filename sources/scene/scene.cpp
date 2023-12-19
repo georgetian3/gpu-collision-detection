@@ -58,8 +58,8 @@ void Scene::render() {
         )
     );
     
-    // shader.use();
-    // const Model cube = Model(cubeVertices, cubeIndices);
+    shader.use();
+    const Model cube = Model(cubeVertices, cubeIndices);
 
 
     
