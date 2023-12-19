@@ -2,36 +2,36 @@ R"(
 
 #version 400 core
 
-struct Light {
-    vec3 position;
+// struct Light {
+//     vec3 position;
 
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
+//     vec3 ambient;
+//     vec3 diffuse;
+//     vec3 specular;
 
-    float constant;
-    float linear;
-    float quadratic;
-};
+//     float constant;
+//     float linear;
+//     float quadratic;
+// };
 
-struct Material {
-    sampler2D diffuse;
-    sampler2D specular;
-    float shininess;
-};
+// struct Material {
+//     sampler2D diffuse;
+//     sampler2D specular;
+//     float shininess;
+// };
 
-uniform Light light;
-uniform Material material;
+// uniform Light light;
+// uniform Material material;
 
-uniform bool useColor;
-uniform vec4 color;
+// uniform bool useColor;
+// uniform vec4 color;
 
-uniform vec3 lightPos; 
-uniform vec3 viewPos;
-uniform vec3 lightColor;
+// uniform vec3 lightPos; 
+// uniform vec3 viewPos;
+// uniform vec3 lightColor;
 
-in vec3 Normal;
-in vec3 FragPos;
+// in vec3 Normal;
+// in vec3 FragPos;
 
 out vec4 FragColor;
 
