@@ -12,10 +12,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
 
-    std::cout << toBits(123) << '\n';
-
-    return 0;
-    
     // for (int i = 0; i < collidables.size(); i++) {
     //     std::cout << collidables[i]->toString() << '\n';
     // }
