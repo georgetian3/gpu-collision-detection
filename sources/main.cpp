@@ -88,11 +88,6 @@ const char *fragmentShaderSource = "#version 330 core\n"
         exit(1);
     }
 
-
-
-
-    glfwSetWindowUserPointer(window, this);
-
     
     // glEnable(GL_DEPTH_TEST);
     // glfwSwapInterval(vsync ? 1 : 0);
