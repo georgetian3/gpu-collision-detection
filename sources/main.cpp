@@ -7,6 +7,8 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         std::cout << "Command line arguments ignored\n";
     }
+
+    std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
     
     // for (int i = 0; i < collidables.size(); i++) {
     //     std::cout << collidables[i]->toString() << '\n';

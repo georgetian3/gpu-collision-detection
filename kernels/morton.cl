@@ -42,7 +42,7 @@ struct Collidable {
     unsigned int id;
 
     struct vec3 position;
-    long long mortonCode;
+    long mortonCode;
 
     struct AABB relativeAABB;
     struct AABB absoluteAABB;
