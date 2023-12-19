@@ -91,11 +91,7 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
 
 
-    // glfwMakeContextCurrent(window);
-    // glfwSetWindowUserPointer(window, this);
-    // glfwSetWindowSizeCallback(window, genericCallback(windowSizeCallback));
-    // glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
-    // glfwSetKeyCallback(window, genericCallback(keyCallback));
+    glfwSetWindowUserPointer(window, this);
 
     
     // glEnable(GL_DEPTH_TEST);
