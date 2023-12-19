@@ -33,8 +33,8 @@ struct AABB {
 
 struct Collidable {
 
-    CollidableType type;
     unsigned int id = -1;
+    CollidableType type;
 
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;

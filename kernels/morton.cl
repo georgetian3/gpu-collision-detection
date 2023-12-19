@@ -35,8 +35,8 @@ struct AABB {
 
 struct Collidable {
 
-    unsigned int type;
     unsigned int id;
+    unsigned int type;
 
     struct vec3 position;
     ulong mortonCode;
@@ -54,6 +54,10 @@ struct Collidable {
     double zl;
 
 };
+
+void printCollidable(const struct Collidable* collidable) {
+    printf("ID: %d, type: %d, position: (%f, %f, %f)", collidable->id, collidable->type, collidable->position.x, collidable->position.y, collidable->position.z);
+}
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     printf("sizeof: %ld\n", sizeof(struct Collidable));
@@ -82,4 +86,4 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     collidables[i] = collidable;
 }
 
-)"
+// )"
