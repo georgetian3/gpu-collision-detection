@@ -25,7 +25,7 @@ Shader::Shader(const std::string& vertexShaderSource, const std::string& fragmen
 }
 
 Shader::~Shader() {
-    glDeleteProgram(shaderId);
+    glDeleteProgram(program);
 }
 
 void Shader::load(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) {
