@@ -52,21 +52,12 @@ struct Collidable {
 
     Collidable() {}
 
-    Collidable(
-        const unsigned int id,
+    Collidable::Collidable(
         const CollidableType type,
         const glm::dvec3& position,
         const double xl,
         const double yl = 0.0,
         const double zl = 0.0
-    );
-
-    Collidable::Collidable(
-        const CollidableType type,
-        const glm::dvec3& position,
-        const double xl,
-        const double yl,
-        const double zl
     );
 
 
