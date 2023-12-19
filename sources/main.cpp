@@ -19,6 +19,9 @@ int main(int argc, char* argv[]) {
     // naiveCD.collidables = collidables;
     // naiveCD.detectCollisions();
     auto collidables = Collidable::loadConfig("resources/collidables.txt");
+    for (const auto& collidable: collidables) {
+        std::cout << 'c' << glm::to_string(collidable.position) << '\n';
+    }
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
     gpuCD.detectCollisions();
