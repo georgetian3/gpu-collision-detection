@@ -52,6 +52,9 @@ const char *fragmentShaderSource = "#version 330 core\n"
     "}\n\0";
     // glfw: initialize and configure
     // ------------------------------
+
+
+    
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
@@ -59,7 +62,9 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_TRUE);
 #endif
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // glfw window creation
     // --------------------
@@ -79,6 +84,47 @@ const char *fragmentShaderSource = "#version 330 core\n"
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+
+
+    // bool fullscreen = false;
+    // auto primaryMonitor = glfwGetPrimaryMonitor();
+
+    // window = fullscreen
+    //     ? glfwCreateWindow(
+    //         glfwGetVideoMode(primaryMonitor)->width,
+    //         glfwGetVideoMode(primaryMonitor)->height,
+    //         "OpenGL Scene", primaryMonitor, nullptr
+    //     )
+    //     : glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
+
+    // if (window == nullptr) {
+    //     std::cerr << "Failed to create OpenGL context" << '\n';
+    //     exit(1);
+    // }
+    // glfwMakeContextCurrent(window);
+    // glfwSetWindowUserPointer(window, this);
+    // glfwSetWindowSizeCallback(window, genericCallback(windowSizeCallback));
+    // glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
+    // glfwSetKeyCallback(window, genericCallback(keyCallback));
+
+    // if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    //     std::cerr << "Failed to initialize GLAD" << '\n';
+    //     exit(1);
+    // }
+    
+    // glEnable(GL_DEPTH_TEST);
+    // glfwSwapInterval(vsync ? 1 : 0);
+    // handleMenu();
+
+    // IMGUI_CHECKVERSION();
+    // ImGui::CreateContext();
+
+    // ImGui::StyleColorsDark();
+    // ImGui_ImplGlfw_InitForOpenGL(window, true);
+    // ImGui_ImplOpenGL3_Init("#version 400");
+
+
 
 
     // build and compile our shader program
