@@ -50,6 +50,7 @@ public:
     std::vector<unsigned int>   indices;
 
     Model(std::vector<float> vertices, std::vector<unsigned int> indices) {
+        printLocation();
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
