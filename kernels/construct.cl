@@ -55,7 +55,7 @@ __kernel void construct_tree(
     do {
         dividend *= 2;
         t = ceil(l / dividend);
-        if (common_prefix_length(collidables, i, i + (s + t) * d) > d_n) {
+        if (common_prefix_length(collidables, n, i, i + (s + t) * d) > d_n) {
             s += t;
         }
     }
