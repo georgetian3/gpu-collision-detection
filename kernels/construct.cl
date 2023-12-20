@@ -29,7 +29,7 @@ __kernel void construct_tree(
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
         common_prefix_length(collidables, n, i, i - 1)
-    ) >= 0 ? 1 : -1;
+    ) > 0 ? 1 : -1;
 
     const int d_min = common_prefix_length(collidables, n, i, i - d);
     int l_max = 2;
@@ -38,11 +38,10 @@ __kernel void construct_tree(
     }
     int l = 0;
     int t = l_max / 2;
-    while (t > 0) {
+    for (t = l_max / 2; t >= 1; t /= 2) {
         if (common_prefix_length(collidables, n, i, i + (l + t) * d) > d_min) {
             l += t;
         }
-        t /= 2;
     }
     const int j = i + l * d;
     printf("i j %d %d\n", i, j);
