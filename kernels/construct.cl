@@ -1,4 +1,4 @@
-// R"(
+R"(
 
 inline int common_prefix_length(__global struct Collidable* collidables, int i, int j) {
     // computes the length of the longest common prefix of morton codes `a` and `b`
@@ -71,4 +71,4 @@ __kernel void construct_tree(
 
 }
 
-// )"
+)"
