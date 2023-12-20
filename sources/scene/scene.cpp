@@ -52,8 +52,8 @@ void Scene::render() {
 
     std::vector<glm::vec3> positions = {
         glm::vec3(0.0),
-        glm::vec3(1.0),
-        glm::vec3(2.0),
+        glm::vec3(5.0),
+        glm::vec3(10.0),
     };
 
     std::vector<glm::mat4> modelMatrices;
