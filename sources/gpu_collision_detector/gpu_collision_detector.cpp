@@ -144,17 +144,17 @@ GpuCollisionDetector::GpuCollisionDetector() {
     sources.push_back(std::string(
         #include <construct.cl>
     ));
+    int err;
 
     try {
-        int err;
         program = cl::Program(context, sources, &err);
-        std::cout << "err " << err << '\n';
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
     }
 
-    queue = cl::CommandQueue(context, device);
+    queue = cl::CommandQueue(context, device, 0, &err);
+    std::cout << "err " << err << '\n';
 
     try {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
