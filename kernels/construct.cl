@@ -48,6 +48,7 @@ __kernel void construct_tree(
     int s = 0;
     
     double dividend = 1.0;
+    int t;
     do {
         dividend *= 2;
         t = ceil(l / dividend);
