@@ -3,7 +3,6 @@
 #include <fstream>
 #include <json.hpp>
 #include <utils.hpp>
-#include <exception>
 using json = nlohmann::json;
 
 void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
@@ -179,7 +178,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         // kernelConstruct.setArg(0, collidables.size());
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-    } catch (Exception e) {
+    } catch (std::exception e) {
         std::cerr << "Set arg exception: " << e.what();
         exit(1);
     }
