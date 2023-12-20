@@ -155,6 +155,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         program.build(device);
     } catch (const cl::Error& e) {
         printLocation();
+        std::cerr << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>();
         printClError(e);
     }
 
