@@ -99,11 +99,10 @@ public:
     }
 
     void draw() const {
-        glBindVertexArray(rock.meshes[i].VAO);
+        glBindVertexArray(VAO);
         glDrawElementsInstanced(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0, instanceCount);
         glBindVertexArray(0);
         return;
-        glBindVertexArray(VAO);
         glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(indicesCount), GL_UNSIGNED_INT, 0, instanceCount);
     }
 
