@@ -1,6 +1,6 @@
 R"(
 
-ulong expandBits3(double v) {
+inline ulong expandBits3(double v) {
     ulong u = ((ulong)(v * (1ul << 63))) >> 43; 
     u = (u | u << 32) & 0x1f00000000ffff;
     u = (u | u << 16) & 0x1f0000ff0000ff;
