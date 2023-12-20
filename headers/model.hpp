@@ -102,10 +102,8 @@ public:
 
     void draw() const {
         glBindVertexArray(VAO);
-        glDrawElementsInstanced(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0, instanceCount);
-        glBindVertexArray(0);
-        return;
-        glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(indicesCount), GL_UNSIGNED_INT, 0, instanceCount);
+        glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
+        // glDrawElementsInstanced(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0, instanceCount);
     }
 
 };
