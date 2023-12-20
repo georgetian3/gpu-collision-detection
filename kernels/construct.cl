@@ -6,6 +6,7 @@ inline int common_prefix_length(__global struct Collidable* collidables, int n, 
     if (j < 0 || j > n - 1) {
         return -1;
     }
+    printf("%d\n", sizeof(ulong));
     return clz(collidables[i].mortonCode ^ collidables[j].mortonCode);
 }
 
