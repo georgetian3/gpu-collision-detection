@@ -156,11 +156,19 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     try {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
+    } catch (const cl::Error& e) {
+        printLocation();
+        printClError(e);
+    }
+
+    try {
         kernelConstruct = cl::Kernel(program, "construct_tree");
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
     }
+
+
 
 }
 
