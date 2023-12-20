@@ -2,6 +2,7 @@ R"(
 
 void printBits(ulong n) {
     char bits[65];
+    bits[64] = '\0';
     for (int i = sizeof(ulong) * 8 - 1; i >= 0; i--) {
         bits[63 - i] = ((n >> i) & 1) ? '1' : '0';
     }
