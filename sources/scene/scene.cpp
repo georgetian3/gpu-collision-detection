@@ -63,11 +63,6 @@ void Scene::render() {
     }
     cube.setModelMatrices(modelMatrices);
 
-    for (const auto& m: modelMatrices) {
-        std::cout << glm::to_string(m) << '\n';
-    }
-
-
 
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
