@@ -57,8 +57,8 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     }
     for (int i = 0; i < nodes.size(); i++) {
         std::cout << nodes[i].parent << ' ' << nodes[i].left << ' ' << nodes[i].right;
-        if (i >= collidables.size()) {
-            std::cout << ' ' << toBits(collidables[i - collidables.size()].mortonCode);
+        if (i >= collidables.size() - 1) {
+            std::cout << ' ' << toBits(collidables[i - collidables.size() + 1].mortonCode);
         }
         std::cout << '\n';
     }
