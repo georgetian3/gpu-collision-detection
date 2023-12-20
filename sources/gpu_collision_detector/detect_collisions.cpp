@@ -31,11 +31,6 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     std::sort(collidables.begin(), collidables.end(), comp);
 
-    for (const auto& collidable: collidables) {
-        // std::cout << collidable.toString() << '\n';
-        std::cout << toBits(collidable.mortonCode) << '\n';
-    }
-
     try {
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1), cl::NullRange);
         queue.finish();
