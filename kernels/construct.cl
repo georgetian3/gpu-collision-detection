@@ -1,10 +1,11 @@
 R"(
 
 void printBits(ulong n) {
-    for (int i = sizeof(ulong) * 8; i >= 0; i--) {
-        printf("%d", (n >> i) & 1);
+    char bits[65];
+    for (int i = sizeof(ulong) * 8 - 1; i >= 0; i--) {
+        bits[63 - i] = ((n >> i) & 1) ? '1' : '0';
     }
-    printf("\n");
+    printf("%s\n", bits);
 }
 
 inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
