@@ -146,7 +146,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     ));
 
     try {
-        program = cl::Program(context, sources);
+        int err;
+        program = cl::Program(context, sources, &err);
+        std::cout << "err " << err << '\n';
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
