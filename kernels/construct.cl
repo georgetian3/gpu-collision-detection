@@ -1,12 +1,20 @@
 R"(
 
+void printBits(ulong n) {
+    for (int i = sizeof(ulong) * 8; i >= 0; i++) {
+        printf("%d", (n >> i) & 1;
+    }
+    printf("\n");
+}
 
 inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
     // computes the length of the longest common prefix of morton codes `a` and `b`
     if (j < 0 || j > n - 1) {
         return -1;
     }
-    printf("%d\n", sizeof(ulong));
+    printf("i j %d %d\n", i, j);
+    printBits(collidables[i].mortonCode);
+    printBits(collidables[j].mortonCode);
     return clz(collidables[i].mortonCode ^ collidables[j].mortonCode);
 }
 
