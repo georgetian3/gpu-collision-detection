@@ -1,4 +1,4 @@
-// R"(
+R"(
 
 
 inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
@@ -71,4 +71,4 @@ __kernel void construct_tree(
 
 }
 
-// )"
+)"
