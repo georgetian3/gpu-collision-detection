@@ -47,10 +47,14 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::cout << toBits(collidable.mortonCode) << '\n';
     }
 
-    queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 2), cl::NullRange);
-    queue.finish();
-
-    queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+    try {
+        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 2), cl::NullRange);
+        queue.finish();
+        queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+    } catch (std::exception e) {
+        std::cerr << "kernelConstruct exception: " << e;
+        exit(1);
+    }
     for (const auto& node: nodes) {
         std::cout << node.parent << ' ' << node.left << ' ' << node.right << '\n';
     }
