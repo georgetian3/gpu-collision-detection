@@ -59,7 +59,7 @@ __kernel void construct_tree(
 
     int g = i + s * d + min(d, 0);
     int left = (min(i, j) == g) ? g : g + n - 1;
-    int right = (max(i, j) == g) ? g : g + n;
+    int right = (max(i, j) == g + 1) ? g + 1 : g + n;
     nodes[i].left = left;
     nodes[i].right = right;
     nodes[left].parent = i;
