@@ -3,6 +3,7 @@
 #include <fstream>
 #include <json.hpp>
 #include <utils.hpp>
+#include <exception>
 using json = nlohmann::json;
 
 void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
