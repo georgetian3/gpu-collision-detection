@@ -56,7 +56,7 @@ __kernel void construct_tree(
     }
     while (t > 1);
     int g = i + s * d + min(d, 0);
-    printf("%d %d\n", i, g);
+    printf("i j g %d %d %d\n", i, j, g);
     int left = (min(i, j) == g) ? g : g + n - 1;
     int right = (max(i, j) == g + 1) ? g + 1 : g + n;
     nodes[i].left = left;
