@@ -52,14 +52,14 @@ void Scene::render() {
     Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
-        glm::vec3(0.0),
-        glm::vec3(5.0),
-        glm::vec3(10.0),
+        glm::vec3(0.0f),
+        glm::vec3(5.0f),
+        glm::vec3(10.0f),
     };
 
     std::vector<glm::mat4> modelMatrices;
     for (const auto& position: positions) {
-        modelMatrices.push_back(glm::translate(glm::mat4(1.0), position));
+        modelMatrices.push_back(glm::translate(glm::mat4(1.0f), position));
     }
     cube.setModelMatrices(modelMatrices);
 
