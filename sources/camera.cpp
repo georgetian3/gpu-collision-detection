@@ -1,6 +1,7 @@
 #include <camera.hpp>
 #include <utils.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <cmath>
 
 Camera::Camera(
     const glm::dvec3 position,
@@ -47,7 +48,7 @@ void Camera::pan(Direction direction, double dt) {
 }
 
 void Camera::setYaw(double yaw) {
-    this->yaw = yaw % 360;
+    this->yaw = std::fmod(yaw, 360);
     viewChanged = true;
 }
 void Camera::dYaw(double dYaw) {
