@@ -52,12 +52,15 @@ void Scene::render() {
 
     std::vector<glm::vec3> positions = {
         glm::vec3(0.0),
+        glm::vec3(1.0),
+        glm::vec3(2.0),
     };
 
     std::vector<glm::mat4> modelMatrices;
     for (const auto& position: positions) {
         modelMatrices.push_back(glm::translate(glm::mat4(1.0), position));
     }
+    cube.setModelMatrices(modelMatrices);
 
 
     glEnable(GL_DEPTH_TEST);
