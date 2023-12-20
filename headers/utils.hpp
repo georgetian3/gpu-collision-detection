@@ -53,9 +53,6 @@ uint64_t expandBits3(double v);
 
 std::filesystem::path makeAbsolute(const std::filesystem::path& cwd, std::filesystem::path path);
 
-void printClError(const cl::Error&e, const std::string& prefix = "") {
-    std::cerr << prefix << ' ' << e.err() << ' ' << e.what();
-    exit(1);
-}
+void printClError(const cl::Error&e, const std::string& prefix = "");
 
 #endif
