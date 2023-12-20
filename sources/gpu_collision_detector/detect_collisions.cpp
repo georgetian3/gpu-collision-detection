@@ -51,6 +51,9 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     queue.finish();
 
     queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+    for (const auto& node: nodes) {
+        std::cout << node.parent << ' ' << node.left << ' ' << node.right << '\n';
+    }
  
     return std::vector<Collision>();
 
