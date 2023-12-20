@@ -64,7 +64,7 @@ void Scene::render() {
 
 
 
-
+    glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
 
         double currentTime = glfwGetTime();
@@ -82,13 +82,14 @@ void Scene::render() {
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderGui();
 
         // shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 0.0, -10.0)), glm::dvec3(1)));
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
         cube.draw();
+        renderGui();
+
 
         // collisionDetector->detectCollisions();
 
