@@ -27,7 +27,7 @@ class GpuCollisionDetector: public CollisionDetector {
     std::vector<Node> nodes;
 
 
-    
+    cl::Context context;
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
     cl::Buffer bufferNodes;
