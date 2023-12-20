@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     // std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
 
-    auto collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
+    auto collidables = Collidable::loadConfig(makeAbsolute(cwd, "resources/collidables.txt"));
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
     gpuCD.detectCollisions();

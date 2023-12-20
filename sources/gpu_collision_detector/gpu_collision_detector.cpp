@@ -174,7 +174,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     kernelMortonCodeAAAB.setArg(0, bufferCollidables);
-    kernelConstruct.setArg(0, collidables.size());
+    // kernelConstruct.setArg(0, collidables.size());
     kernelConstruct.setArg(1, bufferCollidables);
     kernelConstruct.setArg(2, bufferNodes);
 }
