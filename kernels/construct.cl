@@ -1,4 +1,4 @@
-R"(
+// R"(
 
 inline int common_prefix_length(__global struct Collidable* collidables, int i, int j) {
     // computes the length of the longest common prefix of morton codes `a` and `b`
@@ -56,11 +56,12 @@ __kernel void construct_tree(
         }
     }
     while (t > 1);
+
     int g = i + s * d + min(d, 0);
     if (min(i, j) != g) {
         g += n - 1;
     }
-    int left = (min(i, j) == g) ? g : g + n - 1;
+    int left = (min(i, j) == g) ? g + 1 : g + n - 1;
     int right = (max(i, j) == g) ? g + 1 : g + n;
     printf("%d left %d right %d\n", i, left, right);
     nodes[i].left = left;
@@ -70,4 +71,4 @@ __kernel void construct_tree(
 
 }
 
-)"
+// )"
