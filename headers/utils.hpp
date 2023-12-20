@@ -7,6 +7,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#define CL_HPP_ENABLE_EXCEPTIONS
 #include <CL/opencl.hpp>
 
 #define printLocation() std::cout << "########### printLocation: " << __FILE__ << ' ' << __LINE__ << " ###########\n";
