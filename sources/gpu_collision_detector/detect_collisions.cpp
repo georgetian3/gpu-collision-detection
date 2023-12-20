@@ -48,7 +48,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     }
 
     try {
-        queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size() - 2), cl::NullRange);
+        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 2), cl::NullRange);
         queue.finish();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     } catch (const cl::Error& e) {
