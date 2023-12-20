@@ -114,6 +114,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
         std::cerr << "No platforms found";
         exit(1);
     }
+
+
+
     if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
         // std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0\n";
         selected_platform_index = 0;
@@ -133,11 +136,13 @@ GpuCollisionDetector::GpuCollisionDetector() {
         // std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0\n";
         selected_device_index = 0;
     }
-    device = devices[selected_device_index];
+    cl::Device device = devices[selected_device_index];
     std::cout << "Selected device " << selected_device_index << ":\n";
     // printDeviceInfo(device);
 
-    context = cl::Context(device);
+    cl::Context context = cl::Context(device);
+    cl::Program::Sources sources;
+
     sources.push_back(std::string(
         #include <morton.cl>
     ));
@@ -145,6 +150,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         #include <construct.cl>
     ));
 
+    cl::Program program;
     try {
         program = cl::Program(context, sources);
     } catch (const cl::Error& e) {
