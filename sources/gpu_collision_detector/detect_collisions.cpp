@@ -28,15 +28,13 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     std::sort(collidables.begin(), collidables.end(), comp);
 
     try {
-        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 2), cl::NullRange);
+        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1), cl::NullRange);
         queue.finish();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     } catch (const cl::Error& e) {
         std::cerr << "kernelConstruct exception: " << e.what();
         exit(1);
     }
-    nodes[collidables.size() - 2].left = nodes[collidables.size() - 2].right + 1;
-    nodes[collidables.size() - 2].right = collidables.size() * 2 - 2;
     for (int i = 0; i < nodes.size(); i++) {
         printf("%02d %02d %02d %02d", i, nodes[i].parent, nodes[i].left, nodes[i].right);
         if (i >= collidables.size() - 1) {
