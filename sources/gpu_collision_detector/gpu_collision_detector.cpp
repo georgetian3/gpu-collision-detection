@@ -141,6 +141,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     sources.push_back(std::string(
         #include <morton.cl>
     ));
+    sources.push_back(std::string(
+        #include <construct.cl>
+    ));
 
     program = cl::Program(context, sources);
 
