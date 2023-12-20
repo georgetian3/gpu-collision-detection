@@ -26,6 +26,7 @@ __kernel void construct_tree(
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
+    printf("cpl %d\n", common_prefix_length(collidables, n, 0, 1));
     const int i = get_global_id(0);
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
@@ -60,7 +61,6 @@ __kernel void construct_tree(
     }
     while (t > 1);
     int g = i + s * d + min(d, 0);
-    printf("i j g %d %d %d\n", i, j, g);
     int left = (min(i, j) == g) ? g : g + n - 1;
     int right = (max(i, j) == g + 1) ? g + 1 : g + n;
     nodes[i].left = left;
