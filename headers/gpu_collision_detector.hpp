@@ -8,6 +8,11 @@
 #include <collision_detector.hpp>
 
 
+class Node {
+    int parent;
+    int left;
+    int right;
+}
 
 class GpuCollisionDetector: public CollisionDetector {
 
@@ -18,6 +23,7 @@ class GpuCollisionDetector: public CollisionDetector {
 
 
     std::vector<Collidable> collidables;
+    std::vector<Node> nodes;
 
 
     cl::Device device;
@@ -26,6 +32,7 @@ class GpuCollisionDetector: public CollisionDetector {
     cl::Program program;
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
+    cl::Buffer bufferNodes;
 
     cl::Kernel kernelMortonCodeAAAB;
 
