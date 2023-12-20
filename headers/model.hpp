@@ -53,10 +53,13 @@ public:
     unsigned int instanceCount = 1;
 
     Model(std::vector<float> vertices, std::vector<unsigned int> indices) {
+        indicesCount = indices.size();
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
-        glGenBuffers(1, &IBO);
+        int a = 123;
+        a = glGenBuffers(1, &IBO);
+        std::cout << "IBO " << a << '\n';
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
@@ -64,7 +67,6 @@ public:
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        indicesCount = indices.size();
 
         glBindVertexArray(VAO);
         // set attribute pointers for matrix (4 times vec4)
