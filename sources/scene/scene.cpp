@@ -88,7 +88,6 @@ void Scene::render() {
         shader.setMat4("projection", camera.getProjection());
 
         cube.draw();
-        renderGui();
 
 
         // collisionDetector->detectCollisions();
@@ -100,6 +99,8 @@ void Scene::render() {
             //     std::cout << animationFrameCount << '\n';
             // }
         // }
+        renderGui();
+
 
         glfwSwapBuffers(window);
         glfwPollEvents();
