@@ -93,9 +93,10 @@ public:
     }
 
     void setModelMatrices(const std::vector<glm::mat4>& modelMatrices) {
-        glBindBuffer(GL_ARRAY_BUFFER, IBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * modelMatrices.size(), modelMatrices.data(), GL_STATIC_DRAW);
         instanceCount = modelMatrices.size();
+        glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, IBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * instanceCount, modelMatrices.data(), GL_STATIC_DRAW);
     }
 
     void draw() const {
