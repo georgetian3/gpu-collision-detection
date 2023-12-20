@@ -61,8 +61,8 @@ __kernel void construct_tree(
     if (min(i, j) != g) {
         g += n - 1;
     }
-    int left = (min(i, j) == g) ? g + 1 : g + n - 1;
-    int right = (max(i, j) == g) ? g + 2 : g + n;
+    int left = (min(i, j) == g) ? g + 1 : g + n - 2;
+    int right = (max(i, j) == g) ? g + 2 : g + n - 1;
     printf("%d left %d right %d\n", i, left, right);
     nodes[i].left = left;
     nodes[i].right = right;
