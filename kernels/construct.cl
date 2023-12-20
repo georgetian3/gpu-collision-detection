@@ -30,7 +30,7 @@ __kernel void construct_tree(
     printf("i n %d %d", i, n);
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
-        i == 0 ? -1 : common_prefix_length(collidables, n, i, i - 1)
+        (i == 0 ? -1 : common_prefix_length(collidables, n, i, i - 1))
     ) > 0 ? 1 : -1;
 
     const int d_min = common_prefix_length(collidables, n, i, i - d);
