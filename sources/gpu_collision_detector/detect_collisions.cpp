@@ -32,8 +32,8 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         queue.finish();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     } catch (const cl::Error& e) {
-        std::cerr << "kernelConstruct exception: " << e.what();
-        exit(1);
+        printLocation();
+        printClError(e);
     }
     for (int i = 0; i < nodes.size(); i++) {
         printf("%02d %02d %02d %02d", i, nodes[i].parent, nodes[i].left, nodes[i].right);

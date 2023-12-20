@@ -148,8 +148,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
     try {
         program = cl::Program(context, sources);
     } catch (const cl::Error& e) {
-        std::cerr << "Error building: " << e.what() << ' ' << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
-        exit(1);
+        printLocation();
+        printClError(e);
     }
 
     queue = cl::CommandQueue(context, device);
@@ -158,8 +158,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
     } catch (const cl::Error& e) {
-        std::cerr << "Kernel exception: " << e.what() << ' ' << e.err();
-        exit(1);
+        printLocation();
+        printClError(e);
     }
 
 }
@@ -180,7 +180,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelConstruct.setArg(1, sizeof(int), &n);
         kernelConstruct.setArg(2, bufferNodes);
     } catch (const cl::Error& e) {
-        std::cerr << "Set arg exception: " << e.what();
-        exit(1);
+        printLocation();
+        printClError(e);
     }
 }

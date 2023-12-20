@@ -7,6 +7,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include <CL/opencl.hpp>
 
 #define printLocation() std::cout << "########### printLocation: " << __FILE__ << ' ' << __LINE__ << " ###########\n";
 
@@ -50,5 +51,10 @@ std::string readFile(const std::filesystem::path& path);
 uint64_t expandBits3(double v);
 
 std::filesystem::path makeAbsolute(const std::filesystem::path& cwd, std::filesystem::path path);
+
+void printClError(const cl::Error&e, const std::string& prefix = "") {
+    std::cerr << prefix << ' ' << e.err() << ' ' << e.what();
+    exit(1);
+}
 
 #endif
