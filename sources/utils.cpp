@@ -22,6 +22,6 @@ uint64_t expandBits3(double v) { // assume v in range [0, 1]
     return u;
 }
 
-std::filesystem::path makeAbsolute(const std::filesystem::path& cwd, const std::filesystem::path& path) {
+std::filesystem::path makeAbsolute(const std::filesystem::path& cwd, std::filesystem::path path) {
     return (path.is_absolute() ? path : (cwd / path)).make_preferred();
 }
