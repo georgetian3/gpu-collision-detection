@@ -22,8 +22,8 @@ bool is_leaf(struct Node node) {
 
 // https://developer.nvidia.com/blog/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf
 __kernel void construct_tree(
-    __global const struct Collidable* collidables,
     int n,
+    __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
     const int i = get_global_id(0);
