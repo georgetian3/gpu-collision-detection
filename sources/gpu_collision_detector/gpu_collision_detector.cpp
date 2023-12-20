@@ -150,9 +150,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
         #include <construct.cl>
     ));
 
-    cl::Program program;
+    cl::Program program = cl::Program(context, sources);
     try {
-        program = cl::Program(context, sources);
+        program.build(device);
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
