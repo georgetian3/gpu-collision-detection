@@ -41,7 +41,7 @@ std::vector<unsigned int> cubeIndices = {
 
 class Model {
 
-    unsigned int VAO, VBO, EBO;
+    unsigned int VAO, VBO, EBO, IBO;
     void setupMesh() {};
 
 public:
@@ -50,11 +50,13 @@ public:
     std::vector<unsigned int>   indices;
 
     unsigned int indicesCount;
+    unsigned int instanceCount = 1;
 
     Model(std::vector<float> vertices, std::vector<unsigned int> indices) {
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
+        glGenBuffers(1, &IBO);
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
@@ -63,6 +65,21 @@ public:
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
         indicesCount = indices.size();
+
+        glEnableVertexAttribArray(3);
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)0);
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)));
+        glEnableVertexAttribArray(5);
+        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(2 * sizeof(glm::vec4)));
+        glEnableVertexAttribArray(6);
+        glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4)));
+
+        glVertexAttribDivisor(3, 1);
+        glVertexAttribDivisor(4, 1);
+        glVertexAttribDivisor(5, 1);
+        glVertexAttribDivisor(6, 1);
+
     }
 
     ~Model() {
@@ -71,9 +88,15 @@ public:
         glDeleteBuffers(1, &EBO);
     }
 
+    void setModelMatrices(const std::vector<glm::mat4>& modelMatrices) {
+        glBindBuffer(GL_ARRAY_BUFFER, IBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * modelMatrices.size(), modelMatrices.data(), GL_STATIC_DRAW);
+        instanceCount = modelMatrices.size();
+    }
+
     void draw() const {
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indicesCount), GL_UNSIGNED_INT, 0);
+        glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(indicesCount), GL_UNSIGNED_INT, 0, instanceCount);
     }
 
 };

@@ -50,6 +50,17 @@ void Scene::render() {
 
     const Model cube = Model(cubeVertices, cubeIndices);
 
+    std::vector<glm::dvec3> positions = {
+        glm::dvec3(0.0),
+        glm::dvec3(1.0),
+        glm::dvec3(2.0),
+    };
+
+    std::vector<glm::mat4> modelMatrices;
+    for (const auto& position: positions) {
+        modelMatrices.push_back(glm::translate(glm::dmat4(1.0), position));
+    }
+
 
     glEnable(GL_DEPTH_TEST);
 
