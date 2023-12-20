@@ -157,7 +157,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     try {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
-    } catch (std::exception e) {
+    } catch (const cl::Error& e) {
         std::cerr << "Kernel exception: " << e.what();
         exit(1);
     }
@@ -178,7 +178,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         // kernelConstruct.setArg(0, collidables.size());
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-    } catch (std::exception e) {
+    } catch (const cl::Error& e) {
         std::cerr << "Set arg exception: " << e.what();
         exit(1);
     }
