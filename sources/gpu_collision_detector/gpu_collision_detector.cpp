@@ -176,8 +176,8 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     try {
         kernelMortonCodeAAAB.setArg(0, bufferCollidables);
         int n = collidables.size();
-        kernelConstruct.setArg(0, sizeof(int), &n);
-        kernelConstruct.setArg(1, bufferCollidables);
+        kernelConstruct.setArg(0, bufferCollidables);
+        kernelConstruct.setArg(1, sizeof(int), &n);
         kernelConstruct.setArg(2, bufferNodes);
     } catch (const cl::Error& e) {
         std::cerr << "Set arg exception: " << e.what();
