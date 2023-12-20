@@ -8,7 +8,7 @@
 #include <collision_detector.hpp>
 
 
-class Node {
+struct Node {
     int parent;
     int left;
     int right;
