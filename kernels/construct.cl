@@ -1,10 +1,13 @@
 R"(
 
-inline int common_prefix_length(__global struct Collidable* collidables, int i, int j) {
-    // computes the length of the longest common prefix of morton codes `a` and `b`
-    return j == 0 ? -1 : clz(collidables[i].mortonCode ^ collidables[j].mortonCode);
-}
 
+inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
+    // computes the length of the longest common prefix of morton codes `a` and `b`
+    if (j < 0 || j > n - 1) {
+        return -1;
+    }
+    return clz(collidables[i].mortonCode ^ collidables[j].mortonCode);
+}
 
 struct Node {
     int parent;
@@ -16,34 +19,36 @@ bool is_leaf(struct Node node) {
     return node.left == 0;
 }
 
+
 // https://developer.nvidia.com/blog/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf
 __kernel void construct_tree(
+    __global const struct Collidable* collidables,
     int n,
-    __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
     const int i = get_global_id(0);
     const int d = (
-        common_prefix_length(collidables, i, i + 1) - 
-        i == 0 ? -1 : common_prefix_length(collidables, i, i - 1)
+        common_prefix_length(collidables, n, i, i + 1) - 
+        i == 0 ? -1 : common_prefix_length(collidables, n, i, i - 1)
     ) > 0 ? 1 : -1;
 
-    const int d_min = common_prefix_length(collidables, i, i - d);
+    const int d_min = common_prefix_length(collidables, n, i, i - d);
     int l_max = 2;
-    while (common_prefix_length(collidables, i, i + l_max * d) > d_min) {
+    while (common_prefix_length(collidables, n, i, i + l_max * d) > d_min) {
         l_max *= 2;
     }
     int l = 0;
-
     int t = l_max / 2;
+    printf("i l_max %d %d", i, l_max);
     while (t > 0) {
-        if (common_prefix_length(collidables, i, i + (l + t) * d) > d_min) {
+        printf("i t %d %d", i, t);
+        if (common_prefix_length(collidables, n, i, i + (l + t) * d) > d_min) {
             l += t;
         }
         t /= 2;
     }
     const int j = i + l * d;
-    int d_n = common_prefix_length(collidables, i, j);
+    int d_n = common_prefix_length(collidables, n, i, j);
     int s = 0;
     
     double dividend = 1.0;
