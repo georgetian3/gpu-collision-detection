@@ -16,7 +16,8 @@ bool comp(const Collidable& a, const Collidable b) {
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     for (const auto& collidable: collidables) {
-        std::cout << collidable.toString() << '\n';
+        // std::cout << collidable.toString() << '\n';
+        std::cout << toBits(collidable.mortonCode) << '\n';
     }
 
     std::vector<uint64_t> want;
@@ -43,7 +44,8 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     std::sort(collidables.begin(), collidables.end(), comp);
 
     for (const auto& collidable: collidables) {
-        std::cout << collidable.toString() << '\n';
+        // std::cout << collidable.toString() << '\n';
+        std::cout << toBits(collidable.mortonCode) << '\n';
     }
  
     return std::vector<Collision>();

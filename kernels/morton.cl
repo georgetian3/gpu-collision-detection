@@ -14,18 +14,17 @@ ulong morton3D(double x, double y, double z) {
     return (expandBits3(x) << 2) | (expandBits3(y) << 1) | expandBits3(z);
 }
 
-struct vec3 {
-    double x;
-    double y;
-    double z;
-};
-
 enum Type {
     SPHERE,
     CUBE,
     RECTANGULAR_CUBOID
 };
 
+struct vec3 {
+    double x;
+    double y;
+    double z;
+};
 
 struct AABB {
     struct vec3 min;
