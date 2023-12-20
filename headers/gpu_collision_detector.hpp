@@ -12,7 +12,7 @@ class Node {
     int parent;
     int left;
     int right;
-}
+};
 
 class GpuCollisionDetector: public CollisionDetector {
 
