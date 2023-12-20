@@ -155,7 +155,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     queue = cl::CommandQueue(context, device);
 
     try {
-        kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB1");
+        kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
