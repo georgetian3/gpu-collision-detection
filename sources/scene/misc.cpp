@@ -53,7 +53,7 @@ void Scene::init() {
         exit(1);
     }
     
-    // glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
     glfwSwapInterval(vsync ? 1 : 0);
     handleMenu();
 

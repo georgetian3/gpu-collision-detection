@@ -63,7 +63,6 @@ void Scene::render() {
     cube.setModelMatrices(modelMatrices);
 
 
-    glEnable(GL_DEPTH_TEST);
 
 
     while (!glfwWindowShouldClose(window)) {
