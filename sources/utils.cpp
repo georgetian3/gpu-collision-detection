@@ -26,7 +26,7 @@ std::filesystem::path makeAbsolute(const std::filesystem::path& cwd, std::filesy
     return (path.is_absolute() ? path : (cwd / path)).make_preferred();
 }
 
-void printClError(const cl::Error&e, const std::string& prefix = "") {
+void printClError(const cl::Error&e, const std::string& prefix) {
     std::cerr << prefix << ' ' << e.err() << ' ' << e.what();
     exit(1);
 }
