@@ -36,7 +36,7 @@ __kernel void construct_tree(
     while (common_prefix_length(collidables, n, i, i + l_max * d) > d_min) {
         l_max *= 2;
     }
-    printf("%d %d\n", i, l_max);
+    printf("i l_max %d %d\n", i, l_max);
     int l = 0;
     int t = l_max / 2;
     while (t > 0) {
