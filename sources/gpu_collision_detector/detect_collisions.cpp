@@ -16,8 +16,7 @@ bool comp(const Collidable& a, const Collidable b) {
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
     for (const auto& collidable: collidables) {
-        // std::cout << collidable.toString() << '\n';
-        std::cout << toBits(collidable.mortonCode) << '\n';
+        std::cout << collidable.toString() << '\n';
     }
 
     std::vector<uint64_t> want;
