@@ -158,7 +158,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
     } catch (const cl::Error& e) {
-        std::cerr << "Kernel exception: " << e.what();
+        std::cerr << "Kernel exception: " << e.what() << ' ' << e.err();
         exit(1);
     }
 
