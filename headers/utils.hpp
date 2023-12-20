@@ -49,4 +49,6 @@ std::string readFile(const std::filesystem::path& path);
 
 uint64_t expandBits3(double v);
 
+std::filesystem::path makeAbsolute(const std::filesystem::path& path);
+
 #endif
