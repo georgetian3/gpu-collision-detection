@@ -19,14 +19,10 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::cout << collidable.toString() << '\n';
     }
 
-    Stopwatch sw;
-    sw.start();
-    std::cout << "running kernel\n";
     queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
     queue.finish();
 
     queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-    std::cout << sw.stop() << '\n';
 
 
     std::sort(collidables.begin(), collidables.end(), comp);

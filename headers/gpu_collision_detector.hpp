@@ -10,9 +10,9 @@
 
 
 struct Node {
-    int parent;
-    int left;
-    int right;
+    int parent = -1;
+    int left = -1;
+    int right = -1;
 };
 
 class GpuCollisionDetector: public CollisionDetector {
