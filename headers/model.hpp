@@ -93,7 +93,6 @@ public:
     }
 
     void setModelMatrices(const std::vector<glm::mat4>& modelMatrices) {
-        return;
         instanceCount = modelMatrices.size();
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, IBO);
