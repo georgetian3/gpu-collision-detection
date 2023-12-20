@@ -57,9 +57,7 @@ public:
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
-        int a = 123;
-        a = glGenBuffers(1, &IBO);
-        std::cout << "IBO " << a << '\n';
+        glGenBuffers(1, &IBO);
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
@@ -70,19 +68,19 @@ public:
 
         glBindVertexArray(VAO);
         // set attribute pointers for matrix (4 times vec4)
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)0);
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)));
         glEnableVertexAttribArray(3);
-        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)0);
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(2 * sizeof(glm::vec4)));
         glEnableVertexAttribArray(4);
-        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)));
-        glEnableVertexAttribArray(5);
-        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(2 * sizeof(glm::vec4)));
-        glEnableVertexAttribArray(6);
-        glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4)));
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4)));
 
+        glVertexAttribDivisor(1, 1);
+        glVertexAttribDivisor(2, 1);
         glVertexAttribDivisor(3, 1);
         glVertexAttribDivisor(4, 1);
-        glVertexAttribDivisor(5, 1);
-        glVertexAttribDivisor(6, 1);
 
         glBindVertexArray(0);
 
@@ -92,13 +90,14 @@ public:
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);
         glDeleteBuffers(1, &EBO);
+        glDeleteBuffers(1, &IBO);
     }
 
     void setModelMatrices(const std::vector<glm::mat4>& modelMatrices) {
         instanceCount = modelMatrices.size();
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, IBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * instanceCount, modelMatrices.data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * instanceCount, &modelMatrices[0], GL_STATIC_DRAW);
     }
 
     void draw() const {
