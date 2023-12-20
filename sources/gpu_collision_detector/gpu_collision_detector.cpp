@@ -145,10 +145,10 @@ GpuCollisionDetector::GpuCollisionDetector() {
         #include <construct.cl>
     ));
 
-    program = cl::Program(context, sources);
-
-    if (program.build(device) != CL_SUCCESS){
-        std::cerr << "Error building: " << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
+    try {
+        program = cl::Program(context, sources);
+    } catch (const cl::Error& e) {
+        std::cerr << "Error building: " << e.what() << ' ' << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
         exit(1);
     }
 
