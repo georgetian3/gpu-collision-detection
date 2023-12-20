@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 
@@ -61,6 +62,10 @@ void Scene::render() {
         modelMatrices.push_back(glm::translate(glm::mat4(1.0), position));
     }
     cube.setModelMatrices(modelMatrices);
+
+    for (const auto& m: modelMatrices) {
+        std::cout << glm::to_string(m) << '\n';
+    }
 
 
 
