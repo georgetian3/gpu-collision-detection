@@ -55,9 +55,14 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::cerr << "kernelConstruct exception: " << e.what();
         exit(1);
     }
-    for (const auto& node: nodes) {
-        std::cout << node.parent << ' ' << node.left << ' ' << node.right << '\n';
+    for (int i = 0; i < node.size(); i++) {
+        std::cout << node.parent << ' ' << node.left << ' ' << node.right;
+        if (i >= collidables.size() - 1) {
+            std::cout << ' ' << collidables[i - collidables.size()].mortonCode;
+        }
+        std::cout << '\n';
     }
+
  
     return std::vector<Collision>();
 
