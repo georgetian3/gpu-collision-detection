@@ -76,10 +76,10 @@ public:
         glEnableVertexAttribArray(4);
         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(3 * sizeof(glm::vec4)));
 
-        glVertexAttribDivisor(1, 1);
-        glVertexAttribDivisor(2, 1);
-        glVertexAttribDivisor(3, 1);
-        glVertexAttribDivisor(4, 1);
+        // glVertexAttribDivisor(1, 1);
+        // glVertexAttribDivisor(2, 1);
+        // glVertexAttribDivisor(3, 1);
+        // glVertexAttribDivisor(4, 1);
 
 
     }
