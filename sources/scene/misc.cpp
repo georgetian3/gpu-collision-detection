@@ -53,7 +53,6 @@ void Scene::init() {
         exit(1);
     }
     
-    glEnable(GL_DEPTH_TEST);
     glfwSwapInterval(vsync ? 1 : 0);
     handleMenu();
 
@@ -63,6 +62,9 @@ void Scene::init() {
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 400");
+
+    glEnable(GL_DEPTH_TEST);
+
 }
 
 void Scene::setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector) {
