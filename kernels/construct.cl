@@ -47,7 +47,7 @@ __kernel void construct_tree(
     int d_n = common_prefix_length(collidables, n, i, j);
     int s = 0;
 
-    double dividend = 1.0;
+    int dividend = 1;
     int t;
     while (true) {
         dividend *= 2;
