@@ -26,9 +26,6 @@ __kernel void construct_tree(
     __global struct Node* nodes
 ) {
     int i = get_global_id(0);
-    if (i != 0) {
-        return;
-    }
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
         common_prefix_length(collidables, n, i, i - 1)
@@ -74,8 +71,8 @@ __kernel void construct_tree(
 
     int g = i + s * d + min(d, 0);
     printf("g want 3 got %d\n", g);
-    int left = (min(i, j) == g) ? g : g + n - 1;
-    int right = (max(i, j) == g + 1) ? g + 1 : g + n;
+    int left = (min(i, j) == g) ? g : (g + n - 1);
+    int right = (max(i, j) == g + 1) ? (g + 1) : (g + n);
     printf("left right want 3 4 got %d %d\n", left, right);
     nodes[i].left = left;
     nodes[i].right = right;
