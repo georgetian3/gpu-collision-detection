@@ -35,7 +35,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         0b11000,
         0b11001,
         0b11110
-    }
+    };
     for (int i = 0; i < 8; i++) {
         collidables[i].mortonCode = codes[i];
     }
