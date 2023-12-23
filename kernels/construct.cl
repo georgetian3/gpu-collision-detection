@@ -73,6 +73,7 @@ __kernel void construct_tree(
     }
 
     int g = i + s * d + min(d, 0);
+    printf("g want 3 got %d\n", g);
     int left = (min(i, j) == g) ? g : g + n - 1;
     int right = (max(i, j) == g + 1) ? g + 1 : g + n;
     printf("left right want 3 4 got %d %d\n", left, right);
