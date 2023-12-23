@@ -26,6 +26,9 @@ __kernel void construct_tree(
     __global struct Node* nodes
 ) {
     int i = get_global_id(0);
+    if (i != 0) {
+        return;
+    }
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
         common_prefix_length(collidables, n, i, i - 1)
