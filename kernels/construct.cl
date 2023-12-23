@@ -37,12 +37,11 @@ __kernel void construct_tree(
         l_max *= 2;
     }
     int l = 0;
-    for (int denom = 2; t >= 1; t /= ) {
+    for (int t = l_max / 2; t >= 1; t /= 2) {
         if (common_prefix_length(collidables, n, i, i + (l + t) * d) > d_min) {
             l += t;
         }
     }
-    
     int j = i + l * d;
     printf("i j %d %d\n", i, j);
     int d_n = common_prefix_length(collidables, n, i, j);
