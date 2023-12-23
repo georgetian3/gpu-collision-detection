@@ -43,13 +43,15 @@ __kernel void construct_tree(
         }
     }
     int j = i + l * d;
-    printf("i j %d %d\n", i, j);
 
     if (i > j) {
         int tmp = i;
         i = j;
         j = tmp;
     }
+
+    printf("i j %d %d\n", i, j);
+
 
     int d_n = common_prefix_length(collidables, n, i, j);
     int s = 0;
