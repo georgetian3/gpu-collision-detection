@@ -46,13 +46,6 @@ __kernel void construct_tree(
         }
     }
     int j = i + l * d;
-
-    if (i > j) {
-        int tmp = i;
-        i = j;
-        j = tmp;
-    }
-
     printf("i j %d %d\n", i, j);
 
 
