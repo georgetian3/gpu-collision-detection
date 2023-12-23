@@ -26,6 +26,19 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
 
     std::sort(collidables.begin(), collidables.end(), comp);
+    int codes[] = {
+        0b00001,
+        0b00010,
+        0b00100,
+        0b00101,
+        0b10011,
+        0b11000,
+        0b11001,
+        0b11110
+    }
+    for (int i = 0; i < 8; i++) {
+        collidables[i].mortonCode = codes[i];
+    }
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
 
 
