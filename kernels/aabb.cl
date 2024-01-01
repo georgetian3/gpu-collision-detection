@@ -3,12 +3,6 @@ R"(
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
-struct vec3 {
-    double x;
-    double y;
-    double z;
-};
-
 enum Type {
     SPHERE,
     CUBE,
