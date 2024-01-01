@@ -1,6 +1,6 @@
 R"(
 
-inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
+inline int common_prefix_length(const __global struct Collidable* collidables, int n, int i, int j) {
     // computes the length of the longest common prefix of morton codes `a` and `b`
     if (j < 0 || j > n - 1) {
         return -1;
