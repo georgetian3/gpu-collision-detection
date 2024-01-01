@@ -149,6 +149,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     sources.push_back(std::string(
         #include <construct.cl>
     ));
+    sources.push_back(std::string(
+        #include <aabb.cl>
+    ));
 
     cl::Program program = cl::Program(context, sources);
     try {
