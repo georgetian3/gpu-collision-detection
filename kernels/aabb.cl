@@ -1,3 +1,5 @@
+R"(
+
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
@@ -21,10 +23,14 @@ struct AABB {
 
 
 
-__kernel void calculate_aabb() {
+__kernel void calculate_relative_aabb(
+    int n,
+    __global const struct Collidable* collidables,
+    __global struct Node* nodes
+) {
     const int i = get_global_id(0);
-    struct AABB a;
-    struct AABB b;
+    struct AABB a = collidables[nodes[i].left ].relativeAABB;
+    struct AABB b = collidables[nodes[i].right].relativeAABB;
 
     struct AABB c;
     c.min.x = MIN(a.min.x, b.min.x);
@@ -34,6 +40,14 @@ __kernel void calculate_aabb() {
     c.max.y = MAX(a.max.y, b.max.y);
     c.max.z = MAX(a.max.z, b.max.z);
 
-
+    collidables[nodes[i]].relativeAABB = c;
 
 }
+
+__kernel void calculate_absolute_aabb(
+    __global const struct Collidable* collidables
+) {
+
+}
+
+)"

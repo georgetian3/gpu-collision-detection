@@ -14,11 +14,6 @@ struct Node {
     int right;
 };
 
-bool is_leaf(struct Node node) {
-    return node.left == 0;
-}
-
-
 // https://developer.nvidia.com/blog/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf
 __kernel void construct_tree(
     int n,
