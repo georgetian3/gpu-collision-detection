@@ -3,20 +3,6 @@ R"(
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
-enum Type {
-    SPHERE,
-    CUBE,
-    RECTANGULAR_CUBOID
-};
-
-
-struct AABB {
-    struct vec3 min;
-    struct vec3 max;
-};
-
-
-
 __kernel void calculate_relative_aabb(
     int n,
     __global const struct Collidable* collidables,

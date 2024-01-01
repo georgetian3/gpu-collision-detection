@@ -14,45 +14,6 @@ inline ulong morton3D(double x, double y, double z) {
     return (expandBits3(x) << 2) | (expandBits3(y) << 1) | expandBits3(z);
 }
 
-enum Type {
-    SPHERE,
-    CUBE,
-    RECTANGULAR_CUBOID
-};
-
-struct vec3 {
-    double x;
-    double y;
-    double z;
-};
-
-struct AABB {
-    struct vec3 min;
-    struct vec3 max;
-};
-
-struct Collidable {
-
-    unsigned int id;
-    unsigned int type;
-
-    struct vec3 position;
-    ulong mortonCode;
-
-    struct AABB relativeAABB;
-    struct AABB absoluteAABB;
-
-    union {
-        double length;
-        double radius;
-        double xl;
-    };
-
-    double yl;
-    double zl;
-
-};
-
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
