@@ -51,9 +51,6 @@ inline int node_to_collidables_index(int i, int n) {
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
-inline bool is_leaf(const struct Node* node) {
-    return node->left == -1;
-}
 
 __kernel void calculate_relative_aabb(
     int n,
@@ -61,9 +58,13 @@ __kernel void calculate_relative_aabb(
     __global struct Node* nodes
 ) {
     const int i = get_global_id(0);
-
-    struct AABB a = collidables[nodes[i].left ].relativeAABB;
-    struct AABB b = collidables[nodes[i].right].relativeAABB;
+    struct AABB a, b;
+    if (nodes[i].left == -1) { // leaf node
+        nodes[i].aabb = collidables[i - (n - 1)].position + collidables[i - (n - 1)].relativeAABB;
+        return;
+    }
+    a = collidables[nodes[i].left ].relativeAABB;
+    b = collidables[nodes[i].right].relativeAABB;
 
     struct AABB c;
     c.min.x = MIN(a.min.x, b.min.x);
@@ -73,7 +74,7 @@ __kernel void calculate_relative_aabb(
     c.max.y = MAX(a.max.y, b.max.y);
     c.max.z = MAX(a.max.z, b.max.z);
 
-    collidables[nodes[i]].relativeAABB = c;
+    nodes[i].aabb = c;
 
 }
 
