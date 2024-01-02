@@ -53,7 +53,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         printClError(e);
     }
     for (int i = 0; i < nodes.size(); i++) {
-        printf("%02d %02d %02d %02d %s %s", i, nodes[i].parent, nodes[i].left, nodes[i].right, glm::to_string([i].aabb.min), glm::to_string(nodes[i].aabb.max));
+        printf("%02d %02d %02d %02d %s %s", i, nodes[i].parent, nodes[i].left, nodes[i].right, glm::to_string(nodes[i].aabb.min), glm::to_string(nodes[i].aabb.max));
         if (i >= collidables.size() - 1) {
             std::cout << ' ' << toBits(collidables[i - collidables.size() + 1].mortonCode) << ' ' << collidables[i - collidables.size() + 1].mortonCode;
         }
