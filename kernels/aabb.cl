@@ -60,7 +60,9 @@ __kernel void calculate_relative_aabb(
     const int i = get_global_id(0);
     struct AABB a, b;
     if (nodes[i].left == -1) { // leaf node
-        nodes[i].aabb = vec_add(collidables[i - (n - 1)].position, collidables[i - (n - 1)].relativeAABB);
+        const vec3 pos = vec_add(collidables[i - (n - 1)].position;
+        const AABB aabb = collidables[i - (n - 1)].relativeAABB;
+        nodes[i].aabb = AABB{pos + aabb.min, pos +aabb.max};
         return;
     }
     a = collidables[nodes[i].left ].relativeAABB;
