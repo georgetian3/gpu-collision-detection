@@ -42,12 +42,11 @@ struct Collidable {
     double zl;
 
 };
-#endif
 
 inline int node_to_collidables_index(int i, int n) {
     return i - (n - 1);
 }
-
+#endif
 
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
