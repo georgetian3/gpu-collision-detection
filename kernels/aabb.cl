@@ -63,7 +63,7 @@ __kernel void calculate_relative_aabb(
         const struct vec3 pos = collidables[i - (n - 1)].position;
         const struct AABB aabb = collidables[i - (n - 1)].relativeAABB;
         nodes[i].aabb.min = vec_add(pos, aabb.min)
-        nodes[i].aabb.max = vec_add(pos + aabb.max);
+        nodes[i].aabb.max = vec_add(pos, aabb.max);
         return;
     }
     a = collidables[nodes[i].left ].relativeAABB;
