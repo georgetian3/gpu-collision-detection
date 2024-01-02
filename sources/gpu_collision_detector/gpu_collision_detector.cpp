@@ -160,7 +160,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
     try {
         program.build(device);
     } catch (const cl::Error& e) {
-        printLocation();
         std::cerr << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device);
         printClError(e);
     }
@@ -170,14 +169,12 @@ GpuCollisionDetector::GpuCollisionDetector() {
     try {
         kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
     } catch (const cl::Error& e) {
-        printLocation();
         printClError(e);
     }
 
     try {
         kernelConstruct = cl::Kernel(program, "construct_tree");
     } catch (const cl::Error& e) {
-        printLocation();
         printClError(e);
     }
 

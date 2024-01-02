@@ -3,12 +3,18 @@ R"(
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
+inline bool is_leaf(const Node* node) {
+    return node->left == -1;
+}
+
 __kernel void calculate_relative_aabb(
     int n,
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
     const int i = get_global_id(0);
+    if (is_leaf(&nodes[i])) {
+        nodes[i].aabb = collidables
     struct AABB a = collidables[nodes[i].left ].relativeAABB;
     struct AABB b = collidables[nodes[i].right].relativeAABB;
 

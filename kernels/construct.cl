@@ -8,6 +8,7 @@ inline int common_prefix_length(const __global struct Collidable* collidables, i
     return clz(collidables[i].mortonCode ^ collidables[j].mortonCode);
 }
 
+
 // https://developer.nvidia.com/blog/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf
 __kernel void construct_tree(
     int n,
