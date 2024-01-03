@@ -176,7 +176,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
 }
 
-
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
     this->collidables = collidables;
     int n = collidables.size();
