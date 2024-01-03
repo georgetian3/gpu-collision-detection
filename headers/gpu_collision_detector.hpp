@@ -32,7 +32,7 @@ class GpuCollisionDetector: public CollisionDetector {
     cl::Buffer bufferCollidables;
     cl::Buffer bufferNodes;
 
-    cl::Kernel kernelMortonCodeAAAB;
+    cl::Kernel kernelMortonCode;
     cl::Kernel kernelConstruct;
     cl::Kernel kernelAABB;
 

@@ -3,7 +3,7 @@ R"(
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
-__kernel void calculate_relative_aabb(
+__kernel void calculate_absolute_aabb(
     int n,
     __global const struct Collidable* collidables,
     __global struct Node* nodes

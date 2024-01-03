@@ -167,18 +167,12 @@ GpuCollisionDetector::GpuCollisionDetector() {
     queue = cl::CommandQueue(context, device);
 
     try {
-        kernelMortonCodeAAAB = cl::Kernel(program, "mortonCodeAABB");
-    } catch (const cl::Error& e) {
-        printClError(e);
-    }
-
-    try {
+        kernelMortonCode = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
+        kernelAABB = cl::Kernel(program, "calculate_absolute_aabb");
     } catch (const cl::Error& e) {
         printClError(e);
     }
-
-
 
 }
 
@@ -193,13 +187,13 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     try {
-        kernelMortonCodeAAAB.setArg(0, bufferCollidables);
+        kernelMortonCode.setArg(0, bufferCollidables);
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-        // kernelAABB.setArg(0, sizeof(int), &n);
-        // kernelAABB.setArg(1, bufferCollidables);
-        // kernelAABB.setArg(2, bufferNodes);
+        kernelAABB.setArg(0, sizeof(int), &n);
+        kernelAABB.setArg(1, bufferCollidables);
+        kernelAABB.setArg(2, bufferNodes);
     } catch (const cl::Error& e) {
         printClError(e);
     }

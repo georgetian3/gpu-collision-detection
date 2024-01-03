@@ -19,7 +19,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::cout << collidable.toString() << '\n';
     }
 
-    queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()));
+    queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
     queue.finish();
 
     queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
