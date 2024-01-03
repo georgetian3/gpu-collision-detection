@@ -19,7 +19,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::cout << collidable.toString() << '\n';
     }
 
-    queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()), cl::NullRange);
+    queue.enqueueNDRangeKernel(kernelMortonCodeAAAB, cl::NullRange, cl::NDRange(collidables.size()));
     queue.finish();
 
     queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
@@ -45,8 +45,9 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
     // TODO: morton code + id sort
 
     try {
-        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1), cl::NullRange);
+        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
         queue.finish();
+        // queue.enqueueNDRangeKernel(kernelAABB, cl::NullRange, cl::NDRange(collidables.size() - 1));
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     } catch (const cl::Error& e) {
         printLocation();

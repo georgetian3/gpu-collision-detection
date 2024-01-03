@@ -185,20 +185,41 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
     this->collidables = collidables;
-    std::cout << "setCollidables collidables count: " << collidables.size() << '\n';
-    bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * collidables.size());
-    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-    nodes.resize(collidables.size() * 2 - 1);
+    int n = collidables.size();
+    std::cout << "setCollidables collidables count: " << n << '\n';
+    bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
+    queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
+    nodes.resize(n * 2 - 1);
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     try {
         kernelMortonCodeAAAB.setArg(0, bufferCollidables);
-        int n = collidables.size();
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
+        kernelAABB.setArg(0, sizeof(int), &n);
+        kernelAABB.setArg(1, bufferCollidables);
+        kernelAABB.setArg(2, bufferNodes);
     } catch (const cl::Error& e) {
-        printLocation();
         printClError(e);
     }
+
+    // switch (collidable.type) {
+    //     case SPHERE: {
+    //         const double radius = collidable.radius;
+    //         collidable.relativeAABB.min.x = position.x - radius;
+    //         collidable.relativeAABB.min.y = position.y - radius;
+    //         collidable.relativeAABB.min.z = position.z - radius;
+    //         collidable.relativeAABB.max.x = position.x + radius;
+    //         collidable.relativeAABB.max.y = position.y + radius;
+    //         collidable.relativeAABB.max.z = position.z + radius;
+    //         break;
+    //     }
+    //     case CUBE: {
+    //         break;
+    //     }
+    //     case RECTANGULAR_CUBOID: {
+    //         break;
+    //     }
+    // };
 }

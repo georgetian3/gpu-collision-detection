@@ -1,56 +1,7 @@
 R"(
 
-// #define DEBUG
-
-#ifdef DEBUG
-struct vec3 {
-    double x;
-    double y;
-    double z;
-};
-
-struct AABB {
-    struct vec3 min;
-    struct vec3 max;
-};
-
-struct Node {
-    int parent;
-    int left;
-    int right;
-    struct AABB aabb;
-};
-
-struct Collidable {
-
-    unsigned int id;
-    unsigned int type;
-
-    struct vec3 position;
-    ulong mortonCode;
-
-    struct AABB relativeAABB;
-    struct AABB absoluteAABB;
-
-    union {
-        double length;
-        double radius;
-        double xl;
-    };
-
-    double yl;
-    double zl;
-
-};
-
-inline int node_to_collidables_index(int i, int n) {
-    return i - (n - 1);
-}
-#endif
-
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
-
 
 __kernel void calculate_relative_aabb(
     int n,
@@ -78,12 +29,6 @@ __kernel void calculate_relative_aabb(
     c.max.z = MAX(a.max.z, b.max.z);
 
     nodes[i].aabb = c;
-
-}
-
-__kernel void calculate_absolute_aabb(
-    __global const struct Collidable* collidables
-) {
 
 }
 

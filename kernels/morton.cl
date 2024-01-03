@@ -17,28 +17,8 @@ inline ulong morton3D(double x, double y, double z) {
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
-    struct Collidable collidable = collidables[i];
-    const struct vec3 position = collidable.position;
-    collidable.mortonCode = morton3D(position.x, position.y, position.z);
-    switch (collidable.type) {
-        case SPHERE: {
-            const double radius = collidable.radius;
-            collidable.relativeAABB.min.x = position.x - radius;
-            collidable.relativeAABB.min.y = position.y - radius;
-            collidable.relativeAABB.min.z = position.z - radius;
-            collidable.relativeAABB.max.x = position.x + radius;
-            collidable.relativeAABB.max.y = position.y + radius;
-            collidable.relativeAABB.max.z = position.z + radius;
-            break;
-        }
-        case CUBE: {
-            break;
-        }
-        case RECTANGULAR_CUBOID: {
-            break;
-        }
-    };
-    collidables[i] = collidable;
+    const struct vec3 position = collidables[i].position;
+    collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
 }
 
 )"
