@@ -60,7 +60,6 @@ struct Collidable {
         const double zl = 0.0
     );
 
-
     static Collidable constructCube(const glm::dvec3& position, const double length);
     static Collidable constructSphere(const glm::dvec3& center, const double radius);
 
