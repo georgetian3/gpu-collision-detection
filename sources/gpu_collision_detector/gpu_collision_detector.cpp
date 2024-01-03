@@ -197,9 +197,9 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-        kernelAABB.setArg(0, sizeof(int), &n);
-        kernelAABB.setArg(1, bufferCollidables);
-        kernelAABB.setArg(2, bufferNodes);
+        // kernelAABB.setArg(0, sizeof(int), &n);
+        // kernelAABB.setArg(1, bufferCollidables);
+        // kernelAABB.setArg(2, bufferNodes);
     } catch (const cl::Error& e) {
         printClError(e);
     }
