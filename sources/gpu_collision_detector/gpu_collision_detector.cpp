@@ -183,16 +183,22 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
     nodes.resize(n * 2 - 1);
+    processed.resize(nodes.size());
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
+    bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+    queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed.size(), processed.data());
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-        kernelAABB.setArg(0, sizeof(int), &n);
-        kernelAABB.setArg(1, bufferCollidables);
-        kernelAABB.setArg(2, bufferNodes);
+        int i = -1;
+        kernelAABB.setArg(0, sizeof(int), &i);
+        kernelAABB.setArg(1, sizeof(int), &n);
+        kernelAABB.setArg(2, bufferProcessed);
+        kernelAABB.setArg(2, bufferCollidables);
+        kernelAABB.setArg(3, bufferNodes);
     } catch (const cl::Error& e) {
         printClError(e);
     }

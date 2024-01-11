@@ -1,7 +1,5 @@
 R"(
 
-
-
 enum Type {
     SPHERE,
     CUBE,

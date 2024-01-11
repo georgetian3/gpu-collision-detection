@@ -4,11 +4,15 @@ R"(
 #define MAX(a, b) a < b ? b : a
 
 __kernel void calculate_absolute_aabb(
+    int i,
     int n,
+    bool* processed,
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
-    const int i = get_global_id(0);
+    if (i < 0) {
+        i = get_global_id(0);
+    }
     struct AABB a, b;
     if (nodes[i].left == -1) { // leaf node
         const struct vec3 pos = collidables[i - (n - 1)].position;
@@ -29,6 +33,10 @@ __kernel void calculate_absolute_aabb(
     c.max.z = MAX(a.max.z, b.max.z);
 
     nodes[i].aabb = c;
+
+    if (nodes[i].parent != -1) {
+        calculate_absolute_aabb(nodes[i].parent, n, collidables, nodes);
+    }
 
 }
 
