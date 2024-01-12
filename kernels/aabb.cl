@@ -20,9 +20,6 @@ __kernel void calculate_absolute_aabb(
         nodes[i].aabb.min = vec_add(pos, aabb.min);
         nodes[i].aabb.max = vec_add(pos, aabb.max);
     } else {
-
-        if (
-
         struct AABB a, b, c;
 
         a = collidables[nodes[i].left ].relativeAABB;
