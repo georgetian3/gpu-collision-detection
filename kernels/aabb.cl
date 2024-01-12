@@ -19,15 +19,15 @@ __kernel void calculate_absolute_aabb(
     if (nodes[i].left == -1) { // leaf node
         printf("leaf\n");
         const struct vec3 pos = collidables[i - (n - 1)].position;
-        const struct AABB aabb = collidables[i - (n - 1)].relativeAABB;
+        const struct AABB aabb = collidables[i - (n - 1)].aabb;
         printf("%f %f %f %f %f %f\n", aabb.min.x, aabb.min.y, aabb.min.z, aabb.max.x, aabb.max.y, aabb.max.z);
         nodes[i].aabb.min = vec_add(pos, aabb.min);
         nodes[i].aabb.max = vec_add(pos, aabb.max);
     } else {
         struct AABB a, b, c;
 
-        a = collidables[nodes[i].left ].relativeAABB;
-        b = collidables[nodes[i].right].relativeAABB;
+        a = collidables[nodes[i].left ].aabb;
+        b = collidables[nodes[i].right].aabb;
 
         c.min.x = MIN(a.min.x, b.min.x);
         c.min.y = MIN(a.min.y, b.min.y);
