@@ -71,6 +71,10 @@ Collidable::Collidable(
             aabb.max = position + glm::dvec3(xl);
             break;
         }
+        default: {
+            std::cerr << "Unknown type\n";
+            exit(1);
+        }
     }
 }
 
