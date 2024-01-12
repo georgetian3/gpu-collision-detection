@@ -15,7 +15,7 @@ bool comp(const Collidable& a, const Collidable b) {
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
-    glm::vec3 pos = collidables[0].pos;
+    glm::vec3 pos = collidables[0].position;
     AABB aabb = collidables[0].aabb;
     printf("%f %f %f %f %f %f %f %f %f\n", pos.x, pos.y, pos.z, aabb.min.x, aabb.min.y, aabb.min.z, aabb.max.x, aabb.max.y, aabb.max.z);
 
