@@ -13,7 +13,7 @@ __kernel void calculate_absolute_aabb(
 
     if (i < 0) {
         i = get_global_id(0);
-    } else if (!processed[i]) {
+    } else if (atomic_cmpxchg(processed + i, true, true)) {
         processed[i] = true;
         return;
     }
