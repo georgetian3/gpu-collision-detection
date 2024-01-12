@@ -13,12 +13,10 @@ __kernel void calculate_absolute_aabb(
 
     if (i < 0) {
         i = get_global_id(0);
-    } else if (!atomic_cmpxchg(processed + i, true, true)) {
-        processed[i] = true;
+    } else if (!atomic_flag_test_and_set(processed + i)) {
         return;
     }
 
-    printf("ii %d\n", i);
 
     struct Node node = nodes[i];
     printf("%d %d %d\n", node.parent, node.left, node.right);
