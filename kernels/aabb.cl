@@ -10,10 +10,18 @@ __kernel void calculate_absolute_aabb(
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
+
     if (i < 0) {
         i = get_global_id(0);
     }
-    printf("iiii %d\n", i);
+
+    if (!processed[i]) {
+        processed[i] = true;
+        return;
+    }
+
+    printf("ii %d\n", i);
+
     struct Node node = nodes[i];
     printf("%d %d %d\n", node.parent, node.left, node.right);
     if (nodes[i].left == -1) { // leaf node
@@ -38,8 +46,6 @@ __kernel void calculate_absolute_aabb(
 
         nodes[i].aabb = c;
     }
-
-    return;
 
 
     if (nodes[i].parent != -1) {
