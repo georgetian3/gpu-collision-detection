@@ -35,7 +35,7 @@ __kernel void calculate_absolute_aabb(
     nodes[i].aabb = c;
 
     if (nodes[i].parent != -1) {
-        calculate_absolute_aabb(nodes[i].parent, n, collidables, nodes);
+        calculate_absolute_aabb(nodes[i].parent, n, processed, collidables, nodes);
     }
 
 }
