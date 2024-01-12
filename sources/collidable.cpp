@@ -67,8 +67,8 @@ Collidable::Collidable(
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {
     switch (type) {
         case CollidableType::sphere: {
-            relativeAABB.min = position - glm::dvec3(xl);
-            relativeAABB.max = position + glm::dvec3(xl);
+            aabb.min = position - glm::dvec3(xl);
+            aabb.max = position + glm::dvec3(xl);
             break;
         }
     }

@@ -37,8 +37,7 @@ struct Collidable {
     struct vec3 position;
     ulong mortonCode;
 
-    struct AABB relativeAABB;
-    struct AABB absoluteAABB;
+    struct AABB aabb;
 
     union {
         double length;

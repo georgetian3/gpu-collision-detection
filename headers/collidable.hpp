@@ -39,8 +39,7 @@ struct Collidable {
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;
 
-    AABB relativeAABB;
-    AABB absoluteAABB;
+    AABB aabb;
 
     union {
         double length = 0;
