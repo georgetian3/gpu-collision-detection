@@ -47,8 +47,8 @@ __kernel void calculate_absolute_aabb(
         nodes[i].aabb = c;
     }
 
-
     if (nodes[i].parent != -1) {
+        printf("recursing\n");
         calculate_absolute_aabb(nodes[i].parent, n, processed, collidables, nodes);
     }
 
