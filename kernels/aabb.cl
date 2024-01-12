@@ -13,9 +13,7 @@ __kernel void calculate_absolute_aabb(
 
     if (i < 0) {
         i = get_global_id(0);
-    }
-
-    if (!processed[i]) {
+    } else if (!processed[i]) {
         processed[i] = true;
         return;
     }
