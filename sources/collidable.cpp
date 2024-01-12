@@ -68,7 +68,7 @@ Collidable::Collidable(
     switch (type) {
         case CollidableType::sphere: {
             aabb.min = glm::dvec3(xl);
-            aabb.max = glm::dvec3(xl);
+            aabb.max = glm::dvec3(-xl);
             break;
         }
         default: {
