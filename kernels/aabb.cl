@@ -6,7 +6,7 @@ R"(
 __kernel void calculate_absolute_aabb(
     int i,
     int n,
-    bool* processed,
+    __global bool* processed,
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
