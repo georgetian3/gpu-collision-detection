@@ -16,7 +16,7 @@ __kernel void calculate_absolute_aabb(
     printf("iiii %d\n", i);
     struct Node node = nodes[i];
     printf("%d %d %d\n", node.parent, node.left, node.right);
-
+    return;
     if (nodes[i].left == -1) { // leaf node
         printf("leaf\n");
         const struct vec3 pos = collidables[i - (n - 1)].position;
