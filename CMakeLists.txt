@@ -8,7 +8,7 @@ option(GLFW_BUILD_DOCS OFF)
 add_subdirectory(libs/glfw)
 
 set(OpenCL_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/OpenCL-Headers)
-find_package(OpenCL)
+find_package(OpenCL 3.0)
 
 option(BUILD_DOCS "Build Documentation" OFF)
 option(BUILD_EXAMPLES "Build Examples" OFF)
