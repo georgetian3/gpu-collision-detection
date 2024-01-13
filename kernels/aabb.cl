@@ -32,8 +32,8 @@ __kernel void calculate_absolute_aabb(
         struct AABB a, b;
         struct vec3 min, max;
 
-        a = collidables[nodes[i].left ].aabb;
-        b = collidables[nodes[i].right].aabb;
+        a = nodes[nodes[i].left ].aabb;
+        b = nodes[nodes[i].right].aabb;
 
         min.x = MIN(a.min.x, b.min.x);
         min.y = MIN(a.min.y, b.min.y);
