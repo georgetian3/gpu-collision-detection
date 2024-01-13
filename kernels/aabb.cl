@@ -41,9 +41,6 @@ __kernel void calculate_absolute_aabb(
         a = collidables[nodes[i].left ].aabb;
         b = collidables[nodes[i].right].aabb;
 
-        printf("%f %f %f %f %f %f\n", a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z);
-        printf("%f %f %f %f %f %f\n", b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z);
-
 
         c.min.x = MIN(a.min.x, b.min.x);
         c.min.y = MIN(a.min.y, b.min.y);
@@ -52,7 +49,7 @@ __kernel void calculate_absolute_aabb(
         c.max.y = MAX(a.max.y, b.max.y);
         c.max.z = MAX(a.max.z, b.max.z);
 
-        printf("%f %f %f %f %f %f\n", c.min.x, c.min.y, c.min.z, c.max.x, c.max.y, c.max.z);
+        printf("%f %f %f %f %f %f\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n", a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z, b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, c.min.x, c.min.y, c.min.z, c.max.x, c.max.y, c.max.z);
 
 
         nodes[i].aabb = c;
