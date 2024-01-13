@@ -29,22 +29,22 @@ __kernel void calculate_absolute_aabb(
         nodes[i].aabb.min = vec_add(pos, aabb.min);
         nodes[i].aabb.max = vec_add(pos, aabb.max);
     } else {
-        struct AABB a, b, c;
+        struct AABB a, b, min, max;
 
         a = collidables[nodes[i].left ].aabb;
         b = collidables[nodes[i].right].aabb;
 
-        c.min.x = min(a.min.x, b.min.x);
-        c.min.y = min(a.min.y, b.min.y);
-        c.min.z = min(a.min.z, b.min.z);
-        c.max.x = max(a.max.x, b.max.x);
-        c.max.y = max(a.max.y, b.max.y);
-        c.max.z = max(a.max.z, b.max.z);
+        min.x = MIN(a.min.x, b.min.x);
+        min.y = MIN(a.min.y, b.min.y);
+        min.z = MIN(a.min.z, b.min.z);
+        max.x = MAX(a.max.x, b.max.x);
+        max.y = MAX(a.max.y, b.max.y);
+        max.z = MAX(a.max.z, b.max.z);
 
-        printf("%d %d %d\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n\n", nodes[i].parent, nodes[i].left, nodes[i].right, a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z, b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, c.min.x, c.min.y, c.min.z, c.max.x, c.max.y, c.max.z);
+        printf("%d %d %d\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n\n", nodes[i].parent, nodes[i].left, nodes[i].right, a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z, b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, min.x, min.y, min.z, max.x, max.y, max.z);
 
-
-        nodes[i].aabb = c;
+        nodes[i].aabb.min = min;
+        nodes[i].aabb.max = max;
     }
 
     if (nodes[i].parent != -1) {
