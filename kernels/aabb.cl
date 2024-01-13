@@ -46,7 +46,7 @@ __kernel void calculate_absolute_aabb(
         c.max.y = max(a.max.y, b.max.y);
         c.max.z = max(a.max.z, b.max.z);
 
-        printf("%f %f %f %f %f %f\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n", a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z, b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, c.min.x, c.min.y, c.min.z, c.max.x, c.max.y, c.max.z);
+        printf("%f %f %f %f %f %f\n%f %f %f %f %f %f\n%f %f %f %f %f %f\n\n", a.min.x, a.min.y, a.min.z, a.max.x, a.max.y, a.max.z, b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, c.min.x, c.min.y, c.min.z, c.max.x, c.max.y, c.max.z);
 
 
         nodes[i].aabb = c;
