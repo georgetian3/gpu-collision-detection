@@ -13,8 +13,13 @@ __kernel void calculate_absolute_aabb(
 
     if (i < 0) {
         i = get_global_id(0);
-    } else if (!atomic_add(processed + i, 1)) {
-        return;
+    } else {
+        printf("Internal\n");
+        if (!atomic_add(processed + i, 1)) {
+            printf("First entry\n");
+            return;
+        }
+        printf("Second entry\n");
     }
 
 
