@@ -9,7 +9,7 @@ R"(
 __kernel void calculate_absolute_aabb(
     int i,
     int n,
-    __global atomic_int* processed,
+    __global int* processed,
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
@@ -18,7 +18,7 @@ __kernel void calculate_absolute_aabb(
         i = get_global_id(0);
     } else {
         printf("Internal\n");
-        if (!atomic_add(processed + i, 1)) {
+        if (!atomic_inc(processed + i)) {
             printf("First entry\n");
             return;
         }
