@@ -13,7 +13,7 @@ __kernel void calculate_absolute_aabb(
 
     if (i < 0) {
         i = get_global_id(0);
-    } else if (!atomic_flag_test_and_set_explicit(processed + i)) {
+    } else if (!atomic_add(processed + i, 1)) {
         return;
     }
 
