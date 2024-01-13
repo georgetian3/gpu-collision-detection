@@ -48,7 +48,6 @@ void Scene::render() {
     
     shader.use();
 
-
     Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
@@ -100,7 +99,6 @@ void Scene::render() {
             // }
         // }
         renderGui();
-
 
         glfwSwapBuffers(window);
         glfwPollEvents();
