@@ -1,5 +1,8 @@
 R"(
 
+#pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
+#pragma OPENCL EXTENSION cl_khr_local_int32_base_atomics : enable
+
 #define MIN(a, b) a < b ? a : b
 #define MAX(a, b) a < b ? b : a
 
