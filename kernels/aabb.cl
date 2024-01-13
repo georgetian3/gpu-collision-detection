@@ -26,10 +26,8 @@ __kernel void calculate_absolute_aabb(
     struct Node node = nodes[i];
     printf("%d %d %d\n", node.parent, node.left, node.right);
     if (nodes[i].left == -1) { // leaf node
-        printf("leaf\n");
         const struct vec3 pos = collidables[i - (n - 1)].position;
         const struct AABB aabb = collidables[i - (n - 1)].aabb;
-        printf("%f %f %f %f %f %f %f %f %f\n", pos.x, pos.y, pos.z, aabb.min.x, aabb.min.y, aabb.min.z, aabb.max.x, aabb.max.y, aabb.max.z);
         nodes[i].aabb.min = vec_add(pos, aabb.min);
         nodes[i].aabb.max = vec_add(pos, aabb.max);
     } else {
