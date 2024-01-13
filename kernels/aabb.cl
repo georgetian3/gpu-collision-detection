@@ -17,12 +17,9 @@ __kernel void calculate_absolute_aabb(
     if (i < 0) {
         i = get_global_id(0);
     } else {
-        printf("Internal\n");
         if (!atomic_inc(processed + i)) {
-            printf("First entry\n");
             return;
         }
-        printf("Second entry\n");
     }
 
 
@@ -56,7 +53,6 @@ __kernel void calculate_absolute_aabb(
     }
 
     if (nodes[i].parent != -1) {
-        printf("recursing\n");
         calculate_absolute_aabb(nodes[i].parent, n, processed, collidables, nodes);
     }
 
