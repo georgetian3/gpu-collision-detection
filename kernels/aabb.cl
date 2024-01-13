@@ -42,7 +42,7 @@ __kernel void calculate_absolute_aabb(
         b = collidables[nodes[i].right].aabb;
 
 
-        c.min.x = MIN(a.min.x, b.min.x);
+        c.min.x = min(a.min.x, b.min.x);
         c.min.y = MIN(a.min.y, b.min.y);
         c.min.z = MIN(a.min.z, b.min.z);
         c.max.x = MAX(a.max.x, b.max.x);
