@@ -17,54 +17,29 @@ void Scene::handleMenu() {
 
 
 void Scene::init() {
-//     glfwInit();
-//     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-//     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-//     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-// #ifdef __APPLE__
-//     glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_TRUE);
-// #endif
-//     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-
-//     bool fullscreen = false;
-//     auto primaryMonitor = glfwGetPrimaryMonitor();
-
-//     printLocation();
-//     std::cout << "ww wh " << windowWidth << ' ' << windowHeight << '\n';
-//     window = glfwCreateWindow(windowWidth, windowHeight, "GPU Collision Detection", nullptr, nullptr);
-
-//     printLocation();
-//     if (window == nullptr) {
-//         std::cerr << "Failed to create OpenGL context" << '\n';
-//         exit(1);
-//     }
-//     glfwMakeContextCurrent(window);
-
-glfwInit();
+    glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_FALSE);
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_TRUE);
+#endif
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-    window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
-    // fullscreen:
 
-    // auto primaryMonitor = glfwGetPrimaryMonitor();
-    // window = glfwCreateWindow(
-    //     glfwGetVideoMode(primaryMonitor)->width,
-    //     glfwGetVideoMode(primaryMonitor)->height,
-    //     "OpenGL Scene", primaryMonitor, nullptr
-    // );
+    bool fullscreen = false;
+    auto primaryMonitor = glfwGetPrimaryMonitor();
 
+    printLocation();
+    std::cout << "ww wh " << windowWidth << ' ' << windowHeight << '\n';
+    window = glfwCreateWindow(windowWidth, windowHeight, "GPU Collision Detection", nullptr, nullptr);
+
+    printLocation();
     if (window == nullptr) {
-        std::cerr << "Failed to Create OpenGL Context";
+        std::cerr << "Failed to create OpenGL context" << '\n';
         exit(1);
     }
     glfwMakeContextCurrent(window);
-
-    
     glfwSetWindowUserPointer(window, this);
     glfwSetWindowSizeCallback(window, genericCallback(windowSizeCallback));
     glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
