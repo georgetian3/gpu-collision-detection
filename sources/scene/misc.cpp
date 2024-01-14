@@ -68,11 +68,6 @@ void Scene::init() {
 
 }
 
-void Scene::setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector) {
-    this->collisionDetector = collisionDetector;
-}
-
-
 
 Scene::~Scene() {
     ImGui_ImplOpenGL3_Shutdown();

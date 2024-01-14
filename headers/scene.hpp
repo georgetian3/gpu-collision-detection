@@ -36,7 +36,6 @@ class Scene {
         return (path.is_absolute() ? path : (cwd / path)).make_preferred();
     }
 
-    std::shared_ptr<CollisionDetector> collisionDetector;
 
 
 
