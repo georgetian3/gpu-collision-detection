@@ -155,6 +155,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     sources.push_back(std::string(
         #include <aabb.cl>
     ));
+    sources.push_back(std::string(
+        #include <physics.cl>
+    ));
 
     cl::Program program = cl::Program(context, sources);
     try {
@@ -170,6 +173,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         kernelMortonCode = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
         kernelAABB = cl::Kernel(program, "calculate_absolute_aabb");
+        kernelPhysics = cl::Kernel(program, "update_physics");
     } catch (const cl::Error& e) {
         printClError(e);
     }

@@ -8,7 +8,7 @@
 #include <filesystem>
 #include <glm/glm.hpp>
 #include <utils.hpp>
-#include <collision_detector.hpp>
+#include <gpu_collision_detector.hpp>
 
 class Scene {
 
@@ -70,6 +70,9 @@ class Scene {
     void mouseCallback(double xposIn, double yposIn);
     void windowSizeCallback(int width, int height);
     void init();
+
+    std::vector<Collidable> collidables;
+    GpuCollisionDetector gpuCD;
 
 
 public:

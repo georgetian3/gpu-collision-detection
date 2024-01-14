@@ -9,7 +9,6 @@
 class Model {
 
     unsigned int VAO, VBO, EBO, IBO;
-    void setupMesh() {};
 
 public:
 
@@ -111,7 +110,6 @@ const std::vector<unsigned int> cubeIndices = {
 std::vector<float> sphereVertices;
 std::vector<float> sphereIndices;
 
-Model cube = Model(cubeVertices, cubeIndices);
 
 
 #endif

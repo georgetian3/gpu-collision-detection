@@ -16,7 +16,7 @@ struct Node {
     AABB aabb;
 };
 
-class GpuCollisionDetector: public CollisionDetector {
+class GpuCollisionDetector {
 
     int selected_platform_index = -1;
     int selected_device_index = -1;
@@ -36,14 +36,15 @@ class GpuCollisionDetector: public CollisionDetector {
     cl::Kernel kernelMortonCode;
     cl::Kernel kernelConstruct;
     cl::Kernel kernelAABB;
-
+    cl::Kernel kernelPhysics;
 
 public:
 
     GpuCollisionDetector();
 
+    void updatePhysics(double dt);
     void setCollidables(const std::vector<Collidable>& collidables);
-
+    std::vector<glm::mat4> getModelMatrices();
     std::vector<Collision> detectCollisions();
 
 

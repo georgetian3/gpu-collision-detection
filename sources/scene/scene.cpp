@@ -50,7 +50,7 @@ void Scene::render() {
 
     std::cout << "here\n";
 
-    // Model cube = Model(cubeVertices, cubeIndices);
+    Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
         glm::vec3(1.0f),
@@ -78,6 +78,8 @@ void Scene::render() {
             frameCount = 0;
         }
 
+        
+
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -85,11 +87,9 @@ void Scene::render() {
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
-        cube.setModelMatrices(modelMatrices);
+        gpuCD.updatePhysics(dt);
+        cube.setModelMatrices(gpuCD.getModelMatrices());
         cube.draw();
-
-
-        // collisionDetector->detectCollisions();
 
         // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
             // glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);

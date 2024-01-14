@@ -49,6 +49,8 @@ struct Collidable {
     double yl = 0;
     double zl = 0;
 
+    glm::dvec3 velocity = glm::dvec3(0.0);
+
     Collidable() {}
 
     Collidable::Collidable(

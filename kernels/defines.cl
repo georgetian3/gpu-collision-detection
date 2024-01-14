@@ -17,6 +17,11 @@ inline struct vec3 vec_add(const struct vec3 a, const struct vec3 b) {
     return r;
 }
 
+inline struct vec3 vec_mul(const struct vec3 v, const double f) {
+    const struct vec3 r = {f * v.x, f * v.y, f * v.z};
+    return r;
+}
+
 struct AABB {
     struct vec3 min;
     struct vec3 max;
@@ -47,6 +52,8 @@ struct Collidable {
 
     double yl;
     double zl;
+
+    struct vec3 velocity;
 
 };
 
