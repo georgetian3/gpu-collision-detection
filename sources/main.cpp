@@ -44,7 +44,6 @@
 
 #include <shader.hpp>
 #include <camera.hpp>
-#include <learnopengl/model.h>
 
 #include <iostream>
 
