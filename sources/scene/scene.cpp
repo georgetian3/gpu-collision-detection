@@ -61,6 +61,8 @@ void Scene::render() {
         modelMatrices.push_back(glm::translate(glm::mat4(1.0f), position));
     }
 
+    int total = 0;
+
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
 
@@ -70,6 +72,11 @@ void Scene::render() {
         processInput(window, dt);
 
         frameCount++;
+        total++;
+        if (total > 100) {
+            std::cout << "total > 100\n";
+            break;
+        }
         if (currentTime - prevFpsTime > updateInterval) {
             fps = frameCount / (currentTime - prevFpsTime);
             prevFpsTime = currentTime;
