@@ -109,7 +109,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     // select platform
     std::vector<cl::Platform> platforms;
+    printLocation();
     cl::Platform::get(&platforms);
+    printLocation();
     if (platforms.empty()) {
         std::cerr << "No platforms found";
         exit(1);
