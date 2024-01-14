@@ -60,7 +60,6 @@ void Scene::render() {
     for (const auto& position: positions) {
         modelMatrices.push_back(glm::translate(glm::mat4(1.0f), position));
     }
-    cube.setModelMatrices(modelMatrices);
 
 
     glEnable(GL_DEPTH_TEST);
@@ -86,6 +85,7 @@ void Scene::render() {
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
+        cube.setModelMatrices(modelMatrices);
         cube.draw();
 
 
