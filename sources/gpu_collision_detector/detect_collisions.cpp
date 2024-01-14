@@ -15,10 +15,6 @@ bool comp(const Collidable& a, const Collidable b) {
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
-    for (const auto& collidable: collidables) {
-        std::cout << collidable.toString() << '\n';
-    }
-
     queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
     queue.finish();
 
