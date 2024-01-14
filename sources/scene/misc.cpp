@@ -39,6 +39,7 @@ void Scene::init() {
         )
         : glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
 
+    printLocation();
     if (window == nullptr) {
         std::cerr << "Failed to create OpenGL context" << '\n';
         exit(1);
