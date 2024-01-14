@@ -11,6 +11,9 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 
     detectCollisions();
 
+        printLocation();
+
+
     try {
         kernelPhysics.setArg(0, sizeof(dt), &dt);
         printLocation();
