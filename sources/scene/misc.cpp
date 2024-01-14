@@ -24,18 +24,10 @@ void Scene::init() {
         std::cerr << "GLFW init failed\n";
         exit(1);
     }
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Failed to initialize GLAD" << '\n';
-        exit(1);
-    }
     glfwSetErrorCallback( error_callback );
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GL_TRUE);
-#endif
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     printLocation();
@@ -53,7 +45,10 @@ void Scene::init() {
     glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
     glfwSetKeyCallback(window, genericCallback(keyCallback));
 
-    
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << '\n';
+        exit(1);
+    }
     printLocation();
     
     glfwSwapInterval(vsync ? 1 : 0);
