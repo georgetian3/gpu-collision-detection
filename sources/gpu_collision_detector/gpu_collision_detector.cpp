@@ -109,9 +109,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
 
     // select platform
     std::vector<cl::Platform> platforms;
-    printLocation();
     cl::Platform::get(&platforms);
-    printLocation();
     if (platforms.empty()) {
         std::cerr << "No platforms found";
         exit(1);
@@ -141,6 +139,8 @@ GpuCollisionDetector::GpuCollisionDetector() {
     cl::Device device = devices[selected_device_index];
     std::cout << "Selected device " << selected_device_index << ":\n";
     // printDeviceInfo(device);
+
+    printLocation();
 
     context = cl::Context(device);
     cl::Program::Sources sources;
@@ -179,6 +179,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     } catch (const cl::Error& e) {
         printClError(e);
     }
+
+    printLocation();
+
 
 }
 
