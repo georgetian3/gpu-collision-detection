@@ -34,9 +34,6 @@ void Scene::init() {
 #endif
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    bool fullscreen = false;
-    auto primaryMonitor = glfwGetPrimaryMonitor();
-
     printLocation();
     std::cout << "ww wh " << windowWidth << ' ' << windowHeight << '\n';
     window = glfwCreateWindow(windowWidth, windowHeight, "GPU Collision Detection", nullptr, nullptr);
