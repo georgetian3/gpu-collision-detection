@@ -15,12 +15,16 @@ void Scene::handleMenu() {
     glfwSetInputMode(window, GLFW_CURSOR, menuOpen ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
 }
 
+void error_callback( int error, const char* description ) {
+    fprintf( stderr, "Error: %s\n", description );
+}
 
 void Scene::init() {
     if (!glfwInit()) {
         std::cerr << "GLFW init failed\n";
         exit(1);
     }
+    glfwSetErrorCallback( error_callback );
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
