@@ -48,8 +48,6 @@ void Scene::render() {
     
     shader.use();
 
-    std::cout << "here\n";
-
     Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
@@ -86,6 +84,8 @@ void Scene::render() {
 
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
+
+        printLocation();
 
         gpuCD.updatePhysics(dt);
         cube.setModelMatrices(gpuCD.getModelMatrices());
