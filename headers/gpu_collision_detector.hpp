@@ -6,6 +6,8 @@
 #define CL_HPP_MINIMUM_OPENCL_VERSION 200
 #include <CL/opencl.hpp>
 
+#include <collidable.hpp>
+
 struct Node {
     int parent = -1;
     int left = -1;
