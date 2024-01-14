@@ -17,7 +17,6 @@ void Scene::handleMenu() {
 
 
 void Scene::init() {
-    printLocation();
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
@@ -54,6 +53,7 @@ void Scene::init() {
         std::cerr << "Failed to initialize GLAD" << '\n';
         exit(1);
     }
+    printLocation();
     
     glfwSwapInterval(vsync ? 1 : 0);
     handleMenu();
