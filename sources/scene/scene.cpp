@@ -20,9 +20,9 @@ Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight
 
     lastX = windowWidth / 2.0;
     lastY = windowHeight / 2.0;
+    printLocation();
     init();
 
-    printLocation();
 }
 
 void Scene::render() {
