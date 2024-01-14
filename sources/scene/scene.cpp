@@ -58,9 +58,8 @@ void Scene::render() {
 
     std::vector<glm::mat4> modelMatrices;
     for (const auto& position: positions) {
-        modelMatrices.push_back(glm::translate(glm::scale(glm::mat4(1.0f), position), position));
+        modelMatrices.push_back(glm::translate(glm::mat4(1.0f), position));
     }
-
 
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
