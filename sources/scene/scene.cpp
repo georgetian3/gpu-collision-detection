@@ -48,6 +48,8 @@ void Scene::render() {
     
     shader.use();
 
+    std::cout << "here\n";
+
     // Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
