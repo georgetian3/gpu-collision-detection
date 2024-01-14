@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
 
-    gpuCd.updatePhysics(0.0005);
+    gpuCD.updatePhysics(0.0005);
 
 
     // Scene scene(
