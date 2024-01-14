@@ -6,22 +6,11 @@
 
 int main(int argc, char* argv[]) {
 
-    printLocation();
-
-
     std::filesystem::path cwd = (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal();
 
     if (argc > 1) {
         std::cout << "Command line arguments ignored\n";
     }
-
-    // std::cout << "sizeof(Host Collidable): " << sizeof(Collidable) << '\n';
-
-    // auto collidables = Collidable::loadConfig(makeAbsolute(cwd, "resources/collidables.txt"));
-    // GpuCollisionDetector gpuCD;
-    // gpuCD.setCollidables(collidables);
-    // gpuCD.detectCollisions();
-
 
     Scene scene(
         (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),

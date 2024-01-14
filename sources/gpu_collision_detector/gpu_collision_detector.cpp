@@ -203,6 +203,9 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelAABB.setArg(2, bufferProcessed);
         kernelAABB.setArg(3, bufferCollidables);
         kernelAABB.setArg(4, bufferNodes);
+        glm::dvec3 gravity = glm::dvec3(0, 0, -9.8);
+        kernelPhysics.setArg(0, bufferCollidables);
+        kernelPhysics.setArg(2, sizeof(gravity), gravity);
     } catch (const cl::Error& e) {
         printClError(e);
     }
