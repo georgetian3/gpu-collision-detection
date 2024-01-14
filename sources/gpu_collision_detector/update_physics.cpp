@@ -6,6 +6,9 @@
 
 void GpuCollisionDetector::updatePhysics(double dt) {
 
+        printLocation();
+
+
     detectCollisions();
 
     try {
@@ -17,6 +20,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         printLocation();
     } catch (const cl::Error& e) {
         printLocation();
+        std::cerr << "err\n";
         printClError(e);
     }
         printLocation();
