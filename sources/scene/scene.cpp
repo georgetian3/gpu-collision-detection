@@ -64,6 +64,12 @@ void Scene::render() {
 
     int total = 0;
 
+    while (total < 10) {
+        gpuCD.updatePhysics(0.0005);
+        total++;
+    }
+    return;
+
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
 
