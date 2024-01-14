@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    auto collidables = Collidable::loadConfig(cwd, makeAbsolute("resources/collidables.txt"));
+    auto collidables = Collidable::loadConfig(makeAbsolute(cwd, "resources/collidables.txt"));
     GpuCollisionDetector gpuCD;
     gpuCD.setCollidables(collidables);
 
