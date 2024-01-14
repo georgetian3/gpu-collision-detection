@@ -12,12 +12,19 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    Scene scene(
-        (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
-        1600, 900
-    );
+    auto collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
+    GpuCollisionDetector gpuCD;
+    gpuCD.setCollidables(collidables);
 
-    scene.render();
+    gpuCd.updatePhysics(0.0005);
+
+
+    // Scene scene(
+    //     (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
+    //     1600, 900
+    // );
+
+    // scene.render();
 
     std::cout << "Done!";
 }
