@@ -31,7 +31,8 @@ void Scene::init() {
     auto primaryMonitor = glfwGetPrimaryMonitor();
 
     printLocation();
-    window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
+    std::cout << "ww wh " << windowWidth << ' ' << windowHeight << '\n';
+    window = glfwCreateWindow(windowWidth, windowHeight, "GPU Collision Detection", nullptr, nullptr);
 
     printLocation();
     if (window == nullptr) {
