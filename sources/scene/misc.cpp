@@ -24,6 +24,10 @@ void Scene::init() {
         std::cerr << "GLFW init failed\n";
         exit(1);
     }
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << '\n';
+        exit(1);
+    }
     glfwSetErrorCallback( error_callback );
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
@@ -49,10 +53,7 @@ void Scene::init() {
     glfwSetCursorPosCallback(window, genericCallback(mouseCallback));
     glfwSetKeyCallback(window, genericCallback(keyCallback));
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Failed to initialize GLAD" << '\n';
-        exit(1);
-    }
+    
     printLocation();
     
     glfwSwapInterval(vsync ? 1 : 0);
