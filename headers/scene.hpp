@@ -79,7 +79,6 @@ public:
 
     Scene(const std::filesystem::path& cwd, int windowWidth = 1280, int windowHeight = 720);
     ~Scene();
-    void setCollisionDetector(std::shared_ptr<CollisionDetector> collisionDetector);
     void render();
     GLFWwindow* getWindow() const {
         return window;
