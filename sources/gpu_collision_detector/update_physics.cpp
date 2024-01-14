@@ -14,6 +14,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
         printLocation();
         queue.finish();
+        printLocation();
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
