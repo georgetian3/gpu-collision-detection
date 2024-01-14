@@ -51,14 +51,14 @@ void Scene::render() {
     Model cube = Model(cubeVertices, cubeIndices);
 
     std::vector<glm::vec3> positions = {
-        glm::vec3(0.0f),
+        glm::vec3(1.0f),
         glm::vec3(5.0f),
         glm::vec3(10.0f),
     };
 
     std::vector<glm::mat4> modelMatrices;
     for (const auto& position: positions) {
-        modelMatrices.push_back(glm::translate(glm::mat4(1.0f), position));
+        modelMatrices.push_back(glm::translate(glm::scale(glm::mat4(1.0f), position), position));
     }
 
 
@@ -81,7 +81,6 @@ void Scene::render() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-        // shader.setMat4("model", glm::scale(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 0.0, -10.0)), glm::dvec3(1)));
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
