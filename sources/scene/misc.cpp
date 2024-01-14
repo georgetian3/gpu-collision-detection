@@ -31,13 +31,7 @@ void Scene::init() {
     auto primaryMonitor = glfwGetPrimaryMonitor();
 
     printLocation();
-    window = fullscreen
-        ? glfwCreateWindow(
-            glfwGetVideoMode(primaryMonitor)->width,
-            glfwGetVideoMode(primaryMonitor)->height,
-            "OpenGL Scene", primaryMonitor, nullptr
-        )
-        : glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
+    window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Scene", nullptr, nullptr);
 
     printLocation();
     if (window == nullptr) {
