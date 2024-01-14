@@ -12,7 +12,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
     detectCollisions();
 
     try {
-        kernelPhysics.setArg(1, sizeof(dt), &dt);
+        kernelPhysics.setArg(0, sizeof(dt), &dt);
         printLocation();
         queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
         printLocation();
