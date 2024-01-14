@@ -34,7 +34,7 @@ std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
                 exit(1);
             }
         }
-        modelMatrices.push_back(glm::translate(glm::scale(glm::vec3(1.0f), scale), collidable.position));
+        modelMatrices.push_back(glm::translate(glm::scale(glm::mat4(1.0f), scale), collidable.position));
     }
     return modelMatrices;
 }
