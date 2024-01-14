@@ -183,7 +183,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
     this->collidables = collidables;
     int n = collidables.size();
-    std::cout << "setCollidables collidables count: " << n << '\n';
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
     nodes.resize(n * 2 - 1);
@@ -210,22 +209,4 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         printClError(e);
     }
 
-    // switch (collidable.type) {
-    //     case SPHERE: {
-    //         const double radius = collidable.radius;
-    //         collidable.relativeAABB.min.x = position.x - radius;
-    //         collidable.relativeAABB.min.y = position.y - radius;
-    //         collidable.relativeAABB.min.z = position.z - radius;
-    //         collidable.relativeAABB.max.x = position.x + radius;
-    //         collidable.relativeAABB.max.y = position.y + radius;
-    //         collidable.relativeAABB.max.z = position.z + radius;
-    //         break;
-    //     }
-    //     case CUBE: {
-    //         break;
-    //     }
-    //     case RECTANGULAR_CUBOID: {
-    //         break;
-    //     }
-    // };
 }
