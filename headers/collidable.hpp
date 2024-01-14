@@ -55,7 +55,7 @@ struct Collidable {
 
     Collidable() {}
 
-    Collidable::Collidable(
+    Collidable(
         const CollidableType type,
         const glm::dvec3& position,
         const double xl,
