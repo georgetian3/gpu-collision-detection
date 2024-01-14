@@ -15,7 +15,6 @@ bool comp(const Collidable& a, const Collidable b) {
 
 std::vector<Collision> GpuCollisionDetector::detectCollisions() {
 
-
     try {
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
@@ -23,6 +22,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::sort(collidables.begin(), collidables.end(), comp);
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
         queue.finish();
+        queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_int) * processed_zeros.size(), processed_zeros.data());
         queue.enqueueNDRangeKernel(kernelAABB, cl::NDRange(collidables.size() - 1), cl::NDRange(collidables.size()));
         queue.finish();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
