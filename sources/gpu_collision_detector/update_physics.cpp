@@ -19,6 +19,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         printLocation();
         printClError(e);
     }
+        printLocation();
 
 }
 
