@@ -140,8 +140,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
     std::cout << "Selected device " << selected_device_index << ":\n";
     // printDeviceInfo(device);
 
-    printLocation();
-
     context = cl::Context(device);
     cl::Program::Sources sources;
 
@@ -180,7 +178,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
         printClError(e);
     }
 
-    printLocation();
 
 
 }
