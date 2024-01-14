@@ -17,7 +17,10 @@ void Scene::handleMenu() {
 
 
 void Scene::init() {
-    glfwInit();
+    if (!glfwInit()) {
+        std::cerr << "GLFW init failed\n";
+        exit(1);
+    }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
