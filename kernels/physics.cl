@@ -9,7 +9,7 @@ __kernel void update_physics(__global struct Collidable* collidables, const doub
         new_velocity.x, new_velocity.y, new_velocity.z
     );
     collidables[i].position = vec_mul(vec_add(collidable.velocity, new_velocity), 0.5 * dt);
-    collidables[i].velocity = new_velocity;
+    // collidables[i].velocity = new_velocity;
 }
 
 )"
