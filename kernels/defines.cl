@@ -63,5 +63,36 @@ inline int node_to_collidables_index(int i, int n) {
     return i - (n - 1);
 }
 
+struct Stack {
+    int* data;
+    int size;
+    int max_size;
+}
+
+void stack_init(struct Stack* stack, int max_size) {
+    stack->data = malloc(sizeof(int) * max_size);
+    stack->size = 0;
+    stack->max_size = max_size;
+}
+
+void stack_destroy(struct Stack* stack) {
+    free(stack->data);
+}
+
+void stack_push(struct Stack* stack, int obj) {
+    if (size >= max_size) {
+        printf("Exceeded stack size\n";
+        return;
+    }
+    stack->data[(stack->size)++] = obj;
+}
+
+int stack_pop(struct Stack* stack) {
+    if (stack->size == 0) {
+        printf("Popping empty stack\n");
+        return -1;
+    }
+    return stack->data[--(stack->size)];
+}
 
 )"

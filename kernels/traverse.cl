@@ -12,28 +12,41 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 __kernel void traverse(
     int i,
     int n,
-    const int node_i,
     __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
     if (i < 0) {
         i = get_global_id(0);
     }
-    const struct Node node = nodes[node_i];
-    if (!overlaps(collidables[i].aabb, node.aabb)) {
-        return;
-    }
-    if (node.left == -1) { // leaf
-        int j = node_i - (n - 1);
-        if (j < i) {
+    
+    struct Collidable collidable_i = collidables[i];
+    const struct Node node;
+
+    struct Stack stack;
+    stack_init(&stack, n * 2 - 1);
+
+    stack_push(&stack, 0);
+
+
+    while (stack.size) {
+        node = nodes[stack_pop(&stack)];
+        if (!overlaps(collidable_i.aabb, node.aabb)) {
             return;
         }
-        printf("colliding %d %d\n", i, j);
-        return;
-    }
-    traverse(i, n, node.left , collidables, nodes);
-    traverse(i, n, node.right, collidables, nodes);
+        if (node.left == -1) { // leaf
+            int j = node_i - (n - 1);
+            if (j < i) {
+                return;
+            }
+            printf("colliding %d %d\n", i, j);
+            return;
+        }
 
+        stack_push(&stack, node.left );
+        stack_push(&stack, node.right);
+
+    }
+    
 }
 
 )"
