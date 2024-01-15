@@ -75,8 +75,10 @@ void Scene::render() {
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
-        gpuCD.updatePhysics(dt);
-        cube.setModelMatrices(gpuCD.getModelMatrices());
+        if (pausePhysics) {
+            gpuCD.updatePhysics(dt);
+            cube.setModelMatrices(gpuCD.getModelMatrices());
+        }
         cube.draw();
 
         // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
