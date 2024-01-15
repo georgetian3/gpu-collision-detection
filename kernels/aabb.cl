@@ -13,15 +13,15 @@ __kernel void calculate_absolute_aabb(
     __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
-    printf("entry\n");
+    // printf("entry\n");
     if (i < 0) {
         i = get_global_id(0);
     } else {
         if (!atomic_inc(processed + i)) {
-            printf("returning\n");
+            // printf("returning\n");
             return;
         }
-        printf("continuing\n");
+        // printf("continuing\n");
     }
 
 
@@ -49,7 +49,7 @@ __kernel void calculate_absolute_aabb(
     }
 
     if (nodes[i].parent != -1) {
-        printf("recursing\n");
+        // printf("recursing\n");
         calculate_absolute_aabb(nodes[i].parent, n, processed, collidables, nodes);
     }
 

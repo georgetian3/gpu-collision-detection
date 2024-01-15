@@ -15,9 +15,9 @@ __kernel void construct_tree(
     __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
-    printf("here\n");
+    // printf("here\n");
     int i = get_global_id(0);
-    printf("construct tree %d\n", i);
+    // printf("construct tree %d\n", i);
     // if (i != 0) {
     //     return;
     // }
@@ -61,7 +61,7 @@ __kernel void construct_tree(
     int g = i + s * d + min(d, 0);
     int left = (min(i, j) == g) ? (g + n - 1) : g;
     int right = (max(i, j) == g + 1) ? (g + n) : (g + 1);
-    printf("l r %d %d\n", left, right);
+    // printf("l r %d %d\n", left, right);
     nodes[i].left = left;
     nodes[i].right = right;
     nodes[left].parent = i;
