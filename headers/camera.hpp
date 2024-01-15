@@ -45,7 +45,7 @@ public:
     Camera(
         const glm::dvec3 position = glm::dvec3(0.0),
         double yaw = 270, double pitch = 0, 
-        double speed = 5, double sensitivity = 0.1,
+        double speed = 1, double sensitivity = 0.1,
         double zoom = 45, double aspectRatio = 16.0 / 9.0
     );
 
