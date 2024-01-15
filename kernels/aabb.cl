@@ -18,10 +18,10 @@ __kernel void calculate_absolute_aabb(
         i = get_global_id(0);
     } else {
         if (!atomic_inc(processed + i)) {
-            print("returning\n");
+            printf("returning\n");
             return;
         }
-        print("continuing\n");
+        printf("continuing\n");
     }
 
 
