@@ -51,17 +51,6 @@ void Scene::render() {
 
     Model cube = Model(cubeVertices, cubeIndices);
 
-    std::vector<glm::vec3> positions = {
-        glm::vec3(1.0f),
-        glm::vec3(5.0f),
-        glm::vec3(10.0f),
-    };
-
-    std::vector<glm::mat4> modelMatrices;
-    for (const auto& position: positions) {
-        modelMatrices.push_back(glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f)), position));
-    }
-
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
 
