@@ -16,7 +16,7 @@ __kernel void update_physics(
         collidable.position.x, collidable.position.y, collidable.position.z, 
         new_position.x, new_position.y, new_position.z
     );
-    // collidables[i].position = new_position
+    collidables[i].position = new_position;
     collidables[i].velocity = new_velocity;
 }
 
