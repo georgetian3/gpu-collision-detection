@@ -1,4 +1,4 @@
-// R"(
+R"(
 
 inline bool overlaps(const struct AABB a, const struct AABB b) {
     return (
@@ -36,4 +36,4 @@ __kernel void traverse(
 
 }
 
-// )"
+)"
