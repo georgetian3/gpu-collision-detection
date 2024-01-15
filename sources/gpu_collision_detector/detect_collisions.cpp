@@ -25,7 +25,7 @@ std::vector<Collision> GpuCollisionDetector::detectCollisions() {
         std::sort(collidables.begin(), collidables.end(), comp);
         queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
         printLocation();
-        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size()));
+        queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
         printLocation();
         queue.finish();
         printLocation();
