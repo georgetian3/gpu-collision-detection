@@ -29,7 +29,8 @@ __kernel void traverse(
 
 
     while (stack.size) {
-        node = nodes[stack_pop(&stack)];
+        int node_i = stack_pop(&stack)
+        node = nodes[node_i];
         if (!overlaps(collidable_i.aabb, node.aabb)) {
             return;
         }
