@@ -15,6 +15,7 @@ __kernel void construct_tree(
     __global const struct Collidable* collidables,
     __global struct Node* nodes
 ) {
+    printf("here\n");
     int i = get_global_id(0);
     printf("construct tree %d\n", i);
     // if (i != 0) {
