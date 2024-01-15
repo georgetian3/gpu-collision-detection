@@ -156,6 +156,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
         #include <aabb.cl>
     ));
     sources.push_back(std::string(
+        #include <traverse.cl>
+    ));
+    sources.push_back(std::string(
         #include <physics.cl>
     ));
 
@@ -173,6 +176,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         kernelMortonCode = cl::Kernel(program, "mortonCodeAABB");
         kernelConstruct = cl::Kernel(program, "construct_tree");
         kernelAABB = cl::Kernel(program, "calculate_absolute_aabb");
+        kernelTraverse = cl::Kernel(program, "traverse");
         kernelPhysics = cl::Kernel(program, "update_physics");
     } catch (const cl::Error& e) {
         printClError(e);
@@ -213,6 +217,12 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelAABB.setArg(2, bufferProcessed);
         kernelAABB.setArg(3, bufferCollidables);
         kernelAABB.setArg(4, bufferNodes);
+        int zero = 0;
+        kernelTraverse.setArg(0, sizeof(int), &i);
+        kernelTraverse.setArg(1, sizeof(int), &n);
+        kernelTraverse.setArg(2, sizeof(int), &zero);
+        kernelTraverse.setArg(3, bufferCollidables);
+        kernelTraverse.setArg(4, bufferNodes);
         glm::dvec3 gravity = glm::dvec3(0, -9.8, 0);
         kernelPhysics.setArg(0, bufferCollidables);
         kernelPhysics.setArg(2, sizeof(gravity), &gravity);

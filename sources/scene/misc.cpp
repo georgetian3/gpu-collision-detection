@@ -34,11 +34,8 @@ void Scene::init() {
 #endif
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    printLocation();
-    std::cout << "ww wh " << windowWidth << ' ' << windowHeight << '\n';
     window = glfwCreateWindow(windowWidth, windowHeight, "GPU Collision Detection", nullptr, nullptr);
 
-    printLocation();
     if (window == nullptr) {
         std::cerr << "Failed to create OpenGL context" << '\n';
         exit(1);
@@ -53,7 +50,6 @@ void Scene::init() {
         std::cerr << "Failed to initialize GLAD" << '\n';
         exit(1);
     }
-    printLocation();
     
     glfwSwapInterval(vsync ? 1 : 0);
     handleMenu();

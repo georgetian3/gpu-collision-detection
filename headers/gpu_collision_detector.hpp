@@ -35,6 +35,7 @@ class GpuCollisionDetector {
     cl::Kernel kernelMortonCode;
     cl::Kernel kernelConstruct;
     cl::Kernel kernelAABB;
+    cl::Kernel kernelTraverse;
     cl::Kernel kernelPhysics;
 
 public:
