@@ -13,7 +13,7 @@ __kernel void calculate_absolute_aabb(
     __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
-
+    printf("entry\n");
     if (i < 0) {
         i = get_global_id(0);
     } else {
