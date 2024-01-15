@@ -79,7 +79,7 @@ void stack_destroy(struct Stack* stack) {
 
 void stack_push(struct Stack* stack, int obj) {
     if (stack->size >= stack->max_size) {
-        printf("Exceeded stack size\n";
+        printf("Exceeded stack size\n");
         return;
     }
     stack->data[(stack->size)++] = obj;
