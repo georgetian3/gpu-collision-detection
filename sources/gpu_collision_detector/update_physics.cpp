@@ -4,6 +4,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 
+bool comp(const Collidable& a, const Collidable b) {
+    return a.mortonCode < b.mortonCode;
+}
+
+
 void GpuCollisionDetector::updatePhysics(double dt) {
 
     try {
