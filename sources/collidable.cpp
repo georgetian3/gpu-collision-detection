@@ -66,7 +66,8 @@ Collidable::Collidable(
     const double zl
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {
     switch (type) {
-        case CollidableType::sphere: {
+        case CollidableType::sphere: 
+        case CollidableType::cube: {
             aabb.min = glm::dvec3(-xl);
             aabb.max = glm::dvec3(xl);
             break;
