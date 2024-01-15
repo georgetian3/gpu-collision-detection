@@ -29,12 +29,10 @@ __kernel void construct_tree(
     const int d_min = common_prefix_length(collidables, n, i, i - d);
     int l_max = 2;
     while (common_prefix_length(collidables, n, i, i + l_max * d) > d_min) {
-        printf("while1\n");
         l_max *= 2;
     }
     int l = 0;
     for (int t = l_max / 2; t >= 1; t /= 2) {
-        printf("for1\n");
         if (common_prefix_length(collidables, n, i, i + (l + t) * d) > d_min) {
             l += t;
         }
@@ -47,7 +45,6 @@ __kernel void construct_tree(
     int t;
     int dividend = 1;
     while (true) {
-        printf("while2\n");
         dividend *= 2;
         t = ceil((double)l / dividend);
         if (common_prefix_length(collidables, n, i, i + (s + t) * d) > d_n) {
