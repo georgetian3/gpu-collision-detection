@@ -16,6 +16,7 @@ __kernel void construct_tree(
     __global struct Node* nodes
 ) {
     int i = get_global_id(0);
+    printf("construct tree %d\n", i);
     // if (i != 0) {
     //     return;
     // }
