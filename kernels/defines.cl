@@ -39,6 +39,8 @@ struct Collidable {
     unsigned int id;
     unsigned int type;
 
+    bool immovable;
+
     struct vec3 position;
     ulong mortonCode;
 
