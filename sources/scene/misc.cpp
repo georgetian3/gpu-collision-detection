@@ -66,6 +66,9 @@ void Scene::init() {
     ImGui_ImplOpenGL3_Init("#version 400");
 
     collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
+    Collidable ground = Collidable::constructCube(glm::dvec3(0.0), 1000);
+    ground.immovable = true;
+    collidables.push_back(ground);
     gpuCD.setCollidables(collidables);
 
 }
