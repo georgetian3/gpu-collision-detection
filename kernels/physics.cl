@@ -13,7 +13,7 @@ __kernel void update_physics(
         collidable.velocity.x, collidable.velocity.y, collidable.velocity.z, 
         new_velocity.x, new_velocity.y, new_velocity.z
     );
-    // collidables[i].position = vec_mul(vec_add(collidable.velocity, new_velocity), 0.5 * dt);
+    collidables[i].position = vec_mul(vec_add(collidable.velocity, new_velocity), 0.5 * dt);
     collidables[i].velocity = new_velocity;
 }
 
