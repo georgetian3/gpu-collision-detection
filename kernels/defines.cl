@@ -64,19 +64,17 @@ inline int node_to_collidables_index(int i, int n) {
 }
 
 struct Stack {
-    int* data;
+    int data[64];
     int size;
     int max_size;
 };
 
 void stack_init(struct Stack* stack, int max_size) {
-    stack->data = malloc(sizeof(int) * max_size);
     stack->size = 0;
-    stack->max_size = max_size;
+    stack->max_size = 64;
 }
 
 void stack_destroy(struct Stack* stack) {
-    free(stack->data);
 }
 
 void stack_push(struct Stack* stack, int obj) {
