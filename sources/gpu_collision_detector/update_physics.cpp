@@ -6,27 +6,21 @@
 
 void GpuCollisionDetector::updatePhysics(double dt) {
 
-        printLocation();
-
-
     detectCollisions();
 
-        printLocation();
-
-
-    try {
-        kernelPhysics.setArg(1, sizeof(dt), &dt);
-        printLocation();
-        queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
-        printLocation();
-        queue.finish();
-        printLocation();
-    } catch (const cl::Error& e) {
-        printLocation();
-        std::cerr << "err\n";
-        printClError(e);
-    }
-        printLocation();
+    // try {
+    //     kernelPhysics.setArg(1, sizeof(dt), &dt);
+    //     printLocation();
+    //     queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
+    //     printLocation();
+    //     queue.finish();
+    //     printLocation();
+    // } catch (const cl::Error& e) {
+    //     printLocation();
+    //     std::cerr << "err\n";
+    //     printClError(e);
+    // }
+    //     printLocation();
 
 }
 
