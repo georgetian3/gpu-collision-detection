@@ -31,7 +31,7 @@ __kernel void traverse(
         printf("colliding %d %d\n", i, j);
         return;
     }
-    // traverse(i, n, node.left , collidables, nodes);
+    traverse(i, n, node.left , collidables, nodes);
     // traverse(i, n, node.right, collidables, nodes);
 
 }
