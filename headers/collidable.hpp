@@ -38,7 +38,7 @@ struct Collidable {
     unsigned int id = -1;
     CollidableType type;
 
-    cl_bool immovable;
+    bool immovable;
 
     glm::dvec3 position = glm::dvec3(0.0);
     uint64_t mortonCode = 0;
