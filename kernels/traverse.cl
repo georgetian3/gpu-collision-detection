@@ -32,7 +32,7 @@ __kernel void traverse(
         return;
     }
     traverse(i, n, node.left , collidables, nodes);
-    // traverse(i, n, node.right, collidables, nodes);
+    traverse(i, n, node.right, collidables, nodes);
 
 }
 
