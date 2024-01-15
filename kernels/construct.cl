@@ -1,6 +1,6 @@
 R"(
 
-inline int common_prefix_length(const __global struct Collidable* collidables, int n, int i, int j) {
+inline int common_prefix_length(__global struct Collidable* collidables, int n, int i, int j) {
     // computes the length of the longest common prefix of morton codes `a` and `b`
     if (j < 0 || j > n - 1) {
         return -1;
@@ -12,7 +12,7 @@ inline int common_prefix_length(const __global struct Collidable* collidables, i
 // https://developer.nvidia.com/blog/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf
 __kernel void construct_tree(
     int n,
-    __global const struct Collidable* collidables,
+    __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
     printf("here\n");
