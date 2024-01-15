@@ -29,7 +29,7 @@ class Camera {
     double sensitivity;
     double zoom;
     double aspectRatio;
-    double nearField = 0.1;
+    double nearField = 0.0001;
     double farField = 1000.0;
 
     bool viewChanged = true;
