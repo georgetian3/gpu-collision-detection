@@ -183,6 +183,15 @@ GpuCollisionDetector::GpuCollisionDetector() {
 }
 
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
+    for (const auto& collidable: collidables) {
+        if (collidable.position.x < 0 || collidable.position.x > 1 ||
+            collidable.position.y < 0 || collidable.position.y > 1 ||
+            collidable.position.z < 0 || collidable.position.z > 1
+        ) {
+            std::cerr << "Collidable position must be in range [0, 1]\n";
+            exit(1);
+        }
+    }
     this->collidables = collidables;
     int n = collidables.size();
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
