@@ -14,7 +14,7 @@ __kernel void update_physics(
         new_velocity.x, new_velocity.y, new_velocity.z
     );
     const struct vec3 tmp = vec_add(collidable.velocity, new_velocity);
-    collidables[i].position = vec_mul(tmp, 0.5 * dt);
+    // collidables[i].position = vec_mul(tmp, 0.5 * dt);
     collidables[i].velocity = new_velocity;
 }
 
