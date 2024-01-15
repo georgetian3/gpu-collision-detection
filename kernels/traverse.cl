@@ -20,7 +20,7 @@ __kernel void traverse(
     }
     
     struct Collidable collidable_i = collidables[i];
-    const struct Node node;
+    struct Node node;
 
     struct Stack stack;
     stack_init(&stack, n * 2 - 1);
