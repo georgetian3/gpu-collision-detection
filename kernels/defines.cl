@@ -67,7 +67,7 @@ struct Stack {
     int* data;
     int size;
     int max_size;
-}
+};
 
 void stack_init(struct Stack* stack, int max_size) {
     stack->data = malloc(sizeof(int) * max_size);
