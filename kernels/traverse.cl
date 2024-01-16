@@ -41,8 +41,8 @@ __kernel void traverse(
                 return;
             }
             printf("colliding %d %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i, j,
-                abs_aabb.aabb.min.x, abs_aabb.aabb.min.y, abs_aabb.aabb.min.z, 
-                abs_aabb.aabb.max.x, abs_aabb.aabb.max.y, abs_aabb.aabb.max.z, 
+                abs_aabb.min.x, abs_aabb.min.y, abs_aabb.min.z, 
+                abs_aabb.max.x, abs_aabb.max.y, abs_aabb.max.z, 
                 node.aabb.min.x, node.aabb.min.y, node.aabb.min.z, 
                 node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
             );
