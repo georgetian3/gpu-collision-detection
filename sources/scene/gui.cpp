@@ -31,7 +31,7 @@ void Scene::renderGui() {
         ImGui::PopStyleColor();
         ImGui::SetWindowSize(ImVec2(static_cast<float>(windowWidth), static_cast<float>(windowWidth)));
         if (ImGui::Checkbox("VSync", &vsync)) glfwSwapInterval(vsync ? 1 : 0); ImGui::SameLine();
-        if (ImGui::Checkbox("Wireframe", &wireframe)) glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
+        if (ImGui::Checkbox("Wireframe", &wireframe)) glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL); ImGui::SameLine();
         ImGui::Checkbox("Pause physics", &pausePhysics);
 
         double sensitivity = camera.getSensitivity(), cameraSpeed = camera.getSpeed();
