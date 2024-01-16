@@ -36,12 +36,14 @@ __kernel void traverse(
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
             struct Collidable collidable_j = collidables[j];
-            if (j < i) {
+            if (j <= i) {
                 return;
             }
-            printf("colliding %d %d (%f %f %f) (%f %f %f)\n", i, j,
-                collidable_i.position.x, collidable_i.position.y, collidable_i.position.z, 
-                collidable_j.position.x, collidable_j.position.y, collidable_j.position.z
+            printf("colliding %d %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i, j,
+                collidable_i.aabb.min.x, collidable_i.aabb.min.y, collidable_i.aabb.min.z, 
+                collidable_i.aabb.max.x, collidable_i.aabb.max.y, collidable_i.aabb.max.z, 
+                collidable_j.aabb.min.x, collidable_j.aabb.min.y, collidable_j.aabb.min.z, 
+                collidable_j.aabb.max.x, collidable_j.aabb.max.y, collidable_j.aabb.max.z
             );
             return;
         }
