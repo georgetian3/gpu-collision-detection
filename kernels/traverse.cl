@@ -27,7 +27,6 @@ __kernel void traverse(
 
     stack_push(&stack, 0);
 
-
     while (stack.size) {
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
@@ -36,10 +35,14 @@ __kernel void traverse(
         }
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
+            struct Collidable collidable_j = collidables[j];
             if (j < i) {
                 return;
             }
-            printf("colliding %d %d\n", i, j);
+            printf("colliding %d %d (%f %f %f) (%f %f %f)\n", i, j,
+                collidable_i.position.x, collidable_i.position.y, collidable_i.position.z, 
+                collidable_j.position.x, collidable_j.position.y, collidable_j.position.z, 
+            );
             return;
         }
 
