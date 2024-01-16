@@ -31,8 +31,9 @@ void GpuCollisionDetector::updatePhysics(double dt) {
             if (i >= collidables.size() - 1) {
                 std::cout << ' ' << toBits(collidables[i - collidables.size() + 1].mortonCode) << ' ' << collidables[i - collidables.size() + 1].mortonCode;
             }
-            std::cout << "\n\n";
+            std::cout << "\n";
         }
+        std::cout << '\n';
         queue.enqueueNDRangeKernel(kernelTraverse, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
         kernelPhysics.setArg(1, sizeof(dt), &dt);
