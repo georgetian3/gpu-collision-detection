@@ -52,7 +52,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
             f >> xl >> yl >> zl;
             collidable = Collidable::constructRectangularCuboid(pos, xl, yl, zl);
         } else {
-            std::cout << "Invalid shape type\n";
+            std::cout << "Invalid shape type: " << type << "\n";
         }
         collidables.emplace_back(collidable);
     }
