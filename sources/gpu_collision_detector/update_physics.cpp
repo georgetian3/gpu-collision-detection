@@ -54,6 +54,10 @@ std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
                 scale = glm::vec3(collidable.length);
                 break;
             }
+            case CollidableType::rectangularCuboid: {
+                scale = glm::vec3(collidable.xl, collidable.yl, collidable.zl);
+                break;
+            }
             default: {
                 printLocation();
                 std::cerr << "Unsupported collidable type\n";

@@ -86,3 +86,6 @@ Collidable Collidable::constructCube(const glm::dvec3& position, const double le
 Collidable Collidable::constructSphere(const glm::dvec3& center, const double radius) {
     return Collidable(CollidableType::sphere, center, radius);
 }
+Collidable Collidable::constructRectangularCuboid(const glm::dvec3& position, const double xl, const double yl, const double zl) {
+    return Collidable(CollidableType::rectangularCuboid, position, xl, yl, zl);
+}
