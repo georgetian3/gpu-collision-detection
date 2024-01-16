@@ -30,7 +30,8 @@ __kernel void traverse(
     while (stack.size) {
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
-        if (!overlaps(absolute_aabb(collidable_i), node.aabb)) {
+        struct AABB abs_aabb = absolute_aabb(collidable_i)
+        if (!overlaps(abs_aabb, node.aabb)) {
             return;
         }
         if (node.left == -1) { // leaf
@@ -40,10 +41,10 @@ __kernel void traverse(
                 return;
             }
             printf("colliding %d %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i, j,
-                collidable_i.aabb.min.x, collidable_i.aabb.min.y, collidable_i.aabb.min.z, 
-                collidable_i.aabb.max.x, collidable_i.aabb.max.y, collidable_i.aabb.max.z, 
-                collidable_j.aabb.min.x, collidable_j.aabb.min.y, collidable_j.aabb.min.z, 
-                collidable_j.aabb.max.x, collidable_j.aabb.max.y, collidable_j.aabb.max.z
+                abs_aabb.aabb.min.x, abs_aabb.aabb.min.y, abs_aabb.aabb.min.z, 
+                abs_aabb.aabb.max.x, abs_aabb.aabb.max.y, abs_aabb.aabb.max.z, 
+                node.aabb.min.x, node.aabb.min.y, node.aabb.min.z, 
+                node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
             );
             return;
         }
