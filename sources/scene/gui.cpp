@@ -39,6 +39,7 @@ void Scene::renderGui() {
         if (SliderDouble("Mouse sensitivity", &sensitivity, 0.01, 1.0)) camera.setSensitivity(sensitivity);
         if (SliderDouble("Camera movement speed", &cameraSpeed, 0.01, 10.0)) camera.setSpeed(cameraSpeed);
         if (SliderDouble("Slow motion", &slowMotion, 1, 100.0));
+        if (ImGui::Button("Reset")) reset = true;
 
         // ImGui::ShowDemoWindow();
 
