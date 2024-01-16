@@ -30,7 +30,7 @@ __kernel void traverse(
     while (stack.size) {
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
-        struct AABB abs_aabb = absolute_aabb(collidable_i)
+        struct AABB abs_aabb = absolute_aabb(collidable_i);
         if (!overlaps(abs_aabb, node.aabb)) {
             return;
         }
