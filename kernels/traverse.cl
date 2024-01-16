@@ -24,11 +24,11 @@ __kernel void traverse(
 
     struct Stack stack;
     stack_init(&stack);
-
     stack_push(&stack, 0);
 
     while (stack.size) {
         int node_i = stack_pop(&stack);
+        printf("%d popped %d\n", i, node_i);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
         if (!overlaps(abs_aabb, node.aabb)) {
