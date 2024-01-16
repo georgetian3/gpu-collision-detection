@@ -70,7 +70,7 @@ Collidable::Collidable(
     switch (type) {
         case CollidableType::sphere: 
         case CollidableType::cube: {
-            aabb.min = glm::dvec3(-xl);
+            aabb.min = glm::dvec3(0);
             aabb.max = glm::dvec3(xl);
             break;
         }
