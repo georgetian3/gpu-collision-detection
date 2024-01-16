@@ -55,4 +55,3 @@ __kernel void traverse(
     
 }
 
-)"
