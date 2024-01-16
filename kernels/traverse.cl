@@ -41,7 +41,7 @@ __kernel void traverse(
             }
             printf("colliding %d %d (%f %f %f) (%f %f %f)\n", i, j,
                 collidable_i.position.x, collidable_i.position.y, collidable_i.position.z, 
-                collidable_j.position.x, collidable_j.position.y, collidable_j.position.z, 
+                collidable_j.position.x, collidable_j.position.y, collidable_j.position.z
             );
             return;
         }
