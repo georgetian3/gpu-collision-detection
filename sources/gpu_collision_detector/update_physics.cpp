@@ -36,6 +36,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         // std::cout << '\n';
         queue.enqueueNDRangeKernel(kernelTraverse, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
+        std::cout << "traversal done\n";
         kernelPhysics.setArg(1, sizeof(dt), &dt);
         queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
