@@ -63,11 +63,8 @@ void Scene::init() {
 
     collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
     Collidable ground = Collidable::constructRectangularCuboid(glm::dvec3(0.0), 1, 0.05, 1);
-    Collidable ground2 = Collidable::constructCube(glm::dvec3(0.6), 0.1);
     ground.immovable = true;
-    ground2.immovable = true;
     collidables.push_back(ground);
-    collidables.push_back(ground2);
     gpuCD.setCollidables(collidables);
 
 }
