@@ -77,8 +77,8 @@ void Scene::render() {
 
         if (!pausePhysics) {
             gpuCD.updatePhysics(dt);
-            cube.setModelMatrices(gpuCD.getModelMatrices());
         }
+        cube.setModelMatrices(gpuCD.getModelMatrices());
         cube.draw();
 
         // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
