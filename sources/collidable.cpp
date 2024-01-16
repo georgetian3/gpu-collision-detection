@@ -72,6 +72,11 @@ Collidable::Collidable(
             aabb.max = glm::dvec3(xl);
             break;
         }
+        case CollidableType::rectangularCuboid: {
+            aabb.min = glm::dvec3(0);
+            aabb.max = glm::dvec3(xl, yl, zl);
+            break;
+        }
         default: {
             std::cerr << "Unknown type\n";
             exit(1);
