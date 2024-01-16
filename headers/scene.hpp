@@ -27,7 +27,7 @@ class Scene {
 
     Camera camera;
     bool menuOpen = false;
-    bool pausePhysics = false;
+    bool pausePhysics = true;
 
     void handleMenu();
 
