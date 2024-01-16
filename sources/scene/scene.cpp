@@ -66,11 +66,8 @@ void Scene::render() {
             frameCount = 0;
         }
 
-        
-
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
