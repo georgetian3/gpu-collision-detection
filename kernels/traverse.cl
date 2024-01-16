@@ -37,7 +37,7 @@ __kernel void traverse(
             node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
         );
         if (!overlaps(abs_aabb, node.aabb)) {
-            print("%d popped %d no overlap\n", i, node_i);
+            printf("%d popped %d no overlap\n", i, node_i);
             return;
         }
         if (node.left == -1) { // leaf
@@ -52,7 +52,7 @@ __kernel void traverse(
 
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
-        print("%d pushed %d %d\n", node.left, node.right);
+        printf("%d pushed %d %d\n", node.left, node.right);
 
 
     }
