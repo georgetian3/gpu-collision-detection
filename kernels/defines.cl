@@ -99,3 +99,5 @@ struct AABB absolute_aabb(const struct Collidable collidable) {
     aabb.max = vec_add(collidable.aabb.max, collidable.position);
     return aabb;
 }
+
+)"
