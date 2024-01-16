@@ -182,8 +182,6 @@ GpuCollisionDetector::GpuCollisionDetector() {
         printClError(e);
     }
 
-
-
 }
 
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
