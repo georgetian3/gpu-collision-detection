@@ -52,7 +52,7 @@ __kernel void traverse(
 
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
-        printf("%d pushed %d %d\n", node.left, node.right);
+        printf("%d pushed %d %d\n", i, node.left, node.right);
 
 
     }
