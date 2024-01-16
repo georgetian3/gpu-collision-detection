@@ -30,7 +30,7 @@ __kernel void traverse(
     while (stack.size) {
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
-        if (!overlaps(vec_add(collidable_i.position, collidable_i.aabb), node.aabb)) {
+        if (!overlaps(absolute_aabb(collidable_i), node.aabb)) {
             return;
         }
         if (node.left == -1) { // leaf
