@@ -38,13 +38,13 @@ __kernel void traverse(
         );
         if (!overlaps(abs_aabb, node.aabb)) {
             printf("%d popped %d no overlap\n", i, node_i);
-            return;
+            continue;
         }
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
             struct Collidable collidable_j = collidables[j];
             if (j <= i) {
-                return;
+                continue;
             }
             printf("colliding %d %d\n", i, j);
             return;
@@ -53,7 +53,6 @@ __kernel void traverse(
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
         printf("%d pushed %d %d\n", i, node.left, node.right);
-
 
     }
     
