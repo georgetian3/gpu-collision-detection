@@ -28,9 +28,14 @@ __kernel void traverse(
 
     while (stack.size) {
         int node_i = stack_pop(&stack);
-        printf("%d popped %d\n", i, node_i);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
+        printf("%d popped %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i,
+            node_i, abs_aabb.min.x, abs_aabb.min.y, abs_aabb.min.z, 
+            abs_aabb.max.x, abs_aabb.max.y, abs_aabb.max.z, 
+            node.aabb.min.x, node.aabb.min.y, node.aabb.min.z, 
+            node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
+        );
         if (!overlaps(abs_aabb, node.aabb)) {
             return;
         }
@@ -40,12 +45,7 @@ __kernel void traverse(
             if (j <= i) {
                 return;
             }
-            printf("colliding %d %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i, j,
-                abs_aabb.min.x, abs_aabb.min.y, abs_aabb.min.z, 
-                abs_aabb.max.x, abs_aabb.max.y, abs_aabb.max.z, 
-                node.aabb.min.x, node.aabb.min.y, node.aabb.min.z, 
-                node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
-            );
+            printf("colliding %d %d\n", i, j);
             return;
         }
 
