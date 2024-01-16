@@ -69,7 +69,7 @@ struct Stack {
     int max_size;
 };
 
-void stack_init(struct Stack* stack, int max_size) {
+void stack_init(struct Stack* stack) {
     stack->size = 0;
     stack->max_size = 64;
 }
@@ -82,7 +82,8 @@ void stack_push(struct Stack* stack, int obj) {
         printf("Exceeded stack size\n");
         return;
     }
-    stack->data[(stack->size)++] = obj;
+    stack->data[stack->size] = obj;
+    stack->size++;
 }
 
 int stack_pop(struct Stack* stack) {
@@ -90,7 +91,8 @@ int stack_pop(struct Stack* stack) {
         printf("Popping empty stack\n");
         return -1;
     }
-    return stack->data[--(stack->size)];
+    stack->size--;
+    return stack->data[stack->size];
 }
 
 struct AABB absolute_aabb(const struct Collidable collidable) {

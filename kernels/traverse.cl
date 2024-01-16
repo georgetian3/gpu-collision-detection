@@ -23,7 +23,7 @@ __kernel void traverse(
     struct Node node;
 
     struct Stack stack;
-    stack_init(&stack, n * 2 - 1);
+    stack_init(&stack);
 
     stack_push(&stack, 0);
 
