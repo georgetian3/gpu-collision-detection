@@ -76,7 +76,7 @@ void Scene::render() {
         shader.setMat4("projection", camera.getProjection());
 
         if (!pausePhysics) {
-            gpuCD.updatePhysics(dt);
+            gpuCD.updatePhysics(dt / slowMotion);
         }
         cube.setModelMatrices(gpuCD.getModelMatrices());
         cube.draw();
