@@ -210,6 +210,8 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
 
     bufferMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
+    queue.enqueueWriteBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * n, modelMatrices.data());
+
 
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
