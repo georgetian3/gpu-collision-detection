@@ -92,7 +92,7 @@ std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
         printClError(e);
     }
 
-    std::cout << glm::to_string(modelMatrices[0]) << ' ' << glm::to_string(modelMatrices[1]) << '\n';
+    // std::cout << glm::to_string(modelMatrices[0]) << ' ' << glm::to_string(modelMatrices[1]) << '\n';
 
 
     return modelMatrices;
