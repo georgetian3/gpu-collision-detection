@@ -44,9 +44,11 @@ public:
         return elapsed();
     }
 
-    void reset() {
+    double reset() {
+        auto ret = stop();
         elapsed_seconds = 0.0;
         state = State::init;
+        return ret;
     }
 
     double elapsed() const {
