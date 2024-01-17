@@ -141,18 +141,11 @@ void createSphere() {
             // vertex position
             x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
             y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
-            addVertex(x, y, z);
+            sphereVertices.push_back(x);
+            sphereVertices.push_back(y);
+            sphereVertices.push_back(z);
 
-            // normalized vertex normal
-            nx = x * lengthInv;
-            ny = y * lengthInv;
-            nz = z * lengthInv;
-            addNormal(nx, ny, nz);
 
-            // vertex tex coord between [0, 1]
-            s = (float)j / sectorCount;
-            t = (float)i / stackCount;
-            addTexCoord(s, t);
         }
     }
 
