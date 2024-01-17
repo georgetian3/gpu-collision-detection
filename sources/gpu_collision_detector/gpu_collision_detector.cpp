@@ -161,6 +161,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     sources.push_back(std::string(
         #include <physics.cl>
     ));
+    sources.push_back(std::string(
+        #include <matrices.cl>
+    ));
 
     cl::Program program = cl::Program(context, sources);
     try {
@@ -178,6 +181,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         kernelAABB = cl::Kernel(program, "calculate_absolute_aabb");
         kernelTraverse = cl::Kernel(program, "traverse");
         kernelPhysics = cl::Kernel(program, "update_physics");
+        kernelMatrices = cl::Kernel(program, "model_matrices");
     } catch (const cl::Error& e) {
         printClError(e);
     }
@@ -204,6 +208,9 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
+
+    bufferMatrices = cl::Buffer(context, CL_MEM_WRITE_ONLY, sizeof(glm::mat4) * n);
+
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
         kernelConstruct.setArg(0, sizeof(int), &n);
@@ -222,6 +229,8 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         glm::dvec3 gravity = glm::dvec3(0, -9.8, 0);
         kernelPhysics.setArg(0, bufferCollidables);
         kernelPhysics.setArg(2, sizeof(gravity), &gravity);
+        kernelMatrices.setArg(0, bufferCollidables);
+        kernelMatrices.setArg(1, bufferMatrices);
     } catch (const cl::Error& e) {
         printClError(e);
     }

@@ -25,18 +25,21 @@ class GpuCollisionDetector {
     std::vector<Collidable> collidables;
     std::vector<Node> nodes;
     std::vector<int> processed_zeros;
+    std::vector<glm::mat4> modelMatrices;
 
     cl::Context context;
     cl::CommandQueue queue;
     cl::Buffer bufferCollidables;
     cl::Buffer bufferNodes;
     cl::Buffer bufferProcessed;
+    cl::Buffer bufferMatrices;
     
     cl::Kernel kernelMortonCode;
     cl::Kernel kernelConstruct;
     cl::Kernel kernelAABB;
     cl::Kernel kernelTraverse;
     cl::Kernel kernelPhysics;
+    cl::Kernel kernelMatrices;
 
 public:
 
