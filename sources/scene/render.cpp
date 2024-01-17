@@ -107,7 +107,7 @@ void Scene::render() {
             glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
             std::ofstream fout;
             fout.open(std::to_string(currentTime) + std::string(".bmp"), std::ios::binary | std::ios::out);
-            fout.write(buf);
+            fout.write(buf, windowWidth * windowHeight * 3);
             animationFrameCount++;
         }
 
