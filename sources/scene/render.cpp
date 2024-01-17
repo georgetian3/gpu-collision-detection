@@ -13,7 +13,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_writer.h>
 
-uint8_t buf[9999999];
+char buf[9999999];
 
 
 void Scene::render() {
