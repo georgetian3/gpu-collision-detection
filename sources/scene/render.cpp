@@ -90,18 +90,18 @@ void Scene::render() {
             sw.start();
             // Update position and velocity of each `Collidable`
             gpuCD.updatePhysics(dt / slowMotion);
-            std::cout << "update physics time: " << sw.reset() << '\n';
+            // std::cout << "update physics time: " << sw.reset() << '\n';
         }
 
         sw.start();
         // Set the model matrices of each `Collidable`
         cube.setModelMatrices(gpuCD.getModelMatrices());
-        std::cout << "setModelMatrices time: " << sw.reset() << '\n';
+        // std::cout << "setModelMatrices time: " << sw.reset() << '\n';
 
         sw.start();
         // Draw
         sphere.draw();
-        std::cout << "draw time: " << sw.reset() << '\n';
+        // std::cout << "draw time: " << sw.reset() << '\n';
 
         // Output animation frame captures
         if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
