@@ -59,37 +59,39 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 }
 
 std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
-    // modelMatrices.empty();
-    // glm::vec3 scale;
-    // for (int i = 0; i < collidables.size(); i++) {
-    //     const auto& collidable = collidables[i];
-    //     switch (collidable.type) {
-    //         case CollidableType::sphere:
-    //         case CollidableType::cube: {
-    //             scale = glm::vec3(collidable.length);
-    //             break;
-    //         }
-    //         case CollidableType::rectangularCuboid: {
-    //             scale = glm::vec3(collidable.xl, collidable.yl, collidable.zl);
-    //             break;
-    //         }
-    //         default: {
-    //             printLocation();
-    //             std::cerr << "Unsupported collidable type\n";
-    //             exit(1);
-    //         }
-    //     }
-    //     modelMatrices[i] = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale);
-    // }
-
-    try {
-        queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
-        queue.finish();
-        queue.enqueueReadBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), modelMatrices.data());
-    } catch (const cl::Error& e) {
-        printLocation();
-        printClError(e);
+    modelMatrices.empty();
+    glm::vec3 scale;
+    for (int i = 0; i < collidables.size(); i++) {
+        const auto& collidable = collidables[i];
+        switch (collidable.type) {
+            case CollidableType::sphere:
+            case CollidableType::cube: {
+                scale = glm::vec3(collidable.length);
+                break;
+            }
+            case CollidableType::rectangularCuboid: {
+                scale = glm::vec3(collidable.xl, collidable.yl, collidable.zl);
+                break;
+            }
+            default: {
+                printLocation();
+                std::cerr << "Unsupported collidable type\n";
+                exit(1);
+            }
+        }
+        modelMatrices[i] = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale);
     }
+
+    std::cout << glm::to_string(modelMatrices[0]) << ' ' << glm::to_string(modelMatrices[1]) << '\n';
+
+    // try {
+    //     queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
+    //     queue.finish();
+    //     queue.enqueueReadBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), modelMatrices.data());
+    // } catch (const cl::Error& e) {
+    //     printLocation();
+    //     printClError(e);
+    // }
 
     return modelMatrices;
 }
