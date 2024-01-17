@@ -110,7 +110,7 @@ const std::vector<unsigned int> cubeIndices = {
 
 
 std::vector<float> sphereVertices;
-std::vector<float> sphereIndices;
+std::vector<unsigned int> sphereIndices;
 
 
 
