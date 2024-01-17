@@ -100,7 +100,7 @@ void Scene::render() {
 
         sw.start();
         // Draw
-        cube.draw();
+        sphere.draw();
         std::cout << "draw time: " << sw.reset() << '\n';
 
         // Output animation frame captures
