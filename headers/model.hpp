@@ -118,7 +118,7 @@ void createSphere() {
     sphereIndices.clear();
 
     const float PI = acos(-1.0f);
-    const double radius = 1.0;
+    const double radius = 0.5;
     const int sectorCount = 10;
     const int stackCount = 10;
     float x, y, z, xy;                              // vertex position
@@ -128,6 +128,8 @@ void createSphere() {
     float sectorStep = 2 * PI / sectorCount;
     float stackStep = PI / stackCount;
     float sectorAngle, stackAngle;
+
+
 
     for (int i = 0; i <= stackCount; ++i) {
         stackAngle = PI / 2 - i * stackStep;        // starting from pi/2 to -pi/2
