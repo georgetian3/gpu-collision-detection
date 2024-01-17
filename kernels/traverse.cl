@@ -50,16 +50,13 @@ __kernel void traverse(
             }
             // printf("colliding %d %d\n", i, j);
 
-            double e = 1 - 0.05;
 
             if (!collidables[i].immovable) {
-                double new_velocity = e * -collidables[i].velocity.y;
-                collidables[i].velocity.y = ABS(new_velocity) < 1 ? 0 : new_velocity;
+                collidables[i].velocity.y = -collidables[i].velocity.y;
             }
 
             if (!collidables[j].immovable) {
-                double new_velocity = e * -collidables[j].velocity.y;
-                collidables[j].velocity.y = ABS(new_velocity) < 1 ? 0 : new_velocity;
+                collidables[j].velocity.y = -collidables[j].velocity.y;
             }
 
 
