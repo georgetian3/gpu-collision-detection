@@ -39,6 +39,7 @@ void Scene::render() {
 
     // Load object models
     Model cube = Model(cubeVertices, cubeIndices);
+    createSphere();
     Model sphere = Model(sphereVertices, sphereIndices);
 
     Stopwatch sw;
