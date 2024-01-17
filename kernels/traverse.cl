@@ -54,12 +54,12 @@ __kernel void traverse(
 
             if (!collidables[i].immovable) {
                 double new_velocity = e * -collidables[i].velocity.y;
-                collidables[i].velocity.y = ABS(new_velocity) < 0.01 ? 0 : new_velocity;
+                collidables[i].velocity.y = ABS(new_velocity) < 0.1 ? 0 : new_velocity;
             }
 
             if (!collidables[j].immovable) {
                 double new_velocity = e * -collidables[j].velocity.y;
-                collidables[j].velocity.y = ABS(new_velocity) < 0.01 ? 0 : new_velocity;
+                collidables[j].velocity.y = ABS(new_velocity) < 0.1 ? 0 : new_velocity;
             }
 
 
