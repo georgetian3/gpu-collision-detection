@@ -29,6 +29,7 @@ class Scene {
     bool menuOpen = false;
     bool pausePhysics = true;
     bool reset = true;
+    bool recording = false;
     double slowMotion = 1.0;
 
     void handleMenu();

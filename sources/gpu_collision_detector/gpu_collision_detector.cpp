@@ -18,9 +18,6 @@ void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
     selected_device_index = config.value("device", -1);
 }
 
-
-
-
 void printPlatformInfo(const cl::Platform& platform) {
     std::cout << "CL_PLATFORM_PROFILE   : " << platform.getInfo<CL_PLATFORM_PROFILE>() << '\n';
     std::cout << "CL_PLATFORM_VERSION   : " << platform.getInfo<CL_PLATFORM_VERSION>() << '\n';
@@ -111,11 +108,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     std::vector<cl::Platform> platforms;
     cl::Platform::get(&platforms);
     if (platforms.empty()) {
-        std::cerr << "No platforms found";
+        std::cerr << "No OpenCL platforms found";
         exit(1);
     }
-
-
 
     if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
         // std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0\n";
@@ -141,8 +136,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
     // printDeviceInfo(device);
 
     context = cl::Context(device);
-    cl::Program::Sources sources;
 
+    // Add sources of code to be run on GPU
+    cl::Program::Sources sources;
     sources.push_back(std::string(
         #include <defines.cl>
     ));
@@ -165,6 +161,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
         #include <matrices.cl>
     ));
 
+    // compile sources into program
     cl::Program program = cl::Program(context, sources);
     try {
         program.build(device);
@@ -176,12 +173,13 @@ GpuCollisionDetector::GpuCollisionDetector() {
     queue = cl::CommandQueue(context, device);
 
     try {
-        kernelMortonCode = cl::Kernel(program, "mortonCodeAABB");
-        kernelConstruct = cl::Kernel(program, "construct_tree");
-        kernelAABB = cl::Kernel(program, "calculate_absolute_aabb");
-        kernelTraverse = cl::Kernel(program, "traverse");
-        kernelPhysics = cl::Kernel(program, "update_physics");
-        kernelMatrices = cl::Kernel(program, "model_matrices");
+        // creating a kernel object for every main function to be run on the GPU
+        kernelMortonCode    = cl::Kernel(program, "mortonCodeAABB"          );
+        kernelConstruct     = cl::Kernel(program, "construct_tree"          );
+        kernelAABB          = cl::Kernel(program, "calculate_absolute_aabb" );
+        kernelTraverse      = cl::Kernel(program, "traverse"                );
+        kernelPhysics       = cl::Kernel(program, "update_physics"          );
+        kernelMatrices      = cl::Kernel(program, "model_matrices"          );
     } catch (const cl::Error& e) {
         printClError(e);
     }
@@ -203,35 +201,40 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
     nodes.resize(n * 2 - 1);
-    processed_zeros.resize(nodes.size());
+
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
-    bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+
+    processed_zeros.resize(nodes.size());
+    bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
 
     modelMatrices.resize(n);
     bufferMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
-    // queue.enqueueWriteBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * n, modelMatrices.data());
-
 
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
+
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
+
         int i = -1;
         kernelAABB.setArg(0, sizeof(int), &i);
         kernelAABB.setArg(1, sizeof(int), &n);
         kernelAABB.setArg(2, bufferProcessed);
         kernelAABB.setArg(3, bufferCollidables);
         kernelAABB.setArg(4, bufferNodes);
+
         kernelTraverse.setArg(0, sizeof(int), &i);
         kernelTraverse.setArg(1, sizeof(int), &n);
         kernelTraverse.setArg(2, bufferCollidables);
         kernelTraverse.setArg(3, bufferNodes);
+
         glm::dvec3 gravity = glm::dvec3(0, -9.8, 0);
         kernelPhysics.setArg(0, bufferCollidables);
         kernelPhysics.setArg(2, sizeof(gravity), &gravity);
+
         kernelMatrices.setArg(0, bufferCollidables);
         kernelMatrices.setArg(1, bufferMatrices);
     } catch (const cl::Error& e) {

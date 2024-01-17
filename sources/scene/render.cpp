@@ -103,13 +103,13 @@ void Scene::render() {
         std::cout << "draw time: " << sw.reset() << '\n';
 
         // Output animation frame captures
-        // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
-            // glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
-            // animationFrameCount++;
-            // if (animationFrameCount % targetAnimationFps == 0) {
-            //     std::cout << animationFrameCount << '\n';
-            // }
-        // }
+        if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
+            glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
+            animationFrameCount++;
+            if (animationFrameCount % targetAnimationFps == 0) {
+                std::cout << animationFrameCount << '\n';
+            }
+        }
 
         // Render GUI
         renderGui();
