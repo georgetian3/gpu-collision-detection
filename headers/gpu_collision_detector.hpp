@@ -29,6 +29,7 @@ class GpuCollisionDetector {
 
     cl::Context context;
     cl::CommandQueue queue;
+    
     cl::Buffer bufferCollidables;
     cl::Buffer bufferNodes;
     cl::Buffer bufferProcessed;
@@ -49,7 +50,6 @@ public:
     void setCollidables(const std::vector<Collidable>& collidables);
     std::vector<glm::mat4> getModelMatrices();
     std::vector<Collision> detectCollisions();
-
 
 };
 
