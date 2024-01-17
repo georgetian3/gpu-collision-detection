@@ -45,6 +45,10 @@ void Scene::render() {
     for (int i = 0; i < sphereVertices.size(); i++) {
         std::cout << sphereVertices[i] << '\n';
     }
+    std::cout << '\n';
+    for (int i = 0; i < sphereIndices.size(); i++) {
+        std::cout << sphereIndices[i] << '\n';
+    }
 
     Stopwatch sw;
 
