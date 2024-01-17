@@ -9,6 +9,8 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 }
 
 
+
+
 __kernel void traverse(
     int i,
     int n,
@@ -47,6 +49,16 @@ __kernel void traverse(
                 continue;
             }
             printf("colliding %d %d\n", i, j);
+
+            if (!collidables[i].immovable) {
+                collidables[i].velocity.y = -collidables[i].velocity.y;
+            }
+
+            if (!collidables[j].immovable) {
+                collidables[j].velocity.y = -collidables[j].velocity.y;
+            }
+
+
             return;
         }
 
