@@ -59,35 +59,36 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 }
 
 std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
-    // glm::vec3 scale;
-    // for (const auto& collidable: collidables) {
-    //     switch (collidable.type) {
-    //         case CollidableType::sphere:
-    //         case CollidableType::cube: {
-    //             scale = glm::vec3(collidable.length);
-    //             break;
-    //         }
-    //         case CollidableType::rectangularCuboid: {
-    //             scale = glm::vec3(collidable.xl, collidable.yl, collidable.zl);
-    //             break;
-    //         }
-    //         default: {
-    //             printLocation();
-    //             std::cerr << "Unsupported collidable type\n";
-    //             exit(1);
-    //         }
-    //     }
-    //     modelMatrices.push_back(glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale));
-    // }
-
-    try {
-        queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
-        queue.finish();
-        queue.enqueueReadBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), modelMatrices.data());
-    } catch (const cl::Error& e) {
-        printLocation();
-        printClError(e);
+    modelMatrices.empty();
+    glm::vec3 scale;
+    for (const auto& collidable: collidables) {
+        switch (collidable.type) {
+            case CollidableType::sphere:
+            case CollidableType::cube: {
+                scale = glm::vec3(collidable.length);
+                break;
+            }
+            case CollidableType::rectangularCuboid: {
+                scale = glm::vec3(collidable.xl, collidable.yl, collidable.zl);
+                break;
+            }
+            default: {
+                printLocation();
+                std::cerr << "Unsupported collidable type\n";
+                exit(1);
+            }
+        }
+        modelMatrices.push_back(glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale));
     }
+
+    // try {
+    //     queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
+    //     queue.finish();
+    //     queue.enqueueReadBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), modelMatrices.data());
+    // } catch (const cl::Error& e) {
+    //     printLocation();
+    //     printClError(e);
+    // }
 
     return modelMatrices;
 }
