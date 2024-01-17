@@ -112,8 +112,10 @@ const std::vector<unsigned int> cubeIndices = {
 std::vector<float> sphereVertices;
 std::vector<unsigned int> sphereIndices;
 
-
 void createSphere() {
+
+    sphereVertices.clear();
+    sphereIndices.clear();
 
     const float PI = acos(-1.0f);
     const float radius = 1.0f;
@@ -178,7 +180,6 @@ void createSphere() {
 
         }
     }
-
 
 }
 
