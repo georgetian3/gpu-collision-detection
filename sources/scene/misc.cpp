@@ -63,6 +63,15 @@ void Scene::init() {
 
 }
 
+Scene::Scene(const std::filesystem::path& cwd, int windowWidth, int windowHeight): windowWidth(windowWidth), windowHeight(windowHeight) {
+    this->cwd = makeAbsolute(cwd);
+    std::cout << "CWD: " << cwd << '\n';
+
+    lastX = windowWidth / 2.0;
+    lastY = windowHeight / 2.0;
+    init();
+
+}
 
 Scene::~Scene() {
     ImGui_ImplOpenGL3_Shutdown();

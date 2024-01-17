@@ -24,6 +24,10 @@ __kernel void traverse(
     struct Collidable collidable_i = collidables[i];
     struct Node node;
 
+    // As OpenCL has limitations with recursion (cannot call `traverse` twice in itself)
+    // therefore manual stack management was used. Recursion depth will not be greater
+    // than the depth of the tree, i.e. number of bits in a morton code - 64.
+
     struct Stack stack;
     stack_init(&stack);
     stack_push(&stack, 0);
@@ -32,14 +36,7 @@ __kernel void traverse(
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
-        // printf("%d popped %d (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f)\n", i,
-        //     node_i, abs_aabb.min.x, abs_aabb.min.y, abs_aabb.min.z, 
-        //     abs_aabb.max.x, abs_aabb.max.y, abs_aabb.max.z, 
-        //     node.aabb.min.x, node.aabb.min.y, node.aabb.min.z, 
-        //     node.aabb.max.x, node.aabb.max.y, node.aabb.max.z
-        // );
         if (!overlaps(abs_aabb, node.aabb)) {
-            // printf("%d popped %d no overlap\n", i, node_i);
             continue;
         }
         if (node.left == -1) { // leaf
@@ -63,7 +60,6 @@ __kernel void traverse(
 
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
-        // printf("%d pushed %d %d\n", i, node.left, node.right);
 
     }
     
