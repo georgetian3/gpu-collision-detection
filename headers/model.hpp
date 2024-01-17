@@ -118,7 +118,7 @@ void createSphere() {
     sphereIndices.clear();
 
     const float PI = acos(-1.0f);
-    const float radius = 1.0f;
+    const double radius = 1.0;
     const int sectorCount = 4;
     const int stackCount = 4;
     float x, y, z, xy;                              // vertex position
