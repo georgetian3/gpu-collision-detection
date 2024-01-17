@@ -209,8 +209,9 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
 
+    modelMatrices.resize(n);
     bufferMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
-    queue.enqueueWriteBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * n, modelMatrices.data());
+    // queue.enqueueWriteBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * n, modelMatrices.data());
 
 
     try {
