@@ -50,7 +50,7 @@ __kernel void traverse(
             }
             printf("colliding %d %d\n", i, j);
 
-            double e = 0.05
+            double e = 0.05;
 
             if (!collidables[i].immovable) {
                 collidables[i].velocity.y = e * -collidables[i].velocity.y;
