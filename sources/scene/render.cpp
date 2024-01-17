@@ -105,7 +105,7 @@ void Scene::render() {
         // Output animation frame captures
         if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
             glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
-            stbi_write_bmp((std::string("frames/") + std::to_string(currentTime) + std::string(".bmp")).c_str(), windowWidth, windowHeight, 3, buf);
+            stbi_write_bmp((std::to_string(currentTime) + std::string(".bmp")).c_str(), windowWidth, windowHeight, 3, buf);
             animationFrameCount++;
         }
 
