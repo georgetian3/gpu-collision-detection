@@ -105,10 +105,10 @@ void Scene::render() {
         // Output animation frame captures
         if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
             glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
+            std::ofstream fout;
+            fout.open(std::to_string(currentTime) + std::string(".bmp"), std::ios::binary | std::ios::out);
+            fout.write(buf);
             animationFrameCount++;
-            if (animationFrameCount % targetAnimationFps == 0) {
-                std::cout << animationFrameCount << '\n';
-            }
         }
 
         // Render GUI
