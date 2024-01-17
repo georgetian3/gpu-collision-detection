@@ -48,7 +48,7 @@ __kernel void traverse(
             if (j <= i) {
                 continue;
             }
-            printf("colliding %d %d\n", i, j);
+            // printf("colliding %d %d\n", i, j);
 
             double e = 1 - 0.05;
 
