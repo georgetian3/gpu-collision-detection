@@ -8,7 +8,7 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
     );
 }
 
-#define ABS(x) (x < 0 ? -x : x)
+#define ABS(x) (x >= 0 ? x : -x)
 
 
 __kernel void traverse(
@@ -54,12 +54,12 @@ __kernel void traverse(
 
             if (!collidables[i].immovable) {
                 double new_velocity = e * -collidables[i].velocity.y;
-                collidables[i].velocity.y = ABS(new_velocity) < 0.1 ? 0 : new_velocity;
+                collidables[i].velocity.y = ABS(new_velocity) < 1 ? 0 : new_velocity;
             }
 
             if (!collidables[j].immovable) {
                 double new_velocity = e * -collidables[j].velocity.y;
-                collidables[j].velocity.y = ABS(new_velocity) < 0.1 ? 0 : new_velocity;
+                collidables[j].velocity.y = ABS(new_velocity) < 1 ? 0 : new_velocity;
             }
 
 
