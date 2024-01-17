@@ -61,7 +61,8 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
     modelMatrices.empty();
     glm::vec3 scale;
-    for (const auto& collidable: collidables) {
+    for (int i = 0; i < collidables.size(); i++) {
+        const auto& collidable = collidables[i];
         switch (collidable.type) {
             case CollidableType::sphere:
             case CollidableType::cube: {
@@ -78,7 +79,7 @@ std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
                 exit(1);
             }
         }
-        modelMatrices.push_back(glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale));
+        modelMatrices[i] = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(collidable.position.x, collidable.position.y, collidable.position.z)), scale);
     }
 
     // try {
