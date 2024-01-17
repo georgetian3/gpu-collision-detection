@@ -119,8 +119,8 @@ void createSphere() {
 
     const float PI = acos(-1.0f);
     const float radius = 1.0f;
-    const int sectorCount = 16;
-    const int stackCount = 16;
+    const int sectorCount = 4;
+    const int stackCount = 4;
     float x, y, z, xy;                              // vertex position
     float nx, ny, nz, lengthInv = 1.0f / radius;    // normal
     float s, t;                                     // texCoord
