@@ -42,8 +42,8 @@ void Scene::render() {
     createSphere();
     Model sphere = Model(sphereVertices, sphereIndices);
     std::cout << sphereVertices.size() << ' ' << sphereIndices.size() << '\n';
-    for (int i = 0; i < sphereVertices.size(); i++) {
-        std::cout << sphereVertices[i] << '\n';
+    for (int i = 0; i < sphereVertices.size(); i += 3) {
+        std::cout << sphereVertices[i] << ' ' << sphereVertices[i + 1] << ' ' << sphereVertices[i + 2] << ' ' << '\n';
     }
     std::cout << '\n';
     for (int i = 0; i < sphereIndices.size(); i++) {
