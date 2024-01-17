@@ -177,6 +177,15 @@ void createSphere() {
                 sphereIndices.push_back(k2 + 1);
             }
 
+            // vertical lines for all stacks
+            sphereIndices.push_back(k1);
+            sphereIndices.push_back(k2);
+            if(i != 0)  // horizontal lines except 1st stack
+            {
+                sphereIndices.push_back(k1);
+                sphereIndices.push_back(k1 + 1);
+            }
+
 
         }
     }
