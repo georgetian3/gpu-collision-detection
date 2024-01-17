@@ -2,7 +2,7 @@ import random
 
 collidables = []
 
-n = 2 ** 4
+n = 2 ** 12
 
 print(n)
 
