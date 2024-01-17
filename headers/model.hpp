@@ -164,14 +164,12 @@ void createSphere() {
             // 2 triangles per sector excluding 1st and last stacks
             if(i != 0)
             {
-                addIndices(k1, k2, k1+1);   // k1---k2---k1+1
                 sphereIndices.push_back(k1);
                 sphereIndices.push_back(k2);
                 sphereIndices.push_back(k1 + 1);
             }
 
             if (i != (stackCount-1)) {
-                addIndices(k1+1, k2, k2+1); // k1+1---k2---k2+1
                 sphereIndices.push_back(k1 + 1);
                 sphereIndices.push_back(k2);
                 sphereIndices.push_back(k2 + 1);
