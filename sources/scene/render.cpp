@@ -43,9 +43,8 @@ void Scene::render() {
     Model sphere = Model(sphereVertices, sphereIndices);
     std::cout << sphereVertices.size() << ' ' << sphereIndices.size() << '\n';
     for (int i = 0; i < sphereVertices.size(); i++) {
-        std::cout << sphereVertices[i] << ' ';
+        std::cout << sphereVertices[i] << '\n';
     }
-    std::cout << '\n';
 
     Stopwatch sw;
 
