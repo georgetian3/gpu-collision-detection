@@ -50,6 +50,9 @@ void Scene::render() {
     shader.use();
 
     Model cube = Model(cubeVertices, cubeIndices);
+    Model sphere = Model(sphereVertices, sphereIndices);
+
+    Stopwatch sw;
 
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window)) {
@@ -81,13 +84,19 @@ void Scene::render() {
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
 
-        if (!pausePhysics) {
-            gpuCD.updatePhysics(dt / slowMotion);
-        }
-        cube.setModelMatrices(gpuCD.getModelMatrices());
-        cube.draw();
 
-        
+        if (!pausePhysics) {
+            sw.start();
+            gpuCD.updatePhysics(dt / slowMotion);
+            std::cout << "update physics time: " << sw.reset() << '\n';
+        }
+        sw.start();
+        cube.setModelMatrices(gpuCD.getModelMatrices());
+        std::cout << "setModelMatrices time: " << sw.reset() << '\n';
+
+        sw.start();
+        cube.draw();
+        std::cout << "draw time: " << sw.reset() << '\n';
 
         // if ((currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
             // glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
