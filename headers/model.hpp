@@ -107,6 +107,8 @@ const std::vector<unsigned int> cubeIndices = {
     6, 7, 3
 };
 
+
+
 std::vector<float> sphereVertices;
 std::vector<float> sphereIndices;
 

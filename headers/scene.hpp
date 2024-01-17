@@ -39,15 +39,9 @@ class Scene {
         return (path.is_absolute() ? path : (cwd / path)).make_preferred();
     }
 
-
-
-
     bool vsync = false;
 
-
     void renderGui();
-
-
 
     int directionKeys[6] = {
         GLFW_KEY_W,         // forward
