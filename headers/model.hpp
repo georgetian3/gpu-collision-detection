@@ -143,6 +143,9 @@ void createSphere() {
             // vertex position
             x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
             y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
+            double delta = 0.00001
+            x = abs(x) < delta ? 0 : x;
+            y = abs(y) < delta ? 0 : y;
             sphereVertices.push_back(x);
             sphereVertices.push_back(y);
             sphereVertices.push_back(z);
