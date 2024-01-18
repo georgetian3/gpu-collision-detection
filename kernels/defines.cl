@@ -80,8 +80,8 @@ int stack_pop(struct Stack* stack) {
 
 struct AABB absolute_aabb(const struct Collidable collidable) {
     struct AABB aabb;
-    aabb.min = vec_add(collidable.aabb.min, collidable.position);
-    aabb.max = vec_add(collidable.aabb.max, collidable.position);
+    aabb.min = collidable.aabb.min + collidable.position;
+    aabb.max = collidable.aabb.max + collidable.position;
     return aabb;
 }
 
