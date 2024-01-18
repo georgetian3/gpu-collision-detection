@@ -58,18 +58,22 @@ void Scene::render() {
             Collidable faces[6];
             double delta = 0.1;
             double delta2 = delta * 2;
+            double inv_delta = 1 - delta;
             double inv_delta2 = 1 - delta * 2;
 
             glm::dvec3 positions[] = {
                 glm::dvec3(0, delta, delta),
                 glm::dvec3(delta, 0, delta),
-                glm::dvec3(delta, delta, 0)
+                glm::dvec3(delta, delta, 0),
+                glm::dvec3(delta, inv_delta, inv_delta),
+                glm::dvec3(inv_delta, delta, inv_delta),
+                glm::dvec3(inv_delta, inv_delta, delta),
             };
-            double xls[] = {delta, inv_delta2, inv_delta2};
-            double yls[] = {inv_delta2, delta, inv_delta2};
-            double zls[] = {inv_delta2, inv_delta2, delta};
+            double xls[] = {delta, inv_delta2, inv_delta2, delta, inv_delta2, inv_delta2};
+            double yls[] = {inv_delta2, delta, inv_delta2, inv_delta2, delta, inv_delta2};
+            double zls[] = {inv_delta2, inv_delta2, delta, inv_delta2, inv_delta2, delta};
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 6; i++) {
                 collidables.push_back(Collidable(CollidableType::cuboid, positions[i], glm::dvec3(0.0), 1.0, 1.0, xls[i], yls[i], zls[i]));
             }
 
