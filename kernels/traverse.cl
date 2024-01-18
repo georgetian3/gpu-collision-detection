@@ -34,6 +34,10 @@ inline double3 reflect(double3 i, double3 n) {
     return i - 2 * dot(i, n) * n;
 }
 
+double length2(double3 v) {
+    return v.x * v.x + v.y * v.y + v.z * v.z;
+}
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
 
@@ -56,7 +60,11 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
             normal.z = 1.0;
         }
     } else if (a->type == SPHERE && b->type == SPHERE) {
-
+        double3 diff = a->center - b->center;
+        if (length2(diff) > a->radius + b->radius) {
+            return;
+        }
+        normal = diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
 
 
@@ -70,6 +78,8 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
     // a->velocity = -a->velocity;
     // b->velocity = -b->velocity;
+
+    printf("normal (%f %f %f)\n", normal.x, normal.y, normal.z);
 
 
     if (!a->immovable) {
