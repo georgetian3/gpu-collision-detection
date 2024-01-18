@@ -36,8 +36,7 @@ struct Collidable {
     unsigned int type;
 
     int immovable;
-
-};
+} __attribute__((packed));
 
 inline int node_to_collidables_index(int i, int n) {
     return i - (n - 1);
