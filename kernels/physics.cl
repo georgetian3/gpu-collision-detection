@@ -7,6 +7,8 @@ __kernel void update_physics(
 ) {
     const int i = get_global_id(0);
 
+    printf("gravity %f %f %f\n", gravity.x, gravity.y, gravity.z);
+
     return;
 
     struct Collidable collidable = collidables[i];
