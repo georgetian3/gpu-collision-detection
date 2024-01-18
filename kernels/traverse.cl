@@ -62,16 +62,16 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
     if (a->type == CUBOID && b->type == CUBOID) {
         // AABBs collide -> true collision
-        double3 diff1 = a->aabb.min - b->aabb.max, diff2 = a->aabb.max - b->aabb.min;
+        double3 diff1 = (a->position + a->aabb.min) - (b->position + b->aabb.max), diff2 = (a->position + a->aabb.max) - (b->position + b->aabb.min);
         double diffs[] = {ABS(diff1.x), ABS(diff1.y), ABS(diff1.z), ABS(diff2.x), ABS(diff2.y), ABS(diff2.z)};
         int mi = min_index(diffs, 6);
-        printf("(%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f %f %f %f) %d\n",
-            a->aabb.min.x, a->aabb.min.y, a->aabb.min.z, 
-            a->aabb.max.x, a->aabb.max.y, a->aabb.max.z, 
-            b->aabb.min.x, b->aabb.min.y, b->aabb.min.z, 
-            b->aabb.max.x, b->aabb.max.y, b->aabb.max.z, 
-            diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi
-        );
+        // printf("(%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f) (%f %f %f %f %f %f) %d\n",
+        //     a->aabb.min.x, a->aabb.min.y, a->aabb.min.z, 
+        //     a->aabb.max.x, a->aabb.max.y, a->aabb.max.z, 
+        //     b->aabb.min.x, b->aabb.min.y, b->aabb.min.z, 
+        //     b->aabb.max.x, b->aabb.max.y, b->aabb.max.z, 
+        //     diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi
+        // );
         normal[mi % 3] = mi > 2 ? 1 : -1;
 
     } else if (a->type == SPHERE && b->type == SPHERE) {
@@ -82,8 +82,8 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         }
         normal = diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
-        double3 dmin = v_abs(a->position - b->aabb.min);
-        double3 dmax = v_abs(a->position - b->aabb.max);
+        double3 dmin = v_abs(a->position - (b->position + b->aabb.min));
+        double3 dmax = v_abs(a->position - (b->position + b->aabb.max));
 
         double diffs[] = {dmin.x, dmin.y, dmin.z, dmax.x, dmax.y, dmax.z};
         int mi = min_index(diffs, 6);
