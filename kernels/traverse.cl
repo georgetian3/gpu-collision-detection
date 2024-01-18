@@ -69,8 +69,8 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     } else if (a->type == SPHERE && b->type == CUBOID) {
         double3 dmin = pos - cuboid.aabb.min;
         double3 dmax = pos - cuboid.aabb.max;
-        double3 abs_dmin = abs(dmin);
-        double3 abs_dmax = abs(dmax);
+        double3 abs_dmin = v_abs(dmin);
+        double3 abs_dmax = v_abs(dmax);
         if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
             normal.x = -1;
         } else if (abs_dmin.y <= abs_dmin.x && abs_dmin.y <= abs_dmin.z && abs_dmin.y <= abs_dmax.x && abs_dmin.y <= abs_dmax.y && abs_dmin.y <= abs_dmax.z) {
