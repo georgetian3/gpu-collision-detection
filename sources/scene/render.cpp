@@ -55,7 +55,7 @@ void Scene::render() {
         // Process reset button click
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
-            Collidable ground = Collidable::constructCube(glm::dvec3(0.0), 1, 0.01, 1);
+            Collidable ground = Collidable::constructCuboid(glm::dvec3(0.0), 1, 0.01, 1);
             ground.immovable = true;
             collidables.push_back(ground);
             gpuCD.setCollidables(collidables);
