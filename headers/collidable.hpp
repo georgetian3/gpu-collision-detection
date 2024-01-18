@@ -19,6 +19,7 @@ struct AABB {
     glm::dvec4 max = glm::dvec4(0.0);
 };
 
+#pragma pack(1)
 struct Collidable {
 
     unsigned int id = -1;
