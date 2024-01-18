@@ -55,9 +55,13 @@ void Scene::render() {
         printLocation();
         // Process reset button click
         if (reset) {
+        printLocation();
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
+        printLocation();
             Collidable ground = Collidable::constructCuboid(glm::dvec3(0.0), 1, 0.01, 1);
+        printLocation();
             ground.immovable = true;
+        printLocation();
             collidables.push_back(ground);
             printLocation();
 
