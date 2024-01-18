@@ -83,6 +83,8 @@ struct Collidable1 {
     uint64_t __p1;
     uint64_t __p2;
     uint64_t __p3;
+    uint64_t __p4;
+    uint64_t __p5;
 
 
 };
