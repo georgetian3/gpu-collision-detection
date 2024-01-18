@@ -65,7 +65,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         double3 diff1 = a->aabb.min - b->aabb.max, diff2 = a->aabb.max - b->aabb.min;
         double diffs[] = {ABS(diff1.x), ABS(diff1.y), ABS(diff1.z), ABS(diff2.x), ABS(diff2.y), ABS(diff2.z)};
         int mi = min_index(diffs, 6);
-        // printf("(%f %f %f %f %f %f) %d\n", diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi);
+        printf("(%f %f %f %f %f %f) %d\n", diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi);
         normal[mi % 3] = mi > 2 ? 1 : -1;
 
     } else if (a->type == SPHERE && b->type == SPHERE) {
