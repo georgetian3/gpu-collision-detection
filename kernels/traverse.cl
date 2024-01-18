@@ -10,20 +10,6 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 
 #define ABS(x) (x >= 0 ? x : -x)
 
-
-inline double3 normalize(double3 v) {
-    double3 normalized;
-    double length = v.x * v.x + v.y * v.y + v.z * v.z;
-    if (length == 1) {
-        return v;
-    }
-    length = sqrt(length);
-    normalized.x = v.x / length;
-    normalized.y = v.y / length;
-    normalized.z = v.z / length;
-    return normalized;
-}
-
 double3 reflect(double3 incident, double3 normal) {
     double3 reflected;
     double3 normalized = normalize(normal);
