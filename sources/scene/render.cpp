@@ -55,6 +55,7 @@ void Scene::render() {
         // Process reset button click
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
+            std::cout << "collidables[0] " << collidables[0].type << '\n';
             Collidable ground = Collidable::constructCuboid(glm::dvec3(0.0), 1, 0.01, 1);
             ground.immovable = true;
             collidables.push_back(ground);
