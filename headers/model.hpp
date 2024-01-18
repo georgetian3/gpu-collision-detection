@@ -15,8 +15,8 @@ public:
     std::vector<glm::dvec3>     vertices;
     std::vector<unsigned int>   indices;
 
-    unsigned int indicesCount;
-    unsigned int instanceCount = 1;
+    size_t indicesCount;
+    size_t instanceCount = 1;
 
     Model(const std::vector<float>& vertices, std::vector<unsigned int> indices) {
         indicesCount = indices.size();
