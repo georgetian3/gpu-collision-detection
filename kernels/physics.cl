@@ -2,8 +2,8 @@ R"(
 
 __kernel void update_physics(
     __global struct Collidable* collidables,
-    const double dt,
-    const double3 gravity
+    const double3 gravity,
+    const double dt
 ) {
     const int i = get_global_id(0);
 
