@@ -37,6 +37,17 @@ double length2(double3 v) {
     return v.x * v.x + v.y * v.y + v.z * v.z;
 }
 
+int min_index(const double* arr, const int n) {
+    double curr_min = arr[0];
+    int curr_min_index = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < curr_min) {
+            curr_min = arr[i];
+            curr_min_index = i;
+        }
+    }
+}
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
     if (a->immovable && b->immovable) {
@@ -50,21 +61,17 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
     if (a->type == CUBOID && b->type == CUBOID) {
         // AABBs collide -> true collision
-        double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
-        double3 mad = v_abs(diff);
+        double diffs[] = {
+            a.min.x - b.max.x,
+            a.min.y - b.max.y,
+            a.min.z - b.max.z,
+            a.max.x - b.min.x,
+            a.max.y - b.min.y,
+            a.max.z - b.min.z,
+        };
+        int mi = min_index(diffs, 6);
+        normal[mi % 3] = mi > 2 ? 1 : -1;
 
-        double3 da = a->aabb.min - b->aabb.max;
-        double3 db = a->aabb.max - b->aabb.min;
-        double3 ada = v_abs(da);
-        double3 adb = v_abs(db);
-        // if (ada.x < ada.y && ada.x < ada.z && ada.x < adb.x && ada.x < adb.y && ada.x < adb.z) {
-        //     normal.x = 1;
-        // } else if (adb.x < ada.y && adb.x < ada.z && adb.x < ada.x && adb.x < ada.y && ada.x < ada.z) {
-        //     normal.x = 1;
-        // } else if {
-
-        // }
-        normal.y = 1;
     } else if (a->type == SPHERE && b->type == SPHERE) {
         printf("ss\n");
         double3 diff = a->position - b->position;
