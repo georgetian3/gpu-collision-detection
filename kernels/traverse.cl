@@ -115,11 +115,8 @@ __kernel void traverse(
     if (i < 0) {
         i = get_global_id(0);
     }
-
     
     struct Collidable collidable_i = collidables[i];
-
-
 
     struct Node node;
 
