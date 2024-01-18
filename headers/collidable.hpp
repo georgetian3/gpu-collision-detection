@@ -65,7 +65,7 @@ struct Collidable1 {
 
     bool immovable = false;
 
-    glm::dvec4 position = glm::dvec4(0.0);
+    // glm::dvec4 position = glm::dvec4(0.0);
     // uint64_t mortonCode = 0;
 
     // AABB aabb;
