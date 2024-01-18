@@ -49,7 +49,7 @@ struct Collidable {
         const double xl,
         const double yl = 0.0,
         const double zl = 0.0
-    );
+    ) __attribute__((packed));
 
     static Collidable constructSphere(const glm::dvec3& center, const double radius);
     static Collidable constructCuboid(const glm::dvec3& center, const double xl, const double yl, const double zl);
