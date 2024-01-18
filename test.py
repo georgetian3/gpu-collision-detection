@@ -14,7 +14,7 @@ def rand_dec(low = 0, high = 1) -> str:
 for i in range(n):
     mass = str(int(random.random() * 100)).rjust(3)
     cor = rand_dec(0.8, 1)
-    shape = random.sample(shapes, 1)[0]
+    shape = 's'#random.sample(shapes, 1)[0]
 
     position = f'{rand_dec(0.1, 0.9)} {rand_dec(0.1, 0.9)} {rand_dec(0.1, 0.9)}'
     velocity = f'{rand_dec(-1, 1)} {rand_dec(-1, 1)} {rand_dec(-1, 1)}'
