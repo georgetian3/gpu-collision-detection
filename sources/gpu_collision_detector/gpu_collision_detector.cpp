@@ -244,7 +244,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelTraverse.setArg(3, bufferNodes);
     printLocation();
 
-        glm::dvec3 gravity = glm::dvec3(0, -9.8, 0);
+        glm::dvec4 gravity = glm::dvec3(0, -9.8, 0);
         kernelPhysics.setArg(0, bufferCollidables);
         kernelPhysics.setArg(2, sizeof(gravity), &gravity);
     printLocation();
