@@ -3,7 +3,7 @@ R"(
 __kernel void model_matrices(
     __global struct Collidable* collidables,
     __global float* sphere_matrices,
-    __global float* cuboid_matrices,
+    __global float* cuboid_matrices
 ) {
 
     const int i = get_global_id(0);
