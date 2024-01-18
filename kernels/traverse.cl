@@ -17,7 +17,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         a->velocity.y = -a->velocity.y;
     }
 
-    if (!b->.immovable) {
+    if (!b->immovable) {
         b->velocity.y = -b->velocity.y;
     }
 }
