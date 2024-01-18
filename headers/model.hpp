@@ -19,7 +19,7 @@ public:
     GLsizei instanceCount = 1;
 
     Model(const std::vector<float>& vertices, std::vector<unsigned int> indices) {
-        indicesCount = indices.size();
+        indicesCount = (GLsizei)indices.size();
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
@@ -59,7 +59,7 @@ public:
     }
 
     void setModelMatrices(const std::vector<glm::mat4>& modelMatrices) {
-        instanceCount = modelMatrices.size();
+        instanceCount = (GLsizei)modelMatrices.size();
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, IBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * instanceCount, modelMatrices.data(), GL_STATIC_DRAW);
