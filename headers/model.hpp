@@ -146,10 +146,10 @@ void createSphere() {
     sphereVertices.push_back(0.0f);
     sphereVertices.push_back(-1.0f);
 
-    for (int i = 0; i <= sectorCount; i++) {
+    for (int i = 0; i < sectorCount; i++) {
         sphereIndices.push_back(0);
-        sphereIndices.push_back(i);
-        sphereIndices.push_back((i % sectorCount) + 1);
+        sphereIndices.push_back(i + 1);
+        sphereIndices.push_back(i + 2);
     }
 
     // unsigned int k1, k2;
