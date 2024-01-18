@@ -28,7 +28,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
 
     } else if (a->type == CUBOID && b->type == SPHERE) {
-        printf("recurse\n")
+        printf("recurse\n");
         narrow_phase_collision(b, a);
         return;
     } else {
