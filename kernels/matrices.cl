@@ -11,14 +11,14 @@ __kernel void model_matrices(
     
     struct Collidable collidable = collidables[i];
 
-    printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
-        collidable.id, collidable.type, collidable.immovable,
-        collidable.position.x, collidable.position.y, collidable.position.z,
-        collidable.mortonCode,
-        collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
-        collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
-        collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
-    );
+    // printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
+    //     collidable.id, collidable.type, collidable.immovable,
+    //     collidable.position.x, collidable.position.y, collidable.position.z,
+    //     collidable.mortonCode,
+    //     collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
+    //     collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
+    //     collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
+    // );
 
 
     bool is_sphere;
