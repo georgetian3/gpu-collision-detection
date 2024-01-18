@@ -50,7 +50,7 @@ public:
 
     void updatePhysics(double dt);
     void setCollidables(const std::vector<Collidable>& collidables);
-    void calculateModelMatrices() const;
+    void calculateModelMatrices();
     std::vector<glm::mat4> getSphereModelMatrices() const;
     std::vector<glm::mat4> getCuboidModelMatrices() const;
 

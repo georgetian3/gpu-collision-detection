@@ -58,7 +58,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 
 }
 
-void GpuCollisionDetector::calculateModelMatrices() const {
+void GpuCollisionDetector::calculateModelMatrices() {
     // calculates the model matrix of each `Collidable` on the GPU
     try {
         queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
