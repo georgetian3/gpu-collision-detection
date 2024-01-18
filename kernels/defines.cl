@@ -15,7 +15,7 @@ struct Node {
     int left;
     int right;
     struct AABB aabb;
-};
+} __attribute__((packed));
 
 struct Collidable {
 
