@@ -58,15 +58,22 @@ void GpuCollisionDetector::updatePhysics(double dt) {
 
 }
 
-std::vector<glm::mat4> GpuCollisionDetector::getModelMatrices() {
+void GpuCollisionDetector::calculateModelMatrices() const {
     // calculates the model matrix of each `Collidable` on the GPU
     try {
         queue.enqueueNDRangeKernel(kernelMatrices, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
-        queue.enqueueReadBuffer(bufferMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), modelMatrices.data());
+        queue.enqueueReadBuffer(bufferSphereMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), sphereModelMatrices.data());
+        queue.enqueueReadBuffer(bufferCuboidMatrices, CL_TRUE, 0, sizeof(glm::mat4) * collidables.size(), cuboidModelMatrices.data());
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);
     }
-    return modelMatrices;
+}
+
+std::vector<glm::mat4> GpuCollisionDetector::getSphereModelMatrices() const {
+    return sphereModelMatrices;
+}
+std::vector<glm::mat4> GpuCollisionDetector::getCuboidModelMatrices() const {
+    return cuboidModelMatrices;
 }

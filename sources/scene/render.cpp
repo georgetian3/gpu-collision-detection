@@ -38,7 +38,7 @@ void Scene::render() {
     shader.use();
 
     // Load object models
-    Model cube = Model(cubeVertices, cubeIndices);
+    Model cuboid = Model(cubeVertices, cubeIndices);
     createSphere();
     Model sphere = Model(sphereVertices, sphereIndices);
 
@@ -87,21 +87,18 @@ void Scene::render() {
         shader.setMat4("projection", camera.getProjection());
 
         if (!pausePhysics) {
-            sw.start();
             // Update position and velocity of each `Collidable`
             gpuCD.updatePhysics(dt / slowMotion);
-            // std::cout << "update physics time: " << sw.reset() << '\n';
         }
 
-        sw.start();
         // Set the model matrices of each `Collidable`
-        cube.setModelMatrices(gpuCD.getModelMatrices());
-        // std::cout << "setModelMatrices time: " << sw.reset() << '\n';
+        gpuCD.calculateModelMatrices();
+        cuboid.setModelMatrices(gpuCD.getCuboidModelMatrices());
+        sphere.setModelMatrices(gpuCD.getSphereModelMatrices());
 
-        sw.start();
         // Draw
-        cube.draw();
-        // std::cout << "draw time: " << sw.reset() << '\n';
+        cuboid.draw();
+        sphere.draw();
 
         // Output animation frame captures
         if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {

@@ -25,7 +25,8 @@ class GpuCollisionDetector {
     std::vector<Collidable> collidables;
     std::vector<Node> nodes;
     std::vector<int> processed_zeros;
-    std::vector<glm::mat4> modelMatrices;
+    std::vector<glm::mat4> sphereModelMatrices;
+    std::vector<glm::mat4> cuboidModelMatrices;
 
     cl::Context context;
     cl::CommandQueue queue;
@@ -33,7 +34,8 @@ class GpuCollisionDetector {
     cl::Buffer bufferCollidables;
     cl::Buffer bufferNodes;
     cl::Buffer bufferProcessed;
-    cl::Buffer bufferMatrices;
+    cl::Buffer bufferSphereMatrices;
+    cl::Buffer bufferCuboidMatrices;
     
     cl::Kernel kernelMortonCode;
     cl::Kernel kernelConstruct;
@@ -48,7 +50,9 @@ public:
 
     void updatePhysics(double dt);
     void setCollidables(const std::vector<Collidable>& collidables);
-    std::vector<glm::mat4> getModelMatrices();
+    void calculateModelMatrices() const;
+    std::vector<glm::mat4> getSphereModelMatrices() const;
+    std::vector<glm::mat4> getCuboidModelMatrices() const;
 
 };
 
