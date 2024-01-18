@@ -9,7 +9,7 @@ __kernel void model_matrices(
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
 
-    float* active, inactive;
+    __global float* active, inactive;
 
     // calculate scale vector
     struct vec3 s;
