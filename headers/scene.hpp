@@ -16,7 +16,7 @@ class Scene {
     int windowWidth;
     int windowHeight;
 
-    bool wireframe = false;
+    bool wireframe = true;
 
 
     double lastX, lastY;
