@@ -42,7 +42,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
         if (type == "s") {
             f >> r;
             collidable = Collidable::constructSphere(pos, r);
-        } else if (type == "r") {
+        } else if (type == "c") {
             f >> xl >> yl >> zl;
             collidable = Collidable::constructCuboid(pos, xl, yl, zl);
         } else {
