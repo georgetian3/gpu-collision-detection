@@ -67,8 +67,23 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         }
         normal = diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
-
-
+        double3 dmin = pos - cuboid.aabb.min;
+        double3 dmax = pos - cuboid.aabb.max;
+        double3 abs_dmin = abs(dmin);
+        double3 abs_dmax = abs(dmax);
+        if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
+            normal.x = -1;
+        } else if (abs_dmin.y <= abs_dmin.x && abs_dmin.y <= abs_dmin.z && abs_dmin.y <= abs_dmax.x && abs_dmin.y <= abs_dmax.y && abs_dmin.y <= abs_dmax.z) {
+            normal.y = -1;
+        } else if (abs_dmin.z <= abs_dmin.x && abs_dmin.z <= abs_dmin.y && abs_dmin.z <= abs_dmax.x && abs_dmin.z <= abs_dmax.y && abs_dmin.z <= abs_dmax.z) {
+            normal.z = -1;
+        } else if (abs_dmax.x <= abs_dmin.x && abs_dmax.x <= abs_dmin.y && abs_dmax.x <= abs_dmin.z && abs_dmax.x <= abs_dmax.y && abs_dmax.x <= abs_dmax.z) {
+            normal.x = 1;
+        } else if (abs_dmax.y <= abs_dmin.x && abs_dmax.y <= abs_dmin.y && abs_dmax.y <= abs_dmin.z && abs_dmax.y <= abs_dmax.x && abs_dmax.y <= abs_dmax.z) {
+            normal.y = 1;
+        } else if (abs_dmax.z <= abs_dmin.x && abs_dmax.z <= abs_dmin.y && abs_dmax.z <= abs_dmin.z && abs_dmax.z <= abs_dmax.x && abs_dmax.z <= abs_dmax.y) {
+            normal.z = 1;
+        }
     } else if (a->type == CUBOID && b->type == SPHERE) {
         printf("recurse\n");
         narrow_phase_collision(b, a);
@@ -78,15 +93,15 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     }
 
     if (!a->immovable) {
-        double3 reflected = reflect(a->velocity, normal);
+        // double3 reflected = reflect(a->velocity, normal);
         // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
-        a->velocity = a->cor * reflected;
+        a->velocity = a->cor * reflect(a->velocity, normal);
     }
 
     if (!b->immovable) {
-        double3 reflected = reflect(b->velocity, -normal);
+        // double3 reflected = reflect(b->velocity, -normal);
         // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", b->velocity.x, b->velocity.y, b->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
-        b->velocity = b->cor * reflected;
+        b->velocity = b->cor * reflect(b->velocity, -normal);
     }
 }
 
