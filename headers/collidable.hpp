@@ -65,20 +65,20 @@ struct Collidable1 {
 
     bool immovable = false;
 
-    glm::dvec4 position = glm::dvec4(0.0);
-    uint64_t mortonCode = 0;
+    // glm::dvec4 position = glm::dvec4(0.0);
+    // uint64_t mortonCode = 0;
 
-    AABB aabb;
+    // AABB aabb;
 
-    union {
-        double length = 0;
-        double radius;
-        double xl;
-    };
-    double yl = 0;
-    double zl = 0;
+    // union {
+    //     double length = 0;
+    //     double radius;
+    //     double xl;
+    // };
+    // double yl = 0;
+    // double zl = 0;
 
-    glm::dvec4 velocity = glm::dvec4(0.0);
+    // glm::dvec4 velocity = glm::dvec4(0.0);
 
 
 };
