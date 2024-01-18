@@ -223,6 +223,11 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
 
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
+
+        queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
+        queue.finish();
+
+        exit(1);
     printLocation();
 
         kernelConstruct.setArg(0, sizeof(int), &n);
