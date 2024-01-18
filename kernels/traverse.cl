@@ -29,7 +29,6 @@ inline double3 reflect(double3 i, double3 n) {
     if (l != 1.0) {
         n /= l;
     }
-    printf("(%f %f %f) %f\n", n.x, n.y, n.z, l);
 
     return i - 2 * dot(i, n) * n;
 }
@@ -79,11 +78,13 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     // a->velocity = -a->velocity;
     // b->velocity = -b->velocity;
 
-    printf("normal (%f %f %f)\n", normal.x, normal.y, normal.z);
 
 
     if (!a->immovable) {
-        a->velocity = reflect(a->velocity, normal);
+        double3 reflected = reflect(a->velocity, normal);
+        printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, normal.x, normal.y, normal.z reflected.x, reflected.y, reflected.z);
+
+        a->velocity = reflected;
     }
 
     if (!b->immovable) {
