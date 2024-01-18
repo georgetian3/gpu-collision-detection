@@ -65,9 +65,9 @@ void Scene::render() {
                 glm::dvec3(0, delta, delta),
                 glm::dvec3(delta, 0, delta),
                 glm::dvec3(delta, delta, 0),
-                glm::dvec3(delta, inv_delta, inv_delta),
-                glm::dvec3(inv_delta, delta, inv_delta),
-                glm::dvec3(inv_delta, inv_delta, delta),
+                glm::dvec3(inv_delta, delta, delta),
+                glm::dvec3(delta, inv_delta, delta),
+                glm::dvec3(delta, delta, inv_delta),
             };
             double xls[] = {delta, inv_delta2, inv_delta2, inv_delta2, delta, inv_delta2};
             double yls[] = {inv_delta2, delta, inv_delta2, inv_delta2, inv_delta2, delta};
