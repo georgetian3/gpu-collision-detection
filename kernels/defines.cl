@@ -3,7 +3,7 @@ R"(
 enum Type {
     SPHERE,
     CUBE,
-    RECTANGULAR_CUBOID
+    CUBOID
 };
 
 struct vec3 {
