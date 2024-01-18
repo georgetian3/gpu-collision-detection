@@ -2,7 +2,7 @@ import random
 
 collidables = []
 
-n = 2 ** 0
+n = 2 ** 10
 
 print(n)
 
@@ -13,11 +13,12 @@ def rand_dec(low = 0, high = 1) -> str:
 
 for i in range(n):
     mass = str(int(random.random() * 100)).rjust(3)
-    cor = rand_dec()
+    cor = rand_dec(0.8, 1)
     shape = random.sample(shapes, 1)[0]
 
     position = f'{rand_dec()} {rand_dec()} {rand_dec()}'
     velocity = f'{rand_dec(-1, 1)} {rand_dec(-1, 1)} {rand_dec(-1, 1)}'
+    velocity = f'0 0 0'
 
     collidable = f'{shape} {position} {velocity} {mass} {cor}'
 
