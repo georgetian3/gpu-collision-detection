@@ -75,6 +75,7 @@ void Scene::render() {
 
             for (int i = 0; i < 6; i++) {
                 collidables.push_back(Collidable(CollidableType::cuboid, positions[i], glm::dvec3(0.0), 1.0, 1.0, xls[i], yls[i], zls[i]));
+                collidables.back().immovable = true;
             }
 
             gpuCD.setCollidables(collidables);
