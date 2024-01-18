@@ -12,7 +12,7 @@ bool comp(const Collidable& a, const Collidable b) {
 
 
 void GpuCollisionDetector::updatePhysics(double dt) {
-    Stopwatch sw;
+    printLocation();
     try {
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();

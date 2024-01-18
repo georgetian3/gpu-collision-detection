@@ -67,8 +67,6 @@ void Scene::render() {
             reset = false;
         }
 
-        printLocation();
-
         // Calculate frame times
         double currentTime = glfwGetTime();
         double dt = currentTime - prevTime;
