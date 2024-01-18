@@ -47,7 +47,11 @@ void Scene::render() {
     }
     std::cout << '\n';
     for (int i = 0; i < sphereIndices.size(); i += 3) {
-        std::cout << sphereIndices[i] << ' ' << sphereIndices[i + 1] << ' ' << sphereIndices[i + 2] << ' ' << '\n';
+        std::cout 
+            << '(' << sphereVertices[sphereIndices[i]] << ',' << sphereVertices[sphereIndices[i] + 1] << ',' << sphereVertices[sphereIndices[i] + 2] << ')'
+            << '(' << sphereVertices[sphereIndices[i + 1]] << ',' << sphereVertices[sphereIndices[i + 1] + 1] << ',' << sphereVertices[sphereIndices[i + 1] + 2] << ')'
+            << '(' << sphereVertices[sphereIndices[i + 2]] << ',' << sphereVertices[sphereIndices[i + 2] + 1] << ',' << sphereVertices[sphereIndices[i + 2] + 2] << ')'
+            << '\n';
     }
 
     Stopwatch sw;
