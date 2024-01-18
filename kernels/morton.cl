@@ -20,26 +20,26 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const struct Collidable collidable = collidables[i];
     const double3 position = collidables[i].position;
 
-    if (i == 0) {
-        int* p = &collidable;
-        printf("%08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x\n",
-            p[0], p[1], p[2], p[3],
-            p[4], p[5], p[6], p[7],
-            p[8], p[9], p[10], p[11]
-        );
+    // if (i == 0) {
+    //     int* p = &collidable;
+    //     printf("%08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x\n",
+    //         p[0], p[1], p[2], p[3],
+    //         p[4], p[5], p[6], p[7],
+    //         p[8], p[9], p[10], p[11]
+    //     );
        
-        printf("sizeof(Collidable GPU) %d\n", sizeof(struct Collidable));
-    }
+    //     printf("sizeof(Collidable GPU) %d\n", sizeof(struct Collidable));
+    // }
 
 
-    printf("id %d type %d immovable %d position (%f %f %f) mc %d amin(%f %f %f) amax(%f %f %f) vel(%f %f %f)\n",
-        collidable.id, collidable.type, collidable.immovable,
-        collidable.position.x, collidable.position.y, collidable.position.z,
-        collidable.mortonCode,
-        collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
-        collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
-        collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
-    );
+    // printf("id %d type %d immovable %d position (%f %f %f) mc %d amin(%f %f %f) amax(%f %f %f) vel(%f %f %f)\n",
+    //     collidable.id, collidable.type, collidable.immovable,
+    //     collidable.position.x, collidable.position.y, collidable.position.z,
+    //     collidable.mortonCode,
+    //     collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
+    //     collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
+    //     collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
+    // );
 
 
     collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
