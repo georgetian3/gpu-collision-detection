@@ -74,7 +74,6 @@ __kernel void traverse(
 
 
     while (stack.size) {
-        printf("loop\n");
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
@@ -89,9 +88,6 @@ __kernel void traverse(
             narrow_phase_collision(collidables + i, collidables + j);
             continue;
         }
-
-        continue;
-
 
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
