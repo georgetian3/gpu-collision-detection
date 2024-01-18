@@ -107,12 +107,12 @@ const std::vector<unsigned int> cubeIndices = {
     6, 7, 3
 };
 
-
-
 std::vector<float> sphereVertices;
 std::vector<unsigned int> sphereIndices;
 
 void createSphere() {
+
+    // http://www.songho.ca/opengl/gl_sphere.html
 
     sphereVertices.clear();
     sphereIndices.clear();
@@ -161,16 +161,14 @@ void createSphere() {
     {
         k1 = i * (sectorCount + 1);     // beginning of current stack
         k2 = k1 + sectorCount + 1;      // beginning of next stack
-
         for(int j = 0; j < sectorCount; ++j, ++k1, ++k2)
         {
             // 2 triangles per sector excluding 1st and last stacks
-            if(i != 0) {
+            if (i != 0) {
                 sphereIndices.push_back(k1);
                 sphereIndices.push_back(k2);
                 sphereIndices.push_back(k1 + 1);
             }
-
             if (i != (stackCount-1)) {
                 sphereIndices.push_back(k1 + 1);
                 sphereIndices.push_back(k2);
@@ -180,58 +178,6 @@ void createSphere() {
 
         }
     }
-
-
-
-    // const float PI = acos(-1.0f);
-    // const double r = 1.0;
-    // const int sectorCount = 3;
-    // const int stackCount = 3;
-
-    // float x, y, z, phi, theta;
-
-    // sphereVertices.push_back(0.0f);
-    // sphereVertices.push_back(0.0f);
-    // sphereVertices.push_back(1.0f);
-
-    // for (int stack = 1; stack < stackCount; stack++) {
-    //     phi = PI - 2 * PI * stack / stackCount;
-    //     z = r * sin(phi);
-    //     for (int sector = 0; sector < sectorCount; sector++) {
-    //         theta = 2 * PI * sector / sectorCount;
-    //         x = r * cos(phi) * cos(theta);
-    //         y = r * cos(phi) * sin(theta);
-    //         sphereVertices.push_back(x);
-    //         sphereVertices.push_back(y);
-    //         sphereVertices.push_back(z);
-    //     }
-
-    // }
-
-    // sphereVertices.push_back(0.0f);
-    // sphereVertices.push_back(0.0f);
-    // sphereVertices.push_back(-1.0f);
-
-    // for (int i = 0; i < sectorCount; i++) {
-    //     sphereIndices.push_back(0);
-    //     sphereIndices.push_back(i + 1);
-    //     sphereIndices.push_back((i + 1) % sectorCount + 1);
-    // }
-
-    // for (int stack = 0; stack < stackCount - 2; stack++) {
-    //     int k1 = stack * sectorCount + 1;
-    //     int k2 = k1 + sectorCount;
-
-    //     for (int sector = 0; sector < sectorCount; sector++, k1++, k2++) {
-    //         sphereIndices.push_back(k1);
-    //         sphereIndices.push_back(k2);
-    //         sphereIndices.push_back(k1 + 1);
-
-    //         sphereIndices.push_back(k1 + 1);
-    //         sphereIndices.push_back(k2);
-    //         sphereIndices.push_back(k2 + 1);
-    //     }
-    // }
 
 
 

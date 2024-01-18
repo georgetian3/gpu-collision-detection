@@ -11,6 +11,18 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 #define ABS(x) (x >= 0 ? x : -x)
 
 
+void narrow_phase_collision(struct Collidable* a, struct Collidable* b) {
+
+    if (!a->immovable) {
+        a->velocity.y = -a->velocity.y;
+    }
+
+    if (!b->.immovable) {
+        b->velocity.y = -b->velocity.y;
+    }
+}
+
+
 __kernel void traverse(
     int i,
     int n,
@@ -41,21 +53,12 @@ __kernel void traverse(
         }
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
-            struct Collidable collidable_j = collidables[j];
             if (j <= i) {
                 continue;
             }
-            // printf("colliding %d %d\n", i, j);
-
-            if (!collidables[i].immovable) {
-                collidables[i].velocity.y = -collidables[i].velocity.y;
-            }
-
-            if (!collidables[j].immovable) {
-                collidables[j].velocity.y = -collidables[j].velocity.y;
-            }
-
-            return;
+            narrow_phase_collision(collidables + i, collidables + j);
+            
+            continue;
         }
 
         stack_push(&stack, node.left );
