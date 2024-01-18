@@ -31,7 +31,7 @@ __kernel void model_matrices(
             break;
         }
         default: {
-            // printf("Unsupported collidable type: %d\n", collidable.type);
+            printf("Unsupported collidable type: %d\n", collidable.type);
             return;
         }
     }
