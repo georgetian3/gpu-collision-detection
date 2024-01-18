@@ -82,7 +82,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         double diffs[] = {dmin.x, dmin.y, dmin.z, dmax.x, dmax.y, dmax.z};
         int mi = min_index(diffs, 6);
         printf("(%f %f %f %f %f %f) %d\n", diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi);
-
+        normal[mi % 3] = mi < 3 ? 1 : -1;
 
         // if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
         //     normal.x = -1;
