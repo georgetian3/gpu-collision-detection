@@ -2,6 +2,7 @@
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/norm.hpp>
+#include <utils.hpp>
 
 #define STRING_BUF_SIZE 256
 
