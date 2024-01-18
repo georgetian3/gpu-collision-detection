@@ -35,6 +35,7 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
             collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
             collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
         );
+        printf("sizeof(Collidable GPU) %d\n", sizeof(struct Collidable));
     }
 
 

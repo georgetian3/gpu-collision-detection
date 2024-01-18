@@ -40,15 +40,6 @@ struct Collidable {
 
     int immovable = false;
 
-
-
-
-
-
-
-    uint8_t __padding[48];
-
-
     Collidable() {}
 
     Collidable(
