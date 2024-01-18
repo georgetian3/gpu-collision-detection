@@ -52,6 +52,8 @@ void Scene::render() {
 
     while (!glfwWindowShouldClose(window)) {
 
+        std::cout << "render\n";
+
         // Process reset button click
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
