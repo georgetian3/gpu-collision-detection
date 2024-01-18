@@ -32,7 +32,7 @@ inline double3 reflect(double3 i, double3 n) {
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
     a->velocity = -a->velocity;
-    b->velocity = -b->velocity
+    b->velocity = -b->velocity;
 
     return;
 
