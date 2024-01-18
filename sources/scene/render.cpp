@@ -55,9 +55,14 @@ void Scene::render() {
         // Process reset button click
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
-            Collidable ground = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0.0), 0.0, 1.0, 1, 0.01, 1);
-            ground.immovable = true;
-            collidables.push_back(ground);
+            Collidable faces[6];
+            faces[0] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0.0), 1.0, 1.0, 0.01, 1, 1);
+            faces[1] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0.0), 1.0, 1.0, 1, 0.01, 1);
+            faces[2] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0.0), 1.0, 1.0, 1, 1, 0.01);
+            for (int i = 0; i < 3; i++) {
+                faces[i].immovable = true;
+                collidables.push_back(faces[i]);
+            }
             gpuCD.setCollidables(collidables);
             reset = false;
         }
