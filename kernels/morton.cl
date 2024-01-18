@@ -22,7 +22,7 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
 
     if (i == 0) {
         int* p = &collidable;
-        printf("%x %x %x\n", p[0], p[1], p[2]);
+        printf("%08x %08x %08x\n", p[0], p[1], p[2]);
 
     }
 
