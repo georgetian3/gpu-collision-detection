@@ -57,6 +57,6 @@ struct Collidable {
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
     std::string toString() const;
 
-} __attribute__((packed));
+};
 
 #endif
