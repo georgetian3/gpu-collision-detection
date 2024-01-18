@@ -24,7 +24,7 @@ __kernel void model_matrices(
     bool is_sphere;
 
     // calculate scale vector
-    double3 s;
+    double4 s;
     switch (collidable.type) {
         case SPHERE: {
             is_sphere = true;
@@ -45,7 +45,7 @@ __kernel void model_matrices(
         }
     }
 
-    double3 p = collidable.position;
+    double4 p = collidable.position;
 
     int b = i * 16;
 

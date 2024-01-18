@@ -10,15 +10,15 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 
 #define ABS(x) (x >= 0 ? x : -x)
 
-double3 reflect(double3 incident, double3 normal) {
-    double3 reflected;
-    double3 normalized = normalize(normal);
+double4 reflect(double4 incident, double4 normal) {
+    double4 reflected;
+    double4 normalized = normalize(normal);
 }
 
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
-    double3 v_a, v_b;
+    double4 v_a, v_b;
 
     if (a->type == CUBOID && a->type == CUBOID) {
         
