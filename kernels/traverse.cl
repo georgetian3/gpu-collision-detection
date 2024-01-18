@@ -22,7 +22,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
     if (a->type == CUBOID && a->type == CUBOID) {
         
-    } else if (a->type == SPHERE && b.type == SPHERE) {
+    } else if (a->type == SPHERE && b->type == SPHERE) {
 
     } else if (a->type == SPHERE && b->type == CUBOID) {
 
