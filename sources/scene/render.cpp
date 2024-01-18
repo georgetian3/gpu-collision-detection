@@ -52,8 +52,7 @@ void Scene::render() {
 
     while (!glfwWindowShouldClose(window)) {
 
-        std::cout << "render\n";
-
+        printLocation();
         // Process reset button click
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
@@ -68,6 +67,7 @@ void Scene::render() {
         double currentTime = glfwGetTime();
         double dt = currentTime - prevTime;
         prevTime = currentTime;
+        printLocation();
 
         // Calculate FPS
         frameCount++;
@@ -87,11 +87,13 @@ void Scene::render() {
         // Set camera view and proejction matrices
         shader.setMat4("view", camera.getView());
         shader.setMat4("projection", camera.getProjection());
+        printLocation();
 
         if (!pausePhysics) {
             // Update position and velocity of each `Collidable`
             gpuCD.updatePhysics(dt / slowMotion);
         }
+        printLocation();
 
         // Set the model matrices of each `Collidable`
         gpuCD.calculateModelMatrices();
@@ -101,6 +103,7 @@ void Scene::render() {
         // Draw
         cuboid.draw();
         sphere.draw();
+        printLocation();
 
         // Output animation frame captures
         if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
