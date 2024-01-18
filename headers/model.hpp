@@ -152,6 +152,21 @@ void createSphere() {
         sphereIndices.push_back((i + 1) % sectorCount + 1);
     }
 
+    for (int stack = 1; stack < stackCount - 1; stack++) {
+        int k1 = stack * sectorCount + 1;
+        int k2 = k1 + sectorCount;
+
+        for (int sector = 0; sector <= sectorCount; sector++, k1++, k2++) {
+            sphereIndices.push_back(k1);
+            sphereIndices.push_back(k2);
+            sphereIndices.push_back(k1 + 1);
+
+            sphereIndices.push_back(k1 + 1);
+            sphereIndices.push_back(k2);
+            sphereIndices.push_back(k2 + 1);
+        }
+    }
+
     // unsigned int k1, k2;
     // for(int i = 0; i < stackCount; ++i) {
     //     k1 = i * (sectorCount + 1);     // beginning of current stack
