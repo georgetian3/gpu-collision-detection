@@ -1,9 +1,5 @@
 R"(
 
-// double clamp(double value, double min, double max) {
-//     return value < min ? min : value > max ? max : value;
-// }
-
 __kernel void update_physics(
     __global struct Collidable* collidables,
     const double dt,
