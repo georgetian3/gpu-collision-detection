@@ -81,7 +81,6 @@ __kernel void traverse(
         if (!overlaps(abs_aabb, node.aabb)) {
             continue;
         }
-        continue;
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
             if (j <= i) {
@@ -90,6 +89,9 @@ __kernel void traverse(
             narrow_phase_collision(collidables + i, collidables + j);
             continue;
         }
+
+        continue;
+
 
         stack_push(&stack, node.left );
         stack_push(&stack, node.right);
