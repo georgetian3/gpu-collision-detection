@@ -39,7 +39,7 @@ double length2(double3 v) {
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
-    if (!a->immovable && !b->immovable) {
+    if (a->immovable && b->immovable) {
         return;
     }
 
