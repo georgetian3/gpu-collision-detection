@@ -49,7 +49,7 @@ struct Collidable1 {
 
     bool immovable;
 
-    // double3 position;
+    double3 position;
     // ulong mortonCode;
 
     // struct AABB aabb;
