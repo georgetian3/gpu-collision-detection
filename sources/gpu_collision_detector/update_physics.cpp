@@ -14,6 +14,7 @@ bool comp(const Collidable& a, const Collidable b) {
 void GpuCollisionDetector::updatePhysics(double dt) {
     Stopwatch sw;
     try {
+        std::cout << "sizeof(Node) " << sizeof(Node) << '\n';
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
         queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
