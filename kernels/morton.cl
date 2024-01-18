@@ -18,7 +18,7 @@ inline ulong morton3D(double x, double y, double z) {
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
     if (i == 0) {
-        printf("sizeof(Collidable): %d\n", sizeof(struct Collidable));
+        printf("sizeof(Collidable): %d %d\n", sizeof(struct Collidable), sizeof(struct AABB));
     }
     const double3 position = collidables[i].position;
     collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
