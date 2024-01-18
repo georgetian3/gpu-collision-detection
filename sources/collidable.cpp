@@ -30,6 +30,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> position.x >> position.y >> position.z >> velocity.x >> velocity.y >> velocity.z >> mass >> cor;
+        std::cout << type << ' ' << glm::to_string(position) << ' ' << glm::to_string(velocity) << ' ' << mass << ' ' << cor << '\n';
         if (type == "s") {
             f >> r;
             collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, r);
@@ -56,7 +57,7 @@ Collidable::Collidable(
     const double zl
 ): id(idCount++), type(type), position(glm::dvec4(position.x, position.y, position.z, 0)), xl(xl), yl(yl), zl(zl) {
     this->cor = clamp(cor, 0.0, 1.0);
-    this->mass = clamp(mass, 0.0, 1e10);
+    this->mass = clamp(mass, 1e-10, 1e10);
     switch (type) {
         case CollidableType::sphere: {
             aabb.min = glm::dvec4(0);
