@@ -80,8 +80,8 @@ struct Collidable1 {
 
     glm::dvec4 velocity = glm::dvec4(0.0);
 
-    uint32_t p1;
-    uint16_t p1;
+    uint32_t __p1;
+    uint16_t __p2;
 
 
 };
