@@ -28,8 +28,8 @@ __kernel void calculate_absolute_aabb(
     if (nodes[i].left == -1) { // leaf node
         const double3 pos = collidables[i - (n - 1)].position;
         const struct AABB aabb = collidables[i - (n - 1)].aabb;
-        nodes[i].aabb.min = vec_add(pos, aabb.min);
-        nodes[i].aabb.max = vec_add(pos, aabb.max);
+        nodes[i].aabb.min = pos + aabb.min;
+        nodes[i].aabb.max = pos + aabb.max;
     } else {
         struct AABB a, b;
         double3 min, max;
