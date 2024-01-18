@@ -32,7 +32,6 @@ inline double3 reflect(double3 i, double3 n) {
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
 
-
     double3 normal;
 
     if (a->type == CUBOID && a->type == CUBOID) {
@@ -61,9 +60,6 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     } else {
         printf("narrow_phase_collision ???\n");
     }
-
-    double3 v_a = -a->velocity, v_b = -b->velocity;
-
 
     if (!a->immovable) {
         a->velocity = reflect(a->velocity, normal);
