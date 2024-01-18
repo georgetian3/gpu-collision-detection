@@ -18,9 +18,13 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         queue.finish();
         printLocation();
         queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
+        printLocation();
         std::sort(collidables.begin(), collidables.end(), comp);
+        printLocation();
         queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
+        printLocation();
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
+        printLocation();
         queue.finish();
         printLocation();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
