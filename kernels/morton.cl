@@ -20,14 +20,19 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const struct Collidable collidable = collidables[i];
     const double3 position = collidables[i].position;
 
-    printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
-        collidable.id, collidable.type, collidable.immovable,
-        collidable.position.x, collidable.position.y, collidable.position.z,
-        collidable.mortonCode,
-        collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
-        collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
-        collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
-    );
+    if (i == 0) {
+        printf("%x %x %x\n", &collidable, &collidable + 4, &collidable + 8);
+
+    }
+
+    // printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
+    //     collidable.id, collidable.type, collidable.immovable,
+    //     collidable.position.x, collidable.position.y, collidable.position.z,
+    //     collidable.mortonCode,
+    //     collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
+    //     collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
+    //     collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
+    // );
 
     collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
     printf("morton code %d\n", collidables[i].mortonCode);
