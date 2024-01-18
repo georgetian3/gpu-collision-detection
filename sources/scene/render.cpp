@@ -59,9 +59,15 @@ void Scene::render() {
             Collidable ground = Collidable::constructCuboid(glm::dvec3(0.0), 1, 0.01, 1);
             ground.immovable = true;
             collidables.push_back(ground);
+            printLocation();
+
             gpuCD.setCollidables(collidables);
+            printLocation();
+
             reset = false;
         }
+        printLocation();
+
 
         // Calculate frame times
         double currentTime = glfwGetTime();
