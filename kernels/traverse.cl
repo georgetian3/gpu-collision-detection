@@ -11,7 +11,7 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 #define ABS(x) (x >= 0 ? x : -x)
 
 
-void narrow_phase_collision(struct Collidable* a, struct Collidable* b) {
+void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
     if (!a->immovable) {
         a->velocity.y = -a->velocity.y;
