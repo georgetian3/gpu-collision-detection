@@ -149,7 +149,7 @@ void createSphere() {
     for (int i = 0; i < sectorCount; i++) {
         sphereIndices.push_back(0);
         sphereIndices.push_back(i + 1);
-        sphereIndices.push_back(i + 2);
+        sphereIndices.push_back((i + 1) % sectorCount + 1);
     }
 
     // unsigned int k1, k2;
