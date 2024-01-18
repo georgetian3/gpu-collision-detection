@@ -21,6 +21,14 @@ inline double3 v_abs(double3 v) {
     return v;
 }
 
+inline double3 reflect(double3 i, double3 n) {
+    double l = length(n);
+    if (l != 1.0) {
+        n /= l;
+    }
+    return i - 2 * dot(i, n) * n;
+}
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
 
