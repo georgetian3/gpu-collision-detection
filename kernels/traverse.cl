@@ -80,13 +80,13 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     if (!a->immovable) {
         double3 reflected = reflect(a->velocity, normal);
         // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
-        a->velocity = a->cors * reflected;
+        a->velocity = a->cor * reflected;
     }
 
     if (!b->immovable) {
         double3 reflected = reflect(b->velocity, -normal);
         // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", b->velocity.x, b->velocity.y, b->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
-        b->velocity = b->cors * reflected;
+        b->velocity = b->cor * reflected;
     }
 }
 
