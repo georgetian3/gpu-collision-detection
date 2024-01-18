@@ -19,6 +19,10 @@ __kernel void update_physics(
     double3 new_velocity = collidable.velocity + gravity * dt;
     double3 new_position = collidable.position + (collidable.velocity + new_velocity) * (0.5 * dt);
 
+    new_position.x = clamp(new_position.x, -0.2, 1.2);
+    new_position.y = clamp(new_position.y, -0.2, 1.2);
+    new_position.z = clamp(new_position.z, -0.2, 1.2);
+
     collidables[i].position = new_position;
     collidables[i].velocity = new_velocity;
 
