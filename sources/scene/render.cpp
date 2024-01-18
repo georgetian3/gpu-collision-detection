@@ -58,6 +58,7 @@ void Scene::render() {
             for (const auto& c: collidables) {
                 std::cout << glm::to_string(c.position) << '\n';
             }
+            exit(1);
             Collidable ground = Collidable::constructCuboid(glm::dvec3(0.0), 1, 0.01, 1);
             ground.immovable = true;
             collidables.push_back(ground);
