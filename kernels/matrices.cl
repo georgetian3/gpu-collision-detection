@@ -12,9 +12,9 @@ __kernel void model_matrices(
     struct Collidable collidable = collidables[i];
 
     printf("%d %d %d (%d %d %d) %d\n",
-        id, type, immovable,
-        position.x, position.y, position.z,
-        mortonCode
+        collidable.id, collidable.type, collidable.immovable,
+        collidable.position.x, collidable.position.y, collidable.position.z,
+        collidable.mortonCode
     );
 
 
