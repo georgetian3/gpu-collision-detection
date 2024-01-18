@@ -39,7 +39,6 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     double r, xl, yl, zl;
     while (!f.eof()) {
         printLocation();
-
         Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
         if (type == "s") {
