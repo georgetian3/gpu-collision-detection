@@ -69,6 +69,7 @@ __kernel void traverse(
     stack_push(&stack, 0);
 
     while (stack.size) {
+        printf("loop\n");
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
