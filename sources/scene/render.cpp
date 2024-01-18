@@ -56,7 +56,7 @@ void Scene::render() {
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
             Collidable faces[6];
-            double delta = 0.0001;
+            double delta = 0.1;
             faces[0] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(delta, 0, 0), 1.0, 1.0, delta, 1 - delta, 1 - delta);
             faces[1] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0, delta, 0), 1.0, 1.0, 1 - delta, delta, 1 - delta);
             faces[2] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0, 0, delta), 1.0, 1.0, 1 - delta, 1 - delta, delta);
