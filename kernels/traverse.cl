@@ -23,6 +23,9 @@ inline double3 v_abs(double3 v) {
 
 inline double3 reflect(double3 i, double3 n) {
     double l = length(n);
+    if (l == 0.0) {
+        return i;
+    }
     if (l != 1.0) {
         n /= l;
     }
