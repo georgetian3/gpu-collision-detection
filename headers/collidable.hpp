@@ -61,6 +61,6 @@ struct Collidable {
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
 
 };
-#pragma pack(pop)
+#pragma pack(0)
 
 #endif
