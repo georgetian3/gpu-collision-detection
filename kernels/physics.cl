@@ -1,5 +1,10 @@
 R"(
 
+inline bool outside(double v) {
+    return v < 0.0 || v > 1.0;
+}
+
+
 __kernel void update_physics(
     __global struct Collidable* collidables,
     const double3 gravity,
@@ -19,6 +24,9 @@ __kernel void update_physics(
 
     collidables[i].position = new_position;
     collidables[i].velocity = new_velocity;
+    if (outside(new_position.x) || outside(new_position.y) || outside(new_position.z)) {
+        collidables[i].immovable = 1;
+    }
 }
 
 )"
