@@ -71,7 +71,7 @@ Collidable::Collidable(
         }
         case CollidableType::cuboid: {
             aabb.min = glm::dvec4(0);
-            aabb.max = glm::dvec4(xl, yl, zl);
+            aabb.max = glm::dvec4(xl, yl, zl, 0);
             break;
         }
         default: {
