@@ -75,23 +75,27 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         }
         normal = diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
-        double3 dmin = a->position - b->aabb.min;
-        double3 dmax = a->position - b->aabb.max;
-        double3 abs_dmin = v_abs(dmin);
-        double3 abs_dmax = v_abs(dmax);
-        if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
-            normal.x = -1;
-        } else if (abs_dmin.y <= abs_dmin.x && abs_dmin.y <= abs_dmin.z && abs_dmin.y <= abs_dmax.x && abs_dmin.y <= abs_dmax.y && abs_dmin.y <= abs_dmax.z) {
-            normal.y = -1;
-        } else if (abs_dmin.z <= abs_dmin.x && abs_dmin.z <= abs_dmin.y && abs_dmin.z <= abs_dmax.x && abs_dmin.z <= abs_dmax.y && abs_dmin.z <= abs_dmax.z) {
-            normal.z = -1;
-        } else if (abs_dmax.x <= abs_dmin.x && abs_dmax.x <= abs_dmin.y && abs_dmax.x <= abs_dmin.z && abs_dmax.x <= abs_dmax.y && abs_dmax.x <= abs_dmax.z) {
-            normal.x = 1;
-        } else if (abs_dmax.y <= abs_dmin.x && abs_dmax.y <= abs_dmin.y && abs_dmax.y <= abs_dmin.z && abs_dmax.y <= abs_dmax.x && abs_dmax.y <= abs_dmax.z) {
-            normal.y = 1;
-        } else if (abs_dmax.z <= abs_dmin.x && abs_dmax.z <= abs_dmin.y && abs_dmax.z <= abs_dmin.z && abs_dmax.z <= abs_dmax.x && abs_dmax.z <= abs_dmax.y) {
-            normal.z = 1;
-        }
+        double3 dmin = v_abs(a->position - b->aabb.min);
+        double3 dmax = v_abs(a->position - b->aabb.max);
+
+        double diffs[] = {dmin.x, dmin.y, dmin.z, dmax.x, dmax.y, dmax.z};
+        int mi = min_index(diffs, 6);
+        printf("(%f %f %f %f %f %f) %d\n", diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi);
+
+
+        // if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
+        //     normal.x = -1;
+        // } else if (abs_dmin.y <= abs_dmin.x && abs_dmin.y <= abs_dmin.z && abs_dmin.y <= abs_dmax.x && abs_dmin.y <= abs_dmax.y && abs_dmin.y <= abs_dmax.z) {
+        //     normal.y = -1;
+        // } else if (abs_dmin.z <= abs_dmin.x && abs_dmin.z <= abs_dmin.y && abs_dmin.z <= abs_dmax.x && abs_dmin.z <= abs_dmax.y && abs_dmin.z <= abs_dmax.z) {
+        //     normal.z = -1;
+        // } else if (abs_dmax.x <= abs_dmin.x && abs_dmax.x <= abs_dmin.y && abs_dmax.x <= abs_dmin.z && abs_dmax.x <= abs_dmax.y && abs_dmax.x <= abs_dmax.z) {
+        //     normal.x = 1;
+        // } else if (abs_dmax.y <= abs_dmin.x && abs_dmax.y <= abs_dmin.y && abs_dmax.y <= abs_dmin.z && abs_dmax.y <= abs_dmax.x && abs_dmax.y <= abs_dmax.z) {
+        //     normal.y = 1;
+        // } else if (abs_dmax.z <= abs_dmin.x && abs_dmax.z <= abs_dmin.y && abs_dmax.z <= abs_dmin.z && abs_dmax.z <= abs_dmax.x && abs_dmax.z <= abs_dmax.y) {
+        //     normal.z = 1;
+        // }
     } else if (a->type == CUBOID && b->type == SPHERE) {
         narrow_phase_collision(b, a);
         return;
