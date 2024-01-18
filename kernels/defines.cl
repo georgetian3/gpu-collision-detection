@@ -11,10 +11,10 @@ struct AABB {
 };
 
 struct Node {
+    struct AABB aabb;
     int parent;
     int left;
     int right;
-    struct AABB aabb;
 } __attribute__((packed));
 
 struct Collidable {
