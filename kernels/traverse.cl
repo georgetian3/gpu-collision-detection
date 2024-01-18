@@ -17,14 +17,23 @@ inline double3 midpoint(const struct AABB aabb) {
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
 
-    double3 v_a = -a->velocity, v_b = -b->velocity;
 
-    printf("old (%f %f %f) new (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, v_a.x, v_a.y, v_a.z);
+    double3 normal;
 
     if (a->type == CUBOID && a->type == CUBOID) {
         // AABBs collide -> true collision
         double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
-        
+        double3 mad = abs(diff);
+        normal.x = 0;
+        normal.y = 0;
+        normal.z = 0;
+        if (mad.x >= mad.y && mad.x >= mad.z) {
+            normal.x = 1.0;
+        } else if (mad.y >= mad.x && mad.y >= mad.z) {
+            normal.y = 1.0;
+        } else {
+            normal.z = 1.0;
+        }
     } else if (a->type == SPHERE && b->type == SPHERE) {
 
     } else if (a->type == SPHERE && b->type == CUBOID) {
@@ -38,12 +47,15 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         printf("narrow_phase_collision ???\n");
     }
 
+    double3 v_a = -a->velocity, v_b = -b->velocity;
+
+
     if (!a->immovable) {
-        a->velocity = v_a;
+        a->velocity = reflect(a->velocity, normal);
     }
 
     if (!b->immovable) {
-        b->velocity = v_b;
+        b->velocity = reflect(b->velocity, -normal);
     }
 }
 
