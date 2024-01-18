@@ -75,13 +75,13 @@ __kernel void traverse(
 
     while (stack.size) {
         printf("loop\n");
-        break;
         int node_i = stack_pop(&stack);
         node = nodes[node_i];
         struct AABB abs_aabb = absolute_aabb(collidable_i);
         if (!overlaps(abs_aabb, node.aabb)) {
             continue;
         }
+        break;
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
             if (j <= i) {
