@@ -60,20 +60,19 @@ void Scene::render() {
             double delta2 = delta * 2;
             double inv_delta2 = 1 - delta * 2;
 
-            // glm::dvec3 positions[] = {
-            //     glm::dvec3(0, delta, delta),
-            //     glm::dvec3(delta, 0, delta),
-            //     glm::dvec3(delta, delta, 0)
-            // };
-            // double xls[] = {delta, inv_delta2, inv_delta2};
-            // double yls[] = {inv_delta2, delta, inv_delta2};
-            // double zls[] = {inv_delta2, inv_delta2, delta};
+            glm::dvec3 positions[] = {
+                glm::dvec3(0, delta, delta),
+                glm::dvec3(delta, 0, delta),
+                glm::dvec3(delta, delta, 0)
+            };
+            double xls[] = {delta, inv_delta2, inv_delta2};
+            double yls[] = {inv_delta2, delta, inv_delta2};
+            double zls[] = {inv_delta2, inv_delta2, delta};
 
-            // for (int i = 0; i < 3; i++) {
-            //     collidables.push_back(Collidable(CollidableType::cuboid, glm::dvec3(0.0), positions[i], 1.0, 1.0, xls[i], yls[i], zls[i]));
-            // }
+            for (int i = 0; i < 3; i++) {
+                collidables.push_back(Collidable(CollidableType::cuboid, glm::dvec3(0.0), positions[i], 1.0, 1.0, xls[i], yls[i], zls[i]));
+            }
 
-            collidables.push_back(Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0.0), 1.0, 1.0, 1.0, 0.001, 1.0));
             gpuCD.setCollidables(collidables);
             reset = false;
         }
