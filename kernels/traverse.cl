@@ -15,9 +15,9 @@ inline double3 midpoint(const struct AABB aabb) {
 }
 
 inline double3 v_abs(double3 v) {
-    v.x = abs(v.x);
-    v.y = abs(v.y);
-    v.z = abs(v.z);
+    v.x = ABS(v.x);
+    v.y = ABS(v.y);
+    v.z = ABS(v.z);
     return v;
 }
 
