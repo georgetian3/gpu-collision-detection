@@ -81,7 +81,7 @@ __kernel void traverse(
         if (!overlaps(abs_aabb, node.aabb)) {
             continue;
         }
-        break;
+        continue;
         if (node.left == -1) { // leaf
             int j = node_i - (n - 1);
             if (j <= i) {
