@@ -15,22 +15,15 @@ void GpuCollisionDetector::updatePhysics(double dt) {
     Stopwatch sw;
     try {
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
-        printLocation();
         queue.finish();
-        printLocation();
         queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
         std::sort(collidables.begin(), collidables.end(), comp);
-        printLocation();
         queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-        printLocation();
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
         queue.finish();
-        printLocation();
         queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_int) * processed_zeros.size(), processed_zeros.data());
-        printLocation();
         queue.enqueueNDRangeKernel(kernelAABB, cl::NDRange(collidables.size() - 1), cl::NDRange(collidables.size()));
         queue.finish();
-        printLocation();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
         printLocation();
         queue.enqueueNDRangeKernel(kernelTraverse, cl::NullRange, cl::NDRange(collidables.size()));
@@ -38,10 +31,8 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         queue.finish();
         printLocation();
         kernelPhysics.setArg(2, sizeof(double), &dt);
-        printLocation();
         queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
-        printLocation();
     } catch (const cl::Error& e) {
         printLocation();
         printClError(e);

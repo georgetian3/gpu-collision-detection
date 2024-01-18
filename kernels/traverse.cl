@@ -57,11 +57,12 @@ __kernel void traverse(
         i = get_global_id(0);
     }
 
-    printf("traverse\n");
-
-    return;
     
     struct Collidable collidable_i = collidables[i];
+
+    return;
+
+
     struct Node node;
 
     // As OpenCL has limitations with recursion (cannot call `traverse` twice in itself)
