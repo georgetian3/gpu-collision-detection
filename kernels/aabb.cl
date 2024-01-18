@@ -19,7 +19,7 @@ __kernel void calculate_absolute_aabb(
     }
 
     if (nodes[i].left == -1) { // leaf node
-        const double4 pos = collidables[i - (n - 1)].position;
+        const double3 pos = collidables[i - (n - 1)].position;
         const struct AABB aabb = collidables[i - (n - 1)].aabb;
         nodes[i].aabb.min = pos + aabb.min;
         nodes[i].aabb.max = pos + aabb.max;
@@ -27,7 +27,7 @@ __kernel void calculate_absolute_aabb(
 
         struct AABB a = nodes[nodes[i].left ].aabb;
         struct AABB b = nodes[nodes[i].right].aabb;
-        double4 aabb_min, aabb_max;
+        double3 aabb_min, aabb_max;
 
         aabb_min.x = min(a.min.x, b.min.x);
         aabb_min.y = min(a.min.y, b.min.y);

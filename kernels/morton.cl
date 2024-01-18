@@ -18,7 +18,7 @@ inline ulong morton3D(double x, double y, double z) {
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
     const struct Collidable collidable = collidables[i];
-    const double4 position = collidables[i].position;
+    const double3 position = collidables[i].position;
 
     printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
         collidable.id, collidable.type, collidable.immovable,
