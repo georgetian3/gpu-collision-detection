@@ -22,16 +22,11 @@ struct AABB {
 #pragma pack(1)
 struct Collidable {
 
-    unsigned int id = -1;
-    CollidableType type;
-
-    int immovable = false;
-
     glm::dvec4 position = glm::dvec4(0.0);
-    uint64_t mortonCode = 0;
-
+    glm::dvec4 velocity = glm::dvec4(0.0);
     AABB aabb;
 
+    uint64_t mortonCode = 0;
     union {
         double length = 0;
         double radius;
@@ -40,7 +35,16 @@ struct Collidable {
     double yl = 0;
     double zl = 0;
 
-    glm::dvec4 velocity = glm::dvec4(0.0);
+    unsigned int id = -1;
+    CollidableType type;
+
+    int immovable = false;
+
+
+
+
+
+
 
     uint8_t __padding[48];
 

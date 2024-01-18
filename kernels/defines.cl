@@ -19,26 +19,23 @@ struct Node {
 
 struct Collidable {
 
-    unsigned int id;
-    unsigned int type;
-
-    int immovable;
-
     double3 position;
-    ulong mortonCode;
-
+    double3 velocity;
     struct AABB aabb;
 
+    ulong mortonCode;
     union {
         double length;
         double radius;
         double xl;
     };
-
     double yl;
     double zl;
 
-    double3 velocity;
+    unsigned int id;
+    unsigned int type;
+
+    int immovable;
 
 };
 
