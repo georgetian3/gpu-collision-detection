@@ -17,6 +17,8 @@ __kernel void construct_tree(
 ) {
     int i = get_global_id(0);
 
+    printf("here %d\n", i);
+
     const int d = (
         common_prefix_length(collidables, n, i, i + 1) - 
         common_prefix_length(collidables, n, i, i - 1)
