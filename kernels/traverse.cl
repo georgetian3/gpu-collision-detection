@@ -13,6 +13,11 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
+    if (a->type == CUBE && a->type == CUBE) {
+        
+
+    }
+
     if (!a->immovable) {
         a->velocity.y = -a->velocity.y;
     }

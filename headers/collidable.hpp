@@ -7,25 +7,12 @@
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
-
 #include <glm/ext.hpp>
-
-struct Collision {
-    const unsigned int id1;
-    const unsigned int id2;
-    const glm::dvec3 point;
-    Collision(const unsigned int id1, const unsigned int id2, const glm::dvec3 point): id1(id1), id2(id2), point(point) {}
-    static bool isCollision(const Collision& collision) {
-        return collision.id1 != 0 || collision.id2 != 0;
-    }
-};
-
-const Collision NO_COLLISION = Collision(0, 0, glm::dvec3(0.0));
 
 enum class CollidableType {
     sphere,
     cube,
-    rectangularCuboid
+    cuboid
 };
 
 struct AABB {
@@ -71,7 +58,6 @@ struct Collidable {
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
     std::string toString() const;
-    static Collision collide(const Collidable& a, const Collidable& b);
 
 };
 
