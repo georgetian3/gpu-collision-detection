@@ -39,6 +39,10 @@ double length2(double3 v) {
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
+    if (!a->immovable && !b->immovable) {
+        return;
+    }
+
     double3 normal;
 
     if (a->type == CUBOID && a->type == CUBOID) {
@@ -92,14 +96,10 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     }
 
     if (!a->immovable) {
-        // double3 reflected = reflect(a->velocity, normal);
-        // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
         a->velocity = a->cor * reflect(a->velocity, normal);
     }
 
     if (!b->immovable) {
-        // double3 reflected = reflect(b->velocity, -normal);
-        // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", b->velocity.x, b->velocity.y, b->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
         b->velocity = b->cor * reflect(b->velocity, -normal);
     }
 }

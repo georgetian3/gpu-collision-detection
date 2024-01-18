@@ -18,7 +18,6 @@ class Scene {
 
     bool wireframe = true;
 
-
     double lastX, lastY;
     bool firstMouse = true;
     GLFWwindow* window = nullptr;
