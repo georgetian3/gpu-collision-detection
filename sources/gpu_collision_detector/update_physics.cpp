@@ -72,8 +72,10 @@ void GpuCollisionDetector::calculateModelMatrices() {
 }
 
 std::vector<glm::mat4> GpuCollisionDetector::getSphereModelMatrices() const {
+    std::cout << glm::to_string(sphereModelMatrices[0]);
     return sphereModelMatrices;
 }
 std::vector<glm::mat4> GpuCollisionDetector::getCuboidModelMatrices() const {
+    std::cout << glm::to_string(cuboidModelMatrices[0]);
     return cuboidModelMatrices;
 }
