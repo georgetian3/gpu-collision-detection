@@ -69,11 +69,11 @@ void Scene::render() {
                 glm::dvec3(delta, inv_delta, delta),
                 glm::dvec3(delta, delta, inv_delta),
             };
-            double xls[] = {delta, inv_delta2, inv_delta2, inv_delta2, delta, inv_delta2};
+            double xls[] = {delta, inv_delta2, inv_delta2, delta, delta, inv_delta2};
             double yls[] = {inv_delta2, delta, inv_delta2, inv_delta2, inv_delta2, delta};
-            double zls[] = {inv_delta2, inv_delta2, delta, delta, inv_delta2, inv_delta2};
+            double zls[] = {inv_delta2, inv_delta2, delta, inv_delta2, inv_delta2, inv_delta2};
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 4; i++) {
                 collidables.push_back(Collidable(CollidableType::cuboid, positions[i], glm::dvec3(0.0), 1.0, 1.0, xls[i], yls[i], zls[i]));
             }
 
