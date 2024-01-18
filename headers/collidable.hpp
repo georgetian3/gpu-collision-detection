@@ -82,7 +82,7 @@ struct Collidable1 {
 
     uint64_t __p1;
     uint64_t __p2;
-    uint16_t __p3;
+    uint64_t __p3;
 
 
 };
