@@ -45,6 +45,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     double3 normal;
 
     if (a->type == CUBOID && a->type == CUBOID) {
+        printf("here\n");
         // AABBs collide -> true collision
         double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
         double3 mad = v_abs(diff);
