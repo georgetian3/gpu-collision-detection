@@ -49,7 +49,6 @@ public:
     void updatePhysics(double dt);
     void setCollidables(const std::vector<Collidable>& collidables);
     std::vector<glm::mat4> getModelMatrices();
-    std::vector<Collision> detectCollisions();
 
 };
 
