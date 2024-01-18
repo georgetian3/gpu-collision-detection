@@ -6,8 +6,6 @@
 
 int main(int argc, char* argv[]) {
 
-    std::cout << sizeof(Collidable1) << '\n';
-
     std::filesystem::path cwd = (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal();
 
     if (argc > 1) {
