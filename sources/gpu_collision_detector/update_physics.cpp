@@ -13,20 +13,20 @@ bool comp(const Collidable& a, const Collidable b) {
 
 void GpuCollisionDetector::updatePhysics(double dt) {
     try {
-        printLocation();
+        // printLocation();
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
-        printLocation();
+        // printLocation();
         queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-        printLocation();
+        // printLocation();
         std::sort(collidables.begin(), collidables.end(), comp);
-        printLocation();
+        // printLocation();
         queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-        printLocation();
+        // printLocation();
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
-        printLocation();
+        // printLocation();
         queue.finish();
-        printLocation();
+        // printLocation();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
         // for (int i = 0; i < nodes.size(); i++) {
         //     printf("%02d %02d %02d %02d %s %s", i, nodes[i].parent, nodes[i].left, nodes[i].right, glm::to_string(nodes[i].aabb.min).c_str(), glm::to_string(nodes[i].aabb.max).c_str());
