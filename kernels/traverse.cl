@@ -47,6 +47,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
 
     if (a->type == CUBOID && a->type == CUBOID) {
         // AABBs collide -> true collision
+        printf("cc\n");
         double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
         double3 mad = v_abs(diff);
         normal.x = 0;
@@ -65,13 +66,14 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         // }
         normal.y = 1;
     } else if (a->type == SPHERE && b->type == SPHERE) {
+        printf("ss\n");
         double3 diff = a->position - b->position;
         if (length2(diff) > a->radius + b->radius) {
             return;
         }
         normal = diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
-        printf("HERE\n");
+        printf("sc\n");
         double3 dmin = a->position - b->aabb.min;
         double3 dmax = a->position - b->aabb.max;
         double3 abs_dmin = v_abs(dmin);
