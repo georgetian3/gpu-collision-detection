@@ -10,7 +10,7 @@ __kernel void model_matrices(
     struct Collidable collidable = collidables[i];
 
     bool is_sphere;
-    printf("sizeof(double3), sizeof(Collidable): %d %d\n", sizeof(double3),  sizeof(Collidable));
+    printf("sizeof(double3), sizeof(Collidable): %d %d\n", sizeof(double3),  sizeof(struct Collidable));
 
     // calculate scale vector
     double3 s;
