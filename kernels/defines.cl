@@ -42,6 +42,31 @@ struct Collidable {
 
 };
 
+struct Collidable1 {
+
+    unsigned int id;
+    unsigned int type;
+
+    bool immovable;
+
+    double3 position;
+    ulong mortonCode;
+
+    struct AABB aabb;
+
+    union {
+        double length;
+        double radius;
+        double xl;
+    };
+
+    double yl;
+    double zl;
+
+    double3 velocity;
+
+};
+
 inline int node_to_collidables_index(int i, int n) {
     return i - (n - 1);
 }

@@ -55,7 +55,31 @@ struct Collidable {
     static Collidable constructCuboid(const glm::dvec3& center, const double xl, const double yl, const double zl);
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
-    std::string toString() const;
+
+};
+
+struct Collidable1 {
+
+    unsigned int id = -1;
+    CollidableType type;
+
+    bool immovable = false;
+
+    glm::dvec4 position = glm::dvec4(0.0);
+    uint64_t mortonCode = 0;
+
+    AABB aabb;
+
+    union {
+        double length = 0;
+        double radius;
+        double xl;
+    };
+    double yl = 0;
+    double zl = 0;
+
+    glm::dvec4 velocity = glm::dvec4(0.0);
+
 
 };
 
