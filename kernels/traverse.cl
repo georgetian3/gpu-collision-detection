@@ -39,9 +39,6 @@ double length2(double3 v) {
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
-
-
-
     double3 normal;
 
     if (a->type == CUBOID && a->type == CUBOID) {
@@ -52,13 +49,18 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         normal.x = 0;
         normal.y = 0;
         normal.z = 0;
-        if (mad.x >= mad.y && mad.x >= mad.z) {
-            normal.x = 1.0;
-        } else if (mad.y >= mad.x && mad.y >= mad.z) {
-            normal.y = 1.0;
-        } else {
-            normal.z = 1.0;
-        }
+        double3 da = a->aabb.min - b->aabb.max;
+        double3 db = a->aabb.max - b->aabb.min;
+        double3 ada = v_abs(da);
+        double3 adb = v_abs(db);
+        // if (ada.x < ada.y && ada.x < ada.z && ada.x < adb.x && ada.x < adb.y && ada.x < adb.z) {
+        //     normal.x = 1;
+        // } else if (adb.x < ada.y && adb.x < ada.z && adb.x < ada.x && adb.x < ada.y && ada.x < ada.z) {
+        //     normal.x = 1;
+        // } else if {
+
+        // }
+        normal.z = 1;
     } else if (a->type == SPHERE && b->type == SPHERE) {
         double3 diff = a->position - b->position;
         if (length2(diff) > a->radius + b->radius) {
