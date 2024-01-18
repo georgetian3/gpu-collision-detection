@@ -13,7 +13,6 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 double3 reflect(double3 incident, double3 normal) {
     double3 reflected;
     double3 normalized = normalize(normal);
-    r = vec_sub(
 }
 
 
