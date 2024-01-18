@@ -42,7 +42,6 @@ struct Collidable {
 
 };
 
-#pragma pack(1) 
 struct Collidable1 {
 
     unsigned int id;
