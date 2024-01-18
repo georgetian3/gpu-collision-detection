@@ -72,8 +72,6 @@ __kernel void traverse(
     stack_init(&stack);
     stack_push(&stack, 0);
 
-    return;
-
 
     while (stack.size) {
         printf("loop\n");
@@ -88,6 +86,7 @@ __kernel void traverse(
             if (j <= i) {
                 continue;
             }
+            continue;
             narrow_phase_collision(collidables + i, collidables + j);
             continue;
         }
