@@ -17,8 +17,18 @@ inline ulong morton3D(double x, double y, double z) {
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
+    const struct Collidable collidable = collidables[i];
     const double4 position = collidables[i].position;
-    printf("x y z (%f %f %f %f)\n", position.x, position.y, position.z, position.w);
+
+    printf("%d %d %d (%f %f %f) %d (%f %f %f) (%f %f %f) (%f %f %f)\n",
+        collidable.id, collidable.type, collidable.immovable,
+        collidable.position.x, collidable.position.y, collidable.position.z,
+        collidable.mortonCode,
+        collidable.aabb.min.x, collidable.aabb.min.y, collidable.aabb.min.z, 
+        collidable.aabb.max.x, collidable.aabb.max.y, collidable.aabb.max.z, 
+        collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
+    );
+
     collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
     printf("morton code %d\n", collidables[i].mortonCode);
 }
