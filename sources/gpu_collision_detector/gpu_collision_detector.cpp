@@ -196,30 +196,24 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     //         exit(1);
     //     }
     // }
-    printLocation();
     this->collidables = collidables;
     int n = collidables.size();
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
     nodes.resize(n * 2 - 1);
-    printLocation();
 
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
-    printLocation();
 
     processed_zeros.resize(nodes.size());
     bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
-    printLocation();
 
     sphereModelMatrices.resize(n);
     cuboidModelMatrices.resize(n);
-    printLocation();
 
     bufferSphereMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
     bufferCuboidMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
-    printLocation();
 
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
@@ -228,12 +222,10 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         queue.finish();
 
         exit(1);
-    printLocation();
 
         kernelConstruct.setArg(0, sizeof(int), &n);
         kernelConstruct.setArg(1, bufferCollidables);
         kernelConstruct.setArg(2, bufferNodes);
-    printLocation();
 
         int i = -1;
         kernelAABB.setArg(0, sizeof(int), &i);
@@ -241,18 +233,15 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelAABB.setArg(2, bufferProcessed);
         kernelAABB.setArg(3, bufferCollidables);
         kernelAABB.setArg(4, bufferNodes);
-    printLocation();
 
         kernelTraverse.setArg(0, sizeof(int), &i);
         kernelTraverse.setArg(1, sizeof(int), &n);
         kernelTraverse.setArg(2, bufferCollidables);
         kernelTraverse.setArg(3, bufferNodes);
-    printLocation();
 
         glm::dvec3 gravity = glm::dvec3(0, -9.8, 0);
         kernelPhysics.setArg(0, bufferCollidables);
         // kernelPhysics.setArg(2, sizeof(gravity), &gravity);
-    printLocation();
 
         kernelMatrices.setArg(0, bufferCollidables);
         kernelMatrices.setArg(1, bufferSphereMatrices);

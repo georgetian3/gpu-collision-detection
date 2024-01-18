@@ -38,7 +38,6 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     glm::dvec3 pos;
     double r, xl, yl, zl;
     while (!f.eof()) {
-        printLocation();
         Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;
         if (type == "s") {
