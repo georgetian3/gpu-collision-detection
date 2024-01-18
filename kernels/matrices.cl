@@ -7,7 +7,16 @@ __kernel void model_matrices(
 ) {
 
     const int i = get_global_id(0);
+
+    
     struct Collidable collidable = collidables[i];
+
+    printf("%d %d %d (%d %d %d) %d\n",
+        id, type, immovable,
+        position.x, position.y, position.z,
+        mortonCode
+    );
+
 
     bool is_sphere;
 
