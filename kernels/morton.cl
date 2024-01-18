@@ -21,7 +21,8 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const double3 position = collidables[i].position;
 
     if (i == 0) {
-        printf("%x %x %x\n", &collidable, &collidable + 4, &collidable + 8);
+        int* p = &collidable;
+        printf("%x %x %x\n", p[0], p[1], p[2]);
 
     }
 
