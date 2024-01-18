@@ -11,9 +11,6 @@ __kernel void model_matrices(
     
     struct Collidable collidable = collidables[i];
 
-
-
-
     bool is_sphere;
 
     // calculate scale vector
@@ -34,7 +31,8 @@ __kernel void model_matrices(
             break;
         }
         default: {
-            printf("Unsupported collidable type: %d\n", collidable.type);
+            // printf("Unsupported collidable type: %d\n", collidable.type);
+            return;
         }
     }
 
