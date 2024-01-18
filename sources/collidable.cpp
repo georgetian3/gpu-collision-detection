@@ -35,7 +35,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     std::vector<Collidable> collidables;
     std::string type;
     glm::dvec3 pos;
-    double r, l, xl, yl, zl;
+    double r, xl, yl, zl;
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> pos.x >> pos.y >> pos.z;

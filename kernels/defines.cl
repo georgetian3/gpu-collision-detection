@@ -2,33 +2,8 @@ R"(
 
 enum Type {
     SPHERE,
-    CUBE,
     CUBOID
 };
-
-double3 {
-    double x;
-    double y;
-    double z;
-};
-
-inline double3 vec_add(const double3 a, const double3 b) {
-    const double3 r = {a.x + b.x, a.y + b.y, a.z + b.z};
-    return r;
-}
-
-inline double3 vec_sub(const double3 a, const double3 b) {
-    const double3 r = {a.x - b.x, a.y - b.y, a.z - b.z};
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-    return r;
-}
-
-inline double3 vec_mul(const double3 v, const double f) {
-    const double3 r = {f * v.x, f * v.y, f * v.z};
-    return r;
-}
-
-inline double3 vec_
 
 struct AABB {
     double3 min;
