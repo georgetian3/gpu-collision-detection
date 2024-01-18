@@ -16,6 +16,10 @@ __kernel void model_matrices(
     switch (collidable.type) {
         case SPHERE: {
             is_sphere = true;
+            s.x = collidable.length;
+            s.y = collidable.length;
+            s.z = collidable.length;
+            break;
         }
         case CUBE: {
             is_sphere = false;
