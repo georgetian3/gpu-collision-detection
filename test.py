@@ -18,7 +18,6 @@ for i in range(n):
 
     position = f'{rand_dec()} {rand_dec()} {rand_dec()}'
     velocity = f'{rand_dec(-1, 1)} {rand_dec(-1, 1)} {rand_dec(-1, 1)}'
-    velocity = f'{0.0} {0.0} {0.0}'
 
     collidable = f'{shape} {position} {velocity} {mass} {cor}'
 
