@@ -1,8 +1,5 @@
 R"(
 
-    __global float* active, inactive;
-
-
 __kernel void model_matrices(
     __global struct Collidable* collidables,
     __global float* sphere_matrices,
@@ -12,12 +9,13 @@ __kernel void model_matrices(
     const int i = get_global_id(0);
     struct Collidable collidable = collidables[i];
 
+    float* active, inactive;
 
     // calculate scale vector
     struct vec3 s;
     switch (collidable.type) {
         case SPHERE: {
-            active = sphere_matrices;
+            active = (__local float*)sphere_matrices;
             inactive = cuboid_matrices;
         case CUBE: {
             active = cuboid_matrices;
