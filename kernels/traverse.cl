@@ -18,6 +18,8 @@ double3 reflect(double3 incident, double3 normal) {
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
+    return;
+
     double3 v_a, v_b;
 
     if (a->type == CUBOID && a->type == CUBOID) {
