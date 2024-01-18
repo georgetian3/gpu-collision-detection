@@ -17,7 +17,7 @@ for i in range(n):
     shape = random.sample(shapes, 1)[0]
 
     position = f'{rand_dec()} {rand_dec()} {rand_dec()}'
-    velocity = f'{rand_dec()} {rand_dec()} {rand_dec()}'
+    velocity = f'{rand_dec(-1, 1)} {rand_dec(-1, 1)} {rand_dec(-1, 1)}'
 
     collidable = f'{shape} {position} {velocity} {mass} {cor}'
 
