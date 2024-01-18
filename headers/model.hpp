@@ -152,7 +152,7 @@ void createSphere() {
         sphereIndices.push_back((i + 1) % sectorCount + 1);
     }
 
-    for (int stack = 0; stack < stackCount - 1; stack++) {
+    for (int stack = 0; stack < stackCount - 2; stack++) {
         int k1 = stack * sectorCount + 1;
         int k2 = k1 + sectorCount;
 
