@@ -7,6 +7,8 @@ __kernel void update_physics(
 ) {
     const int i = get_global_id(0);
 
+    return;
+
     struct Collidable collidable = collidables[i];
     if (collidable.immovable) {
         return;
