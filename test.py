@@ -25,7 +25,7 @@ for i in range(n):
     w = rand_dec(0.01, 0.05)
     h = rand_dec(0.01, 0.05)
 
-    if shape == 'c':
+    if shape == 's':
         collidable += f' {l}'
     else:
         collidable += f' {l} {w} {h}'
