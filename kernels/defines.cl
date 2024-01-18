@@ -6,8 +6,8 @@ enum Type {
 };
 
 struct AABB {
-    double4 min;
-    double4 max;
+    double3 min;
+    double3 max;
 };
 
 struct Node {
@@ -38,7 +38,7 @@ struct Collidable {
     double yl;
     double zl;
 
-    double4 velocity;
+    double3 velocity;
 
 };
 
