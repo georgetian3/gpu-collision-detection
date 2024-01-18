@@ -38,23 +38,23 @@ __kernel void model_matrices(
 
     struct vec3 p = collidable.position;
 
-    int base = i * 16;
+    int b = i * 16;
 
     if (is_sphere) {
-        sphere_matrices[i +  0] = s.x; sphere_matrices[i +  4] =   0; sphere_matrices[i +  8] =   0; sphere_matrices[i + 12] = p.x; 
-        sphere_matrices[i +  1] =   0; sphere_matrices[i +  5] = s.y; sphere_matrices[i +  9] =   0; sphere_matrices[i + 13] = p.y; 
-        sphere_matrices[i +  2] =   0; sphere_matrices[i +  6] =   0; sphere_matrices[i + 10] = s.z; sphere_matrices[i + 14] = p.z; 
-        sphere_matrices[i +  3] =   0; sphere_matrices[i +  7] =   0; sphere_matrices[i + 11] =   0; sphere_matrices[i + 15] =   1;
-        for (int i = 0; i < 16; i++) {
-            *(cuboid_matrices + i) = 0;
+        sphere_matrices[b + 0] = s.x; sphere_matrices[b + 4] =   0; sphere_matrices[b + 8] =   0; sphere_matrices[b +12] = p.x; 
+        sphere_matrices[b + 1] =   0; sphere_matrices[b + 5] = s.y; sphere_matrices[b + 9] =   0; sphere_matrices[b +13] = p.y; 
+        sphere_matrices[b + 2] =   0; sphere_matrices[b + 6] =   0; sphere_matrices[b +10] = s.z; sphere_matrices[b +14] = p.z; 
+        sphere_matrices[b + 3] =   0; sphere_matrices[b + 7] =   0; sphere_matrices[b +11] =   0; sphere_matrices[b +15] =   1;
+        for (int j = 0; j < 16; j++) {
+            cuboid_matrices[b + j] = 0;
         }
     } else {
-        cuboid_matrices[i +  0] = s.x; cuboid_matrices[i +  4] =   0; cuboid_matrices[i +  8] =   0; cuboid_matrices[i + 12] = p.x; 
-        cuboid_matrices[i +  1] =   0; cuboid_matrices[i +  5] = s.y; cuboid_matrices[i +  9] =   0; cuboid_matrices[i + 13] = p.y; 
-        cuboid_matrices[i +  2] =   0; cuboid_matrices[i +  6] =   0; cuboid_matrices[i + 10] = s.z; cuboid_matrices[i + 14] = p.z; 
-        cuboid_matrices[i +  3] =   0; cuboid_matrices[i +  7] =   0; cuboid_matrices[i + 11] =   0; cuboid_matrices[i + 15] =   1;
-        for (int i = 0; i < 16; i++) {
-            *(sphere_matrices + i) = 0;
+        cuboid_matrices[b + 0] = s.x; cuboid_matrices[b + 4] =   0; cuboid_matrices[b + 8] =   0; cuboid_matrices[b +12] = p.x; 
+        cuboid_matrices[b + 1] =   0; cuboid_matrices[b + 5] = s.y; cuboid_matrices[b + 9] =   0; cuboid_matrices[b +13] = p.y; 
+        cuboid_matrices[b + 2] =   0; cuboid_matrices[b + 6] =   0; cuboid_matrices[b +10] = s.z; cuboid_matrices[b +14] = p.z; 
+        cuboid_matrices[b + 3] =   0; cuboid_matrices[b + 7] =   0; cuboid_matrices[b +11] =   0; cuboid_matrices[b +15] =   1;
+        for (int j = 0; j < 16; j++) {
+            sphere_matrices[b + j] = 0;
         }
     }
 
