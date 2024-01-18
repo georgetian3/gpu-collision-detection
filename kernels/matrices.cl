@@ -11,10 +11,11 @@ __kernel void model_matrices(
     
     struct Collidable collidable = collidables[i];
 
-    printf("%d %d %d (%f %f %f) %d\n",
+    printf("%d %d %d (%f %f %f) %d (%f %f %f)\n",
         collidable.id, collidable.type, collidable.immovable,
         collidable.position.x, collidable.position.y, collidable.position.z,
-        collidable.mortonCode
+        collidable.mortonCode,
+        collidable.velocity.x, collidable.velocity.y, collidable.velocity.y
     );
 
 
