@@ -60,7 +60,6 @@ __kernel void traverse(
     
     struct Collidable collidable_i = collidables[i];
 
-    return;
 
 
     struct Node node;
@@ -72,6 +71,9 @@ __kernel void traverse(
     struct Stack stack;
     stack_init(&stack);
     stack_push(&stack, 0);
+
+    return;
+
 
     while (stack.size) {
         printf("loop\n");
