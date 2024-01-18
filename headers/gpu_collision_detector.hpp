@@ -8,12 +8,16 @@
 
 #include <collidable.hpp>
 
+
+#pragma pack(1)
 struct Node {
     AABB aabb;
     int parent = -1;
     int left = -1;
     int right = -1;
 };
+#pragma pack()
+
 
 class GpuCollisionDetector {
 
