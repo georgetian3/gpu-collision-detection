@@ -22,7 +22,7 @@ struct Collidable {
     unsigned int id;
     unsigned int type;
 
-    bool immovable;
+    int immovable;
 
     double3 position;
     ulong mortonCode;

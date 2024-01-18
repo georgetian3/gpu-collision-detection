@@ -25,7 +25,7 @@ struct Collidable {
     unsigned int id = -1;
     CollidableType type;
 
-    bool immovable = false;
+    int immovable = false;
 
     glm::dvec4 position = glm::dvec4(0.0);
     uint64_t mortonCode = 0;
