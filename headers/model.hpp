@@ -117,10 +117,8 @@ void createSphere() {
     sphereVertices.clear();
     sphereIndices.clear();
 
-        const float PI = acos(-1.0f);
+    const float PI = acos(-1.0f);
 
-    // clear memory of prev arrays
-    clearArrays();
     const double radius = 1.0;
     const int sectorCount = 4, stackCount = 4;
     float x, y, z, xy;                              // vertex position
