@@ -62,16 +62,16 @@ Collidable::Collidable(
     const double xl,
     const double yl,
     const double zl
-): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {
+): id(idCount++), type(type), position(glm::dvec4(position.x, position.y, position.z, 0)), xl(xl), yl(yl), zl(zl) {
     switch (type) {
         case CollidableType::sphere: {
-            aabb.min = glm::dvec3(0);
-            aabb.max = glm::dvec3(xl);
+            aabb.min = glm::dvec4(0);
+            aabb.max = glm::dvec4(xl);
             break;
         }
         case CollidableType::cuboid: {
-            aabb.min = glm::dvec3(0);
-            aabb.max = glm::dvec3(xl, yl, zl);
+            aabb.min = glm::dvec4(0);
+            aabb.max = glm::dvec4(xl, yl, zl);
             break;
         }
         default: {
