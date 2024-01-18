@@ -9,7 +9,6 @@ static unsigned int idCount = 0;
 
 std::string collidableTypeStrings[] = {
     std::string("Sphere"),
-    std::string("Cube"),
     std::string("Cuboid"),
 };
 
@@ -27,7 +26,6 @@ std::string Collidable::toString() const {
 std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {
     // all numeric values below are doubles
     // s x y z r = sphere with center at (x, y, z) with radius r
-    // c x y z l = cube with smallest corner at (x, y, z) with side length l
     // r x y z xl yl zl = cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
     std::ifstream f(path);
     if (!f.is_open()) {
@@ -44,9 +42,6 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
         if (type == "s") {
             f >> r;
             collidable = Collidable::constructSphere(pos, r);
-        } else if (type == "c") {
-            f >> l;
-            collidable = Collidable::constructCube(pos, l);
         } else if (type == "r") {
             f >> xl >> yl >> zl;
             collidable = Collidable::constructCuboid(pos, xl, yl, zl);
@@ -67,8 +62,7 @@ Collidable::Collidable(
     const double zl
 ): id(idCount++), type(type), position(position), xl(xl), yl(yl), zl(zl) {
     switch (type) {
-        case CollidableType::sphere: 
-        case CollidableType::cube: {
+        case CollidableType::sphere: {
             aabb.min = glm::dvec3(0);
             aabb.max = glm::dvec3(xl);
             break;
@@ -85,10 +79,6 @@ Collidable::Collidable(
     }
 }
 
-
-Collidable Collidable::constructCube(const glm::dvec3& position, const double length) {
-    return Collidable(CollidableType::cube, position, length);
-}
 Collidable Collidable::constructSphere(const glm::dvec3& center, const double radius) {
     return Collidable(CollidableType::sphere, center, radius);
 }

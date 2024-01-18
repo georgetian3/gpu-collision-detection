@@ -11,19 +11,50 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 #define ABS(x) (x >= 0 ? x : -x)
 
 
+inline double3 normalize(double3 v) {
+    double3 normalized;
+    double length = v.x * v.x + v.y * v.y + v.z * v.z;
+    if (length == 1) {
+        return v;
+    }
+    length = sqrt(length);
+    normalized.x = v.x / length;
+    normalized.y = v.y / length;
+    normalized.z = v.z / length;
+    return normalized;
+}
+
+double3 reflect(double3 incident, double3 normal) {
+    double3 reflected;
+    double3 normalized = normalize(normal);
+    r = vec_sub(
+}
+
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
-    if (a->type == CUBE && a->type == CUBE) {
-        
+    vec3 v_a, v_b;
 
+    if (a->type == CUBOID && a->type == CUBOID) {
+        
+    } else if (a->type == SPHERE && b.type == SPHERE) {
+
+    } else if (a->type == SPHERE && b->type == CUBOID) {
+
+
+    } else if (a->type == CUBOID && b->type == SPHERE) {
+        narrow_phase_collision(b, a);
+        return;
+    } else {
+        printf("narrow_phase_collision ???\n");
     }
 
     if (!a->immovable) {
-        a->velocity.y = -a->velocity.y;
+        a->velocity = v_a;
     }
 
     if (!b->immovable) {
-        b->velocity.y = -b->velocity.y;
+        b->velocity = v_b;
     }
 }
 

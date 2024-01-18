@@ -7,7 +7,7 @@ R"(
 __kernel void update_physics(
     __global struct Collidable* collidables,
     const double dt,
-    const struct vec3 gravity
+    const double3 gravity
 ) {
     const int i = get_global_id(0);
 
@@ -15,8 +15,8 @@ __kernel void update_physics(
     if (collidable.immovable) {
         return;
     }
-    struct vec3 new_velocity = vec_add(collidable.velocity, vec_mul(gravity, dt));
-    struct vec3 new_position = vec_add(collidable.position, vec_mul(vec_add(collidable.velocity, new_velocity), 0.5 * dt));
+    double3 new_velocity = vec_add(collidable.velocity, vec_mul(gravity, dt));
+    double3 new_position = vec_add(collidable.position, vec_mul(vec_add(collidable.velocity, new_velocity), 0.5 * dt));
     new_position.x = clamp(new_position.x, 0.0, 1.0);
     new_position.y = clamp(new_position.y, 0.0, 1.0);
     new_position.z = clamp(new_position.z, 0.0, 1.0);

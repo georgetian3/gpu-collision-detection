@@ -17,7 +17,7 @@ inline ulong morton3D(double x, double y, double z) {
 
 __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const int i = get_global_id(0);
-    const struct vec3 position = collidables[i].position;
+    const double3 position = collidables[i].position;
     collidables[i].mortonCode = morton3D(position.x, position.y, position.z);
 }
 

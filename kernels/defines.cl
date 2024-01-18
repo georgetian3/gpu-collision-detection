@@ -6,25 +6,33 @@ enum Type {
     CUBOID
 };
 
-struct vec3 {
+double3 {
     double x;
     double y;
     double z;
 };
 
-inline struct vec3 vec_add(const struct vec3 a, const struct vec3 b) {
-    const struct vec3 r = {a.x + b.x, a.y + b.y, a.z + b.z};
+inline double3 vec_add(const double3 a, const double3 b) {
+    const double3 r = {a.x + b.x, a.y + b.y, a.z + b.z};
     return r;
 }
 
-inline struct vec3 vec_mul(const struct vec3 v, const double f) {
-    const struct vec3 r = {f * v.x, f * v.y, f * v.z};
+inline double3 vec_sub(const double3 a, const double3 b) {
+    const double3 r = {a.x - b.x, a.y - b.y, a.z - b.z};
+    return {a.x - b.x, a.y - b.y, a.z - b.z};
     return r;
 }
+
+inline double3 vec_mul(const double3 v, const double f) {
+    const double3 r = {f * v.x, f * v.y, f * v.z};
+    return r;
+}
+
+inline double3 vec_
 
 struct AABB {
-    struct vec3 min;
-    struct vec3 max;
+    double3 min;
+    double3 max;
 };
 
 struct Node {
@@ -41,7 +49,7 @@ struct Collidable {
 
     bool immovable;
 
-    struct vec3 position;
+    double3 position;
     ulong mortonCode;
 
     struct AABB aabb;
@@ -55,7 +63,7 @@ struct Collidable {
     double yl;
     double zl;
 
-    struct vec3 velocity;
+    double3 velocity;
 
 };
 

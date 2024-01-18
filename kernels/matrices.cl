@@ -12,17 +12,10 @@ __kernel void model_matrices(
     bool is_sphere;
 
     // calculate scale vector
-    struct vec3 s;
+    double3 s;
     switch (collidable.type) {
         case SPHERE: {
             is_sphere = true;
-            s.x = collidable.length;
-            s.y = collidable.length;
-            s.z = collidable.length;
-            break;
-        }
-        case CUBE: {
-            is_sphere = false;
             s.x = collidable.length;
             s.y = collidable.length;
             s.z = collidable.length;
@@ -40,7 +33,7 @@ __kernel void model_matrices(
         }
     }
 
-    struct vec3 p = collidable.position;
+    double3 p = collidable.position;
 
     int b = i * 16;
 
