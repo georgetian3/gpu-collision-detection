@@ -46,6 +46,7 @@ int min_index(const double* arr, const int n) {
             curr_min_index = i;
         }
     }
+    return curr_min_index;
 }
 
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
