@@ -55,7 +55,11 @@ Collidable::Collidable(
     const double xl,
     const double yl,
     const double zl
-): id(idCount++), type(type), position(glm::dvec4(position.x, position.y, position.z, 0)), xl(xl), yl(yl), zl(zl) {
+): id(idCount++), type(type),
+   position(glm::dvec4(position.x, position.y, position.z, 0)),
+   velocity(glm::dvec4(velocity.x, velocity.y, velocity.z, 0)),
+   xl(xl), yl(yl), zl(zl) {
+    
     this->cor = clamp(cor, 0.0, 1.0);
     this->mass = clamp(mass, 1e-10, 1e10);
     switch (type) {
