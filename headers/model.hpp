@@ -146,26 +146,32 @@ void createSphere() {
     sphereVertices.push_back(0.0f);
     sphereVertices.push_back(-1.0f);
 
-    unsigned int k1, k2;
-    for(int i = 0; i < stackCount; ++i) {
-        k1 = i * (sectorCount + 1);     // beginning of current stack
-        k2 = k1 + sectorCount + 1;      // beginning of next stack
-
-        for(int j = 0; j < sectorCount; ++j, ++k1, ++k2) {
-            // 2 triangles per sector excluding 1st and last stacks
-            if (i != 0) {
-                sphereIndices.push_back(k1);
-                sphereIndices.push_back(k2);
-                sphereIndices.push_back(k1 + 1);
-            }
-
-            if (i != (stackCount-1)) {
-                sphereIndices.push_back(k1 + 1);
-                sphereIndices.push_back(k2);
-                sphereIndices.push_back(k2 + 1);
-            }
-        }
+    for (int i = 0; i <= sectorCount; i++) {
+        sphereIndices.push_back(0);
+        sphereIndices.push_back(i);
+        sphereIndices.push_back((i % sectorCount) + 1);
     }
+
+    // unsigned int k1, k2;
+    // for(int i = 0; i < stackCount; ++i) {
+    //     k1 = i * (sectorCount + 1);     // beginning of current stack
+    //     k2 = k1 + sectorCount + 1;      // beginning of next stack
+
+    //     for(int j = 0; j < sectorCount; ++j, ++k1, ++k2) {
+    //         // 2 triangles per sector excluding 1st and last stacks
+    //         if (i != 0) {
+    //             sphereIndices.push_back(k1);
+    //             sphereIndices.push_back(k2);
+    //             sphereIndices.push_back(k1 + 1);
+    //         }
+
+    //         if (i != (stackCount-1)) {
+    //             sphereIndices.push_back(k1 + 1);
+    //             sphereIndices.push_back(k2);
+    //             sphereIndices.push_back(k2 + 1);
+    //         }
+    //     }
+    // }
 
 
 
