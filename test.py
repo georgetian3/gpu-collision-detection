@@ -22,7 +22,7 @@ for i in range(n):
 
     collidable = f'{shape} {position} {velocity} {mass} {cor}'
 
-    l = rand_dec(0.001, 0.01)
+    l = rand_dec(0.01, 0.01)
     w = rand_dec(0.001, 0.01)
     h = rand_dec(0.001, 0.01)
 
