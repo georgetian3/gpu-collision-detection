@@ -24,7 +24,7 @@ struct Collidable {
 
     bool immovable;
 
-    double4 position;
+    double3 position;
     ulong mortonCode;
 
     struct AABB aabb;
