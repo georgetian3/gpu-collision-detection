@@ -20,16 +20,9 @@ __kernel void mortonCodeAABB(__global struct Collidable* collidables) {
     const struct Collidable collidable = collidables[i];
     const double3 position = collidables[i].position;
 
-    // if (i == 0) {
-    //     int* p = &collidable;
-    //     printf("%08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x %08x\n",
-    //         p[0], p[1], p[2], p[3],
-    //         p[4], p[5], p[6], p[7],
-    //         p[8], p[9], p[10], p[11]
-    //     );
-       
-    //     printf("sizeof(Collidable GPU) %d\n", sizeof(struct Collidable));
-    // }
+    if (i == 0) {
+        printf("sizeof(struct Collidable) %d\n", sizeof(struct Collidable));
+    }
 
 
     // printf("id %d type %d immovable %d position (%f %f %f) mc %d amin(%f %f %f) amax(%f %f %f) vel(%f %f %f)\n",
