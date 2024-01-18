@@ -57,7 +57,6 @@ __kernel void traverse(
                 continue;
             }
             narrow_phase_collision(collidables + i, collidables + j);
-            
             continue;
         }
 

@@ -103,12 +103,12 @@ void Scene::render() {
 
         sw.start();
         // Set the model matrices of each `Collidable`
-        sphere.setModelMatrices(gpuCD.getModelMatrices());
+        cube.setModelMatrices(gpuCD.getModelMatrices());
         // std::cout << "setModelMatrices time: " << sw.reset() << '\n';
 
         sw.start();
         // Draw
-        sphere.draw();
+        cube.draw();
         // std::cout << "draw time: " << sw.reset() << '\n';
 
         // Output animation frame captures
