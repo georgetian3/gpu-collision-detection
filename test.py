@@ -16,7 +16,7 @@ for i in range(n):
     cor = rand_dec(0.8, 1)
     shape = random.sample(shapes, 1)[0]
 
-    position = f'{rand_dec()} {rand_dec()} {rand_dec()}'
+    position = f'{rand_dec(0.1, 0.9)} {rand_dec(0.1, 0.9)} {rand_dec(0.1, 0.9)}'
     velocity = f'{rand_dec(-1, 1)} {rand_dec(-1, 1)} {rand_dec(-1, 1)}'
     # velocity = f'0 0 0'
 
