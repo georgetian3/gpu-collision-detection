@@ -84,19 +84,6 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         printf("(%f %f %f %f %f %f) %d\n", diffs[0], diffs[1], diffs[2], diffs[3], diffs[4], diffs[5], mi);
         normal[mi % 3] = mi > 2 ? 1 : -1;
 
-        // if (abs_dmin.x <= abs_dmin.y && abs_dmin.x <= abs_dmin.z && abs_dmin.x <= abs_dmax.x && abs_dmin.x <= abs_dmax.y && abs_dmin.x <= abs_dmax.z) {
-        //     normal.x = -1;
-        // } else if (abs_dmin.y <= abs_dmin.x && abs_dmin.y <= abs_dmin.z && abs_dmin.y <= abs_dmax.x && abs_dmin.y <= abs_dmax.y && abs_dmin.y <= abs_dmax.z) {
-        //     normal.y = -1;
-        // } else if (abs_dmin.z <= abs_dmin.x && abs_dmin.z <= abs_dmin.y && abs_dmin.z <= abs_dmax.x && abs_dmin.z <= abs_dmax.y && abs_dmin.z <= abs_dmax.z) {
-        //     normal.z = -1;
-        // } else if (abs_dmax.x <= abs_dmin.x && abs_dmax.x <= abs_dmin.y && abs_dmax.x <= abs_dmin.z && abs_dmax.x <= abs_dmax.y && abs_dmax.x <= abs_dmax.z) {
-        //     normal.x = 1;
-        // } else if (abs_dmax.y <= abs_dmin.x && abs_dmax.y <= abs_dmin.y && abs_dmax.y <= abs_dmin.z && abs_dmax.y <= abs_dmax.x && abs_dmax.y <= abs_dmax.z) {
-        //     normal.y = 1;
-        // } else if (abs_dmax.z <= abs_dmin.x && abs_dmax.z <= abs_dmin.y && abs_dmax.z <= abs_dmin.z && abs_dmax.z <= abs_dmax.x && abs_dmax.z <= abs_dmax.y) {
-        //     normal.z = 1;
-        // }
     } else if (a->type == CUBOID && b->type == SPHERE) {
         narrow_phase_collision(b, a);
         return;
