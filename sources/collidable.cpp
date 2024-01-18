@@ -24,18 +24,18 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     }
     std::vector<Collidable> collidables;
     std::string type;
-    glm::dvec3 pos;
-    glm::dvec3 velocity;
+    glm::dvec3 position, velocity;
+    double mass, cor;
     double r, xl, yl, zl;
     while (!f.eof()) {
         Collidable collidable;
-        f >> type >> pos.x >> pos.y >> pos.z >> velocity.x >> velocity.y >> velocity.z;
+        f >> type >> position.x >> position.y >> position.z >> velocity.x >> velocity.y >> velocity.z >> mass >> cor;
         if (type == "s") {
             f >> r;
-            collidable = Collidable::constructSphere(pos, r);
+            collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, r);
         } else if (type == "c") {
             f >> xl >> yl >> zl;
-            collidable = Collidable::constructCuboid(pos, xl, yl, zl);
+            collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, xl, yl, zl);
         } else {
             std::cerr << "Invalid shape type: " << type << "\n";
             exit(1);
@@ -73,11 +73,4 @@ Collidable::Collidable(
             exit(1);
         }
     }
-}
-
-Collidable Collidable::constructSphere(const glm::dvec3& center, const double radius) {
-    return Collidable(CollidableType::sphere, center, radius);
-}
-Collidable Collidable::constructCuboid(const glm::dvec3& position, const double xl, const double yl, const double zl) {
-    return Collidable(CollidableType::cuboid, position, xl, yl, zl);
 }

@@ -47,13 +47,13 @@ struct Collidable {
     Collidable(
         const CollidableType type,
         const glm::dvec3& position,
+        const glm::dvec3& velocity,
+        const double mass,
+        const double cor,
         const double xl,
         const double yl = 0.0,
         const double zl = 0.0
     );
-
-    static Collidable constructSphere(const glm::dvec3& center, const double radius);
-    static Collidable constructCuboid(const glm::dvec3& center, const double xl, const double yl, const double zl);
 
     static std::vector<Collidable> loadConfig(const std::filesystem::path& path);
 
