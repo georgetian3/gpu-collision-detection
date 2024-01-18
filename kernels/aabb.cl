@@ -3,9 +3,6 @@ R"(
 #pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
 #pragma OPENCL EXTENSION cl_khr_local_int32_base_atomics : enable
 
-#define MIN(a, b) a < b ? a : b
-#define MAX(a, b) a < b ? b : a
-
 __kernel void calculate_absolute_aabb(
     int i,
     int n,
@@ -13,17 +10,13 @@ __kernel void calculate_absolute_aabb(
     __global struct Collidable* collidables,
     __global struct Node* nodes
 ) {
-    // printf("entry\n");
     if (i < 0) {
         i = get_global_id(0);
     } else {
         if (!atomic_inc(processed + i)) {
-            // printf("returning\n");
             return;
         }
-        // printf("continuing\n");
     }
-
 
     if (nodes[i].left == -1) { // leaf node
         const double3 pos = collidables[i - (n - 1)].position;
@@ -31,25 +24,23 @@ __kernel void calculate_absolute_aabb(
         nodes[i].aabb.min = pos + aabb.min;
         nodes[i].aabb.max = pos + aabb.max;
     } else {
-        struct AABB a, b;
-        double3 min, max;
 
-        a = nodes[nodes[i].left ].aabb;
-        b = nodes[nodes[i].right].aabb;
+        struct AABB a = nodes[nodes[i].left ].aabb;
+        struct AABB b = nodes[nodes[i].right].aabb;
+        double3 aabb_min, aabb_max;
 
-        min.x = MIN(a.min.x, b.min.x);
-        min.y = MIN(a.min.y, b.min.y);
-        min.z = MIN(a.min.z, b.min.z);
-        max.x = MAX(a.max.x, b.max.x);
-        max.y = MAX(a.max.y, b.max.y);
-        max.z = MAX(a.max.z, b.max.z);
+        aabb_min.x = min(a.min.x, b.min.x);
+        aabb_min.y = min(a.min.y, b.min.y);
+        aabb_min.z = min(a.min.z, b.min.z);
+        aabb_max.x = max(a.max.x, b.max.x);
+        aabb_max.y = max(a.max.y, b.max.y);
+        aabb_max.z = max(a.max.z, b.max.z);
 
-        nodes[i].aabb.min = min;
-        nodes[i].aabb.max = max;
+        nodes[i].aabb.min = aabb_min;
+        nodes[i].aabb.max = aabb_max;
     }
 
     if (nodes[i].parent != -1) {
-        // printf("recursing\n");
         calculate_absolute_aabb(nodes[i].parent, n, processed, collidables, nodes);
     }
 
