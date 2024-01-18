@@ -215,8 +215,11 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
 
     sphereModelMatrices.resize(n);
     cuboidModelMatrices.resize(n);
+    printLocation();
+
     bufferSphereMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
     bufferCuboidMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
+    printLocation();
 
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
@@ -245,6 +248,7 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
         kernelMatrices.setArg(1, bufferSphereMatrices);
         kernelMatrices.setArg(2, bufferCuboidMatrices);
     } catch (const cl::Error& e) {
+        printLocation();
         printClError(e);
     }
 
