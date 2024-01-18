@@ -119,8 +119,8 @@ void createSphere() {
 
     const float PI = acos(-1.0f);
     const double r = 1.0;
-    const int sectorCount = 4;
-    const int stackCount = 4;
+    const int sectorCount = 8;
+    const int stackCount = 8;
 
     float x, y, z, phi, theta;
 
