@@ -44,14 +44,15 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     }
 
     double3 normal;
+    normal.x = 0;
+    normal.y = 0;
+    normal.z = 0;
 
     if (a->type == CUBOID && b->type == CUBOID) {
         // AABBs collide -> true collision
         double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
         double3 mad = v_abs(diff);
-        normal.x = 0;
-        normal.y = 0;
-        normal.z = 0;
+
         double3 da = a->aabb.min - b->aabb.max;
         double3 db = a->aabb.max - b->aabb.min;
         double3 ada = v_abs(da);
