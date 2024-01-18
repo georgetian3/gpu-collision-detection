@@ -15,8 +15,8 @@ enum class CollidableType {
 };
 
 struct AABB {
-    glm::dvec4 min = glm::dvec3(0.0);
-    glm::dvec4 max = glm::dvec3(0.0);
+    glm::dvec4 min = glm::dvec4(0.0);
+    glm::dvec4 max = glm::dvec4(0.0);
 };
 
 struct Collidable {
