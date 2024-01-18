@@ -34,6 +34,8 @@ struct Collidable {
     };
     double yl = 0;
     double zl = 0;
+    double mass = 1.0;
+    double cor = 1.0;
 
     unsigned int id = -1;
     CollidableType type;
