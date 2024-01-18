@@ -81,6 +81,6 @@ struct Collidable1 {
     // glm::dvec4 velocity = glm::dvec4(0.0);
 
 
-};
+} __attribute__ ((packed));
 
 #endif
