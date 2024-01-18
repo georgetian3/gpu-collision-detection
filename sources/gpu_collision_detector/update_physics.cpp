@@ -34,6 +34,7 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
         printLocation();
         queue.enqueueNDRangeKernel(kernelTraverse, cl::NullRange, cl::NDRange(collidables.size()));
+        printLocation();
         queue.finish();
         printLocation();
         kernelPhysics.setArg(2, sizeof(double), &dt);
