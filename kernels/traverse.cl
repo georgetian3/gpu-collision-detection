@@ -58,6 +58,8 @@ __kernel void traverse(
     }
 
     printf("traverse\n");
+
+    return;
     
     struct Collidable collidable_i = collidables[i];
     struct Node node;
