@@ -50,20 +50,20 @@ struct Collidable1 {
     bool immovable;
 
     double3 position;
-    // ulong mortonCode;
+    ulong mortonCode;
 
-    // struct AABB aabb;
+    struct AABB aabb;
 
-    // union {
-    //     double length;
-    //     double radius;
-    //     double xl;
-    // };
+    union {
+        double length;
+        double radius;
+        double xl;
+    };
 
-    // double yl;
-    // double zl;
+    double yl;
+    double zl;
 
-    // double3 velocity;
+    double3 velocity;
 
 };
 
