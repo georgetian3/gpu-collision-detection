@@ -14,6 +14,13 @@ inline double3 midpoint(const struct AABB aabb) {
     return (aabb.min + aabb.max) / 2;
 }
 
+inline double3 v_abs(double3 v) {
+    v.x = abs(v.x);
+    v.y = abs(v.y);
+    v.z = abs(v.z);
+    return v;
+}
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
 
@@ -23,7 +30,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     if (a->type == CUBOID && a->type == CUBOID) {
         // AABBs collide -> true collision
         double3 diff = midpoint(a->aabb) - midpoint(b->aabb);
-        double3 mad = abs(diff);
+        double3 mad = v_abs(diff);
         normal.x = 0;
         normal.y = 0;
         normal.z = 0;
