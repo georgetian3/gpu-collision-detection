@@ -34,7 +34,6 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     a->velocity = -a->velocity;
     b->velocity = -b->velocity;
 
-    return;
 
     double3 normal;
 
@@ -64,6 +63,9 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     } else {
         printf("narrow_phase_collision ???\n");
     }
+
+    return;
+
 
 
 
