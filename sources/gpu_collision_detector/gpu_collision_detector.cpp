@@ -196,18 +196,22 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     //         exit(1);
     //     }
     // }
+    printLocation();
     this->collidables = collidables;
     int n = collidables.size();
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
     nodes.resize(n * 2 - 1);
+    printLocation();
 
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
+    printLocation();
 
     processed_zeros.resize(nodes.size());
     bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
+    printLocation();
 
     sphereModelMatrices.resize(n);
     cuboidModelMatrices.resize(n);
