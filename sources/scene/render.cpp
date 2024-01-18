@@ -57,9 +57,11 @@ void Scene::render() {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
             Collidable faces[6];
             double delta = 0.1;
-            faces[0] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0, delta, delta), 1.0, 1.0, delta, 1 - delta, 1 - delta);
-            faces[1] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(delta, 0, delta), 1.0, 1.0, 1 - delta, delta, 1 - delta);
-            faces[2] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(delta, delta, 0), 1.0, 1.0, 1 - delta, 1 - delta, delta);
+            double delta2 = delta * 2;
+            double inv_delta2 = 1 - delta * 2
+            faces[0] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(0, delta, delta), 1.0, 1.0, delta, inv_delta2, inv_delta2);
+            faces[1] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(delta, 0, delta), 1.0, 1.0, inv_delta2, delta, inv_delta2);
+            faces[2] = Collidable(CollidableType::cuboid, glm::dvec3(0.0), glm::dvec3(delta, delta, 0), 1.0, 1.0, inv_delta2, inv_delta2, delta);
             for (int i = 0; i < 3; i++) {
                 faces[i].immovable = true;
                 collidables.push_back(faces[i]);
