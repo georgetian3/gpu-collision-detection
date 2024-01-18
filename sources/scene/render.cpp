@@ -70,7 +70,7 @@ void Scene::render() {
             double zls[] = {inv_delta2, inv_delta2, delta};
 
             for (int i = 0; i < 3; i++) {
-                collidables.push_back(Collidable(CollidableType::cuboid, glm::dvec3(0.0), positions[i], 1.0, 1.0, xls[i], yls[i], zls[i]));
+                collidables.push_back(Collidable(CollidableType::cuboid, positions[i], glm::dvec3(0.0), 1.0, 1.0, xls[i], yls[i], zls[i]));
             }
 
             gpuCD.setCollidables(collidables);
