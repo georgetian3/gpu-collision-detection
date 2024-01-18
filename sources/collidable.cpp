@@ -36,7 +36,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
             collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, r);
         } else if (type == "c") {
             f >> xl >> yl >> zl;
-            collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, xl, yl, zl);
+            collidable = Collidable(CollidableType::cuboid, position, velocity, mass, cor, xl, yl, zl);
         } else {
             std::cerr << "Invalid shape type: " << type << "\n";
             exit(1);
