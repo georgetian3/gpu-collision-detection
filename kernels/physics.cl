@@ -24,9 +24,9 @@ __kernel void update_physics(
 
     collidables[i].position = new_position;
     collidables[i].velocity = new_velocity;
-    if (outside(new_position.x) || outside(new_position.y) || outside(new_position.z)) {
-        collidables[i].immovable = 1;
-    }
+    // if (outside(new_position.x) || outside(new_position.y) || outside(new_position.z)) {
+    //     collidables[i].immovable = 1;
+    // }
 }
 
 )"
