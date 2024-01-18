@@ -6,6 +6,8 @@
 
 int main(int argc, char* argv[]) {
 
+    std::cout << sizeof(glm::dvec4) << ' ' << sizeof(Collidable) << '\n';
+
     std::filesystem::path cwd = (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal();
 
     if (argc > 1) {
