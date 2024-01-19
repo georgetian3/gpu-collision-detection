@@ -57,7 +57,7 @@ void Scene::render() {
         if (reset) {
             collidables = Collidable::loadConfig(makeAbsolute("resources/collidables.txt"));
             Collidable faces[6];
-            double delta = 0.01;
+            double delta = 0.001;
             double delta2 = delta * 2;
             double inv_delta = 1 - delta;
             double inv_delta2 = 1 - delta * 2;
