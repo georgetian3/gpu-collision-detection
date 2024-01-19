@@ -9,6 +9,7 @@ void printPlatformInfo(const cl::Platform& platform) {
     std::cout << "CL_PLATFORM_NAME      : " << platform.getInfo<CL_PLATFORM_NAME>() << '\n';
     std::cout << "CL_PLATFORM_VENDOR    : " << platform.getInfo<CL_PLATFORM_VENDOR>() << '\n';
     std::cout << "CL_PLATFORM_EXTENSIONS: " << platform.getInfo<CL_PLATFORM_EXTENSIONS>() << '\n';
+    std::cout << '\n';
 }
 void printDeviceInfo(const cl::Device& device) {
     std::cout << "CL_DEVICE_TYPE                            : " << device.getInfo<CL_DEVICE_TYPE>() << '\n';
@@ -83,15 +84,10 @@ void printOpenclInfo() {
         }
         std::cout << std::string(80, '#') << '\n';
     }
-    std::cout << '\n';
 }
 
 GpuCollisionDetector::GpuCollisionDetector() {
-
-    // printOpenclInfo();
-    // loadConfig();
-
-    // select platform
+    // select OpenCL platform
     std::vector<cl::Platform> platforms;
     cl::Platform::get(&platforms);
     if (platforms.empty()) {
@@ -102,7 +98,7 @@ GpuCollisionDetector::GpuCollisionDetector() {
     std::cout << "Selected platform:\n";
     printPlatformInfo(platform);
 
-    // select device
+    // select OpenCL device
     std::vector<cl::Device> devices;
     platform.getDevices(CL_DEVICE_TYPE_ALL, &devices);
     if (devices.empty()) {
