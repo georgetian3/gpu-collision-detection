@@ -49,16 +49,35 @@ int min_index(const double* arr, const int n) {
     return curr_min_index;
 }
 
+void exit_collidables(__global struct Collidable* a, __global struct Collidable* b, double3 direction) {
+    if (direction.x == 0.0 && direction.y == 0.0 && direction.z == 0.0) {
+        return;
+    }
+    if (a->immovable && b->immovable) {
+        return;
+    } else if (a->immovable) {
+        b->position -= direction;
+    } else if (b->immovable) {
+        a->position += direction;
+    } else {
+        a->position += direction / 2;
+        b->position -= direction / 2;
+    }
+}
+
 void narrow_phase_collision(__global struct Collidable* a, __global struct Collidable* b) {
 
     if (a->immovable && b->immovable) {
         return;
     }
 
-    double3 normal;
+    double3 normal, exit_dir;
     normal.x = 0;
     normal.y = 0;
     normal.z = 0;
+    exit_dir.x = 0;
+    exit_dir.y = 0;
+    exit_dir.z = 0;
 
     if (a->type == CUBOID && b->type == CUBOID) {
         // AABBs collide -> true collision
@@ -66,19 +85,22 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         double diffs[] = {ABS(diff1.x), ABS(diff1.y), ABS(diff1.z), ABS(diff2.x), ABS(diff2.y), ABS(diff2.z)};
         int mi = min_index(diffs, 6);
         normal[mi % 3] = mi > 2 ? 1 : -1;
+        exit_dir = normal * diffs[mi];
     } else if (a->type == SPHERE && b->type == SPHERE) {
-        double3 diff = a->position - b->position;
-        if (length2(diff) > a->radius + b->radius) { // no true collision
+        double3 pos_diff = a->position - b->position;
+        double length_diff = a->radius + b->radius - length(poss_diff);
+        if (length_diff < 0) { // no true collision
             return;
         }
-        normal = diff;
+        normal = pos_diff;
+        exit_dir = normal / length(pos_diff) * length_diff;
     } else if (a->type == SPHERE && b->type == CUBOID) {
         double3 dmin = v_abs(a->position - (b->position + b->aabb.min));
         double3 dmax = v_abs(a->position - (b->position + b->aabb.max));
-
         double diffs[] = {dmin.x, dmin.y, dmin.z, dmax.x, dmax.y, dmax.z};
         int mi = min_index(diffs, 6);
         normal[mi % 3] = mi > 2 ? 1 : -1;
+        exit_dir = normal * diffs[mi];
 
     } else if (a->type == CUBOID && b->type == SPHERE) {
         narrow_phase_collision(b, a);
@@ -86,6 +108,9 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     } else {
         printf("narrow_phase_collision ???\n");
     }
+
+    exit_collidables(a, b, exit_dir);
+
 
     if (!a->immovable) {
         double3 reflected = reflect(a->velocity, normal);
