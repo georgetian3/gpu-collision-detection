@@ -40,7 +40,6 @@ void Scene::renderGui() {
         if (SliderDouble("Camera movement speed", &cameraSpeed, 0.01, 10.0)) camera.setSpeed(cameraSpeed);
         SliderDouble("Slow motion", &slowMotion, 1, 100.0);
         if (ImGui::Button("Reset")) reset = true;
-        if (ImGui::Button(recording ? "Stop recording" : "Start recording")) recording = !recording;
 
         // ImGui::ShowDemoWindow();
 
