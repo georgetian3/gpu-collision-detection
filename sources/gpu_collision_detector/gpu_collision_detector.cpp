@@ -1,22 +1,7 @@
 #include <gpu_collision_detector.hpp>
 #include <exception>
 #include <fstream>
-#include <json.hpp>
 #include <utils.hpp>
-using json = nlohmann::json;
-
-void GpuCollisionDetector::loadConfig(const std::filesystem::path& path) {
-    std::ifstream f(path);
-    json config;
-    try {
-        config = json::parse(f);
-    } catch (...) {
-        std::cerr << "Cannot parse JSON config: " << path;
-        exit(1);
-    }
-    selected_platform_index = config.value("platform", -1);
-    selected_device_index = config.value("device", -1);
-}
 
 void printPlatformInfo(const cl::Platform& platform) {
     std::cout << "CL_PLATFORM_PROFILE   : " << platform.getInfo<CL_PLATFORM_PROFILE>() << '\n';

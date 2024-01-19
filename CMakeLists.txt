@@ -42,10 +42,8 @@ include_directories(
     libs/glm/
     libs/imgui/
     libs/imgui/backends/
-    libs/stb/
     libs/OpenCL-CLHPP/include/
     libs/OpenCL-Headers/
-    libs/nlohmann
 )
 
 file(GLOB LIBS_SOURCES
