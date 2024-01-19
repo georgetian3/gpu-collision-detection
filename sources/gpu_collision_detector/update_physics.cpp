@@ -13,20 +13,16 @@ bool comp(const Collidable& a, const Collidable b) {
 
 void GpuCollisionDetector::updatePhysics(double dt) {
     try {
-        // printLocation();
+        // calculate morton codes
         queue.enqueueNDRangeKernel(kernelMortonCode, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();
-        // printLocation();
+        // sort collidables based on their morton codes
         queue.enqueueReadBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-        // printLocation();
         std::sort(collidables.begin(), collidables.end(), comp);
-        // printLocation();
         queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * collidables.size(), collidables.data());
-        // printLocation();
+        // construct BVH
         queue.enqueueNDRangeKernel(kernelConstruct, cl::NullRange, cl::NDRange(collidables.size() - 1));
-        // printLocation();
         queue.finish();
-        // printLocation();
         queue.enqueueReadBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
         // for (int i = 0; i < nodes.size(); i++) {
         //     printf("%02d %02d %02d %02d %s %s", i, nodes[i].parent, nodes[i].left, nodes[i].right, glm::to_string(nodes[i].aabb.min).c_str(), glm::to_string(nodes[i].aabb.max).c_str());
@@ -35,14 +31,14 @@ void GpuCollisionDetector::updatePhysics(double dt) {
         //     // }
         //     std::cout << '\n';
         // }
+        // calculate AABBs
         queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_int) * processed_zeros.size(), processed_zeros.data());
         queue.enqueueNDRangeKernel(kernelAABB, cl::NDRange(collidables.size() - 1), cl::NDRange(collidables.size()));
         queue.finish();
-        // printLocation();
+        // traverse tree, perform narrow phase collision detection
         queue.enqueueNDRangeKernel(kernelTraverse, cl::NullRange, cl::NDRange(collidables.size()));
-        // printLocation();
         queue.finish();
-        // printLocation();
+        // update position and velocity due to gravity
         kernelPhysics.setArg(2, sizeof(double), &dt);
         queue.enqueueNDRangeKernel(kernelPhysics, cl::NullRange, cl::NDRange(collidables.size()));
         queue.finish();

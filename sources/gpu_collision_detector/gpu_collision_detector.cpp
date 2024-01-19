@@ -187,24 +187,17 @@ GpuCollisionDetector::GpuCollisionDetector() {
 }
 
 void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collidables) {
-    // for (const auto& collidable: collidables) {
-    //     if (collidable.position.x < 0 || collidable.position.x > 1 ||
-    //         collidable.position.y < 0 || collidable.position.y > 1 ||
-    //         collidable.position.z < 0 || collidable.position.z > 1
-    //     ) {
-    //         std::cerr << "Collidable position must be in range [0, 1]\n";
-    //         exit(1);
-    //     }
-    // }
+    
     this->collidables = collidables;
     int n = collidables.size();
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
-    nodes.resize(n * 2 - 1);
 
+    // given n collidables (leaf nodes), there will be n - 1 internal nodes, hence n * 2 - 1 in total, see Karras' paper
+    nodes.resize(n * 2 - 1);
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
     queue.enqueueWriteBuffer(bufferNodes, CL_TRUE, 0, sizeof(Node) * nodes.size(), nodes.data());
-
+    // `processed` buffer is used to synchronize AABB calculation
     processed_zeros.resize(nodes.size());
     bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
