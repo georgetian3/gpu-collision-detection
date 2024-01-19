@@ -32,12 +32,10 @@ class Scene {
 
     void handleMenu();
 
-
     std::filesystem::path cwd;
     std::filesystem::path makeAbsolute(std::filesystem::path path) const {
         return (path.is_absolute() ? path : (cwd / path)).make_preferred();
     }
-
 
     void renderGui();
 
@@ -67,7 +65,6 @@ class Scene {
 
     std::vector<Collidable> collidables;
     GpuCollisionDetector gpuCD;
-
 
 public:
 
