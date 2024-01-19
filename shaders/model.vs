@@ -11,7 +11,7 @@ uniform mat4 view;
 
 void main() {
     FragPos = vec3(aInstanceMatrix * vec4(aPos, 1.0));
-    gl_Position = projection * view * vec4(FragPos, 1.0); 
+    gl_Position = projection * view * aInstanceMatrix * vec4(aPos, 1.0); 
 }
 
 )"
