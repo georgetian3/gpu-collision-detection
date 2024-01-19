@@ -61,7 +61,9 @@ void printDeviceInfo(const cl::Device& device) {
     std::cout << "CL_DRIVER_VERSION                         : " << device.getInfo<CL_DRIVER_VERSION>() << '\n';
     std::cout << "CL_DEVICE_PROFILE                         : " << device.getInfo<CL_DEVICE_PROFILE>() << '\n';
     std::cout << "CL_DEVICE_VERSION                         : " << device.getInfo<CL_DEVICE_VERSION>() << '\n';
-    // std::cout << "CL_DEVICE_EXTENSIONS                      : " << device.getInfo<CL_DEVICE_EXTENSIONS>() << '\n';
+    std::cout << "CL_DEVICE_EXTENSIONS                      : " << device.getInfo<CL_DEVICE_EXTENSIONS>() << '\n';
+    std::cout << '\n';
+
 
 }
 void printOpenclInfo() {
@@ -81,8 +83,8 @@ void printOpenclInfo() {
         }
         std::cout << std::string(80, '#') << '\n';
     }
+    std::cout << '\n';
 }
-
 
 GpuCollisionDetector::GpuCollisionDetector() {
 
