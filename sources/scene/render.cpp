@@ -10,12 +10,6 @@
 #include <vector>
 #include <model.hpp>
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <stb_image_writer.h>
-
-char buf[9999999];
-
-
 void Scene::render() {
 
     unsigned int frameCount = 0;
@@ -23,8 +17,6 @@ void Scene::render() {
     double updateInterval = 0.5;
     double prevTime = 0;
     double startTime = glfwGetTime();
-    int targetAnimationFps = 60;
-    unsigned int animationFrameCount = 0;
 
     // Load OpenGL shaders
     Shader shader = Shader(
@@ -120,13 +112,6 @@ void Scene::render() {
         // Draw
         cuboid.draw();
         sphere.draw();
-
-        // Output animation frame captures
-        if (recording && (currentTime - startTime) * targetAnimationFps >= animationFrameCount) {
-            glReadPixels(0, 0, windowWidth, windowHeight, GL_RGB, GL_UNSIGNED_BYTE, buf);
-            stbi_write_bmp((std::to_string(currentTime) + std::string(".bmp")).c_str(), windowWidth, windowHeight, 3, buf);
-            animationFrameCount++;
-        }
 
         // Render GUI
         renderGui();
