@@ -47,7 +47,6 @@ void Scene::init() {
         exit(1);
     }
     
-    glfwSwapInterval(vsync ? 1 : 0);
     handleMenu();
 
     IMGUI_CHECKVERSION();
