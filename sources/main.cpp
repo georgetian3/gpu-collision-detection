@@ -12,15 +12,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Command line arguments ignored\n";
     }
 
-    // auto collidables = Collidable::loadConfig(makeAbsolute(cwd, "resources/collidables.txt"));
-    // GpuCollisionDetector gpuCD;
-    // gpuCD.setCollidables(collidables);
-
-    // for (int i = 0; i < 100; i++) {
-    //     gpuCD.updatePhysics(0.0005);
-    // }
-
-
     Scene scene(
         (std::filesystem::current_path() / std::filesystem::path(argv[0]).parent_path()).lexically_normal(),
         1600, 900

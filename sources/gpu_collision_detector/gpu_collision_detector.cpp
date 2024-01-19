@@ -111,14 +111,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
         std::cerr << "No OpenCL platforms found";
         exit(1);
     }
-
-    if (selected_platform_index >= platforms.size() || selected_device_index < 0) {
-        // std::cout << "Selected platform index " << selected_platform_index << " doesn't exist, defaulting to 0\n";
-        selected_platform_index = 0;
-    }
-    cl::Platform platform = platforms[selected_platform_index];
-    // std::cout << "Selected platform " << selected_platform_index << ":\n";
-    // printPlatformInfo(platform);
+    cl::Platform platform = platforms[0];
+    std::cout << "Selected platform:\n";
+    printPlatformInfo(platform);
 
     // select device
     std::vector<cl::Device> devices;
@@ -127,13 +122,9 @@ GpuCollisionDetector::GpuCollisionDetector() {
         std::cerr << "No devices found";
         exit(1);
     }
-    if (selected_device_index >= devices.size() || selected_device_index < 0) {
-        // std::cout << "Selected device index " << selected_device_index << " doesn't exist, defaulting to 0\n";
-        selected_device_index = 0;
-    }
-    cl::Device device = devices[selected_device_index];
-    std::cout << "Selected device " << selected_device_index << ":\n";
-    // printDeviceInfo(device);
+    cl::Device device = devices[0];
+    std::cout << "Selected device:\n";
+    printDeviceInfo(device);
 
     context = cl::Context(device);
 
@@ -190,9 +181,9 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     
     this->collidables = collidables;
     int n = collidables.size();
+    // create collidables buffer
     bufferCollidables = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Collidable) * n);
     queue.enqueueWriteBuffer(bufferCollidables, CL_TRUE, 0, sizeof(Collidable) * n, collidables.data());
-
     // given n collidables (leaf nodes), there will be n - 1 internal nodes, hence n * 2 - 1 in total, see Karras' paper
     nodes.resize(n * 2 - 1);
     bufferNodes = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(Node) * nodes.size());
@@ -201,13 +192,12 @@ void GpuCollisionDetector::setCollidables(const std::vector<Collidable>& collida
     processed_zeros.resize(nodes.size());
     bufferProcessed = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(cl_bool) * processed_zeros.size());
     queue.enqueueWriteBuffer(bufferProcessed, CL_TRUE, 0, sizeof(cl_bool) * processed_zeros.size(), processed_zeros.data());
-
+    // set the sizes of model matrices vectors and buffers
     sphereModelMatrices.resize(n);
     cuboidModelMatrices.resize(n);
-
     bufferSphereMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
     bufferCuboidMatrices = cl::Buffer(context, CL_MEM_READ_WRITE, sizeof(glm::mat4) * n);
-
+    // set the arguments of each kernel function
     try {
         kernelMortonCode.setArg(0, bufferCollidables);
 
