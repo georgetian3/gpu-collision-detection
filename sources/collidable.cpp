@@ -30,7 +30,7 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> position.x >> position.y >> position.z >> velocity.x >> velocity.y >> velocity.z >> mass >> cor;
-        std::cout << type << ' ' << glm::to_string(position) << ' ' << glm::to_string(velocity) << ' ' << mass << ' ' << cor << '\n';
+        // std::cout << type << ' ' << glm::to_string(position) << ' ' << glm::to_string(velocity) << ' ' << mass << ' ' << cor << '\n';
         if (type == "s") {
             f >> r;
             collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, r);
