@@ -109,7 +109,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         printf("narrow_phase_collision ???\n");
     }
 
-    exit_collidables(a, b, exit_dir);
+    // exit_collidables(a, b, exit_dir);
 
 
     if (!a->immovable) {
