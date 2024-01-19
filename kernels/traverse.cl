@@ -80,7 +80,6 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     exit_dir.z = 0;
 
     if (a->type == CUBOID && b->type == CUBOID) {
-        // AABBs collide -> true collision
         double3 diff1 = (a->position + a->aabb.min) - (b->position + b->aabb.max), diff2 = (a->position + a->aabb.max) - (b->position + b->aabb.min);
         double diffs[] = {ABS(diff1.x), ABS(diff1.y), ABS(diff1.z), ABS(diff2.x), ABS(diff2.y), ABS(diff2.z)};
         int mi = min_index(diffs, 6);
