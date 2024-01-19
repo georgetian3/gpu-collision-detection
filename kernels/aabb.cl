@@ -1,8 +1,5 @@
 R"(
 
-#pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
-#pragma OPENCL EXTENSION cl_khr_local_int32_base_atomics : enable
-
 __kernel void calculate_absolute_aabb(
     int i,
     int n,

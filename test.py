@@ -33,6 +33,5 @@ for i in range(n):
 
     collidables.append(collidable)
 
-
 with open('resources/collidables.txt', 'w') as f:
     f.write('\n'.join(collidables))

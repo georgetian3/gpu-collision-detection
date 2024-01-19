@@ -1,11 +1,11 @@
 
 
 
-\section{编译与运行}
+\section{编译}
 
 此项目在 Windows 11 操作系统使用 Visual Studio Community 以及 Microsoft (R) C/C++ Optimizing Compiler Version 19.37.32825 for x64 编译器进行编译。可以使用 CMake 以及 \code{CMakeLists.txt} 生成 Visual Studio 的工程文件。理论上所有代码依赖都在 \code{libs/} 中并会自动编译与链接，无需手动安装额外依赖。编译与运行可以使用 \code{build.Ps1} 脚本。
 
-\section{使用方法}
+\section{运行}
 
 \code{bin/resources/collidables.txt} 中定义了所有碰撞体。一行表示一个碰撞体，格式为：
 
@@ -64,7 +64,7 @@ s p.x p.y p.z v.x v.y v.z m c l [w] [h]
     \end{itemize}
     \item \code{shaders/}：OpenGL 着色器
     \item \code{libs/}：第三方库代码
-    \item \code{resources/}：第三方库代码
+    \item \code{resources/}：资源文件
     \item \code{headers/}：C++ 头文件，每个文件的名字对应着其中申明的类
     \begin{itemize}
         \item \code{camera.hpp}：相机类，让用户在场景中漫游
@@ -75,6 +75,8 @@ s p.x p.y p.z v.x v.y v.z m c l [w] [h]
     \end{itemize}
     \item \code{sources/}：C++ 源文件，每个文件/目录的名字对应着其中定义的类
 \end{itemize}
+
+\newpage
 
 \section{运行流程}
 
@@ -92,24 +94,20 @@ s p.x p.y p.z v.x v.y v.z m c l [w] [h]
         \item 遍历树进行宽相位和窄相位碰撞检测，并计算碰撞后的速度 \code{kernels/traverse.cl}
         \item 根据万有引力更新碰撞体位置以及速度 \code{kernels/physics.cl}
     \end{enumerate}
-    \item 计算表示碰撞体的模型的模型矩阵 \code{sources/gpu_collision_detector/update_physics.cpp}，\code{kernels/matrices.cl}
+    \item 计算表示碰撞体的模型的模型矩阵 \code{sources/gpu_collision_detector/update_physics.cpp}，\\
+    \code{kernels/matrices.cl}
     \item 渲染所有模型
     \item 渲染 GUI
     \item 重复以上渲染循环内的步骤
 \end{enumerate}
 
-
-
-\section{动画}
-
-仿真的动画基于 OpenGL 实现。
-
+\newpage
 
 \section{算法}
 
 \subsection{背景}
 
-碰撞检测（collision）是判断两个物体是否碰撞的算法，在计算机图形学、计算物理学、电子游戏等等多个领域中使用。碰撞检测通常分为宽相位（broad phase）碰撞检测和窄相位（narrow phase）碰撞检测 \cite{nvidiaCollisionDetection}。宽相位碰撞检测用于快速粗略地排除完全没法碰撞的物体，然后对可能碰撞的物体进行更精确的但通常更慢的窄相位碰撞检测。由于预期仿真的物体（球，正/长方体，四面体）比较简单，此项目会使用简单的窄相位碰撞检测算法，而聚焦在宽相位碰撞检测。
+碰撞检测（collision）是判断两个物体是否碰撞的算法，在计算机图形学、计算物理学、电子游戏等等多个领域中使用。碰撞检测通常分为宽相位（broad phase）碰撞检测和窄相位（narrow phase）碰撞检测 \cite{nvidiaCollisionDetection}。宽相位碰撞检测用于快速粗略地排除完全没法碰撞的物体，然后对可能碰撞的物体进行更精确的但通常更慢的窄相位碰撞检测。由于仿真的物体（球，正/长方体）比较简单，此项目会使用简单的窄相位碰撞检测算法，而聚焦在宽相位碰撞检测。
 
 \subsection{算法概述}
 
@@ -151,7 +149,5 @@ s p.x p.y p.z v.x v.y v.z m c l [w] [h]
     \item 为了增加时间局部性，由于相邻的叶节点在三维空间中也会比较近，则以叶节点的顺序进行搜索。
     \item 每个碰撞会被检测两次。为了避免进行冗余的计算，设定若 $A$ 与 $B$ 进行碰撞，则在树中 $A$ 必须在 $B$ 的前面。需要为每个内部节点加一个指针，表示此内部节点最靠右的叶节点。
 \end{itemize}
-
-\newpage
 
 \bibliography{bibs}
