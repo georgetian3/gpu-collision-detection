@@ -88,7 +88,7 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
         exit_dir = normal * diffs[mi];
     } else if (a->type == SPHERE && b->type == SPHERE) {
         double3 pos_diff = a->position - b->position;
-        double length_diff = a->radius + b->radius - length(poss_diff);
+        double length_diff = a->radius + b->radius - length(pos_diff);
         if (length_diff < 0) { // no true collision
             return;
         }
