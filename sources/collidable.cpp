@@ -14,9 +14,6 @@ std::string collidableTypeStrings[] = {
 };
 
 std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path) {
-    // all numeric values below are doubles
-    // s x y z r = sphere with center at (x, y, z) with radius r
-    // r x y z xl yl zl = cuboid with smallest corner at (x, y, z) with side lengths in x, y, z directions being xl, yl, yz, respectively
     std::ifstream f(path);
     if (!f.is_open()) {
         std::cout << "Cannot open file: " << path << '\n';
@@ -30,7 +27,6 @@ std::vector<Collidable> Collidable::loadConfig(const std::filesystem::path& path
     while (!f.eof()) {
         Collidable collidable;
         f >> type >> position.x >> position.y >> position.z >> velocity.x >> velocity.y >> velocity.z >> mass >> cor;
-        // std::cout << type << ' ' << glm::to_string(position) << ' ' << glm::to_string(velocity) << ' ' << mass << ' ' << cor << '\n';
         if (type == "s") {
             f >> r;
             collidable = Collidable(CollidableType::sphere, position, velocity, mass, cor, r);

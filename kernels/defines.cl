@@ -55,9 +55,6 @@ void stack_init(struct Stack* stack) {
     stack->max_size = 64;
 }
 
-void stack_destroy(struct Stack* stack) {
-}
-
 void stack_push(struct Stack* stack, int obj) {
     if (stack->size >= stack->max_size) {
         printf("Exceeded stack size\n");

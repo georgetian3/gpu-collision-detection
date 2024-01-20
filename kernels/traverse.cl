@@ -1,6 +1,7 @@
 R"(
 
 inline bool overlaps(const struct AABB a, const struct AABB b) {
+    // returns true if `a` and `b` overlap
     return (
         a.min.x <= b.max.x && a.max.x >= b.min.x &&
         a.min.y <= b.max.y && a.max.y >= b.min.y &&
@@ -9,10 +10,6 @@ inline bool overlaps(const struct AABB a, const struct AABB b) {
 }
 
 #define ABS(x) (x >= 0 ? x : -x)
-
-inline double3 midpoint(const struct AABB aabb) {
-    return (aabb.min + aabb.max) / 2;
-}
 
 inline double3 v_abs(double3 v) {
     v.x = ABS(v.x);
@@ -38,6 +35,7 @@ double length2(double3 v) {
 }
 
 int min_index(const double* arr, const int n) {
+    // returns the index of element of minimum value in `arr`
     double curr_min = arr[0];
     int curr_min_index = 0;
     for (int i = 1; i < n; i++) {
@@ -50,6 +48,8 @@ int min_index(const double* arr, const int n) {
 }
 
 void exit_collidables(__global struct Collidable* a, __global struct Collidable* b, double3 direction) {
+    // if two collidables are not just touching but are inside each other,
+    // then move the two collidables such that they are just touching
     if (direction.x == 0.0 && direction.y == 0.0 && direction.z == 0.0) {
         return;
     }
@@ -104,22 +104,15 @@ void narrow_phase_collision(__global struct Collidable* a, __global struct Colli
     } else if (a->type == CUBOID && b->type == SPHERE) {
         narrow_phase_collision(b, a);
         return;
-    } else {
-        printf("narrow_phase_collision ???\n");
     }
 
     exit_collidables(a, b, exit_dir);
 
-
     if (!a->immovable) {
-        double3 reflected = reflect(a->velocity, normal);
-        // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", a->velocity.x, a->velocity.y, a->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
         a->velocity = a->cor * reflect(a->velocity, normal);
     }
 
     if (!b->immovable) {
-        double3 reflected = reflect(b->velocity, normal);
-        // printf("(%f %f %f) (%f %f %f) (%f %f %f)\n", b->velocity.x, b->velocity.y, b->velocity.z, normal.x, normal.y, normal.z, reflected.x, reflected.y, reflected.z);
         b->velocity = b->cor * reflect(b->velocity, -normal);
     }
 }
@@ -146,7 +139,6 @@ __kernel void traverse(
     struct Stack stack;
     stack_init(&stack);
     stack_push(&stack, 0);
-
 
     while (stack.size) {
         int node_i = stack_pop(&stack);

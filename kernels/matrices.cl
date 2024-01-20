@@ -8,7 +8,6 @@ __kernel void model_matrices(
 
     const int i = get_global_id(0);
 
-    
     struct Collidable collidable = collidables[i];
 
     bool is_sphere;
@@ -39,6 +38,8 @@ __kernel void model_matrices(
     double3 p = collidable.position;
 
     int b = i * 16;
+
+    // if collidable is sphere, set model matric for sphere array, set to 0 for cuboids array, and vice versa
 
     if (is_sphere) {
         sphere_matrices[b + 0] = s.x; sphere_matrices[b + 4] =   0; sphere_matrices[b + 8] =   0; sphere_matrices[b +12] = p.x; 

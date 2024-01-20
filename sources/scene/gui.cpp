@@ -8,9 +8,6 @@
 
 #include <glm/gtx/string_cast.hpp>
 
-// std::string addId(const std::string& label, const Model& model) {
-//     return label + "##" + std::to_string(model.getId());
-// }
 
 bool SliderDouble(const char *label, double *v, double v_min, double v_max, const char *format = "%.3f", ImGuiSliderFlags flags = 0) {
     float fv = static_cast<float>(*v);
@@ -39,8 +36,6 @@ void Scene::renderGui() {
         if (SliderDouble("Camera movement speed", &cameraSpeed, 0.01, 10.0)) camera.setSpeed(cameraSpeed);
         SliderDouble("Slow motion", &slowMotion, 1, 100.0);
         if (ImGui::Button("Reset")) reset = true;
-
-        // ImGui::ShowDemoWindow();
 
         ImGui::End();
 

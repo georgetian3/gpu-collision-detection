@@ -23,8 +23,6 @@ void Scene::keyCallback(int key, int, int action, int) {
     }
 }
 
-
-
 void Scene::windowSizeCallback(int width, int height) {
     windowWidth = width;
     windowHeight = height;
